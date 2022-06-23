@@ -21,3 +21,8 @@ A list of different modes of transport with unique ID's
 A list of Unique travel operting companies with their information
 
 A list of reservations that contain the reservation codes. 
+
+##Dillon's notes
+ - Either choose typescript or stripe as a learning goal not both.
+ - There are lots of features both explicitly written and implied in your plan.  Enumerate them with atomic user stories and I think you'll get a better idea of scope.
+ - My inuition is that the plan needs to be more focused and you will likely need to remove some of the "admin" specific features.
