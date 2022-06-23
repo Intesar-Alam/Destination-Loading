@@ -2,18 +2,22 @@
 
 Our plan is to create a reservation/ticket manager, at the moment we're focusing on transportation and travel. Users will able to find and "store reservations" with established airlines and ground transport, such as Amtrak. We will also allow users to store benefits in a wallet, such as metro cards, airline miles, etc. If we have time, we'd like to maybe expand into other areas, or create a feature to potentially help users find people with similar interests to make plans with, using a simple algorithim.
 
-Users can make an account that can hold their existing reservation 
+Users can make an account that can hold their existing reservation. The user would manually add ticket reservations and select a company that they're choosing to travel with. They can view all their reservation in a view my reservations tab and it will sort by date (and future can be sorted by other catagories.). On their list of reservatiosn they can edit, delete, or jump to the travel companies website with the reservation number saved to their ciip board. An Admin can manage different comapnies that are supoorted, thsi includes finding companies adding them, deleting them, and modifying them. A user can click on a button to jump to the mange reservation page on their companies website. **We are also planning on using TypeScript in our IDE for our front-end development.** As a stretch goal we may add payment integration, or the ability to store payment methods on an account, via Stripe, depending on how meeting our base requirements go.
 
-The user would manually add ticket reservations and select a company that they're choosing to travel with 
 
-They can view all their reservation in a view my reservations tab and it will sort by date (and future can be sorted by other catagories.)
+The website data structure will most likley resemble 
 
-Admin can manages different comapnies that are supoorted, thsi includes finding companies adding them, deleting them, and modifying them.
+Users with a unique ID as well and a email and password 
 
-A user can click on a button to jump to the mange reservation page on their companies website.
+Roles with a unique identifiers we try to support 3 type of users, 
+- General user who can add existing reservation, update existing reservation, or delete reservations.
+- Representative that has access to modify company data and see reservations are  
+- Admins that can modify all companies and see all reservation.
 
-We are also planning on using TypeScript in our IDE for our front-end development.
+A way to bridge users with their specific roles. 
 
-We may add payment integration, or the ability to store payment methods on an account, via Stripe, depending on how meeting our base requirements go.
+A list of different modes of transport with unique ID's
 
-`dsmelser's notes: this application is begging for an administrative view.  I'd like to see use cases for defining companies/tickets in the system (maybe even letting the user pick a logo), and defining perks.  Also, we're missing a learning objective.  Since this is handling sales an obvious one is something like payment integration with Stripe`
+A list of Unique travel operting companies with their information
+
+A list of reservations that contain the reservation codes. 
