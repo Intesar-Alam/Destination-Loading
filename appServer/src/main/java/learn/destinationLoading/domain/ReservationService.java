@@ -3,5 +3,5 @@ package learn.destinationLoading.domain;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AppUserService {
+public class ReservationService {
 }
