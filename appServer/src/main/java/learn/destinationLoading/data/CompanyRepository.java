@@ -1,0 +1,18 @@
+package learn.destinationLoading.data;
+
+import learn.destinationLoading.models.Company;
+
+import java.util.List;
+
+public interface CompanyRepository {
+    List<Company> findAll();
+
+    Company findById(int companyId);
+
+    Company add(Company company);
+
+    boolean update(Company company);
+
+    boolean deleteById(int companyId);
+
+}
