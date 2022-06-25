@@ -154,7 +154,7 @@ Find real world data and fix set up work environments for all developers
   * [ ] Update `App` component to render `Errors`
  
 ### 11. Data Layer (Tuesday 6/28)
-* [ ] Reservation Repository (interface)
+* [x] Reservation Repository (interface)
 * [ ] Reservation Jdbc Template Repository
 	* [ ] FindAll
 	* [ ] FindById (int id) -> (reservation object)
@@ -163,17 +163,18 @@ Find real world data and fix set up work environments for all developers
 	* [ ] add () -> (reservation)
 	* [ ] update (int id) -> (boolean)
 	* [ ] delete (int id) -> (boolean)
-* [ ] Company Repository (interface)
+* [x] Company Repository (interface)
 * [ ] Company Jdbc Template Repository 
 	* [ ] FindAll
-* [ ] FindById (int id) -> (company object)
-* [ ] FindByName (String companyName) -> (company)
-* [ ] UpdateDetails (int id) -> (boolean)
-* [ ] AppUserMapper
-* [ ] Constructor (List<String> roles)
-* [ ] mapRow (ResultSet rs, int i)
+	* [ ] FindById (int id) -> (company object)
+	* [ ] FindByName (String companyName) -> (company)
+	* [ ] UpdateDetails (int id) -> (boolean)
+* [x] AppUserMapper
+	* [x] Constructor (List<String> roles)
+	* [x] mapRow (ResultSet rs, int i)
 rs.getInt(id), getString(email), getString(pass_hash), getBoolean(disabled), roles       
-* [ ] App User Repository (interface)
+	
+* [x] App User Repository (interface)
 * [ ] App User Jdbc Template Repository
 	* [ ] FindAll
 	* [ ] FindByEmail (String email)
@@ -181,14 +182,13 @@ rs.getInt(id), getString(email), getString(pass_hash), getBoolean(disabled), rol
 	* [ ] update (AppUser)
 	* [ ] updateRoles (AppUser)
 	* [ ] getRolesByEmail(String email)
- 
- 
-* [ ] ReservationMapper
-	* [ ] Constructor (List<String>)
-* [ ] mapRow (ResultSet rs, int index)
-* [ ] CompanyMapper
-* [ ] Constructor (List<String>)
-* [ ] mapRow (ResultSet rs, int index)		
+	
+* [x] ReservationMapper
+	* [x] Constructor (List<String>)
+	* [x] mapRow (ResultSet rs, int index)
+* [x] CompanyMapper
+	* [x] Constructor (List<String>)
+	* [x] mapRow (ResultSet rs, int index)		
  
 ### 12. Validation AppUserService Testing (Tuesday 6/28)
 Using Mockito 
