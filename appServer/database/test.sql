@@ -20,16 +20,16 @@ create table transport_company (
     transportation_mode varchar(50) not null
 );
 
-create table reservations (
+create table reservation (
 	reservation_id int primary key auto_increment,
     user_account_id int not null,
     company_id int not null,
     reservation_date date not null,
     reservation_code varchar(50) not null,
-    constraint fk_reservations_app_user_account_id
+    constraint fk_reservation_app_user_account_id
 		foreign key (user_account_id)
         references user_account(user_account_id),
-	constraint fk_reservations_company_id
+	constraint fk_reservation_company_id
 		foreign key (company_id)
         references transport_company(company_id)
 );
@@ -57,16 +57,16 @@ insert into transport_company (company_id, company_name, company_url, company_ic
 insert into transport_company (company_id, company_name, company_url, company_icon, transportation_mode) values (5, 'Stroman, Kerluke and Considine', 'http://tinyurl.com/nisi/venenatis.png?leo=turpis&odio=enim&porttitor=blandit&id=mi&consequat=in', 'http://dummyimage.com/188x100.png/cc0000/ffffff', 'RAIL');
 insert into transport_company (company_id, company_name, company_url, company_icon, transportation_mode) values (6, 'Rempel, Gottlieb and Bartell', 'http://gizmodo.com/aliquam/sit.json?eget=nonummy&tincidunt=maecenas&eget=tincidunt&tempus=lacus&vel=at&pede=velit&morbi=vivamus&porttitor=vel&lorem=nulla&id=eget&ligula=eros', 'http://dummyimage.com/211x100.png/cc0000/ffffff', 'AIR');
 
-truncate table reservations;
-insert into reservations (reservation_id, user_account_id, company_id, reservation_date, reservation_code) values (1, 1, 1, '6/12/2023', '65044-3565');
-insert into reservations (reservation_id, user_account_id, company_id, reservation_date, reservation_code) values (2, 2, 2, '10/6/2023', '57955-2705');
-insert into reservations (reservation_id, user_account_id, company_id, reservation_date, reservation_code) values (3, 3, 3, '5/26/2023', '54868-5000');
-insert into reservations (reservation_id, user_account_id, company_id, reservation_date, reservation_code) values (4, 4, 4, '5/4/2023', '57826-460');
-insert into reservations (reservation_id, user_account_id, company_id, reservation_date, reservation_code) values (5, 5, 5, '2/4/2022', '0268-1105');
-insert into reservations (reservation_id, user_account_id, company_id, reservation_date, reservation_code) values (6, 6, 6, '4/6/2022', '76159-001');
-insert into reservations (reservation_id, user_account_id, company_id, reservation_date, reservation_code) values (7, 7, 7, '1/12/2023', '67544-355');
-insert into reservations (reservation_id, user_account_id, company_id, reservation_date, reservation_code) values (8, 8, 8, '1/17/2023', '51346-104');
-insert into reservations (reservation_id, user_account_id, company_id, reservation_date, reservation_code) values (9, 9, 9, '1/21/2024', '59535-1101');
-insert into reservations (reservation_id, user_account_id, company_id, reservation_date, reservation_code) values (10, 10, 10, '11/28/2023', '0904-5259');
+truncate table reservation;
+insert into reservation (reservation_id, user_account_id, company_id, reservation_date, reservation_code) values (1, 1, 1, '6/12/2023', '65044-3565');
+insert into reservation (reservation_id, user_account_id, company_id, reservation_date, reservation_code) values (2, 2, 2, '10/6/2023', '57955-2705');
+insert into reservation (reservation_id, user_account_id, company_id, reservation_date, reservation_code) values (3, 3, 3, '5/26/2023', '54868-5000');
+insert into reservation (reservation_id, user_account_id, company_id, reservation_date, reservation_code) values (4, 4, 4, '5/4/2023', '57826-460');
+insert into reservation (reservation_id, user_account_id, company_id, reservation_date, reservation_code) values (5, 5, 5, '2/4/2022', '0268-1105');
+insert into reservation (reservation_id, user_account_id, company_id, reservation_date, reservation_code) values (6, 6, 6, '4/6/2022', '76159-001');
+insert into reservation (reservation_id, user_account_id, company_id, reservation_date, reservation_code) values (7, 7, 7, '1/12/2023', '67544-355');
+insert into reservation (reservation_id, user_account_id, company_id, reservation_date, reservation_code) values (8, 8, 8, '1/17/2023', '51346-104');
+insert into reservation (reservation_id, user_account_id, company_id, reservation_date, reservation_code) values (9, 9, 9, '1/21/2024', '59535-1101');
+insert into reservation (reservation_id, user_account_id, company_id, reservation_date, reservation_code) values (10, 10, 10, '11/28/2023', '0904-5259');
 end //
 delimiter ;
