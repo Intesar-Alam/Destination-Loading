@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.RowMapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+//TODO add setter for getting app_user_id fk, add field to model
 public class UserAccountMapper implements RowMapper<UserAccount> {
 
     @Override
