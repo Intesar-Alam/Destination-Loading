@@ -13,11 +13,29 @@ public class UserAccount {
     private String phone;
     private LocalDate dob;
 
+    private int appUserId;
+
+    public int getUserAccountId () {
+        return userAccountId;
+    }
+
+    public void setUserAccountId (int userAccountId) {
+        this.userAccountId = userAccountId;
+    }
+
+    public int getAppUserId () {
+        return appUserId;
+    }
+
+    public void setAppUserId (int appUserId) {
+        this.appUserId = appUserId;
+    }
+
     public UserAccount() {
 
     }
 
-    public UserAccount (int userId, String email, String firstName, String lastName, String address, String phone, LocalDate dob) {
+    public UserAccount (int userId, String email, String firstName, String lastName, String address, String phone, LocalDate dob, int appUserId) {
         this.userAccountId = userId;
         this.email = email;
         this.firstName = firstName;
@@ -25,6 +43,7 @@ public class UserAccount {
         this.address = address;
         this.phone = phone;
         this.dob = dob;
+        this.appUserId = appUserId;
     }
 
     public int getUserId () {
