@@ -3,6 +3,7 @@ package learn.destinationLoading.data;
 import learn.destinationLoading.data.mappers.CompanyMapper;
 import learn.destinationLoading.data.mappers.ReservationMapper;
 import learn.destinationLoading.models.Company;
+import learn.destinationLoading.models.Reservation;
 import learn.destinationLoading.models.TransportationMode;
 import org.springframework.boot.rsocket.server.RSocketServer;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -38,6 +39,9 @@ public class CompanyJdbcTemplateRepository implements CompanyRepository {
                 "where company_id = ?;";
         Company company = jdbcTemplate.query(sql, new CompanyMapper(), companyId).stream().findFirst().orElse(null);
 
+        if (company != null) {
+            addReservations(company);
+        }
         //TODO determine if we need methods similar to addAgencies and addAlias since company_id is a fk, or if that's only for primary keys
         return company;
     }
@@ -96,7 +100,7 @@ public class CompanyJdbcTemplateRepository implements CompanyRepository {
                 + "from reservation r "
                 + "where r.company_id = ?;";
 
-        var companyReservations = jdbcTemplate.query(sql, new ReservationMapper(), company.getCompanyId());
-        company.set
+        List<Reservation> companyReservations = jdbcTemplate.query(sql, new ReservationMapper(), company.getCompanyId());
+        company.setReservations(companyReservations);
     }
 }
