@@ -65,7 +65,7 @@ public class ReservationJdbcTemplateRepository implements ReservationRepository{
             statement.setDate(3, Date.valueOf(reservation.getReservationDate()));
             statement.setString(4, reservation.getReservationCode());
             return statement;
-        });
+        }, keyHolder);
 
         if (rowsAffected <= 0) {
             return null;
