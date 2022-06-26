@@ -2,6 +2,7 @@ package learn.destinationLoading.models;
 
 
 import java.time.LocalDate;
+import java.util.List;
 
 
 public class UserAccount {
@@ -12,9 +13,9 @@ public class UserAccount {
     private String address;
     private String phone;
     private LocalDate dob;
-
     private int appUserId;
 
+    private List<Reservation> reservations;
     public int getUserAccountId () {
         return userAccountId;
     }
