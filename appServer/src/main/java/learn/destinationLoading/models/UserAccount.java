@@ -46,13 +46,6 @@ public class UserAccount {
         this.appUserId = appUserId;
     }
 
-    public int getUserId () {
-        return userAccountId;
-    }
-
-    public void setUserId (int userId) {
-        this.userAccountId = userId;
-    }
 
     public String getEmail () {
         return email;
