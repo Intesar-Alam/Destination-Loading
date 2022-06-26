@@ -65,7 +65,21 @@ public class CompanyJdbcTemplateRepository implements CompanyRepository {
 
     @Override
     public boolean update (Company company) {
-        return false;
+        final String sql = "update company set "
+                + "company_name = ?, "
+                + "company_url = ?, "
+                + "company_icon = ?, "
+                + "transportation_mode = ? "
+                + "where company_id = ?;";
+
+        int rowsUpdated = jdbcTemplate.update(sql,
+                company.getCompanyName(),
+                company.getUrl(),
+                company.getIcon(),
+                company.getTransportationMode().toString(),
+                company.getCompanyId());
+
+        return rowsUpdated > 0;
     }
 
     @Override
