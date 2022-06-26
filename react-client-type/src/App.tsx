@@ -9,6 +9,8 @@ import Login from './components/Login';
 import Navbar from './components/Navbar';
 import Menu from './components/Menu';
 import NotFound from './components/NotFound';
+import UserReservationList from './components/UserReservationList';
+import SingleUserReservation from './components/SingleUserReservation';
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
           <Route path="/navbar" element={<Navbar />} />
           <Route path="/menu" element={<Menu />} />
           <Route path="/notfound" element={<NotFound />} />
+          <Route path="/userreservationlist" element={<UserReservationList />} />
+          <Route path="/singleuserreservation" element={<SingleUserReservation />} />
         </Routes>
       </BrowserRouter>
     </>
