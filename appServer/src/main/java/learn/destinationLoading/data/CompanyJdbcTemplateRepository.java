@@ -1,6 +1,7 @@
 package learn.destinationLoading.data;
 
 import learn.destinationLoading.data.mappers.CompanyMapper;
+import learn.destinationLoading.data.mappers.ReservationMapper;
 import learn.destinationLoading.models.Company;
 import learn.destinationLoading.models.TransportationMode;
 import org.springframework.boot.rsocket.server.RSocketServer;
@@ -88,5 +89,14 @@ public class CompanyJdbcTemplateRepository implements CompanyRepository {
     public boolean deleteById (int companyId) {
        jdbcTemplate.update("delete from reservation where company_id = ?;", companyId);
        return jdbcTemplate.update("delete from transport_company where company_id = ?;", companyId) > 0;
+    }
+
+    private void addReservations(Company company) {
+        final String sql = "select r.reservation_id, r.user_account_id, r.company_id, r.reservation_date, r.reservation_code "
+                + "from reservation r "
+                + "where r.company_id = ?;";
+
+        var companyReservations = jdbcTemplate.query(sql, new ReservationMapper(), company.getCompanyId());
+        company.set
     }
 }

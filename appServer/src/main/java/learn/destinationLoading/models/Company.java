@@ -1,5 +1,8 @@
 package learn.destinationLoading.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Company {
 
     private int companyId;
@@ -12,6 +15,7 @@ public class Company {
 
     private String icon;
 
+    private List<Reservation> reservations = new ArrayList<>();
     public Company() {
     }
 
@@ -61,5 +65,13 @@ public class Company {
 
     public void setIcon (String icon) {
         this.icon = icon;
+    }
+
+    public List<Reservation> getReservations () {
+        return reservations;
+    }
+
+    public void setReservations (List<Reservation> reservations) {
+        this.reservations = reservations;
     }
 }
