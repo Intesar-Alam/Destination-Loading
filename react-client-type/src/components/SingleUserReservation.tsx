@@ -1,12 +1,13 @@
 
 import Button from 'react-bootstrap/Button';
+import Table from 'react-bootstrap/Table';
 
 function SingleUserReservation() {
   return (
     <>
-    <h1>Your Reservation</h1>
-      <h2>Single Reservation</h2>
-      <table>
+      <h1 className="text-center">Your Reservation</h1>
+      <h3 style={{ textDecoration: "underline" }}>Reservation Specifics</h3>
+      <Table size="sm">
         <tr>
           <th>Trip Title</th>
           <td>Hawaii Here We Come!</td>
@@ -25,12 +26,11 @@ function SingleUserReservation() {
         </tr>
         <tr>
           <th>Reservation Number</th>
-          <td>L548OP448TU3</td>
-          <button>Copy</button>
+          <td>L548OP448TU3<Button className="text-dark">Copy</Button></td>
         </tr>
-      </table>
-        <Button>Edit Reservation</Button>
-        <Button>Delete Reservation</Button>
+      </Table>
+      <Button>Edit Reservation</Button>
+      <Button>Delete Reservation</Button>
     </>
   );
 }
