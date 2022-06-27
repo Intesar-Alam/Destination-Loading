@@ -1,28 +1,32 @@
-
-import Table from 'react-bootstrap/Table'
+import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 
-function CompanyList() {
+
+function UserList() {
   return (
     <>
-      <h1>All Companies We Work With</h1>
+      <h1>All Customers We Work With</h1>
       {/* <Table>
         <thead className="thead-dark">
           <tr>
-            <th>Company Name</th>
-            <th>Company Website</th>
-            <th>Favicon</th>
-            <th>Transportation Mode</th>
+            <th>Customer ID</th>
+            <th>Customer Name</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Phone Number</th>
+            <th>Date of Birth</th>
             <th>&nbsp;</th>
           </tr>
         </thead>
         <tbody>
           {.map( => (
             <tr key={.id}>
-              <td>{.name}</td>
-              <td>{.url}</td>
-              <td>{.favicon}</td>
-              <td>{.mode}</td>
+              <td>{.id}</td>
+              <td>{.firstName} {.lastName}</td>
+              <td>{.email}</td>
+              <td>{.address}</td>
+              <td>{.phone}</td>
+              <td>{.dob}</td>
               <td>
                 <div className="float-right mr-2">
                   <Link className="btn btn-primary btn-sm mr-2" to={`}`}>
@@ -39,9 +43,9 @@ function CompanyList() {
           ))}
         </tbody>
       </Table> */}
-      <Button>Edit Company</Button>
+      <Button>Edit Customer</Button>
     </>
   );
 }
 
-export default CompanyList;
+export default UserList;
