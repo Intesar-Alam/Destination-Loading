@@ -24,13 +24,13 @@ function UserReservationList() {
 
       {/* <Container>
         <Row md={3}>
-          {solarPanels.map(solarPanel => (
+          {reservations.map(reservation => (
             <Col>
-              <Link to={`/solarpanels/edit/${solarPanel.id}`} >
-                <Card className="bg-dark text-dark text-center mb-5 d-flex align-items-center" style={{ width: '18rem' }} key={solarPanel.id}>
+              <Link to={`/singlereservation/${reservation.id}`} >
+                <Card className="bg-dark text-dark text-center mb-5 d-flex align-items-center" style={{ width: '18rem' }} key={reservation.id}>
                   <Card.Img src={randomPicture()} alt="Card image" />
                   <Card.ImgOverlay>
-                    <Card.Title as="h1" style={{ fontSize: "4rem", backgroundColor: 'rgba(255, 255, 255, 0.65)' }}>{solarPanel.section}</Card.Title>
+                    <Card.Title as="h1" style={{ fontSize: "4rem", backgroundColor: 'rgba(255, 255, 255, 0.65)' }}>{reservation.title}</Card.Title>
                   </Card.ImgOverlay>
                 </Card>
               </Link>
