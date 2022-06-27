@@ -8,7 +8,7 @@ import Button from 'react-bootstrap/Button';
 function MenuBar() {
   return (
     <>
-      <Navbar>
+      <Navbar bg="success">
         <Container>
           <Navbar.Brand>DL...<i className="bi bi-compass"></i></Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />

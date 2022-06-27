@@ -10,6 +10,8 @@ import Login from './components/Login';
 import NotFound from './components/NotFound';
 import UserReservationList from './components/UserReservationList';
 import SingleUserReservation from './components/SingleUserReservation';
+import CompanyPage from './components/CompanyPage';
+import CompanyReservationList from './components/CompanyReservationList';
 import Footer from './components/Footer';
 
 function App() {
@@ -23,11 +25,13 @@ function App() {
           <Route path="/aboutus" element={<AboutUs />} />
           <Route path="/learnmore" element={<LearnMore />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/footer" element={<Footer />} />
           <Route path="/notfound" element={<NotFound />} />
           <Route path="/userreservationlist" element={<UserReservationList />} />
           <Route path="/singleuserreservation" element={<SingleUserReservation />} />
+          <Route path="/companypage" element={<CompanyPage />} />
+          <Route path="/companyreservationlist" element={<CompanyReservationList />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </>
   );
