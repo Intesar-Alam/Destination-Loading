@@ -19,7 +19,7 @@ function CompanyPage() {
       </tr>
       <tr>
         <th>Favicon</th>
-        <td><i class="bi bi-bicycle"></i></td>
+        <td><i className="bi bi-bicycle"></i></td>
       </tr>
       <tr>
         <th>Transport Type</th>
