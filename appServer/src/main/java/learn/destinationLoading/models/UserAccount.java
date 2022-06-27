@@ -16,6 +16,15 @@ public class UserAccount {
     private int appUserId;
 
     private List<Reservation> reservations;
+
+    public List<Reservation> getReservations () {
+        return reservations;
+    }
+
+    public void setReservations (List<Reservation> reservations) {
+        this.reservations = reservations;
+    }
+
     public int getUserAccountId () {
         return userAccountId;
     }
