@@ -11,6 +11,7 @@ import Menu from './components/Menu';
 import NotFound from './components/NotFound';
 import UserReservationList from './components/UserReservationList';
 import SingleUserReservation from './components/SingleUserReservation';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/navbar" element={<Navbar />} />
           <Route path="/menu" element={<Menu />} />
+          <Route path="/footer" element={<Footer />} />
           <Route path="/notfound" element={<NotFound />} />
           <Route path="/userreservationlist" element={<UserReservationList />} />
           <Route path="/singleuserreservation" element={<SingleUserReservation />} />
