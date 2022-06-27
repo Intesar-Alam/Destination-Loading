@@ -7,6 +7,9 @@ import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/container';
 
 function UserReservationList() {
+  const [reservations, setReservations] = useState([]);
+
+  const navigate = useNavigate();
 
   // const pictureArray = [image1, image2, image3, image4];
 
