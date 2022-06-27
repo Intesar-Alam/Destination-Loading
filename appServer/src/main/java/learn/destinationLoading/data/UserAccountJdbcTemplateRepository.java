@@ -39,7 +39,7 @@ public class UserAccountJdbcTemplateRepository implements UserAccountRepository 
                 + "from user_account "
                 + "where user_account_id = ?;";
 
-        UserAccount userAccount = jdbcTemplate.query(sql, new UserAccountMapper, userAccountId).stream().findFirst().orElse(null);
+        UserAccount userAccount = jdbcTemplate.query(sql, new UserAccountMapper(), userAccountId).stream().findFirst().orElse(null);
 
         if (userAccount != null) {
             addReservations(userAccount);
@@ -99,8 +99,10 @@ public class UserAccountJdbcTemplateRepository implements UserAccountRepository 
     }
 
     @Override
-    public boolean deleteById (int userId) {
-        return false;
+    @Transactional
+    public boolean deleteById (int userAccountId) {
+        jdbcTemplate.update("delete from reservation where user_account_id = ?;", userAccountId);
+        return jdbcTemplate.update("delete from user_account where user_account_id = ?;", userAccountId) > 0;
     }
 
     private void addReservations(UserAccount userAccount) {
