@@ -49,7 +49,8 @@ public class ReservationJdbcTemplateRepository implements ReservationRepository{
     public List<Reservation> findByCompanyId (int companyId) {
         final String sql = "select reservation_id, user_account_id, company_id, reservation_date, reservation_code " +
                 "from reservation " +
-                "where company_id = ?;";
+                "where company_id = ? " +
+                "order by reservation_date asc;";
         return jdbcTemplate.query(sql, new ReservationMapper(), companyId);
     }
 
