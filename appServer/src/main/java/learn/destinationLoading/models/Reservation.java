@@ -5,7 +5,18 @@ import java.time.LocalDate;
 public class Reservation {
 
     private int reservationId;
-    private int userId;
+    private int userAccountId;
+
+    private int companyId;
+
+    public int getCompanyId () {
+        return companyId;
+    }
+
+    public void setCompanyId (int companyId) {
+        this.companyId = companyId;
+    }
+
     private TransportationMode transportationMode;
     private LocalDate reservationDate;
     private String reservationCode;
@@ -18,12 +29,12 @@ public class Reservation {
         this.reservationId = reservationId;
     }
 
-    public int getUserId () {
-        return userId;
+    public int getUserAccountId () {
+        return userAccountId;
     }
 
-    public void setUserId (int userId) {
-        this.userId = userId;
+    public void setUserAccountId (int userId) {
+        this.userAccountId = userId;
     }
 
     public TransportationMode getTransportationMode () {
