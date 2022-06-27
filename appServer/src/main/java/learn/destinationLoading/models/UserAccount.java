@@ -16,21 +16,6 @@ public class UserAccount {
     private int appUserId;
 
     private List<Reservation> reservations;
-    public int getUserAccountId () {
-        return userAccountId;
-    }
-
-    public void setUserAccountId (int userAccountId) {
-        this.userAccountId = userAccountId;
-    }
-
-    public int getAppUserId () {
-        return appUserId;
-    }
-
-    public void setAppUserId (int appUserId) {
-        this.appUserId = appUserId;
-    }
 
     public UserAccount() {
 
@@ -47,6 +32,21 @@ public class UserAccount {
         this.appUserId = appUserId;
     }
 
+    public int getUserAccountId () {
+        return userAccountId;
+    }
+
+    public void setUserAccountId (int userAccountId) {
+        this.userAccountId = userAccountId;
+    }
+
+    public int getAppUserId () {
+        return appUserId;
+    }
+
+    public void setAppUserId (int appUserId) {
+        this.appUserId = appUserId;
+    }
 
     public String getEmail () {
         return email;
