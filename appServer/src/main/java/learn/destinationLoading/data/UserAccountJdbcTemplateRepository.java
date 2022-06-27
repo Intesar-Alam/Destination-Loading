@@ -1,6 +1,8 @@
 package learn.destinationLoading.data;
 
+import learn.destinationLoading.data.mappers.ReservationMapper;
 import learn.destinationLoading.data.mappers.UserAccountMapper;
+import learn.destinationLoading.models.Reservation;
 import learn.destinationLoading.models.UserAccount;
 import org.apache.catalina.User;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -39,6 +41,10 @@ public class UserAccountJdbcTemplateRepository implements UserAccountRepository 
 
         UserAccount userAccount = jdbcTemplate.query(sql, new UserAccountMapper, userAccountId).stream().findFirst().orElse(null);
 
+        if (userAccount != null) {
+            addReservations(userAccount);
+        }
+
         return userAccount;
 
     }
@@ -72,7 +78,24 @@ public class UserAccountJdbcTemplateRepository implements UserAccountRepository 
 
     @Override
     public boolean update (UserAccount userAccount) {
-        return false;
+        final String sql = "update user_account set "
+                + "email = ?, "
+                + "first_name = ?, "
+                + "last_name = ?, "
+                + "address = ?, "
+                + "phone = ?, "
+                + "dob = ?, "
+                + "app_user_id = ? "
+                + "where user_account_id = ?;";
+        return jdbcTemplate.update(sql,
+                userAccount.getEmail(),
+                userAccount.getFirstName(),
+                userAccount.getLastName(),
+                userAccount.getAddress(),
+                userAccount.getPhone(),
+                userAccount.getDob(),
+                userAccount.getAppUserId(),
+                userAccount.getUserAccountId()) > 0;
     }
 
     @Override
@@ -80,11 +103,12 @@ public class UserAccountJdbcTemplateRepository implements UserAccountRepository 
         return false;
     }
 
-    private void addAppUser() {
+    private void addReservations(UserAccount userAccount) {
+        final String sql = "select r.reservation_id, r.user_account_id, r.company_id, r.reservation_date, r.reservation_code "
+                + "from reservation r "
+                + "where r.user_account_id = ?;";
 
-    }
-
-    private void addReservations() {
-        
+        List<Reservation> userAccountReservations = jdbcTemplate.query(sql, new ReservationMapper(), userAccount.getUserAccountId());
+        userAccount.setReservations(userAccountReservations);
     }
 }
