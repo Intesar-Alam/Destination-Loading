@@ -40,6 +40,7 @@ create table reservation (
     company_id int not null,
     reservation_date date not null,
     reservation_code varchar(50) not null,
+    reservation_title varchar(80) not null,
     constraint fk_reservation_user_account_id
 		foreign key (user_account_id)
         references user_account(user_account_id),
@@ -97,12 +98,12 @@ insert into transport_company (company_id, company_name, company_url, company_ic
 
 
 
-insert into reservation (reservation_id, user_account_id, company_id, reservation_date, reservation_code) values (1, 1, 1, '2023-06-12', '65044-3565');
-insert into reservation (reservation_id, user_account_id, company_id, reservation_date, reservation_code) values (2, 2, 2, '2023-10-23', '57955-2705');
-insert into reservation (reservation_id, user_account_id, company_id, reservation_date, reservation_code) values (3, 3, 3, '2023-05-26', '54868-5000');
-insert into reservation (reservation_id, user_account_id, company_id, reservation_date, reservation_code) values (4, 4, 4, '2023-09-3', '57826-460');
-insert into reservation (reservation_id, user_account_id, company_id, reservation_date, reservation_code) values (5, 5, 1, '2022-03-16', '0268-1105');
-insert into reservation (reservation_id, user_account_id, company_id, reservation_date, reservation_code) values (6, 2, 3, '2023-04-13', '57955-2705');
+insert into reservation (reservation_id, user_account_id, company_id, reservation_date, reservation_code, reservation_title) values (1, 1, 1, '2023-06-12', '65044-3565', 'Barbados trip');
+insert into reservation (reservation_id, user_account_id, company_id, reservation_date, reservation_code, reservation_title) values (2, 2, 2, '2023-10-23', '57955-2705', 'Birthday Weekend');
+insert into reservation (reservation_id, user_account_id, company_id, reservation_date, reservation_code, reservation_title) values (3, 3, 3, '2023-05-26', '54868-5000', 'Holiday');
+insert into reservation (reservation_id, user_account_id, company_id, reservation_date, reservation_code, reservation_title) values (4, 4, 4, '2023-09-3', '57826-460', 'Soccer game');
+insert into reservation (reservation_id, user_account_id, company_id, reservation_date, reservation_code, reservation_title) values (5, 5, 1, '2022-03-16', '0268-1105', 'Other birthday weekend');
+insert into reservation (reservation_id, user_account_id, company_id, reservation_date, reservation_code, reservation_title) values (6, 2, 3, '2023-04-13', '57955-2705', 'Spring break');
 
 end //
 delimiter ;

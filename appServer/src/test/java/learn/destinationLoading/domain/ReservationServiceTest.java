@@ -26,9 +26,9 @@ class ReservationServiceTest {
     @Test
     void shouldAdd(){
         Reservation reservation = new Reservation(0, 1, 1,
-                 LocalDate.now().plusWeeks(2), "XXXXXX");
+                 LocalDate.now().plusWeeks(2), "XXXXXX", "trip");
         Reservation mock = new Reservation(1, 1, 1,
-                 LocalDate.now().plusWeeks(2), "XXXXXX");
+                 LocalDate.now().plusWeeks(2), "XXXXXX", "trip");
 
         when(repository.add(reservation)).thenReturn(mock);
 
@@ -40,7 +40,7 @@ class ReservationServiceTest {
     @Test
     void shouldNotAddInvalidId(){
         Reservation reservation = new Reservation(1, 1, 1,
-                 LocalDate.now().plusWeeks(2), "XXXXXX");
+                 LocalDate.now().plusWeeks(2), "XXXXXX", "trip");
 
         Result<Reservation> result = service.add(reservation);
         assertEquals(ResultType.INVALID, result.getType());
@@ -59,7 +59,7 @@ class ReservationServiceTest {
     @Test
     void shouldNotValidateMissingUser(){
         Reservation reservation = new Reservation(0, 0, 1,
-                 LocalDate.now().plusWeeks(2), "XXXXXX");
+                 LocalDate.now().plusWeeks(2), "XXXXXX", "trip");
 
         Result<Reservation> result = service.add(reservation);
         assertEquals(ResultType.INVALID, result.getType());
@@ -69,7 +69,7 @@ class ReservationServiceTest {
     @Test
     void shouldNotAddInvalidCompany(){
         Reservation reservation = new Reservation(0, 1, 0,
-                 LocalDate.now().plusWeeks(2), "XXXXXX");
+                 LocalDate.now().plusWeeks(2), "XXXXXX", "trip");
 
         Result<Reservation> result = service.add(reservation);
         assertEquals(ResultType.INVALID, result.getType());
@@ -79,7 +79,7 @@ class ReservationServiceTest {
     @Test
     void shouldNotAddInvalidDate(){
         Reservation reservation = new Reservation(0, 1, 1,
-                 LocalDate.now().minusDays(1), "XXXXXX");
+                 LocalDate.now().minusDays(1), "XXXXXX", "trip");
 
         Result<Reservation> result = service.add(reservation);
         assertEquals(ResultType.INVALID, result.getType());
@@ -89,7 +89,7 @@ class ReservationServiceTest {
     @Test
     void shouldNotAddInvalidCode(){
         Reservation reservation = new Reservation(0, 1, 1,
-                 LocalDate.now().plusWeeks(2), null);
+                 LocalDate.now().plusWeeks(2), null, "trip");
 
         Result<Reservation> result = service.add(reservation);
         assertEquals(ResultType.INVALID, result.getType());
@@ -99,7 +99,7 @@ class ReservationServiceTest {
     @Test
     void shouldUpdate() {
         Reservation reservation = new Reservation(2, 1, 1,
-                 LocalDate.now().plusWeeks(2), "XXXXXX");
+                 LocalDate.now().plusWeeks(2), "XXXXXX", "trip");
 
         when(repository.update(reservation)).thenReturn(true);
 
@@ -111,7 +111,7 @@ class ReservationServiceTest {
     @Test
     void shouldNotUpdateInvalid404() {
         Reservation reservation = new Reservation(2, 1, 1,
-                 LocalDate.now().plusWeeks(2), "XXXXXX");
+                 LocalDate.now().plusWeeks(2), "XXXXXX", "trip");
 
         when(repository.update(reservation)).thenReturn(false);
 
@@ -123,7 +123,7 @@ class ReservationServiceTest {
     @Test
     void shouldNotUpdateInvalidId() {
         Reservation reservation = new Reservation(0, 1, 1,
-                 LocalDate.now().plusWeeks(2), "XXXXXX");
+                 LocalDate.now().plusWeeks(2), "XXXXXX", "trip");
 
         Result<Reservation> result = service.update(reservation);
         assertEquals(ResultType.INVALID, result.getType());

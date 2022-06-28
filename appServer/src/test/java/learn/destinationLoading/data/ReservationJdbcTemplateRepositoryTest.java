@@ -83,6 +83,6 @@ class ReservationJdbcTemplateRepositoryTest {
     }
 
     Reservation makeReservation() {
-        return new Reservation(1, 3, 4, LocalDate.of(2023, 02, 24), "57826-468");
+        return new Reservation(1, 3, 4, LocalDate.of(2023, 02, 24), "57826-468", "Trip to LA");
     }
 }

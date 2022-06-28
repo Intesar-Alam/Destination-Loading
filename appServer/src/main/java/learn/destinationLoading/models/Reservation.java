@@ -10,18 +10,21 @@ public class Reservation {
     private int companyId;
     private LocalDate reservationDate;
     private String reservationCode;
+    private String reservationTitle;
+
 
     public Reservation() {
     }
 
     public Reservation(int reservationId, int userAccountId,
                        int companyId,
-                       LocalDate reservationDate, String reservationCode) {
+                       LocalDate reservationDate, String reservationCode, String reservationTitle) {
         this.reservationId = reservationId;
         this.userAccountId = userAccountId;
         this.companyId = companyId;
         this.reservationDate = reservationDate;
         this.reservationCode = reservationCode;
+        this.reservationTitle = reservationTitle;
     }
 
     public int getReservationId () {
@@ -64,6 +67,13 @@ public class Reservation {
         this.reservationCode = reservationCode;
     }
 
+    public String getReservationTitle () {
+        return reservationTitle;
+    }
+
+    public void setReservationTitle (String reservationTitle) {
+        this.reservationTitle = reservationTitle;
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
