@@ -70,6 +70,16 @@ public class ReservationService {
         return result;
     }
 
+    Result<Reservation> deleteById(int reservationId){
+        if(repository.deleteById(reservationId)){
+            return new Result<>();
+        }else{
+            Result<Reservation> result = new Result<>();
+            result.addMessage("Reservation was not found", ResultType.NOT_FOUND);
+            return result;
+        }
+    }
+
     private Result<Reservation> validate(Reservation reservation) {
         Result<Reservation> result = new Result<>();
 

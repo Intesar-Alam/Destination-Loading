@@ -1,6 +1,7 @@
 package learn.destinationLoading.models;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Reservation {
 
@@ -11,6 +12,19 @@ public class Reservation {
     private LocalDate reservationDate;
     private String reservationCode;
 
+    public Reservation() {
+    }
+
+    public Reservation(int reservationId, int userAccountId,
+                       int companyId, TransportationMode transportationMode,
+                       LocalDate reservationDate, String reservationCode) {
+        this.reservationId = reservationId;
+        this.userAccountId = userAccountId;
+        this.companyId = companyId;
+        this.transportationMode = transportationMode;
+        this.reservationDate = reservationDate;
+        this.reservationCode = reservationCode;
+    }
 
     public int getReservationId () {
         return reservationId;
@@ -58,5 +72,18 @@ public class Reservation {
 
     public void setReservationCode (String reservationCode) {
         this.reservationCode = reservationCode;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Reservation)) return false;
+        Reservation that = (Reservation) o;
+        return userAccountId == that.userAccountId && companyId == that.companyId && transportationMode == that.transportationMode && reservationDate.equals(that.reservationDate) && reservationCode.equals(that.reservationCode);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(userAccountId, companyId, transportationMode, reservationDate, reservationCode);
     }
 }

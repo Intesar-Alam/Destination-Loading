@@ -77,15 +77,17 @@ public class Company {
     }
 
     @Override
-    public boolean equals (Object o) {
+
+    public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Company)) return false;
         Company company = (Company) o;
-        return companyId == company.companyId && transportationMode == company.transportationMode && Objects.equals(companyName, company.companyName) && Objects.equals(url, company.url) && Objects.equals(icon, company.icon);
+        return transportationMode == company.transportationMode && companyName.equals(company.companyName) && url.equals(company.url) && icon.equals(company.icon);
     }
 
     @Override
-    public int hashCode () {
-        return Objects.hash(companyId, transportationMode, companyName, url, icon);
+    public int hashCode() {
+        return Objects.hash(transportationMode, companyName, url, icon);
+
     }
 }
