@@ -26,6 +26,12 @@ function UserForm() {
                 <Form.Control id="lastName" type="text" placeholder="Enter Last Name" />
               </Col>
             </Form.Group>
+            <Form.Group as={Row} className="my-2 ms-3" controlId="formEmail">
+              <Form.Label column sm={2} htmlFor="email">Email</Form.Label>
+              <Col sm={9}>
+                <Form.Control id="email" type="text" placeholder="Enter Email" />
+              </Col>
+            </Form.Group>
             <Form.Group as={Row} className="mb-2 ms-3" controlId="formAddress">
               <Form.Label column sm={2} htmlFor="address">Address</Form.Label>
               <Col sm={9}>

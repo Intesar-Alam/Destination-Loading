@@ -60,13 +60,13 @@ function ReservationForm() {
             </Form.Group>
             {/* TODO add conditional rendering for create/edit(update) user */}
             <Form.Group as={Row} className="mb-3">
-              <Col sm={{ offset: 9 }}>
+              <Col sm={{ offset: 8 }}>
                 <Button type="submit">Create Reservation</Button>
               </Col>
             </Form.Group>
             {/* //TODO add conditional rendering for this button edit screen only */}
             <Form.Group as={Row}>
-              <Col sm={{ offset: 9 }}>
+              <Col sm={{ offset: 8 }}>
                 <Button type="submit" className="mb-2">Delete Reservation</Button>
               </Col>
             </Form.Group>
