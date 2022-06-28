@@ -9,6 +9,7 @@ import LearnMore from './components/LearnMore';
 import Login from './components/Login';
 import NotFound from './components/NotFound';
 import UserForm from './components/UserForm';
+import ReservationForm from './components/ReservationForm';
 import UserReservationList from './components/UserReservationList';
 import SingleUserReservation from './components/SingleUserReservation';
 import CompanyPage from './components/CompanyPage';
@@ -32,6 +33,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/notfound" element={<NotFound />} />
           <Route path="/userform" element={<UserForm />} />
+          <Route path="/reservationform" element={<ReservationForm />} />
           <Route path="/userreservationlist" element={<UserReservationList />} />
           <Route path="/singleuserreservation" element={<SingleUserReservation />} />
           <Route path="/companypage" element={<CompanyPage />} />
