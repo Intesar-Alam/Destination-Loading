@@ -20,8 +20,8 @@ public class UserAccountService {
         return repository.findAll();
     }
 
-    public UserAccount findById(int id){
-        return repository.findById(id);
+    public UserAccount findById(int userId){
+        return repository.findById(userId);
     }
 
     public Result<UserAccount> add(UserAccount userAccount){
