@@ -17,12 +17,19 @@ public class UserAccount {
 
     private List<Reservation> reservations;
 
-    public List<Reservation> getReservations () {
-        return reservations;
+    public UserAccount() {
+
     }
 
-    public void setReservations (List<Reservation> reservations) {
-        this.reservations = reservations;
+    public UserAccount (int userId, String email, String firstName, String lastName, String address, String phone, LocalDate dob, int appUserId) {
+        this.userAccountId = userId;
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.phone = phone;
+        this.dob = dob;
+        this.appUserId = appUserId;
     }
 
     public int getUserAccountId () {
@@ -40,22 +47,6 @@ public class UserAccount {
     public void setAppUserId (int appUserId) {
         this.appUserId = appUserId;
     }
-
-    public UserAccount() {
-
-    }
-
-    public UserAccount (int userId, String email, String firstName, String lastName, String address, String phone, LocalDate dob, int appUserId) {
-        this.userAccountId = userId;
-        this.email = email;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.address = address;
-        this.phone = phone;
-        this.dob = dob;
-        this.appUserId = appUserId;
-    }
-
 
     public String getEmail () {
         return email;
@@ -103,6 +94,14 @@ public class UserAccount {
 
     public void setDob (LocalDate dob) {
         this.dob = dob;
+    }
+    
+    public List<Reservation> getReservations () {
+        return reservations;
+    }
+
+    public void setReservations (List<Reservation> reservations) {
+        this.reservations = reservations;
     }
 
 
