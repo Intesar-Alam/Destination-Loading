@@ -72,7 +72,7 @@ public class CompanyJdbcTemplateRepository implements CompanyRepository {
 
     @Override
     public boolean update (Company company) {
-        final String sql = "update company set "
+        final String sql = "update transport_company set "
                 + "company_name = ?, "
                 + "company_url = ?, "
                 + "company_icon = ?, "
