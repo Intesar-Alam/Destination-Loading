@@ -6,20 +6,11 @@ public class Reservation {
 
     private int reservationId;
     private int userAccountId;
-
     private int companyId;
-
-    public int getCompanyId () {
-        return companyId;
-    }
-
-    public void setCompanyId (int companyId) {
-        this.companyId = companyId;
-    }
-
     private TransportationMode transportationMode;
     private LocalDate reservationDate;
     private String reservationCode;
+
 
     public int getReservationId () {
         return reservationId;
@@ -35,6 +26,14 @@ public class Reservation {
 
     public void setUserAccountId (int userId) {
         this.userAccountId = userId;
+    }
+
+    public int getCompanyId () {
+        return companyId;
+    }
+
+    public void setCompanyId (int companyId) {
+        this.companyId = companyId;
     }
 
     public TransportationMode getTransportationMode () {
