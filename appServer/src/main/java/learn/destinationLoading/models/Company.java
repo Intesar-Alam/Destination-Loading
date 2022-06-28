@@ -20,7 +20,7 @@ public class Company {
     public Company() {
     }
 
-    public Company(int companyId, TransportationMode transportationMode, String companyName, String url, String icon) {
+    public Company(int companyId, String companyName, String url, String icon, TransportationMode transportationMode) {
         this.companyId = companyId;
         this.transportationMode = transportationMode;
         this.companyName = companyName;

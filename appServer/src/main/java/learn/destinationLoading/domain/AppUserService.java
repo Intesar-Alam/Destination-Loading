@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 public class AppUserService {
 
-    private final AppUserRepository repository;
+//    private final AppUserRepository repository;
 //    private final PasswordEncoder encoder;
 //
 //    public AppUserService(AppUserRepository repository, PasswordEncoder encoder) {
@@ -20,10 +20,10 @@ public class AppUserService {
 //        this.encoder = encoder;
 //    }
 
-    //TODO swap constructors
-    public AppUserService(AppUserRepository repository) {
-        this.repository = repository;
-    }
+//    //TODO swap constructors
+//    public AppUserService(AppUserRepository repository) {
+//        this.repository = repository;
+//    }
 
 //    @Override
 //    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

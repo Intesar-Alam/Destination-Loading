@@ -30,12 +30,42 @@ class CompanyJdbcTemplateRepositoryTest {
         List<Company> companies = repository.findAll();
         assertNotNull(companies);
 
-        assertTrue(companies.size() >= 9 && companies.size() <= 12);
+        assertTrue(companies.size() >= 6 && companies.size() <= 8);
     }
 
     @Test
     void shouldFindById() {
-        Company company = new Company(1, TransportationMode.AIR, "American", "www.fortnite.com", "american.jpg");
+        Company company = new Company(1, "Alaska Airlines", "https://www.alaskaair.com/", "https://resource.alaskaair.net/favicon.ico", TransportationMode.AIR);
         Company actual = repository.findById(1);
+        assertEquals(company, actual);
+    }
+
+    @Test
+    void shouldAdd() {
+        Company company = makeCompany();
+        Company actual = repository.add(company);
+        assertNotNull(actual);
+        assertEquals(NEXT_ID, actual.getCompanyId());
+    }
+
+    @Test
+    void shouldUpdate() {
+        Company company = makeCompany();
+        company.setCompanyId(1);
+        assertTrue(repository.update(company));
+
+        company.setCompanyId(15);
+        assertFalse(repository.update(company));
+    }
+
+    @Test
+    void shouldDelete() {
+        assertTrue(repository.deleteById(3));
+        assertFalse(repository.deleteById(20));
+    }
+
+    Company makeCompany() {
+        return new Company(1, "TestName", "TestUrl", "TestIcon", TransportationMode.AIR);
+
     }
 }
