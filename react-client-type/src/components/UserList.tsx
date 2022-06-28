@@ -1,3 +1,5 @@
+// import { Link } from 'react';
+
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 
@@ -33,9 +35,9 @@ function UserList() {
                     <i className="bi bi-pencil-square"></i> Edit
                   </Link>
                   {auth.user && auth.user.hasRole('ROLE_ADMIN') && (
-                    <button className="btn btn-danger btn-sm" onClick={() => handleDeletePanel(.id)}>
+                    <Button className="btn btn-danger btn-sm" onClick={() => handleDeletePanel(.id)}>
                       <i className="bi bi-trash"></i> Delete
-                    </button>
+                    </Button>
                   )}
                 </div>
               </td>

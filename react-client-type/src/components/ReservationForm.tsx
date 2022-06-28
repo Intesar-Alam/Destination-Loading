@@ -54,7 +54,7 @@ function ReservationForm() {
                 <Form.Select id="companySelector" aria-label="Select Company">
                   <option>Select One</option>
                   {/* Map over company data to populate dropdown list */}
-                  <option>AIR</option>
+                  <option>CompanyNamesHere</option>
                 </Form.Select>
               </Col>
             </Form.Group>

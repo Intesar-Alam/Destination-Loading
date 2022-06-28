@@ -5,6 +5,7 @@ import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/container';
+import Button from 'react-bootstrap/Button';
 
 function UserReservationList() {
   const [reservations, setReservations] = useState([]);
@@ -20,7 +21,7 @@ function UserReservationList() {
   return (
     <>
       <h2 className="mb-2">Current Reservations</h2>
-      <button>Add Reservation</button>
+      <Button>Add Reservation</Button>
 
       {/* <Container>
         <Row md={3}>
