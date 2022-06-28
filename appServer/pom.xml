@@ -5,11 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>learn</groupId>
-<<<<<<< HEAD
-    <artifactId>destinationLoading</artifactId>
-=======
+
     <artifactId>destination-loading</artifactId>
->>>>>>> data
     <version>1.0-SNAPSHOT</version>
 
     <properties>
