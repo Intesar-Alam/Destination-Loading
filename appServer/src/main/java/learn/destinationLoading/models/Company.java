@@ -2,6 +2,7 @@ package learn.destinationLoading.models;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Company {
 
@@ -73,5 +74,18 @@ public class Company {
 
     public void setReservations (List<Reservation> reservations) {
         this.reservations = reservations;
+    }
+
+    @Override
+    public boolean equals (Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Company company = (Company) o;
+        return companyId == company.companyId && transportationMode == company.transportationMode && Objects.equals(companyName, company.companyName) && Objects.equals(url, company.url) && Objects.equals(icon, company.icon);
+    }
+
+    @Override
+    public int hashCode () {
+        return Objects.hash(companyId, transportationMode, companyName, url, icon);
     }
 }

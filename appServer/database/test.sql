@@ -86,8 +86,8 @@ insert into user_account (user_account_id, email, first_name, last_name, address
 
 
 insert into transport_company (company_id, company_name, company_url, company_icon, transportation_mode) values
-(1," Alaska Airlines","https://www.alaskaair.com/","https://resource.alaskaair.net/favicon.ico","AIR"),
-(2," Allegiant Air","https://www.allegiantair.com/","https://www.allegiantair.com/favicon.ico","AIR"),
+(1,"Alaska Airlines","https://www.alaskaair.com/","https://resource.alaskaair.net/favicon.ico","AIR"),
+(2,"Allegiant Air","https://www.allegiantair.com/","https://www.allegiantair.com/favicon.ico","AIR"),
 (3,"American Airlines","https://www.aa.com/","https://www.aa.com/favicon.ico","AIR"),
 (4,"Delta Air Lines","https://www.delta.com/","https://www.delta.com/etc/designs/global/favicon.ico","AIR"),
 (5,"Frontier Airlines","https://www.flyfrontier.com/","https://f9prodcdn.azureedge.net/favicon/favicon.ico","AIR"),
@@ -102,6 +102,7 @@ insert into reservation (reservation_id, user_account_id, company_id, reservatio
 insert into reservation (reservation_id, user_account_id, company_id, reservation_date, reservation_code) values (3, 3, 3, '2023-05-26', '54868-5000');
 insert into reservation (reservation_id, user_account_id, company_id, reservation_date, reservation_code) values (4, 4, 4, '2023-09-3', '57826-460');
 insert into reservation (reservation_id, user_account_id, company_id, reservation_date, reservation_code) values (5, 5, 5, '2022-03-16', '0268-1105');
+insert into reservation (reservation_id, user_account_id, company_id, reservation_date, reservation_code) values (6, 2, 3, '2023-04-13', '57955-2705');
 
 end //
 delimiter ;

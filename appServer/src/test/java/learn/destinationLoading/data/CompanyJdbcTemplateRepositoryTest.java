@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 class CompanyJdbcTemplateRepositoryTest {
 
-    final static int NEXT_ID = 11;
+    final static int NEXT_ID = 8;
     @Autowired
     CompanyJdbcTemplateRepository repository;
 
@@ -35,9 +35,10 @@ class CompanyJdbcTemplateRepositoryTest {
 
     @Test
     void shouldFindById() {
-        Company company = new Company(1, "Alaska Airlines", "https://www.alaskaair.com/", "https://resource.alaskaair.net/favicon.ico", TransportationMode.AIR);
         Company actual = repository.findById(1);
-        assertEquals(company, actual);
+        assertEquals("Alaska Airlines", actual.getCompanyName());
+        assertEquals(1, actual.getCompanyId());
+        assertEquals("AIR", actual.getTransportationMode().toString());
     }
 
     @Test
