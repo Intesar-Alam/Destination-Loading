@@ -10,7 +10,7 @@ function CompanyForm() {
   return (
     <>
       {/* Conditional rendering edit, add (delete) */}
-      <h1 className="text-center">Sign Up/Edit</h1>
+      <h1 className="text-center">Add/Edit Company</h1>
 
       <Container>
         <Card className="rounded-0 col-md-8 mx-auto">
