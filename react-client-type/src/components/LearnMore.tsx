@@ -1,6 +1,14 @@
+
+import Container from 'react-bootstrap/Container';
+
 function LearnMore() {
   return (
-    <h2>Learn More</h2>
+    <>
+      <Container className="defaultHeight">
+
+        <h2>Learn More</h2>
+      </Container>
+    </>
   );
 }
 

@@ -8,8 +8,8 @@ import Button from 'react-bootstrap/Button';
 function Footer() {
   return (
     <>
-    <div className="position-relative">
-      <Navbar className="position-absolute top-100 bottom-0 end-0">
+    <div>
+      <Navbar>
         <Container>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Nav className="me-auto">

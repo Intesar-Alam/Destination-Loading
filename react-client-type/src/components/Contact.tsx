@@ -7,6 +7,8 @@ import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 
 function Contact() {
+  // Add validation for form
+  // Make button do something
   return (
     <>
       <h1 className="text-center">Contact Us</h1>
