@@ -95,6 +95,14 @@ public class UserAccount {
     public void setDob (LocalDate dob) {
         this.dob = dob;
     }
+    
+    public List<Reservation> getReservations () {
+        return reservations;
+    }
+
+    public void setReservations (List<Reservation> reservations) {
+        this.reservations = reservations;
+    }
 
 
 }
