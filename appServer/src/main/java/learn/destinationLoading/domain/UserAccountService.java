@@ -30,14 +30,13 @@ public class UserAccountService {
         if(!result.isSuccess()) return result;
 
         if(userAccount.getUserAccountId() != 0){
-            result.addMessage("Id cannot be preset", ResultType.INVALID);
+            result.addMessage("Id cannot be preset");
+            return result;
         }
-
-        if(!result.isSuccess()) return result;
 
         UserAccount account = repository.add(userAccount);
         if(account == null) {
-            result.addMessage("Email is already in use", ResultType.INVALID);
+            result.addMessage("Email is already in use");
         }else{
             result.setPayload(account);
         }
@@ -50,7 +49,7 @@ public class UserAccountService {
         if(!result.isSuccess()) return result;
 
         if(userAccount.getUserAccountId() == 0){
-            result.addMessage("Id is missing", ResultType.INVALID);
+            result.addMessage("Id is missing");
         }
 
         if(!result.isSuccess()) return result;
@@ -58,7 +57,7 @@ public class UserAccountService {
         if(repository.update(userAccount)){
             result.setPayload(userAccount);
         }else{
-            result.addMessage("User with this Id was not found", ResultType.NOT_FOUND);
+            result.addMessage("The user was not found", ResultType.NOT_FOUND);
         }
         return result;
     }
@@ -77,22 +76,22 @@ public class UserAccountService {
         Result<UserAccount> result = new Result<>();
 
         if(userAccount == null){
-            result.addMessage("Account is missing", ResultType.INVALID);
+            result.addMessage("Account is missing");
             return result;
         }
 
         if(AppUtilities.blank(userAccount.getEmail())){
-            result.addMessage("Email cannot be blank", ResultType.INVALID);
+            result.addMessage("Email cannot be blank");
         }else if(!userAccount.getEmail().contains("@") || !userAccount.getEmail().contains(".")) {
-            result.addMessage("Email is invalid", ResultType.INVALID);
+            result.addMessage("Email is invalid");
         }
 
         if(AppUtilities.blank(userAccount.getFirstName())){
-            result.addMessage("First Name cannot be blank", ResultType.INVALID);
+            result.addMessage("First Name cannot be blank");
         }
 
         if(AppUtilities.blank(userAccount.getLastName())){
-            result.addMessage("Last Name cannot be blank", ResultType.INVALID);
+            result.addMessage("Last Name cannot be blank");
         }
 
         return result;

@@ -29,9 +29,23 @@ public class Result<T> {
         return new ArrayList<>(messages);
     }
 
+    /**
+     * Message addition
+     * @param message message to be added
+     * @param type type of error
+     */
     public void addMessage(String message, ResultType type) {
         messages.add(message);
         this.type = type;
+    }
+
+    /**
+     * Message addition, by default if a message type isn't added it will be Invalid
+     * @param message message to be added
+     */
+    public void addMessage(String message) {
+        messages.add(message);
+        this.type = ResultType.INVALID;
     }
 
 }
