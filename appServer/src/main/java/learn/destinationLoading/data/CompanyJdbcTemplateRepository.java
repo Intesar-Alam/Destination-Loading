@@ -97,7 +97,7 @@ public class CompanyJdbcTemplateRepository implements CompanyRepository {
     }
 
     private void addReservations(Company company) {
-        final String sql = "select r.reservation_id, r.user_account_id, r.company_id, r.reservation_date, r.reservation_code "
+        final String sql = "select r.reservation_id, r.user_account_id, r.company_id, r.reservation_date, r.reservation_code, r.reservation_title "
                 + "from reservation r "
                 + "where r.company_id = ?;";
 

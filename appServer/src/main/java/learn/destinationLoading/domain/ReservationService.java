@@ -95,10 +95,6 @@ public class ReservationService {
             result.addMessage("Company is missing");
         }
 
-        if(reservation.getTransportationMode() == null){
-            result.addMessage("Transport mode Missing");
-        }
-
         if(reservation.getReservationDate().isBefore(LocalDate.now())){
             result.addMessage("Reservation cannot be in the past");
         }

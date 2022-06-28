@@ -39,6 +39,9 @@ class CompanyJdbcTemplateRepositoryTest {
         assertEquals("Alaska Airlines", actual.getCompanyName());
         assertEquals(1, actual.getCompanyId());
         assertEquals("AIR", actual.getTransportationMode().toString());
+
+        actual = repository.findById(20);
+        assertNull(actual);
     }
 
     @Test

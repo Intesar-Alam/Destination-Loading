@@ -61,18 +61,28 @@ class ReservationJdbcTemplateRepositoryTest {
 
     @Test
     void shouldAdd () {
-
+        Reservation reservation = makeReservation();
+        Reservation actual = repository.add(reservation);
+        assertNotNull(actual);
+        assertEquals(NEXT_ID, actual.getReservationId());
     }
 
     @Test
     void shouldUpdate () {
+        Reservation reservation = makeReservation();
+        assertTrue(repository.update(reservation));
+
+        reservation.setReservationId(15);
+        assertFalse(repository.update(reservation));
     }
 
     @Test
     void shouldDeleteById () {
+        assertTrue(repository.deleteById(4));
+        assertFalse(repository.deleteById(10));
     }
 
     Reservation makeReservation() {
-        return new Reservation();
+        return new Reservation(1, 3, 4, LocalDate.of(2023, 02, 24), "57826-468", "Trip to LA");
     }
 }
