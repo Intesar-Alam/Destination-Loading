@@ -44,13 +44,30 @@ class UserAccountJdbcTemplateRepositoryTest {
 
     @Test
     void add () {
+        UserAccount userAccount = makeAccount();
+        userAccount.setEmail("chip@fortnite.com");
+        UserAccount actual = repository.add(userAccount);
+
+        assertNotNull(actual);
+        assertEquals(NEXT_ID, actual.getUserAccountId());
     }
 
     @Test
     void update () {
+        UserAccount userAccount = makeAccount();
+        assertTrue(repository.update(userAccount));
+
+        userAccount.setUserAccountId(15);
+        assertFalse(repository.update(userAccount));
     }
 
     @Test
     void deleteById () {
+        assertTrue(repository.deleteById(3));
+        assertFalse(repository.deleteById(15));
+    }
+
+    UserAccount makeAccount() {
+        return new UserAccount(1, "chip@squid.com", "Chip", "Wim", null, "609-444-1389", null, 1);
     }
 }
