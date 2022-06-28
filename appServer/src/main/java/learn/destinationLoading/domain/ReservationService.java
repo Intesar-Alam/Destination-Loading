@@ -55,16 +55,15 @@ public class ReservationService {
 
         if(!result.isSuccess()) return result;
 
-        if(reservation.getCompanyId() == 0){
+        if(reservation.getReservationId() == 0){
             result.addMessage("Id is missing");
+            return result;
         }
-
-        if(!result.isSuccess()) return result;
 
         if(repository.update(reservation)){
             result.setPayload(reservation);
         }else{
-            result.addMessage("The reservation was not found", ResultType.INVALID);
+            result.addMessage("The reservation was not found", ResultType.NOT_FOUND);
         }
 
         return result;

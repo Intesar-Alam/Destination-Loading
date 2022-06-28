@@ -27,10 +27,10 @@ class CompanyServiceTest {
 
     @Test
     void shouldAdd(){
-        Company company = new Company(0, TransportationMode.AIR,
-                "XXX Air", "https://example.com/","https://example.com/favicon.ico");
-        Company mock = new Company(1, TransportationMode.AIR,
-                "XXX Air", "https://example.com/","https://example.com/favicon.ico");
+        Company company = new Company(0, "XXX Air", "https://example.com/",
+                "https://example.com/favicon.ico", TransportationMode.AIR);
+        Company mock = new Company(1, "XXX Air", "https://example.com/",
+                "https://example.com/favicon.ico", TransportationMode.AIR);
 
         when(repository.add(company)).thenReturn(mock);
 
@@ -41,8 +41,8 @@ class CompanyServiceTest {
 
     @Test
     void shouldNotAddInvalidId() {
-        Company company = new Company(1, TransportationMode.AIR,
-                "XXX Air", "https://example.com/","https://example.com/favicon.ico");
+        Company company = new Company(1,
+                "XXX Air", "https://example.com/","https://example.com/favicon.ico", TransportationMode.AIR);
 
         Result<Company> result = service.add(company);
         assertEquals(ResultType.INVALID, result.getType());
@@ -60,8 +60,8 @@ class CompanyServiceTest {
 
     @Test
     void shouldNotAddInvalidTransport() {
-        Company company = new Company(0, null,
-                "XXX Air", "https://example.com/","https://example.com/favicon.ico");
+        Company company = new Company(0, "XXX Air", "https://example.com/",
+                "https://example.com/favicon.ico", TransportationMode.AIR);
 
         Result<Company> result = service.add(company);
         assertEquals(ResultType.INVALID, result.getType());
@@ -70,8 +70,9 @@ class CompanyServiceTest {
 
     @Test
     void shouldNotAddInvalidName() {
-        Company company = new Company(0, TransportationMode.AIR,
-                null, "https://example.com/","https://example.com/favicon.ico");
+        Company company = new Company(0,
+                null, "https://example.com/",
+                "https://example.com/favicon.ico", TransportationMode.AIR);
 
         Result<Company> result = service.add(company);
         assertEquals(ResultType.INVALID, result.getType());
@@ -80,8 +81,8 @@ class CompanyServiceTest {
 
     @Test
     void shouldNotAddInvalidURL() {
-        Company company = new Company(0, TransportationMode.AIR,
-                "XXX Air", "","https://example.com/favicon.ico");
+        Company company = new Company(0, "XXX Air", "",
+                "https://example.com/favicon.ico", TransportationMode.AIR);
 
         Result<Company> result = service.add(company);
         assertEquals(ResultType.INVALID, result.getType());
@@ -90,8 +91,8 @@ class CompanyServiceTest {
 
     @Test
     void shouldNotAddInvalidIcon() {
-        Company company = new Company(0, TransportationMode.AIR,
-                "XXX Air", "https://example.com/","  ");
+        Company company = new Company(0, "XXX Air",
+                "https://example.com/","  ", TransportationMode.AIR);
 
         Result<Company> result = service.add(company);
         assertEquals(ResultType.INVALID, result.getType());
@@ -100,20 +101,20 @@ class CompanyServiceTest {
 
     @Test
     void shouldUpdate() {
-        Company company = new Company(2, TransportationMode.AIR,
-                "XXX Air", "https://example.com/","https://example.com/favicon.ico");
+        Company company = new Company(2, "XXX Air", "https://example.com/",
+                "https://example.com/favicon.ico", TransportationMode.AIR);
 
         when(repository.update(company)).thenReturn(true);
 
-        Result<Company> result = service.add(company);
+        Result<Company> result = service.update(company);
         assertEquals(ResultType.SUCCESS, result.getType());
         assertNotNull(result.getPayload());
     }
 
     @Test
     void shouldNotUpdateInvalid404() {
-        Company company = new Company(2, TransportationMode.AIR,
-                "XXX Air", "https://example.com/","https://example.com/favicon.ico");
+        Company company = new Company(2, "XXX Air", "https://example.com/",
+                "https://example.com/favicon.ico", TransportationMode.AIR);
 
         when(repository.update(company)).thenReturn(false);
 
@@ -124,8 +125,8 @@ class CompanyServiceTest {
 
     @Test
     void shouldNotUpdateInvalidId() {
-        Company company = new Company(0, TransportationMode.AIR,
-                "XXX Air", "https://example.com/","https://example.com/favicon.ico");
+        Company company = new Company(0, "XXX Air",
+                "https://example.com/","https://example.com/favicon.ico" , TransportationMode.AIR);
 
         Result<Company> result = service.update(company);
         assertEquals(ResultType.INVALID, result.getType());

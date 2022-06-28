@@ -58,7 +58,7 @@ public class CompanyService {
         if(repository.update(company)){
             result.setPayload(company);
         }else{
-            result.addMessage("The company was not found", ResultType.INVALID);
+            result.addMessage("The company was not found", ResultType.NOT_FOUND);
         }
 
         return result;

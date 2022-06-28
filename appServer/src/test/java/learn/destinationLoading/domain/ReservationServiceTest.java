@@ -110,7 +110,7 @@ class ReservationServiceTest {
 
     @Test
     void shouldNotUpdateInvalid404() {
-        Reservation reservation = new Reservation(0, 1, 1,
+        Reservation reservation = new Reservation(2, 1, 1,
                 TransportationMode.RAIL, LocalDate.now().plusWeeks(2), "XXXXXX");
 
         when(repository.update(reservation)).thenReturn(false);
