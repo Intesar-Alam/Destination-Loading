@@ -1,7 +1,4 @@
 package learn.destinationLoading.models;
 
-
-
-public class AppUser {
-
+public class SecurityService {
 }
