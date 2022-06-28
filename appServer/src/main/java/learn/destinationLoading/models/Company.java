@@ -20,7 +20,7 @@ public class Company {
     public Company() {
     }
 
-    public Company(int companyId, TransportationMode transportationMode, String companyName, String url, String icon) {
+    public Company(int companyId, String companyName, String url, String icon, TransportationMode transportationMode) {
         this.companyId = companyId;
         this.transportationMode = transportationMode;
         this.companyName = companyName;
@@ -77,6 +77,7 @@ public class Company {
     }
 
     @Override
+
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Company)) return false;
@@ -87,5 +88,6 @@ public class Company {
     @Override
     public int hashCode() {
         return Objects.hash(transportationMode, companyName, url, icon);
+
     }
 }
