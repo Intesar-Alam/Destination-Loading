@@ -101,7 +101,7 @@ insert into reservation (reservation_id, user_account_id, company_id, reservatio
 insert into reservation (reservation_id, user_account_id, company_id, reservation_date, reservation_code) values (2, 2, 2, '2023-10-23', '57955-2705');
 insert into reservation (reservation_id, user_account_id, company_id, reservation_date, reservation_code) values (3, 3, 3, '2023-05-26', '54868-5000');
 insert into reservation (reservation_id, user_account_id, company_id, reservation_date, reservation_code) values (4, 4, 4, '2023-09-3', '57826-460');
-insert into reservation (reservation_id, user_account_id, company_id, reservation_date, reservation_code) values (5, 5, 5, '2022-03-16', '0268-1105');
+insert into reservation (reservation_id, user_account_id, company_id, reservation_date, reservation_code) values (5, 5, 1, '2022-03-16', '0268-1105');
 insert into reservation (reservation_id, user_account_id, company_id, reservation_date, reservation_code) values (6, 2, 3, '2023-04-13', '57955-2705');
 
 end //
