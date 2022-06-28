@@ -49,7 +49,7 @@ class ReservationJdbcTemplateRepositoryTest {
        assertEquals(LocalDate.of(2023, 10, 23), actual.get(0).getReservationDate());
 
     }
-    
+
     @Test
     void shouldFindByCompanyId () {
         List<Reservation> actual = repository.findByCompanyId(1);
@@ -61,6 +61,7 @@ class ReservationJdbcTemplateRepositoryTest {
 
     @Test
     void shouldAdd () {
+
     }
 
     @Test
@@ -69,5 +70,9 @@ class ReservationJdbcTemplateRepositoryTest {
 
     @Test
     void shouldDeleteById () {
+    }
+
+    Reservation makeReservation() {
+        return new Reservation();
     }
 }
