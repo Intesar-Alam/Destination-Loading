@@ -13,7 +13,7 @@ create table app_user (
 
 
 create table user_account (
-	user_account_id int primary key auto_increment,
+	app_user_id int not null,
     email varchar(150) not null unique,
     first_name varchar(50) not null,
     last_name varchar(50) not null,
@@ -21,9 +21,8 @@ create table user_account (
     phone varchar(20) null,
     dob date null,
 	app_user_id int not null,
-    constraint fk_user_account_app_user_id
-		foreign key (app_user_id)
-        references app_user(app_user_id)
+    constraint pk_user_account
+		primary key (app_user_id)
 );
 
 create table transport_company (
@@ -41,9 +40,9 @@ create table reservation (
     reservation_date date not null,
     reservation_code varchar(50) not null,
     reservation_title varchar(80) not null,
-    constraint fk_reservation_user_account_id
-		foreign key (user_account_id)
-        references user_account(user_account_id),
+    constraint fk_reservation_app_user_id
+		foreign key (app_user_id)
+        references app_user(app_user_id),
 	constraint fk_reservation_company_id
 		foreign key (company_id)
         references transport_company(company_id)
