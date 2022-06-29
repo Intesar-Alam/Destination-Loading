@@ -13,6 +13,7 @@ import UserReservationList from './components/UserReservationList';
 import SingleUserReservation from './components/SingleUserReservation';
 import CompanyPage from './components/CompanyPage';
 import CompanyReservationList from './components/CompanyReservationList';
+import AdminPage from './components/AdminPage';
 import CompanyForm from './components/CompanyForm';
 import UserList from './components/UserList';
 import ReservationList from './components/ReservationList';
@@ -36,6 +37,7 @@ function App() {
           <Route path="/singleuserreservation" element={<SingleUserReservation />} />
           <Route path="/companypage" element={<CompanyPage />} />
           <Route path="/companyreservationlist" element={<CompanyReservationList />} />
+          <Route path="/adminpage" element={<AdminPage />} />
           <Route path="/companyform" element={<CompanyForm />} />
           <Route path="/userlist" element={<UserList />} />
           <Route path="/reservationlist" element={<ReservationList />} />

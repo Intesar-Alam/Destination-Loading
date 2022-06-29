@@ -56,8 +56,8 @@ function CompanyList() {
             <tr>
               <th>Company Id</th>
               <th>Company Name</th>
-              <th>Company Website</th>
               <th>Favicon</th>
+              <th>Company Website</th>
               <th>Transportation Mode</th>
               <th>&nbsp;</th>
             </tr>
@@ -67,8 +67,8 @@ function CompanyList() {
               <tr key={company['companyId']}>
                 <td>{company['companyId']}</td>
                 <td>{company['companyName']}</td>
+                <td><img src={company['icon']} /></td>
                 <td><a href={company['url']} target="_blank">{company['url']}</a></td>
-                <td><a href={company['icon']} target="_blank">{company['icon']}</a></td>
                 <td>{company['transportationMode']}</td>
                 <td>
                   <Row>
