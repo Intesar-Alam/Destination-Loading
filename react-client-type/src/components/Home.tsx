@@ -27,27 +27,33 @@ function Home() {
 
       <Container className="d-flex">
         <Row md={3} className="mx-auto mb-5">
-          <Link style={{ textDecoration: 'none' }} to="/userreservationlist">
-            <Card bg="primary" style={{ width: '18rem', height: '6rem' }} className="me-5">
-              <Card.Body>
-                <Card.Title as="h2" className="text-white text-center my-2">User Login</Card.Title>
-              </Card.Body>
-            </Card>
-          </Link>
-          <Link style={{ textDecoration: 'none' }} to="/learnmore">
-            <Card bg="secondary" style={{ width: '18rem', height: '6rem' }} className="me-5">
-              <Card.Body>
-                <Card.Title as="h2" className="text-white text-center my-2">Learn More</Card.Title>
-              </Card.Body>
-            </Card>
-          </Link>
-          <Link style={{ textDecoration: 'none' }} to="/contact">
-            <Card bg="warning" style={{ width: '18rem', height: '6rem' }}>
-              <Card.Body>
-                <Card.Title as="h2" className="text-white text-center my-2">Company Login</Card.Title>
-              </Card.Body>
-            </Card>
-          </Link>
+          <Col>
+            <Link style={{ textDecoration: 'none' }} to="/userreservationlist">
+              <Card bg="primary" style={{ width: '18rem', height: '6rem' }} className="me-5">
+                <Card.Body>
+                  <Card.Title as="h2" className="text-white text-center my-2">User Login</Card.Title>
+                </Card.Body>
+              </Card>
+            </Link>
+          </Col>
+          <Col>
+            <Link style={{ textDecoration: 'none' }} to="/learnmore">
+              <Card bg="secondary" style={{ width: '18rem', height: '6rem' }} className="me-5">
+                <Card.Body>
+                  <Card.Title as="h2" className="text-white text-center my-2">Learn More</Card.Title>
+                </Card.Body>
+              </Card>
+            </Link>
+          </Col>
+          <Col>
+            <Link style={{ textDecoration: 'none' }} to="/contact">
+              <Card bg="warning" style={{ width: '18rem', height: '6rem' }} className="me-5">
+                <Card.Body>
+                  <Card.Title as="h2" className="text-white text-center my-2">Company Login</Card.Title>
+                </Card.Body>
+              </Card>
+            </Link>
+          </Col>
         </Row>
       </Container>
 
@@ -55,7 +61,7 @@ function Home() {
         <h3>Plan Your Trip</h3>
         <Row md={3} className="mx-auto">
           <Col>
-            <Card style={{ width: '23rem' }} className="mx-2">
+            <Card style={{ width: '22rem' }} className="mx-2">
               <Card.Img variant="top" src={JumboImage} />
               <Card.Body>
                 <Card.Title>Card Title</Card.Title>
@@ -68,7 +74,7 @@ function Home() {
             </Card>
           </Col>
           <Col>
-            <Card style={{ width: '23rem' }} className="mx-2">
+            <Card style={{ width: '22rem' }} className="mx-2">
               <Card.Img variant="top" src={JumboImage} />
               <Card.Body>
                 <Card.Title>Card Title</Card.Title>
@@ -81,7 +87,7 @@ function Home() {
             </Card>
           </Col>
           <Col>
-            <Card style={{ width: '23rem' }} className="mx-2">
+            <Card style={{ width: '22rem' }} className="mx-2">
               <Card.Img variant="top" src={JumboImage} />
               <Card.Body>
                 <Card.Title>Card Title</Card.Title>

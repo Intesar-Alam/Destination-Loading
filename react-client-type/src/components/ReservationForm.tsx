@@ -10,10 +10,6 @@ import InputGroup from 'react-bootstrap/InputGroup';
 
 function ReservationForm() {
   return (
-
-    // company_id int not null,
-    // reservation_date date not null,
-    // reservation_code varchar(50) not null,
     <>
       {/* Conditional rendering edit, add (delete) */}
       <h1 className="text-center">Add/Edit Reservations</h1>

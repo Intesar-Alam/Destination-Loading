@@ -10,7 +10,7 @@ function Footer() {
     <>
     <div>
       <Navbar>
-        <Container>
+        <Container style={{ minHeight: '10rem' }}>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Nav className="me-auto">
             <Nav.Link href="">About Us</Nav.Link>
