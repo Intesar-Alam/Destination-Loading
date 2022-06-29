@@ -97,4 +97,6 @@ import java.util.List;
                 + "where au.username = ?";
         return jdbcTemplate.query(sql, (rs, rowId) -> rs.getString("name"), username);
     }
+
+    //TODO might need to add another method to associate a user/role with a User Account
 }
