@@ -12,11 +12,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/company")
 @CrossOrigin(origins = {"http://127.0.0.1:5500", "http://localhost:3000"})
-public class ComapnyContoller {
+public class CompanyContoller {
 
     private final CompanyService service;
 
-    public ComapnyContoller(CompanyService service) {
+    public CompanyContoller(CompanyService service) {
         this.service = service;
     }
 

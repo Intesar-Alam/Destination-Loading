@@ -16,8 +16,7 @@ public class Reservation {
     public Reservation() {
     }
 
-    public Reservation(int reservationId, int userAccountId,
-                       int companyId,
+    public Reservation(int reservationId, int userAccountId, int companyId,
                        LocalDate reservationDate, String reservationCode, String reservationTitle) {
         this.reservationId = reservationId;
         this.userAccountId = userAccountId;

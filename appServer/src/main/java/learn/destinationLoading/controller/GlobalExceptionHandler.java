@@ -22,7 +22,7 @@ public class GlobalExceptionHandler {
     // "Catch all" handler
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleException(Exception ex) {
-//        System.out.println(ex.getClass() + ex.getMessage());
+        System.out.println("ERROR\n\n" + ex.getClass() + ":" + ex.getMessage() + "\n\n");
         if(ex instanceof HttpMessageNotReadableException){
             return new ResponseEntity<>(
                     new ErrorResponse("Sorry it seems you request was empty"),

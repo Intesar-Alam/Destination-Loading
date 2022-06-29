@@ -28,6 +28,15 @@ public class Company {
         this.icon = icon;
     }
 
+    public Company(int companyId, String companyName, String url, String icon, TransportationMode transportationMode, List<Reservation> reservations) {
+        this.companyId = companyId;
+        this.transportationMode = transportationMode;
+        this.companyName = companyName;
+        this.url = url;
+        this.icon = icon;
+        this.reservations = reservations;
+    }
+
     public int getCompanyId () {
         return companyId;
     }
