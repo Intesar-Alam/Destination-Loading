@@ -1,6 +1,7 @@
 package learn.destinationLoading.data;
 
 import learn.destinationLoading.models.Reservation;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -9,9 +10,9 @@ public interface ReservationRepository {
 
     Reservation findById(int reservationId);
 
-    Reservation findByUserId(int userId);
+    List<Reservation> findByUserId(int userId);
 
-    Reservation findByCompanyId(int companyId);
+    List<Reservation> findByCompanyId(int companyId);
 
     Reservation add(Reservation reservation);
 

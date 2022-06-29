@@ -1,6 +1,7 @@
 package learn.destinationLoading.data;
 
 import learn.destinationLoading.models.Company;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 

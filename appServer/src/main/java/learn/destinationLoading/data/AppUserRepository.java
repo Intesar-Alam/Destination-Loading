@@ -2,6 +2,7 @@ package learn.destinationLoading.data;
 
 import learn.destinationLoading.models.AppUser;
 import learn.destinationLoading.models.UserAccount;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
