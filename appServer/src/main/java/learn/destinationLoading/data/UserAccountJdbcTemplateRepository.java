@@ -51,7 +51,7 @@ public class UserAccountJdbcTemplateRepository implements UserAccountRepository 
     @Override
     public UserAccount add (UserAccount userAccount) {
         // not sure if app_user_id should actually be included here, since it should be automatically set for a standard user vs admin vs rep - might be able to do it here and then just not include it in the form
-        final String sql = "insert into user_account (email, first_name, last_name, address, phone, dob) "
+        final String sql = "insert into user_account (app_user_id, email, first_name, last_name, address, phone, dob) "
                 + " values (?, ?, ?, ?, ?, ?);";
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
