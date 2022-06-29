@@ -46,16 +46,14 @@ function CompanyForm() {
               </Col>
             </Form.Group>
             <hr style={{ color: 'gray', height: '1px' }} />
-            <Form.Group as={Row} className="my-2 ms-3" controlId="formUsername">
-              <Form.Label column sm={2} htmlFor="username">Username</Form.Label>
+            <Form.Group as={Row} className="mb-2 ms-3" controlId="formRepIdSelect">
+              <Form.Label column sm={2} htmlFor="repIdSelect">Company Rep</Form.Label>
               <Col sm={9}>
-                <Form.Control id="username" type="text" placeholder="Enter Username" />
-              </Col>
-            </Form.Group>
-            <Form.Group as={Row} className="mb-2 ms-3" controlId="formPassword">
-              <Form.Label column sm={2} htmlFor="password">Password</Form.Label>
-              <Col sm={9}>
-                <Form.Control id="password" type="text" placeholder="Choose a Password" />
+                <Form.Select id="repIdSelect" aria-label="Select Company Representative">
+                  <option>Select One</option>
+                  {/* TODO add map/fetch for rep users */}
+                  <option>AIR</option>
+                </Form.Select>
               </Col>
             </Form.Group>
             {/* TODO add conditional rendering for create/edit(update) user */}
