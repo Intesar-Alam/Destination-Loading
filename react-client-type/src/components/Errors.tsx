@@ -1,6 +1,18 @@
-function Errors() {
+
+function Errors(errors: string[] ) {
+  if (!errors || errors.length === 0) {
+    return null;
+  }
+
   return (
-    <h2>Errors</h2>
+    <div className="alert alert-danger">
+      <p>The following errors were found:</p>
+      <ul>
+        {errors.map(error => (
+          <li key={error}>{error}</li>
+        ))}
+      </ul>
+    </div>
   );
 }
 
