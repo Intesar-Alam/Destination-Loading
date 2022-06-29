@@ -1,10 +1,26 @@
-// import { Link } from 'react';
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 
 
 function UserList() {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:8080/test/useraccount')
+    .then(response => {
+      if (response.status === 200) {
+        return response.json();
+      } else {
+        return Promise.reject(`Unexpected status code: ${response.status}`);
+      }
+    })
+    .then(data => setUsers(data))
+    .catch(console.log);
+  }, []);
+
   return (
     <>
       <h1>All Customers We Work With</h1>
