@@ -59,19 +59,14 @@ function CompanyForm() {
               </Col>
             </Form.Group>
             {/* TODO add conditional rendering for create/edit(update) user */}
-            <Row>
-              <Form.Group className="mb-3">
-                <Col sm={{ offset: 9 }}>
-                  <Button type="submit">Create Company</Button>
+            <Form.Group className="mb-3">
+              <Row>
+                <Col md={{ span: 5, offset: 7 }}>
+                  <Button type="submit" className="me-2">Create Company</Button>
+                  <Button type="submit">Cancel</Button>
                 </Col>
-              </Form.Group>
-              {/* //TODO add conditional rendering for this button Admin only */}
-              <Form.Group>
-                <Col sm={{ offset: 9 }}>
-                  <Button type="submit" className="mb-2">Cancel</Button>
-                </Col>
-              </Form.Group>
-            </Row>
+              </Row>
+            </Form.Group>
           </Form>
         </Card>
       </Container>
