@@ -42,7 +42,7 @@ public class UserAccountController {
 
     @PutMapping("/{userId}")
     public ResponseEntity<Object> update(@PathVariable int userId, @RequestBody UserAccount userAccount) {
-        if (userId != userAccount.getUserAccountId()) {
+        if (userId != userAccount.getAppUserId()) {
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
 

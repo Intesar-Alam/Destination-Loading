@@ -26,9 +26,9 @@ public class UserAccountControllerDouble {
 
     private final List<UserAccount> userAccounts = List.of(
             new UserAccount(1, "email1@email.com", "First", "Last",
-                    "Address", "(123)-456-7890", LocalDate.of(2000, 1, 1), 1),
+                    "Address", "(123)-456-7890", LocalDate.of(2000, 1, 1)),
             new UserAccount(2, "email2@email.com", "Firsty", "McFirstFace",
-                    "123 Address St", "(123)-111-2222", LocalDate.of(2000, 1, 1), 2)
+                    "123 Address St", "(123)-111-2222", LocalDate.of(2000, 1, 1))
     );
     @GetMapping
     public List<UserAccount> findAll(){
@@ -38,7 +38,7 @@ public class UserAccountControllerDouble {
     @GetMapping("/{userId}")
     public UserAccount findById(@PathVariable int userId){
         var result = userAccounts.stream().filter(
-                userAccount -> userAccount.getUserAccountId() == userId).findFirst();
+                userAccount -> userAccount.getAppUserId() == userId).findFirst();
         return result.orElse(null);
     }
 
@@ -54,7 +54,7 @@ public class UserAccountControllerDouble {
 
     @PutMapping("/{userId}")
     public ResponseEntity<Object> update(@PathVariable int userId, @RequestBody UserAccount userAccount) {
-        if (userId != userAccount.getUserAccountId()) {
+        if (userId != userAccount.getAppUserId()) {
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
 
