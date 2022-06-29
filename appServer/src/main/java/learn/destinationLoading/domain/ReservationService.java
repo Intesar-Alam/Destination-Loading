@@ -87,7 +87,7 @@ public class ReservationService {
             return result;
         }
 
-        if(reservation.getUserAccountId() < 1){
+        if(reservation.getappUserId() < 1){
             result.addMessage("User is missing");
         }
 
