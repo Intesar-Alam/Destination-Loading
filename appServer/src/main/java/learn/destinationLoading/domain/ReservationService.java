@@ -18,19 +18,19 @@ public class ReservationService {
         this.repository = repository;
     }
 
-    List<Reservation> findAll(){
+    public List<Reservation> findAll(){
         return repository.findAll();
     }
 
-    List<Reservation> findByUserId(int userId){
+    public List<Reservation> findByUserId(int userId){
         return repository.findByUserId(userId);
     }
 
-    List<Reservation> findByCompanyId(int companyId){
+    public List<Reservation> findByCompanyId(int companyId){
         return repository.findByCompanyId(companyId);
     }
 
-    Result<Reservation> add(Reservation reservation){
+    public Result<Reservation> add(Reservation reservation){
         Result<Reservation> result = validate(reservation);
 
         if(!result.isSuccess()) return result;
@@ -50,7 +50,7 @@ public class ReservationService {
         return result;
     }
 
-    Result<Reservation> update(Reservation reservation){
+    public Result<Reservation> update(Reservation reservation){
         Result<Reservation> result = validate(reservation);
 
         if(!result.isSuccess()) return result;
@@ -69,7 +69,7 @@ public class ReservationService {
         return result;
     }
 
-    Result<Reservation> deleteById(int reservationId){
+    public Result<Reservation> deleteById(int reservationId){
         if(repository.deleteById(reservationId)){
             return new Result<>();
         }else{
