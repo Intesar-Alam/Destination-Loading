@@ -6,7 +6,7 @@ import java.util.List;
 
 
 public class UserAccount {
-    private int userAccountId;
+
     private String email;
     private String firstName;
     private String lastName;
@@ -21,8 +21,8 @@ public class UserAccount {
 
     }
 
-    public UserAccount (int userId, String email, String firstName, String lastName, String address, String phone, LocalDate dob, int appUserId) {
-        this.userAccountId = userId;
+    public UserAccount (int appUserId, String email, String firstName, String lastName, String address, String phone, LocalDate dob) {
+
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -32,13 +32,6 @@ public class UserAccount {
         this.appUserId = appUserId;
     }
 
-    public int getUserAccountId () {
-        return userAccountId;
-    }
-
-    public void setUserAccountId (int userAccountId) {
-        this.userAccountId = userAccountId;
-    }
 
     public int getAppUserId () {
         return appUserId;

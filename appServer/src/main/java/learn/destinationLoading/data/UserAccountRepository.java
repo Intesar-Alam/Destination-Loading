@@ -10,7 +10,6 @@ public interface UserAccountRepository {
 
     UserAccount findById(int userId);
 
-    UserAccount findByAppUserId (int appUserId);
 
     UserAccount add(UserAccount userAccount);
 

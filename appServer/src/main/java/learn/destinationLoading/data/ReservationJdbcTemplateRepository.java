@@ -23,7 +23,7 @@ public class ReservationJdbcTemplateRepository implements ReservationRepository{
 
     @Override
     public List<Reservation> findAll() {
-        final String sql = "select reservation_id, user_account_id, company_id, reservation_date, reservation_code, reservation_title " +
+        final String sql = "select reservation_id, app_user_id, company_id, reservation_date, reservation_code, reservation_title " +
                 "from reservation " +
                 "order by reservation_date asc;";
         return jdbcTemplate.query(sql, new ReservationMapper());
@@ -31,7 +31,7 @@ public class ReservationJdbcTemplateRepository implements ReservationRepository{
 
     @Override
     public Reservation findById (int reservationId) {
-        final String sql = "select reservation_id, user_account_id, company_id, reservation_date, reservation_code, reservation_title " +
+        final String sql = "select reservation_id, app_user_id, company_id, reservation_date, reservation_code, reservation_title " +
                 "from reservation " +
                 "where reservation_id = ?;";
         return jdbcTemplate.query(sql, new ReservationMapper(), reservationId).stream().findFirst().orElse(null);
@@ -39,15 +39,15 @@ public class ReservationJdbcTemplateRepository implements ReservationRepository{
 
     @Override
     public List<Reservation> findByUserId (int userId) {
-        final String sql = "select reservation_id, user_account_id, company_id, reservation_date, reservation_code, reservation_title " +
+        final String sql = "select reservation_id, app_user_id, company_id, reservation_date, reservation_code, reservation_title " +
                 "from reservation " +
-                "where user_account_id = ?;";
+                "where app_user_id = ?;";
         return jdbcTemplate.query(sql, new ReservationMapper(), userId);
     }
 
     @Override
     public List<Reservation> findByCompanyId (int companyId) {
-        final String sql = "select reservation_id, user_account_id, company_id, reservation_date, reservation_code, reservation_title " +
+        final String sql = "select reservation_id, app_user_id, company_id, reservation_date, reservation_code, reservation_title " +
                 "from reservation " +
                 "where company_id = ? " +
                 "order by reservation_date asc;";
@@ -56,12 +56,12 @@ public class ReservationJdbcTemplateRepository implements ReservationRepository{
 
     @Override
     public Reservation add (Reservation reservation) {
-        final String sql = "insert into reservation (user_account_id, company_id, reservation_date, reservation_code, reservation_title) " +
+        final String sql = "insert into reservation (app_user_id, company_id, reservation_date, reservation_code, reservation_title) " +
                 "values (?, ?, ?, ?, ?);";
         KeyHolder keyHolder = new GeneratedKeyHolder();
         int rowsAffected = jdbcTemplate.update(connection -> {
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            statement.setInt(1, reservation.getUserAccountId());
+            statement.setInt(1, reservation.getappUserId());
             statement.setInt(2, reservation.getCompanyId());
             statement.setDate(3, Date.valueOf(reservation.getReservationDate()));
             statement.setString(4, reservation.getReservationCode());
@@ -80,13 +80,13 @@ public class ReservationJdbcTemplateRepository implements ReservationRepository{
     @Override
     public boolean update (Reservation reservation) {
        final String sql = "update reservation set "
-               + "user_account_id = ?, "
+               + "app_user_id = ?, "
                + "company_id = ?, "
                + "reservation_date = ?, "
                + "reservation_code = ?, "
                + "reservation_title = ? "
                + "where reservation_id = ?;";
-       return jdbcTemplate.update(sql, reservation.getUserAccountId(), reservation.getCompanyId(),
+       return jdbcTemplate.update(sql, reservation.getappUserId(), reservation.getCompanyId(),
                reservation.getReservationDate(), reservation.getReservationCode(), reservation.getReservationTitle(),
                reservation.getReservationId()) > 0;
     }
