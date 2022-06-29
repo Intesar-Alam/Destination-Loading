@@ -12,8 +12,8 @@ function LearnMore() {
     <>
       <Container>
         <h1 className="text-center mb-5">Learn More</h1>
-        <h2 className="mb-3">What is Destination Loading...<i className="bi bi-compass"></i></h2>
         <Container>
+          <h2 className="mb-3">What is Destination Loading...<i className="bi bi-compass"></i></h2>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae aliquam ullam, nulla voluptatum incidunt blanditiis numquam similique harum vero autem quaerat magnam velit a possimus culpa optio voluptate accusantium iure. Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat enim consequuntur maiores, eligendi dicta modi quos facilis eos aspernatur aperiam veritatis doloremque corporis ullam, accusantium cumque numquam sunt quod dolorem!</p>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum consequatur accusantium odio eligendi tempore maiores, dolores iure excepturi ullam voluptatibus, rem facere dolorum non ex totam pariatur nobis magni. Architecto!</p>
         </Container>

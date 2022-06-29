@@ -9,6 +9,7 @@ import Card from 'react-bootstrap/Card';
 function Login() {
   return (
     <>
+    {/* Add conditional logic for existing vs new user - if new send to user form on submit */}
       <h1 className="text-center">Login</h1>
       <Container>
         <Card className="rounded-0 col-md-8 mx-auto">
