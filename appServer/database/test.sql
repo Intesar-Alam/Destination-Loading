@@ -76,12 +76,12 @@ insert into app_user (app_user_id, username, password_hash, disabled) values (10
 
 
 
-insert into user_account (user_account_id, email, first_name, last_name, address, phone, dob, app_user_id) values (1, 'cbenedit0@cnn.com', 'Cherida', 'Benedit', '72876 Hooker Lane', '452-329-5337', '1994-11-07', 1);
-insert into user_account (user_account_id, email, first_name, last_name, address, phone, dob, app_user_id) values (2, 'bwoolerton1@seattletimes.com', 'Blondelle', 'Woolerton', '48581 Fremont Drive', '986-652-8605', '2000-09-21', 1);
-insert into user_account (user_account_id, email, first_name, last_name, address, phone, dob, app_user_id) values (3, 'aimpson2@bbb.org', 'Amberly', 'Impson', '2 Evergreen Avenue', '619-846-9881', '2000-01-15', 1);
-insert into user_account (user_account_id, email, first_name, last_name, address, phone, dob, app_user_id) values (4, 'geverit3@t-online.de', 'Griffie', 'Everit', '9415 Schlimgen Pass', '739-723-4664', '2004-02-25', 1);
-insert into user_account (user_account_id, email, first_name, last_name, address, phone, dob, app_user_id) values (5, 'abert4@t-online.de', 'Augustus', 'Bert', '82 Alpine Way', '762-817-3029', '1993-08-23', 2);
-insert into user_account (user_account_id, email, first_name, last_name, address, phone, dob, app_user_id) values (6, 'madlard5@ed.gov', 'Maryanne', 'Adlard', '288 Dwight Point', '437-352-9224', '2000-10-13', 1);
+insert into user_account (app_user_id, email, first_name, last_name, address, phone, dob) values (1, 'cbenedit0@cnn.com', 'Cherida', 'Benedit', '72876 Hooker Lane', '452-329-5337', '1994-11-07');
+insert into user_account (app_user_id, email, first_name, last_name, address, phone, dob) values (2, 'bwoolerton1@seattletimes.com', 'Blondelle', 'Woolerton', '48581 Fremont Drive', '986-652-8605', '2000-09-21');
+insert into user_account (app_user_id, email, first_name, last_name, address, phone, dob) values (3, 'aimpson2@bbb.org', 'Amberly', 'Impson', '2 Evergreen Avenue', '619-846-9881', '2000-01-15');
+insert into user_account (app_user_id, email, first_name, last_name, address, phone, dob) values (4, 'geverit3@t-online.de', 'Griffie', 'Everit', '9415 Schlimgen Pass', '739-723-4664', '2004-02-25');
+insert into user_account (app_user_id, email, first_name, last_name, address, phone, dob) values (5, 'abert4@t-online.de', 'Augustus', 'Bert', '82 Alpine Way', '762-817-3029', '1993-08-23');
+insert into user_account (app_user_id, email, first_name, last_name, address, phone, dob) values (6, 'madlard5@ed.gov', 'Maryanne', 'Adlard', '288 Dwight Point', '437-352-9224', '2000-10-13');
 
 
 
@@ -97,12 +97,12 @@ insert into transport_company (company_id, company_name, company_url, company_ic
 
 
 
-insert into reservation (reservation_id, user_account_id, company_id, reservation_date, reservation_code, reservation_title) values (1, 1, 1, '2023-06-12', '65044-3565', 'Barbados trip');
-insert into reservation (reservation_id, user_account_id, company_id, reservation_date, reservation_code, reservation_title) values (2, 2, 2, '2023-10-23', '57955-2705', 'Birthday Weekend');
-insert into reservation (reservation_id, user_account_id, company_id, reservation_date, reservation_code, reservation_title) values (3, 3, 3, '2023-05-26', '54868-5000', 'Holiday');
-insert into reservation (reservation_id, user_account_id, company_id, reservation_date, reservation_code, reservation_title) values (4, 4, 4, '2023-09-3', '57826-460', 'Soccer game');
-insert into reservation (reservation_id, user_account_id, company_id, reservation_date, reservation_code, reservation_title) values (5, 5, 1, '2022-03-16', '0268-1105', 'Other birthday weekend');
-insert into reservation (reservation_id, user_account_id, company_id, reservation_date, reservation_code, reservation_title) values (6, 2, 3, '2023-04-13', '57955-2705', 'Spring break');
+insert into reservation (reservation_id, app_user_id, company_id, reservation_date, reservation_code, reservation_title) values (1, 1, 1, '2023-06-12', '65044-3565', 'Barbados trip');
+insert into reservation (reservation_id, app_user_id, company_id, reservation_date, reservation_code, reservation_title) values (2, 2, 2, '2023-10-23', '57955-2705', 'Birthday Weekend');
+insert into reservation (reservation_id, app_user_id, company_id, reservation_date, reservation_code, reservation_title) values (3, 3, 3, '2023-05-26', '54868-5000', 'Holiday');
+insert into reservation (reservation_id, app_user_id, company_id, reservation_date, reservation_code, reservation_title) values (4, 4, 4, '2023-09-3', '57826-460', 'Soccer game');
+insert into reservation (reservation_id, app_user_id, company_id, reservation_date, reservation_code, reservation_title) values (5, 5, 1, '2022-03-16', '0268-1105', 'Other birthday weekend');
+insert into reservation (reservation_id, app_user_id, company_id, reservation_date, reservation_code, reservation_title) values (6, 2, 3, '2023-04-13', '57955-2705', 'Spring break');
 
 end //
 delimiter ;
