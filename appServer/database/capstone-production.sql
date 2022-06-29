@@ -15,6 +15,7 @@ create table app_role (
     `name` varchar(50) not null unique
 );
 
+-- add companyId as optional field fk to assign reps to companies they can interact with
 create table app_user_role (
     app_user_id int not null,
     app_role_id int not null,
@@ -28,7 +29,7 @@ create table app_user_role (
         references app_role(app_role_id)
 );
 
---
+
 create table user_account (
 	app_user_id int not null,
     email varchar(150) not null unique,
@@ -52,14 +53,14 @@ create table transport_company (
 
 create table reservation (
 	reservation_id int primary key auto_increment,
-    user_account_id int not null,
+    app_user_id int not null,
     company_id int not null,
     reservation_date date not null,
     reservation_code varchar(50) not null,
     reservation_title varchar(80) not null,
-    constraint fk_reservation_user_account_id
-		foreign key (user_account_id)
-        references user_account(user_account_id),
+    constraint fk_reservation_app_user_id
+		foreign key (app_user_id)
+        references app_user(app_user_id),
 	constraint fk_reservation_company_id
 		foreign key (company_id)
         references transport_company(company_id)
