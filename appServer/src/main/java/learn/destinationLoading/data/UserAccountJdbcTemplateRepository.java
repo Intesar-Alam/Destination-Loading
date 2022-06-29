@@ -4,7 +4,6 @@ import learn.destinationLoading.data.mappers.ReservationMapper;
 import learn.destinationLoading.data.mappers.UserAccountMapper;
 import learn.destinationLoading.models.Reservation;
 import learn.destinationLoading.models.UserAccount;
-import org.apache.catalina.User;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
@@ -49,6 +48,21 @@ public class UserAccountJdbcTemplateRepository implements UserAccountRepository 
 
     }
 
+    @Override
+    @Transactional
+    public UserAccount findByAppUserId (int appUserId) {
+        final String sql = "select user_account_id, email, first_name, last_name, address, phone, dob, app_user_id "
+                + "from user_account "
+                + "where app_user_id = ?;";
+
+        UserAccount userAccount = jdbcTemplate.query(sql, new UserAccountMapper(), appUserId).stream().findFirst().orElse(null);
+
+        if (userAccount != null) {
+            addReservations(userAccount);
+        }
+
+        return userAccount;
+    }
     @Override
     public UserAccount add (UserAccount userAccount) {
         // not sure if app_user_id should actually be included here, since it should be automatically set for a standard user vs admin vs rep - might be able to do it here and then just not include it in the form
