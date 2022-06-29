@@ -1,45 +1,95 @@
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
-import Table from 'react-bootstrap/Table'
+import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 function CompanyList() {
+  const [companies, setCompanies] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:8080/test/company')
+      .then(response => {
+        if (response.status === 200) {
+          return response.json();
+        } else {
+          return Promise.reject(`Unexpected status code: ${response.status}`);
+        }
+      })
+      .then(data => setCompanies(data))
+      .catch(console.log);
+  }, []);
+
+  const handleDeleteCompany = (companyId: number) => {
+    const company: any = companies.find(company => company['companyId'] === companyId);
+
+    if(window.confirm(`Delete company ${company['companyName']}?`)) {
+      const init = {
+        method: 'DELETE',
+        // headers: {
+        //   'Authorization': `Bearer ${auth.user.token}`
+        // },
+      };
+
+      fetch(`http://localhost:8080/test/company/${companyId}`, init)
+      .then(response => {
+        if (response.status === 204) {
+          const newCompanies = companies.filter(company => company['companyId'] !== companyId);
+          setCompanies(newCompanies);
+        } else {
+          return Promise.reject(`Unexpected status code: ${response.status}`);
+        }
+      })
+      .catch(console.log);
+    }
+  };
+
   return (
     <>
-      <h1>All Companies We Work With</h1>
-      {/* <Table>
-        <thead className="thead-dark">
-          <tr>
-            <th>Company Name</th>
-            <th>Company Website</th>
-            <th>Favicon</th>
-            <th>Transportation Mode</th>
-            <th>&nbsp;</th>
-          </tr>
-        </thead>
-        <tbody>
-          {.map( => (
-            <tr key={.id}>
-              <td>{.name}</td>
-              <td>{.url}</td>
-              <td>{.favicon}</td>
-              <td>{.mode}</td>
-              <td>
-                <div className="float-right mr-2">
-                  <Link className="btn btn-primary btn-sm mr-2" to={`}`}>
-                    <i className="bi bi-pencil-square"></i> Edit
-                  </Link>
-                  {auth.user && auth.user.hasRole('ROLE_ADMIN') && (
-                    <button className="btn btn-danger btn-sm" onClick={() => handleDeletePanel(.id)}>
-                      <i className="bi bi-trash"></i> Delete
-                    </button>
-                  )}
-                </div>
-              </td>
+      <h1 className="text-center">All Companies We Work With</h1>
+      <Container>
+        <Table>
+          <thead className="thead-dark">
+            <tr>
+              <th>Company Id</th>
+              <th>Company Name</th>
+              <th>Company Website</th>
+              <th>Favicon</th>
+              <th>Transportation Mode</th>
+              <th>&nbsp;</th>
             </tr>
-          ))}
-        </tbody>
-      </Table> */}
-      <Button>Edit Company</Button>
+          </thead>
+          <tbody>
+            {companies.map(company => (
+              <tr key={company['companyId']}>
+                <td>{company['companyId']}</td>
+                <td>{company['companyName']}</td>
+                <td><a href={company['url']} target="_blank">{company['url']}</a></td>
+                <td><a href={company['icon']} target="_blank">{company['icon']}</a></td>
+                <td>{company['transportationMode']}</td>
+                <td>
+                  <Row>
+                    <Col className="col-md-6">
+                      <Link className="btn btn-primary btn-sm mr-2" to={`/companyform/${company['companyId']}`}>
+                        <i className="bi bi-pencil-square"></i>
+                      </Link>
+                    </Col>
+                    <Col className="col-md-6">
+                      <Button className="btn btn-danger btn-sm" onClick={() => handleDeleteCompany(company['companyId'])}>
+                        <i className="bi bi-trash"></i>
+                      </Button>
+                    </Col>
+                  </Row>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+        <Link className="btn btn-primary" to={'/companyform'}>Add Company</Link>
+      </Container>
     </>
   );
 }
