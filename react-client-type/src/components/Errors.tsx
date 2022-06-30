@@ -1,5 +1,5 @@
 
-function Errors(errors: string[] ) {
+function Errors( errors: string[] | undefined ) {
   if (!errors || errors.length === 0) {
     return null;
   }

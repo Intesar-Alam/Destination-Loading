@@ -11,7 +11,7 @@ function CompanyList() {
   const [companies, setCompanies] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:8080/test/company')
+    fetch('http://localhost:8080/api/company')
       .then(response => {
         if (response.status === 200) {
           return response.json();
@@ -34,7 +34,7 @@ function CompanyList() {
         // },
       };
 
-      fetch(`http://localhost:8080/test/company/${companyId}`, init)
+      fetch(`http://localhost:8080/api/company/${companyId}`, init)
       .then(response => {
         if (response.status === 204) {
           const newCompanies = companies.filter(company => company['companyId'] !== companyId);

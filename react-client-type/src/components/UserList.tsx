@@ -10,7 +10,7 @@ function UserList() {
   const [userAccounts, setUserAccounts] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:8080/test/useraccount')
+    fetch('http://localhost:8080/api/useraccount')
       .then(response => {
         if (response.status === 200) {
           return response.json();
