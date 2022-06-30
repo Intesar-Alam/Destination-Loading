@@ -40,9 +40,9 @@ public class UserAccountJdbcTemplateRepository implements UserAccountRepository 
 
         UserAccount userAccount = jdbcTemplate.query(sql, new UserAccountMapper(), appUserId).stream().findFirst().orElse(null);
 
-        if (userAccount != null) {
-            addReservations(userAccount);
-        }
+//        if (userAccount != null) {
+//            addReservations(userAccount);
+//        }
 
         return userAccount;
 
@@ -102,12 +102,12 @@ public class UserAccountJdbcTemplateRepository implements UserAccountRepository 
         return jdbcTemplate.update("delete from user_account where app_user_id = ?;", appUserId) > 0;
     }
 
-    private void addReservations(UserAccount userAccount) {
-        final String sql = "select r.reservation_id, r.app_user_id, r.company_id, r.reservation_date, r.reservation_code, r.reservation_title "
-                + "from reservation r "
-                + "where r.app_user_id = ?;";
-
-        List<Reservation> userAccountReservations = jdbcTemplate.query(sql, new ReservationMapper(), userAccount.getAppUserId());
-        userAccount.setReservations(userAccountReservations);
-    }
+//    private void addReservations(UserAccount userAccount) {
+//        final String sql = "select r.reservation_id, r.app_user_id, r.company_id, r.reservation_date, r.reservation_code, r.reservation_title "
+//                + "from reservation r "
+//                + "where r.app_user_id = ?;";
+//
+//        List<Reservation> userAccountReservations = jdbcTemplate.query(sql, new ReservationMapper(), userAccount.getAppUserId());
+//        userAccount.setReservations(userAccountReservations);
+//    }
 }

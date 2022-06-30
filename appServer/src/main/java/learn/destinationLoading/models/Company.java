@@ -16,7 +16,6 @@ public class Company {
 
     private String icon;
 
-    private List<Reservation> reservations = new ArrayList<>();
     public Company() {
     }
 
@@ -28,14 +27,6 @@ public class Company {
         this.icon = icon;
     }
 
-    public Company(int companyId, String companyName, String url, String icon, TransportationMode transportationMode, List<Reservation> reservations) {
-        this.companyId = companyId;
-        this.transportationMode = transportationMode;
-        this.companyName = companyName;
-        this.url = url;
-        this.icon = icon;
-        this.reservations = reservations;
-    }
 
     public int getCompanyId () {
         return companyId;
@@ -77,13 +68,6 @@ public class Company {
         this.icon = icon;
     }
 
-    public List<Reservation> getReservations () {
-        return reservations;
-    }
-
-    public void setReservations (List<Reservation> reservations) {
-        this.reservations = reservations;
-    }
 
     @Override
 

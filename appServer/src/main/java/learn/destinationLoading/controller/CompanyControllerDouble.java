@@ -20,15 +20,15 @@ public class CompanyControllerDouble {
 
     private final List<Company> companies = List.of(
             new Company(1, "American Airlines","https://www.aa.com/",
-                    "https://www.aa.com/favicon.ico", TransportationMode.AIR, new ArrayList<>()),
+                    "https://www.aa.com/favicon.ico", TransportationMode.AIR),
             new Company(2, "JetBlue","https://www.jetblue.com/",
-                    "https://www.jetblue.com/ui-assets/favicon/favicon-32x32.png", TransportationMode.AIR, new ArrayList<>()),
+                    "https://www.jetblue.com/ui-assets/favicon/favicon-32x32.png", TransportationMode.AIR),
             new Company(3, "Amtrak","https://www.amtrak.com/",
-                    "https://www.amtrak.com/etc/designs/dotcom-assets/images/favicon.ico", TransportationMode.RAIL, new ArrayList<>()),
+                    "https://www.amtrak.com/etc/designs/dotcom-assets/images/favicon.ico", TransportationMode.RAIL),
             new Company(4, "FlixBus","https://www.flixbus.com/",
-                    "https://cdn-cf.cms.flixbus.com/drupal-assets/favicon/flixbus/favicon-32x32.png", TransportationMode.GROUND, new ArrayList<>()),
+                    "https://cdn-cf.cms.flixbus.com/drupal-assets/favicon/flixbus/favicon-32x32.png", TransportationMode.GROUND),
             new Company(5, "Norwegian","https://www.ncl.com/",
-                    "https://www.ncl.com/assets/v1/images/favicon/favicon.png?v=1656015855742", TransportationMode.WATER, new ArrayList<>())
+                    "https://www.ncl.com/assets/v1/images/favicon/favicon.png?v=1656015855742", TransportationMode.WATER)
     );
     private final CompanyService service;
 

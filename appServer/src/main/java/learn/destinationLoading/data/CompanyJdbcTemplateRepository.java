@@ -101,7 +101,7 @@ public class CompanyJdbcTemplateRepository implements CompanyRepository {
                 + "from reservation r "
                 + "where r.company_id = ?;";
 
-        List<Reservation> companyReservations = jdbcTemplate.query(sql, new ReservationMapper(), company.getCompanyId());
-        company.setReservations(companyReservations);
+//        List<Reservation> companyReservations = jdbcTemplate.query(sql, new ReservationMapper(), company.getCompanyId());
+//        company.setReservations(companyReservations);
     }
 }
