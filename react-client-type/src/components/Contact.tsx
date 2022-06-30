@@ -17,27 +17,27 @@ function Contact() {
         <Card className="rounded-0 col-md-8 mx-auto">
           <Form>
             <Form.Group as={Row} className="my-2 ms-3" controlId="formName">
-              <Form.Label column sm={2} htmlFor="name">Name</Form.Label>
+              <Form.Label column sm={2}>Name</Form.Label>
               <Col sm={9}>
-                <Form.Control id="name" type="text" placeholder="Enter Full Name" />
+                <Form.Control type="text" placeholder="Enter Full Name" />
               </Col>
             </Form.Group>
             <Form.Group as={Row} className="my-2 ms-3" controlId="formEmail">
-              <Form.Label column sm={2} htmlFor="email">Email</Form.Label>
+              <Form.Label column sm={2}>Email</Form.Label>
               <Col sm={9}>
-                <Form.Control id="email" type="text" placeholder="Enter Email" />
+                <Form.Control type="text" placeholder="Enter Email" />
               </Col>
             </Form.Group>
             <Form.Group as={Row} className="my-2 ms-3" controlId="formSubject">
-              <Form.Label column sm={2} htmlFor="subject">Subject</Form.Label>
+              <Form.Label column sm={2}>Subject</Form.Label>
               <Col sm={9}>
-                <Form.Control id="subject" type="text" placeholder="Enter Subject" />
+                <Form.Control type="text" placeholder="Enter Subject" />
               </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-2 ms-3" controlId="formDetails">
-              <Form.Label column sm={2} htmlFor="details">Details</Form.Label>
+              <Form.Label column sm={2}>Details</Form.Label>
               <Col sm={9}>
-                <Form.Control id="details" as="textarea" rows={5} placeholder="Let us know how we can help." />
+                <Form.Control as="textarea" rows={5} placeholder="Let us know how we can help." />
               </Col>
             </Form.Group>
             <Form.Group as={Row}>
