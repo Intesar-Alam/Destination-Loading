@@ -1,42 +1,54 @@
 package learn.destinationLoading.controller;
 
 import learn.destinationLoading.domain.Result;
+import learn.destinationLoading.domain.ResultType;
 import learn.destinationLoading.domain.UserAccountService;
 import learn.destinationLoading.models.Company;
 import learn.destinationLoading.models.UserAccount;
+import learn.destinationLoading.utils.AppUtilities;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/useraccount")
+@RequestMapping("/test/useraccount")
 @CrossOrigin(origins = {"http://127.0.0.1:5500", "http://localhost:3000"})
-public class UserAccountController {
+public class UserAccountControllerDouble {
 
     private final UserAccountService service;
 
-    public UserAccountController(UserAccountService service) {
+    public UserAccountControllerDouble(UserAccountService service) {
         this.service = service;
     }
 
+    private final List<UserAccount> userAccounts = List.of(
+            new UserAccount(1, "email1@email.com", "First", "Last",
+                    "Address", "(123)-456-7890", LocalDate.of(2000, 1, 1)),
+            new UserAccount(2, "email2@email.com", "Firsty", "McFirstFace",
+                    "123 Address St", "(123)-111-2222", LocalDate.of(2000, 1, 1))
+    );
     @GetMapping
     public List<UserAccount> findAll(){
-        return service.findAll();
+        return userAccounts;
     }
 
     @GetMapping("/{userId}")
     public UserAccount findById(@PathVariable int userId){
-        return service.findById(userId);
+        var result = userAccounts.stream().filter(
+                userAccount -> userAccount.getAppUserId() == userId).findFirst();
+        return result.orElse(null);
     }
 
     @PostMapping
     public ResponseEntity<Object> add(@RequestBody UserAccount userAccount){
-        Result<UserAccount> result = service.add(userAccount);
-        if (result.isSuccess()) {
-            return new ResponseEntity<>(result.getPayload(), HttpStatus.CREATED);
+        if(AppUtilities.notBlank(userAccount.getEmail())){
+            return new ResponseEntity<>(userAccount, HttpStatus.CREATED);
         }
+        Result<UserAccount> result = new Result<>();
+        result.addMessage("Email is missing");
         return ErrorResponse.build(result);
     }
 
@@ -46,18 +58,18 @@ public class UserAccountController {
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
 
-        Result<UserAccount> result = service.update(userAccount);
-        if (result.isSuccess()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        if (userId == 0) {
+            Result<UserAccount> result = new Result<>();
+            result.addMessage("Example error message", ResultType.NOT_FOUND);
+            return ErrorResponse.build(result);
         }
 
-        return ErrorResponse.build(result);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @DeleteMapping("/{userId}")
     public ResponseEntity<Void> deleteById(@PathVariable int userId) {
-        Result<UserAccount> result = service.deleteById(userId);
-        if (result.isSuccess()) {
+        if (userId > 0 && userId < 3) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);

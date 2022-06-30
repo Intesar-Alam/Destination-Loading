@@ -20,8 +20,8 @@ public class UserAccountService {
         return repository.findAll();
     }
 
-    public UserAccount findById(int id){
-        return repository.findById(id);
+    public UserAccount findById(int userId){
+        return repository.findById(userId);
     }
 
     public Result<UserAccount> add(UserAccount userAccount){
@@ -29,7 +29,7 @@ public class UserAccountService {
 
         if(!result.isSuccess()) return result;
 
-        if(userAccount.getUserAccountId() != 0){
+        if(userAccount.getAppUserId() != 0){
             result.addMessage("Id cannot be preset");
             return result;
         }
@@ -48,7 +48,7 @@ public class UserAccountService {
 
         if(!result.isSuccess()) return result;
 
-        if(userAccount.getUserAccountId() == 0){
+        if(userAccount.getAppUserId() == 0){
             result.addMessage("Id is missing");
         }
 

@@ -46,10 +46,11 @@ class UserAccountJdbcTemplateRepositoryTest {
     void add () {
         UserAccount userAccount = makeAccount();
         userAccount.setEmail("chip@fortnite.com");
+        userAccount.setAppUserId(7);
         UserAccount actual = repository.add(userAccount);
 
         assertNotNull(actual);
-        assertEquals(NEXT_ID, actual.getUserAccountId());
+        assertEquals(NEXT_ID, actual.getAppUserId());
     }
 
     @Test
@@ -57,7 +58,7 @@ class UserAccountJdbcTemplateRepositoryTest {
         UserAccount userAccount = makeAccount();
         assertTrue(repository.update(userAccount));
 
-        userAccount.setUserAccountId(15);
+        userAccount.setAppUserId(15);
         assertFalse(repository.update(userAccount));
     }
 
@@ -68,6 +69,6 @@ class UserAccountJdbcTemplateRepositoryTest {
     }
 
     UserAccount makeAccount() {
-        return new UserAccount(1, "chip@squid.com", "Chip", "Wim", null, "609-444-1389", null, 1);
+        return new UserAccount(1, "chip@squid.com", "Chip", "Wim", null, "609-444-1389", null);
     }
 }

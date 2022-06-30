@@ -6,7 +6,7 @@ import java.util.Objects;
 public class Reservation {
 
     private int reservationId;
-    private int userAccountId;
+    private int appUserId;
     private int companyId;
     private LocalDate reservationDate;
     private String reservationCode;
@@ -16,11 +16,10 @@ public class Reservation {
     public Reservation() {
     }
 
-    public Reservation(int reservationId, int userAccountId,
-                       int companyId,
+    public Reservation(int reservationId, int appUserId, int companyId,
                        LocalDate reservationDate, String reservationCode, String reservationTitle) {
         this.reservationId = reservationId;
-        this.userAccountId = userAccountId;
+        this.appUserId = appUserId;
         this.companyId = companyId;
         this.reservationDate = reservationDate;
         this.reservationCode = reservationCode;
@@ -35,12 +34,12 @@ public class Reservation {
         this.reservationId = reservationId;
     }
 
-    public int getUserAccountId () {
-        return userAccountId;
+    public int getappUserId () {
+        return appUserId;
     }
 
-    public void setUserAccountId (int userId) {
-        this.userAccountId = userId;
+    public void setappUserId (int userId) {
+        this.appUserId = userId;
     }
 
     public int getCompanyId () {
@@ -79,11 +78,11 @@ public class Reservation {
         if (this == o) return true;
         if (!(o instanceof Reservation)) return false;
         Reservation that = (Reservation) o;
-        return userAccountId == that.userAccountId && companyId == that.companyId && reservationDate.equals(that.reservationDate) && reservationCode.equals(that.reservationCode);
+        return appUserId == that.appUserId && companyId == that.companyId && reservationDate.equals(that.reservationDate) && reservationCode.equals(that.reservationCode);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userAccountId, companyId, reservationDate, reservationCode);
+        return Objects.hash(appUserId, companyId, reservationDate, reservationCode);
     }
 }

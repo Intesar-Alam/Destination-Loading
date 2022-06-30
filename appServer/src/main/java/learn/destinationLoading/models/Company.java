@@ -16,7 +16,6 @@ public class Company {
 
     private String icon;
 
-    private List<Reservation> reservations = new ArrayList<>();
     public Company() {
     }
 
@@ -27,6 +26,7 @@ public class Company {
         this.url = url;
         this.icon = icon;
     }
+
 
     public int getCompanyId () {
         return companyId;
@@ -68,13 +68,6 @@ public class Company {
         this.icon = icon;
     }
 
-    public List<Reservation> getReservations () {
-        return reservations;
-    }
-
-    public void setReservations (List<Reservation> reservations) {
-        this.reservations = reservations;
-    }
 
     @Override
 
