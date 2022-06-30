@@ -15,39 +15,39 @@ function UserForm() {
         <Card className="rounded-0 col-md-8 mx-auto">
           <Form>
             <Form.Group as={Row} className="my-2 ms-3" controlId="formFirstName">
-              <Form.Label column sm={2} htmlFor="firstName">First Name</Form.Label>
+              <Form.Label column sm={2}>First Name</Form.Label>
               <Col sm={9}>
-                <Form.Control id="firstName" type="text" placeholder="Enter First Name" />
+                <Form.Control type="text" placeholder="Enter First Name" />
               </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-2 ms-3" controlId="formLastName">
-              <Form.Label column sm={2} htmlFor="lastName">Last Name</Form.Label>
+              <Form.Label column sm={2}>Last Name</Form.Label>
               <Col sm={9}>
-                <Form.Control id="lastName" type="text" placeholder="Enter Last Name" />
+                <Form.Control type="text" placeholder="Enter Last Name" />
               </Col>
             </Form.Group>
             <Form.Group as={Row} className="my-2 ms-3" controlId="formEmail">
-              <Form.Label column sm={2} htmlFor="email">Email</Form.Label>
+              <Form.Label column sm={2}>Email</Form.Label>
               <Col sm={9}>
-                <Form.Control id="email" type="text" placeholder="Enter Email" />
+                <Form.Control type="text" placeholder="Enter Email" />
               </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-2 ms-3" controlId="formAddress">
-              <Form.Label column sm={2} htmlFor="address">Address</Form.Label>
+              <Form.Label column sm={2}>Address</Form.Label>
               <Col sm={9}>
-                <Form.Control id="address" type="text" placeholder="1234 Main St., Any Town, MN 12345" />
+                <Form.Control type="text" placeholder="1234 Main St., Any Town, MN 12345" />
               </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-2 ms-3" controlId="formPhone">
-              <Form.Label column sm={2} htmlFor="phone">Phone #</Form.Label>
+              <Form.Label column sm={2}>Phone #</Form.Label>
               <Col sm={9}>
-                <Form.Control id="phone" type="text" placeholder="(555)555-5555" />
+                <Form.Control type="text" placeholder="(555)555-5555" />
               </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-3 ms-3" controlId="formDob">
-              <Form.Label column sm={2} htmlFor="dob">Date of Birth</Form.Label>
+              <Form.Label column sm={2}>Date of Birth</Form.Label>
               <Col sm={5}>
-                <Form.Control id="dob" type="date" />
+                <Form.Control type="date" />
               </Col>
             </Form.Group>
             {/* TODO add conditional rendering for create/update user */}

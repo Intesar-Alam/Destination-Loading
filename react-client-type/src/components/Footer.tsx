@@ -1,4 +1,4 @@
-
+import { Link } from 'react-router-dom';
 
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
@@ -17,7 +17,7 @@ function Footer() {
             <Nav.Link href="">Contact</Nav.Link>
           </Nav>
             <Navbar.Text className="me-2"><i className="bi bi-twitter"></i> <i className="bi bi-facebook"> <i className="bi bi-instagram"></i></i></Navbar.Text>
-            <Button>Help</Button>
+            <Link to="/contact" className="btn btn-primary">Help</Link>
         </Container>
       </Navbar>
     </div>
