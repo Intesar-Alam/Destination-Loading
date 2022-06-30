@@ -65,7 +65,7 @@ function AdminPage() {
             </Link>
           </Col>
           <Col>
-            <Link style={{ textDecoration: 'none' }} to="/">
+            <Link style={{ textDecoration: 'none' }} to="/siteanalytics">
               <Card bg="secondary" style={{ width: '18rem', height: '6rem' }} className="me-5">
                 <Card.Body>
                   <Card.Title as="h2" className="text-white text-center my-2">Site Analytics</Card.Title>

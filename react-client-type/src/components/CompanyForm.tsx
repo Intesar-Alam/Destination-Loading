@@ -103,7 +103,7 @@ function CompanyForm() {
       {/* Conditional rendering edit, add (delete) */}
       <h1 className="text-center">Add/Edit Company</h1>
 
-      {/* <Errors {...errors} /> */}
+      {/* <Errors /> */}
 
       <Container>
         <Card className="rounded-0 col-md-8 mx-auto">

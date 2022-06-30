@@ -18,7 +18,9 @@ import CompanyForm from './components/CompanyForm';
 import UserList from './components/UserList';
 import ReservationList from './components/ReservationList';
 import CompanyList from './components/CompanyList';
+import SiteAnalytics from './components/SiteAnalytics';
 import Footer from './components/Footer';
+
 
 function App() {
   return (
@@ -42,6 +44,7 @@ function App() {
           <Route path="/userlist" element={<UserList />} />
           <Route path="/reservationlist" element={<ReservationList />} />
           <Route path="/companylist" element={<CompanyList />} />
+          <Route path="/siteanalytics" element={<SiteAnalytics />} />
         </Routes>
         <Footer />
       </BrowserRouter>

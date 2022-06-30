@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
+import AdminMenuBar from './AdminMenuBar';
 
 
 function UserList() {
@@ -24,6 +25,7 @@ function UserList() {
 
   return (
     <>
+    <AdminMenuBar />
       <h1 className="text-center">All Customers We Work With</h1>
       <Container>
         <Table>

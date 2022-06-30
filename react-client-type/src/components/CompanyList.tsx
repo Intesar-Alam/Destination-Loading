@@ -7,6 +7,8 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
+import AdminMenuBar from './AdminMenuBar';
+
 function CompanyList() {
   const [companies, setCompanies] = useState([]);
 
@@ -49,6 +51,7 @@ function CompanyList() {
 
   return (
     <>
+    <AdminMenuBar />
       <h1 className="text-center">All Companies We Work With</h1>
       <Container>
         <Table>
