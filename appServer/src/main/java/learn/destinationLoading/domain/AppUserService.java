@@ -25,7 +25,7 @@ public class AppUserService implements UserDetailsService {
     }
 
 //    //TODO swap constructors
-    
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         AppUser appUser = repository.findByUsername(username);
