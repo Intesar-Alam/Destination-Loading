@@ -2,37 +2,41 @@ package learn.destinationLoading.models;
 
 
 import java.time.LocalDate;
+import java.util.List;
 
-//TODO add userdetails security dependency and extend the class
+
 public class UserAccount {
-    private int userId;
+
     private String email;
     private String firstName;
     private String lastName;
     private String address;
     private String phone;
     private LocalDate dob;
+    private int appUserId;
 
     public UserAccount() {
 
     }
 
-    public UserAccount (int userId, String email, String firstName, String lastName, String address, String phone, LocalDate dob) {
-        this.userId = userId;
+    public UserAccount (int appUserId, String email, String firstName, String lastName, String address, String phone, LocalDate dob) {
+
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
         this.phone = phone;
         this.dob = dob;
+        this.appUserId = appUserId;
     }
 
-    public int getUserId () {
-        return userId;
+
+    public int getAppUserId () {
+        return appUserId;
     }
 
-    public void setUserId (int userId) {
-        this.userId = userId;
+    public void setAppUserId (int appUserId) {
+        this.appUserId = appUserId;
     }
 
     public String getEmail () {
@@ -82,6 +86,7 @@ public class UserAccount {
     public void setDob (LocalDate dob) {
         this.dob = dob;
     }
+
 
 
 }

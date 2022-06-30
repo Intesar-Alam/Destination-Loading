@@ -10,9 +10,9 @@ public interface ReservationRepository {
 
     Reservation findById(int reservationId);
 
-    Reservation findByUserId(int userId);
+    List<Reservation> findByUserId(int userId);
 
-    Reservation findByCompanyId(int companyId);
+    List<Reservation> findByCompanyId(int companyId);
 
     Reservation add(Reservation reservation);
 

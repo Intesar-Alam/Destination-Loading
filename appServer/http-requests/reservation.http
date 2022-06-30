@@ -1,0 +1,129 @@
+#Test URL
+@url = http://localhost:8080/test/reservation
+
+#Production URL
+#@url = http://localhost:8080/api/reservation
+
+GET {{url}} HTTP/1.1
+
+###
+#Get reservation by reservation ID not available
+
+#Happy path
+GET {{url}}/1 HTTP/1.1
+
+###
+
+#Unhappy path
+GET {{url}}/10 HTTP/1.1
+
+#return no body
+
+###
+
+#Happy path
+GET {{url}}/useraccount/1 HTTP/1.1
+
+###
+
+#Unhappy path
+GET {{url}}/useraccount/10 HTTP/1.1
+
+#empty array
+
+###
+
+#Happy path
+GET {{url}}/company/3 HTTP/1.1
+
+###
+
+#Unhappy path
+GET {{url}}/company/10 HTTP/1.1
+
+#empty array
+
+###
+
+#Happy path
+POST {{url}} HTTP/1.1
+Content-Type: application/json
+
+{
+  "appUserId" : 1,
+  "companyId" : 3,
+  "reservationDate" : "2023-01-01",
+  "reservationCode" : "JETBLU",
+  "reservationTitle" : "Boat Trip"
+}
+
+###
+
+#Unhappy path
+POST {{url}} HTTP/1.1
+Content-Type: application/json
+
+{
+  "appUserId" : 1,
+  "companyId" : 3,
+  "reservationDate" : "2023-01-01",
+  "reservationCode" : " ",
+  "reservationTitle" : "Boat Trip"
+}
+
+###
+
+#Happy path
+PUT {{url}}/3 HTTP/1.1
+Content-Type: application/json
+
+{
+  "reservationId": 3,
+  "appUserId" : 1,
+  "companyId" : 3,
+  "reservationDate" : "2023-01-01",
+  "reservationCode" : "JETBLU",
+  "reservationTitle" : "Boat Trip"
+}
+
+###
+
+#Unhappy path
+PUT {{url}}/1 HTTP/1.1
+Content-Type: application/json
+
+{
+  "reservationId": 3,
+  "appUserId" : 1,
+  "companyId" : 3,
+  "reservationDate" : "2023-01-01",
+  "reservationCode" : "JETBLU",
+  "reservationTitle" : "Boat Trip"
+}
+
+###
+
+#Unhappy path
+PUT {{url}}/0 HTTP/1.1
+Content-Type: application/json
+
+{
+  "reservationId": 0,
+  "appUserId" : 1,
+  "companyId" : 3,
+  "reservationDate" : "2023-01-01",
+  "reservationCode" : "JETBLU",
+  "reservationTitle" : "Boat Trip"
+}
+
+###
+
+#Happy path
+
+DELETE {{url}}/2 HTTP/1.1
+
+###
+
+#Unhappy path
+
+DELETE {{url}}/22 HTTP/1.1

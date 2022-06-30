@@ -10,6 +10,7 @@ public interface UserAccountRepository {
 
     UserAccount findById(int userId);
 
+
     UserAccount add(UserAccount userAccount);
 
     boolean update(UserAccount userAccount);
