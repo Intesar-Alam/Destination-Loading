@@ -46,6 +46,7 @@ class UserAccountJdbcTemplateRepositoryTest {
     void add () {
         UserAccount userAccount = makeAccount();
         userAccount.setEmail("chip@fortnite.com");
+        userAccount.setAppUserId(7);
         UserAccount actual = repository.add(userAccount);
 
         assertNotNull(actual);

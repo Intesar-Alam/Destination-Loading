@@ -41,10 +41,12 @@ public class ReservationControllerDouble {
         return reservations;
     }
 
-//    @GetMapping("/{reservationId}")
-//    public List<Reservation> findByReservationId(@PathVariable int reservationId){
-//        return service.findByReservationId(reservationId);
-//    }
+    @GetMapping("/{reservationId}")
+    public Reservation findById(@PathVariable int reservationId){
+        var result = reservations.stream().filter(
+                reservation -> reservation.getReservationId() == reservationId).findFirst();
+        return result.orElse(null);
+    }
 
     @GetMapping("/useraccount/{userId}")
     public List<Reservation> findByUserId(@PathVariable int userId){
