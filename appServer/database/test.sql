@@ -20,9 +20,9 @@ create table user_account (
     address varchar(2048) null,
     phone varchar(20) null,
     dob date null,
-	app_user_id int not null,
     constraint pk_user_account
 		primary key (app_user_id)
+	
 );
 
 create table transport_company (
@@ -35,7 +35,7 @@ create table transport_company (
 
 create table reservation (
 	reservation_id int primary key auto_increment,
-    user_account_id int not null,
+    app_user_id int not null,
     company_id int not null,
     reservation_date date not null,
     reservation_code varchar(50) not null,
