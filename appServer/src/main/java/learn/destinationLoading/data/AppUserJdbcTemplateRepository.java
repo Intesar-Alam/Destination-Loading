@@ -26,7 +26,7 @@ import java.util.List;
     public AppUser findByUsername(String username) {
         List<String> roles = getRolesByUsername(username);
 
-        final String sql = "select app_user_id, username, password_hash, disabled "
+        final String sql = "select app_user_id, username, password_hash, disabled, company_id "
                 + "from app_user "
                 + "where username = ?;";
 
