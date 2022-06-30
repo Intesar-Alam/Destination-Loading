@@ -37,13 +37,14 @@ import java.util.List;
     @Transactional
     public AppUser create(AppUser user) {
 
-        final String sql = "insert into app_user (username, password_hash) values (?, ?);";
+        final String sql = "insert into app_user (username, password_hash, company_id) values (?, ?, ?);";
 
         GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
         int rowsAffected = jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, user.getUsername());
             ps.setString(2, user.getPassword());
+            ps.setInt(3, user.getCompanyId());
             return ps;
         }, keyHolder);
 
@@ -64,11 +65,12 @@ import java.util.List;
 
         final String sql = "update app_user set "
                 + "username = ?, "
-                + "disabled = ? "
+                + "disabled = ?, "
+                + "company_id = ? "
                 + "where app_user_id = ?";
 
         jdbcTemplate.update(sql,
-                user.getUsername(), !user.isEnabled(), user.getAppUserId());
+                user.getUsername(), !user.isEnabled(), user.getCompanyId() , user.getAppUserId());
 
         updateRoles(user);
     }
