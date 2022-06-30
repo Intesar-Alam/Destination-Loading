@@ -28,10 +28,10 @@ class UserAccountServiceTest {
     void add() {
         UserAccount userAccount = new UserAccount(0, "email@email.com", "First",
                 "Last", "123 Address St.", "123-456-7890",
-                LocalDate.of(2000,1,1), 1);
+                LocalDate.of(2000,1,1));
         UserAccount mock = new UserAccount(1, "email@email.com", "First",
                 "Last", "123 Address St.", "123-456-7890",
-                LocalDate.of(2000,1,1), 1);
+                LocalDate.of(2000,1,1));
 
         when(repository.add(userAccount)).thenReturn(mock);
 
@@ -44,7 +44,7 @@ class UserAccountServiceTest {
     void shouldNotAddInvalidId(){
         UserAccount userAccount = new UserAccount(1, "email@email.com", "First",
                 "Last", "123 Address St.", "123-456-7890",
-                LocalDate.of(2000,1,1), 1);
+                LocalDate.of(2000,1,1));
 
         Result<UserAccount> result = service.add(userAccount);
         assertEquals(ResultType.INVALID, result.getType());
@@ -64,7 +64,7 @@ class UserAccountServiceTest {
     void shouldNotAddInvalidEmail(){
         UserAccount userAccount = new UserAccount(0, "  ", "First",
                 "Last", "123 Address St.", "123-456-7890",
-                LocalDate.of(2000,1,1), 1);
+                LocalDate.of(2000,1,1));
 
         Result<UserAccount> result = service.add(userAccount);
         assertEquals(ResultType.INVALID, result.getType());
@@ -72,7 +72,7 @@ class UserAccountServiceTest {
 
         userAccount = new UserAccount(0, "not an email", "First",
                 "Last", "123 Address St.", "123-456-7890",
-                LocalDate.of(2000,1,1), 1);
+                LocalDate.of(2000,1,1));
 
         result = service.add(userAccount);
         assertEquals(ResultType.INVALID, result.getType());
@@ -83,7 +83,7 @@ class UserAccountServiceTest {
     void shouldNotAddInvalidFirstName(){
         UserAccount userAccount = new UserAccount(0, "email@email.com", null,
                 "Last", "123 Address St.", "123-456-7890",
-                LocalDate.of(2000,1,1), 1);
+                LocalDate.of(2000,1,1));
 
         Result<UserAccount> result = service.add(userAccount);
         assertEquals(ResultType.INVALID, result.getType());
@@ -94,7 +94,7 @@ class UserAccountServiceTest {
     void shouldNotAddInvalidLast(){
         UserAccount userAccount = new UserAccount(0, "email@email.com", "First",
                 "", "123 Address St.", "123-456-7890",
-                LocalDate.of(2000,1,1), 1);
+                LocalDate.of(2000,1,1));
 
         Result<UserAccount> result = service.add(userAccount);
         assertEquals(ResultType.INVALID, result.getType());
@@ -116,7 +116,7 @@ class UserAccountServiceTest {
     void shouldUpdate() {
         UserAccount userAccount = new UserAccount(1, "email@email.com", "First",
                 "Last", "123 Address St.", "123-456-7890",
-                LocalDate.of(2000,1,1), 1);
+                LocalDate.of(2000,1,1));
 
         when(repository.update(userAccount)).thenReturn(true);
 
@@ -129,7 +129,7 @@ class UserAccountServiceTest {
     void shouldNotUpdateInvalid404() {
         UserAccount userAccount = new UserAccount(1, "email@email.com", "First",
                 "Last", "123 Address St.", "123-456-7890",
-                LocalDate.of(2000,1,1), 1);
+                LocalDate.of(2000,1,1));
 
         when(repository.update(userAccount)).thenReturn(false);
 
@@ -142,7 +142,7 @@ class UserAccountServiceTest {
     void shouldNotUpdateInvalidId() {
         UserAccount userAccount = new UserAccount(0, "email@email.com", "First",
                 "Last", "123 Address St.", "123-456-7890",
-                LocalDate.of(2000,1,1), 1);
+                LocalDate.of(2000,1,1));
 
         Result<UserAccount> result = service.update(userAccount);
         assertEquals(ResultType.INVALID, result.getType());

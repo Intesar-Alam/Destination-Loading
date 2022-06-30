@@ -26,10 +26,10 @@ public class ReservationController {
         return service.findAll();
     }
 
-//    @GetMapping("/{reservationId}")
-//    public List<Reservation> findByReservationId(@PathVariable int reservationId){
-//        return service.findByReservationId(reservationId);
-//    }
+    @GetMapping("/{reservationId}")
+    public Reservation findById(@PathVariable int reservationId){
+        return service.findById(reservationId);
+    }
 
     @GetMapping("/useraccount/{userId}")
     public List<Reservation> findByUserId(@PathVariable int userId){

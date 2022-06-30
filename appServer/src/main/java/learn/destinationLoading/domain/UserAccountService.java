@@ -29,7 +29,7 @@ public class UserAccountService {
 
         if(!result.isSuccess()) return result;
 
-        if(userAccount.getUserAccountId() != 0){
+        if(userAccount.getAppUserId() != 0){
             result.addMessage("Id cannot be preset");
             return result;
         }
@@ -48,7 +48,7 @@ public class UserAccountService {
 
         if(!result.isSuccess()) return result;
 
-        if(userAccount.getUserAccountId() == 0){
+        if(userAccount.getAppUserId() == 0){
             result.addMessage("Id is missing");
         }
 

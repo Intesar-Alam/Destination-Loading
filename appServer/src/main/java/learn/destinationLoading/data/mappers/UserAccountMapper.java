@@ -6,13 +6,13 @@ import org.springframework.jdbc.core.RowMapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-//TODO add setter for getting app_user_id fk, add field to model
+
 public class UserAccountMapper implements RowMapper<UserAccount> {
 
     @Override
     public UserAccount mapRow(ResultSet rs, int i) throws SQLException {
         UserAccount userAccount = new UserAccount();
-        userAccount.setUserAccountId(rs.getInt("user_account_id"));
+        userAccount.setAppUserId(rs.getInt("app_user_id"));
         userAccount.setEmail(rs.getString("email"));
         userAccount.setFirstName(rs.getString("first_name"));
         userAccount.setLastName(rs.getString("last_name"));
@@ -25,7 +25,7 @@ public class UserAccountMapper implements RowMapper<UserAccount> {
         if (rs.getDate("dob") != null) {
             userAccount.setDob(rs.getDate("dob").toLocalDate());
         }
-        userAccount.setAppUserId(rs.getInt("app_user_id"));
+
         return userAccount;
     }
 

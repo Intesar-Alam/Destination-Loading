@@ -22,6 +22,10 @@ public class ReservationService {
         return repository.findAll();
     }
 
+    public Reservation findById(int reservationId){
+        return repository.findById(reservationId);
+    }
+
     public List<Reservation> findByUserId(int userId){
         return repository.findByUserId(userId);
     }
@@ -87,7 +91,7 @@ public class ReservationService {
             return result;
         }
 
-        if(reservation.getUserAccountId() < 1){
+        if(reservation.getappUserId() < 1){
             result.addMessage("User is missing");
         }
 
