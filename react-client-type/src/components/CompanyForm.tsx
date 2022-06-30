@@ -23,7 +23,7 @@ function CompanyForm() {
     companyName: "",
     url: "",
     icon: "",
-    transportationMode: "",
+    transportationMode: "AIR",
   });
   const [errors, setErrors] = useState([]);
 
@@ -67,6 +67,8 @@ function CompanyForm() {
   };
 
   const addCompany = () => {
+    console.log(company);
+
     const init = {
       method: 'POST',
       headers: {
@@ -103,7 +105,7 @@ function CompanyForm() {
       {/* Conditional rendering edit, add (delete) */}
       <h1 className="text-center">Add/Edit Company</h1>
 
-      {/* <Errors /> */}
+      <Errors errors={errors} />
 
       <Container>
         <Card className="rounded-0 col-md-8 mx-auto">
@@ -130,10 +132,10 @@ function CompanyForm() {
               <Form.Label column sm={2}>Transport Mode</Form.Label>
               <Col sm={9}>
                 <Form.Select aria-label="Select Transportation Mode" name="transportationMode" value={company.transportationMode} onChange={handleSelectChange}>
-                  <option value="1">AIR</option>
-                  <option value="2">RAIL</option>
-                  <option value="3">GROUND</option>
-                  <option value="4">WATER</option>
+                  <option>AIR</option>
+                  <option>RAIL</option>
+                  <option>GROUND</option>
+                  <option>WATER</option>
                 </Form.Select>
               </Col>
             </Form.Group>
