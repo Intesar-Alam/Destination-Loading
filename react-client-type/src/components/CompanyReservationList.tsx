@@ -28,6 +28,21 @@ function CompanyReservationList() {
 
   useEffect(() => {
     if (id) {
+      fetch(`http://localhost:8080/api/company/${id}`)
+        .then(response => {
+          if (response.status === 200) {
+            return response.json();
+          } else {
+            return Promise.reject(`Unexpected status code: ${response.status}`);
+          }
+        })
+        .then(data => setCompany(data))
+        .catch(console.log);
+    }
+  }, [id]);
+
+  useEffect(() => {
+    if (id) {
       fetch(`http://localhost:8080/api/reservation/company/${id}`)
         .then(response => {
           if (response.status === 200) {
@@ -40,6 +55,8 @@ function CompanyReservationList() {
         .catch(console.log);
     }
   }, [id]);
+
+  const length = reservations.length;
 
 
   return (
@@ -66,13 +83,12 @@ function CompanyReservationList() {
           </tbody>
           <tfoot>
             <tr>
-              <td>Total Number of Reservations: (count)</td>
+              <td>Total Number of Reservations: {length}</td>
             </tr>
           </tfoot>
         </Table>
+        <Link to={`/companypage/${id}`}><i className="bi bi-arrow-left-short"></i>Back</Link>
       </Container>
-
-      {/* <Link to={`/companypage/${company['companyId']}`}><i className="bi bi-arrow-left-short"></i>Back</Link> */}
 
     </>
   );
