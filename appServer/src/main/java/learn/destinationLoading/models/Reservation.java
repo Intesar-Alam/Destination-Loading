@@ -11,11 +11,8 @@ public class Reservation {
     private LocalDate reservationDate;
     private String reservationCode;
     private String reservationTitle;
-
     private UserAccount userAccount;
-
     private Company company;
-
 
     public Reservation() {
     }
