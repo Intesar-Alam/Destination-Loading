@@ -23,7 +23,7 @@ function CompanyForm() {
     companyName: "",
     url: "",
     icon: "",
-    transportationMode: "",
+    transportationMode: "AIR",
   });
   const [errors, setErrors] = useState([]);
 
@@ -47,12 +47,12 @@ function CompanyForm() {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
 
-    setCompany({...company,[event.target.name] : event.target.value});
+    setCompany({ ...company, [event.target.name]: event.target.value });
   };
 
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>): void => {
 
-    setCompany({...company,[event.target.name] : event.target.value});
+    setCompany({ ...company, [event.target.name]: event.target.value });
   };
 
 
@@ -62,7 +62,7 @@ function CompanyForm() {
     // if (companyId) {
     //   // updateCompany();
     // } else {
-      addCompany();
+    addCompany();
     // }
   };
 
@@ -77,35 +77,35 @@ function CompanyForm() {
     };
 
     fetch('http://localhost:8080/api/company', init)
-    .then(response => {
-      if (response.status === 201 || response.status === 400) {
-        console.log(response);
-        return response.json();
-      } else {
-        return Promise.reject(`Unexpected status code: ${response.status}`);
-      }
-    })
-    .then(data => {
-      console.log(data)
-      if (data['companyId']) {
-        navigate('/companylist');
-      } else {
+      .then(response => {
+        if (response.status === 201 || response.status === 400) {
+          console.log(response);
+          return response.json();
+        } else {
+          return Promise.reject(`Unexpected status code: ${response.status}`);
+        }
+      })
+      .then(data => {
         console.log(data)
-        setErrors(data);
-      }
-    })
-    .catch(console.log);
-};
-  
+        if (data['companyId']) {
+          navigate('/companylist');
+        } else {
+          console.log(data)
+          setErrors(data);
+        }
+      })
+      .catch(console.log);
+  };
+
 
   return (
     <>
       {/* Conditional rendering edit, add (delete) */}
-      <h1 className="text-center">Add/Edit Company</h1>
+      <h1 className="text-center mb-5">Add/Edit Company</h1>
 
-      {/* <Errors /> */}
 
       <Container>
+        <Errors errors={errors} />
         <Card className="rounded-0 col-md-8 mx-auto">
           <Form onSubmit={handleSubmit}>
             <Form.Group as={Row} className="my-2 ms-3" controlId="formCompanyName">
@@ -130,10 +130,10 @@ function CompanyForm() {
               <Form.Label column sm={2}>Transport Mode</Form.Label>
               <Col sm={9}>
                 <Form.Select aria-label="Select Transportation Mode" name="transportationMode" value={company.transportationMode} onChange={handleSelectChange}>
-                  <option value="1">AIR</option>
-                  <option value="2">RAIL</option>
-                  <option value="3">GROUND</option>
-                  <option value="4">WATER</option>
+                  <option>AIR</option>
+                  <option>RAIL</option>
+                  <option>GROUND</option>
+                  <option>WATER</option>
                 </Form.Select>
               </Col>
             </Form.Group>
