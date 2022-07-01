@@ -1,5 +1,6 @@
 package learn.destinationLoading.controller;
 
+import learn.destinationLoading.App;
 import learn.destinationLoading.domain.ReservationService;
 import learn.destinationLoading.domain.Result;
 import learn.destinationLoading.domain.ResultType;
@@ -56,8 +57,12 @@ public class ReservationController {
     }
 
     @GetMapping("/company/{companyId}")
-    public List<Reservation> findByCompanyId(@PathVariable int companyId){
-        return service.findByCompanyId(companyId);
+    public ResponseEntity<Object> findByCompanyId(@PathVariable int companyId, UsernamePasswordAuthenticationToken principal) {
+        AppUser appUser = (AppUser) principal.getPrincipal();
+        if (appUser.getCompanyId() == companyId || appUser.getRoles().get(0).equals("ADMIN")) {
+            return new ResponseEntity<>(service.findByCompanyId(companyId), HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(HttpStatus.FORBIDDEN);
     }
 
     @PostMapping
