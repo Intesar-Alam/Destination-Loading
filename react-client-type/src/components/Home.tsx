@@ -34,18 +34,19 @@ function Home() {
           <img
             className="d-block w-100"
             src={Jumbotron2}
-            alt="Second slide"
+            alt="Man at an airport"
           />
           <Carousel.Caption style={{backgroundColor: 'rgba(0, 0, 0, 0.35)'}}>
-            <h3>Second slide label</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <h3><img src="https://ssl.gstatic.com/travel-trips-fe/travel_logo_32.png" style={{ width: '32px' }}/>&nbsp;Google</h3>
+            <p>They gave us money to sell your data!</p>
+            <a href='https://www.google.com/travel/flights' target='blank'><Button className="float-right">View Deals!</Button></a>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item interval={5000}>
           <img
             className="d-block w-100"
             src={Jumbotron3}
-            alt="Third slide"
+            alt="Amtrak observation car"
           />
           <Carousel.Caption style={{backgroundColor: 'rgba(0, 0, 0, 0.35)'}}>
             <h3><img src="https://www.amtrak.com/etc/designs/dotcom-assets/images/favicon.ico" style={{ width: '32px' }}/>&nbsp;Amtrak</h3>
@@ -54,19 +55,6 @@ function Home() {
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
-      
-      {/* <Card className="text-white rounded-0 col-md-10 mx-auto my-5">
-        <Card.Img src={JumboImage} alt="Card image" className="rounded-0" />
-        <Card.ImgOverlay >
-          <Card.Title as="h1" style={{ fontSize: "4rem", backgroundColor: 'rgba(0, 0, 0, 0.35)' }} className="mt-4 text-center">Want to travel now?<br></br>Check out our partner deals </Card.Title>
-          <Card.Title>Want to travel now? check out our partner deals </Card.Title>
-          <Card.Text>
-            This is a wider card with supporting text below as a natural lead-in to
-            additional content. This content is a little bit longer.
-          </Card.Text>
-          <Button className="float-right">Click Here!</Button>
-        </Card.ImgOverlay>
-      </Card> */}
 
       <Container className="d-flex">
         <Row md={3} className="mx-auto mb-5">
