@@ -1,5 +1,6 @@
 package learn.destinationLoading.controller;
 
+import learn.destinationLoading.models.AppUser;
 import learn.destinationLoading.security.JwtConverter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,8 +38,9 @@ public class AuthController {
 
             if (authentication.isAuthenticated()) {
                 HashMap<String, String> map = new HashMap<>();
-                User user = (User)authentication.getPrincipal();
-                String token = jwtConverter.getTokenFromUser(user);
+
+                AppUser appUser= (AppUser)authentication.getPrincipal();
+                String token = jwtConverter.getTokenFromUser(appUser);
                 map.put("jwt_token", token);
 
                 return new ResponseEntity<>(map, HttpStatus.OK);
