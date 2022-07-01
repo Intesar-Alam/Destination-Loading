@@ -82,7 +82,7 @@ function UserReservationList() {
         <Row md={3}>
           {reservations.map(reservation => (
             <Col>
-              <Link to={`/singlereservation/${reservation['reservationId']}`} >
+              <Link to={`/singleuserreservation/${reservation['reservationId']}`} >
                 <Card className="bg-dark text-dark text-center mb-5 d-flex align-items-center" style={{ width: '18rem' }} key={reservation['reservationId']}>
                   <Card.Img src={JumboImage} alt="Card image" />
                   <Card.ImgOverlay>

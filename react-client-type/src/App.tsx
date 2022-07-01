@@ -49,7 +49,7 @@ function App() {
           <Route path="/reservationaddform" element={<ReservationAddForm />} />
           <Route path="/reservationupdateform" element={<ReservationUpdateForm />} />
           <Route path="/userreservationlist/:id" element={<UserReservationList />} />
-          <Route path="/singleuserreservation" element={<SingleUserReservation />} />
+          <Route path="/singleuserreservation/:id" element={<SingleUserReservation />} />
           <Route path="/companypage/:id" element={<CompanyPage />} />
           <Route path="/companyreservationlist/:id" element={<CompanyReservationList />} />
           <Route path="/company/:id" element={<CompanyUpdateForm />} />

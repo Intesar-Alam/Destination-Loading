@@ -137,22 +137,10 @@ function CompanyAddForm() {
                 </Form.Select>
               </Col>
             </Form.Group>
-            <hr style={{ color: 'gray', height: '1px' }} />
-            {/* <Form.Group as={Row} className="mb-2 ms-3" controlId="formRepIdSelect">
-              <Form.Label column sm={2}>Company Rep</Form.Label>
-              <Col sm={9}>
-                <Form.Select aria-label="Select Company Representative" value={company['repId']} onChange={handleChange}>
-                  <option>Select One</option>
-                  // TODO add map/fetch for rep users 
-                  <option>AIR</option>
-                </Form.Select>
-              </Col> */}
-            {/* </Form.Group> */}
-            {/* TODO add conditional rendering for create/edit(update) user */}
             <Form.Group className="mb-3">
               <Row>
                 <Col md={{ span: 5, offset: 7 }}>
-                  <Button type="submit" className="me-2">Create Company</Button>
+                  <Button type="submit" className="me-4">Create Company</Button>
                   <Link className="btn btn-primary" to="/companylist">Cancel</Link>
                 </Col>
               </Row>
