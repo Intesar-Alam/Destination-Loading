@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
@@ -42,7 +43,7 @@ function Contact() {
             </Form.Group>
             <Form.Group as={Row}>
               <Col sm={{ offset: 9 }}>
-                <Button type="submit" className="mb-2">Send</Button>
+                <Link to="/contactsubmitconfirm" type="submit" className="btn btn-primary mb-2">Send</Link>
               </Col>
             </Form.Group>
           </Form>

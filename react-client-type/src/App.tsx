@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route, Link, useRoutes } from 'react-router-dom'
 import Home from './components/Home';
 import MenuBar from './components/MenuBar';
 import Contact from './components/Contact';
+import ContactSubmitConfirm from './components/ContactSubmitConfirm';
 import LearnMore from './components/LearnMore';
 import Login from './components/Login';
 import NotFound from './components/NotFound';
@@ -16,7 +17,7 @@ import CompanyPage from './components/CompanyPage';
 import CompanyReservationList from './components/CompanyReservationList';
 import CompanyUpdateForm from './components/CompanyUpdateForm';
 import AdminPage from './components/AdminPage';
-import CompanyForm from './components/CompanyForm';
+import CompanyAddForm from './components/CompanyAddForm';
 import UserList from './components/UserList';
 import ReservationList from './components/ReservationList';
 import CompanyList from './components/CompanyList';
@@ -40,6 +41,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/contactsubmitconfirm" element={<ContactSubmitConfirm />} />
           <Route path="/learnmore" element={<LearnMore />} />
           <Route path="/login" element={<Login />} />
           <Route path="/notfound" element={<NotFound />} />
@@ -52,7 +54,7 @@ function App() {
           <Route path="/companyreservationlist" element={<CompanyReservationList />} />
           <Route path="/company/:id" element={<CompanyUpdateForm />} />
           <Route path="/adminpage" element={<AdminPage />} />
-          <Route path="/company" element={<CompanyForm />} />
+          <Route path="/company" element={<CompanyAddForm />} />
           <Route path="/userlist" element={<UserList />} />
           <Route path="/reservationlist" element={<ReservationList />} />
           <Route path="/companylist" element={<CompanyList />} />

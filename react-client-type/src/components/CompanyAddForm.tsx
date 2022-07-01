@@ -19,7 +19,7 @@ type COMPANY_DEFAULT = {
   transportationMode: string
 };
 
-function CompanyForm() {
+function CompanyAddForm() {
   const [company, setCompany] = useState<COMPANY_DEFAULT>({
     companyId: "",
     companyName: "",
@@ -164,4 +164,4 @@ function CompanyForm() {
   );
 }
 
-export default CompanyForm;
+export default CompanyAddForm;
