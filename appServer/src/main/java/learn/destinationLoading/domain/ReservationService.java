@@ -35,6 +35,7 @@ public class ReservationService {
 
     public Reservation findById(int reservationId){
         Reservation reservation = repository.findById(reservationId);
+        if(reservation == null) return null;
         reservation.setUserAccount(userAccountRepository.findById(reservation.getAppUserId()));
         reservation.setCompany(companyRepository.findById(reservation.getCompanyId()));
         return reservation;
@@ -117,10 +118,14 @@ public class ReservationService {
 
         if(reservation.getAppUserId() < 1){
             result.addMessage("User is missing");
+        }else if(userAccountRepository.findById(reservation.getAppUserId()) == null){
+            result.addMessage("User Account not found");
         }
 
         if(reservation.getCompanyId() < 1){
             result.addMessage("Company is missing");
+        }else if(companyRepository.findById(reservation.getCompanyId()) == null){
+            result.addMessage("Company Account not found");
         }
 
         if(reservation.getReservationDate().isBefore(LocalDate.now())){

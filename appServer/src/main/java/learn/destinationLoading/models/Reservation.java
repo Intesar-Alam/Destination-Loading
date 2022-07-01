@@ -30,6 +30,17 @@ public class Reservation {
         this.reservationTitle = reservationTitle;
     }
 
+    public Reservation(int reservationId, int appUserId, int companyId, LocalDate reservationDate, String reservationCode, String reservationTitle, UserAccount userAccount, Company company) {
+        this.reservationId = reservationId;
+        this.appUserId = appUserId;
+        this.companyId = companyId;
+        this.reservationDate = reservationDate;
+        this.reservationCode = reservationCode;
+        this.reservationTitle = reservationTitle;
+        this.userAccount = userAccount;
+        this.company = company;
+    }
+
     public int getReservationId () {
         return reservationId;
     }
