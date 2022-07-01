@@ -50,7 +50,7 @@ public class ReservationControllerDouble {
 
     @GetMapping("/useraccount/{userId}")
     public List<Reservation> findByUserId(@PathVariable int userId){
-        return reservations.stream().filter(reservation -> reservation.getappUserId() == userId)
+        return reservations.stream().filter(reservation -> reservation.getAppUserId() == userId)
                 .collect(Collectors.toList());
     }
 

@@ -2,7 +2,7 @@
 @url = http://localhost:8080/test/company
 
 #Production URL
-#@url = http://localhost:8080/api/company
+# @url = http://localhost:8080/api/company
 
 GET {{url}} HTTP/1.1
 
@@ -96,4 +96,4 @@ DELETE {{url}}/2 HTTP/1.1
 
 #Unhappy path
 
-DELETE {{url}}/22 HTTP/1.1
+DELETE {{url}}/999 HTTP/1.1

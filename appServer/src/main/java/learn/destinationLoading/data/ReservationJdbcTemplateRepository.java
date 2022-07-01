@@ -61,7 +61,7 @@ public class ReservationJdbcTemplateRepository implements ReservationRepository{
         KeyHolder keyHolder = new GeneratedKeyHolder();
         int rowsAffected = jdbcTemplate.update(connection -> {
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            statement.setInt(1, reservation.getappUserId());
+            statement.setInt(1, reservation.getAppUserId());
             statement.setInt(2, reservation.getCompanyId());
             statement.setDate(3, Date.valueOf(reservation.getReservationDate()));
             statement.setString(4, reservation.getReservationCode());
@@ -86,7 +86,7 @@ public class ReservationJdbcTemplateRepository implements ReservationRepository{
                + "reservation_code = ?, "
                + "reservation_title = ? "
                + "where reservation_id = ?;";
-       return jdbcTemplate.update(sql, reservation.getappUserId(), reservation.getCompanyId(),
+       return jdbcTemplate.update(sql, reservation.getAppUserId(), reservation.getCompanyId(),
                reservation.getReservationDate(), reservation.getReservationCode(), reservation.getReservationTitle(),
                reservation.getReservationId()) > 0;
     }
