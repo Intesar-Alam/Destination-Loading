@@ -6,6 +6,7 @@ import learn.destinationLoading.domain.ResultType;
 import learn.destinationLoading.models.AppUser;
 import learn.destinationLoading.models.Reservation;
 import learn.destinationLoading.models.UserAccount;
+import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -93,7 +94,14 @@ public class ReservationController {
     }
 
     @DeleteMapping("/{reservationId}")
-    public ResponseEntity<Void> deleteById(@PathVariable int reservationId) {
+    public ResponseEntity<Void> deleteById(@PathVariable int reservationId, UsernamePasswordAuthenticationToken principal) {
+        AppUser appUser = (AppUser) principal.getPrincipal();
+
+        Reservation reservation = service.findById(reservationId);
+
+        if (appUser.getAppUserId() != reservation.getAppUserId()) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
         Result<Reservation> result = service.deleteById(reservationId);
         if (result.isSuccess()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
