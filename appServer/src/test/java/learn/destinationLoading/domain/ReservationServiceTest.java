@@ -1,8 +1,12 @@
 package learn.destinationLoading.domain;
 
+import learn.destinationLoading.data.CompanyRepository;
 import learn.destinationLoading.data.ReservationRepository;
+import learn.destinationLoading.data.UserAccountRepository;
+import learn.destinationLoading.models.Company;
 import learn.destinationLoading.models.Reservation;
 import learn.destinationLoading.models.TransportationMode;
+import learn.destinationLoading.models.UserAccount;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,6 +27,12 @@ class ReservationServiceTest {
     @MockBean
     ReservationRepository repository;
 
+    @MockBean
+    UserAccountRepository userAccountRepository;
+
+    @MockBean
+    CompanyRepository companyRepository;
+
     @Test
     void shouldAdd(){
         Reservation reservation = new Reservation(0, 1, 1,
@@ -31,6 +41,8 @@ class ReservationServiceTest {
                  LocalDate.now().plusWeeks(2), "XXXXXX", "trip");
 
         when(repository.add(reservation)).thenReturn(mock);
+        when(userAccountRepository.findById(1)).thenReturn(userAccount());
+        when(companyRepository.findById(1)).thenReturn(company());
 
         Result<Reservation> result = service.add(reservation);
         assertEquals(ResultType.SUCCESS, result.getType());
@@ -67,9 +79,36 @@ class ReservationServiceTest {
     }
 
     @Test
+    void shouldNotValidateNonExistentUser(){
+        Reservation reservation = new Reservation(0, 1, 1,
+                LocalDate.now().plusWeeks(2), "XXXXXX", "trip");
+
+        when(companyRepository.findById(1)).thenReturn(null);
+
+        Result<Reservation> result = service.add(reservation);
+        assertEquals(ResultType.INVALID, result.getType());
+        assertNull(result.getPayload());
+    }
+
+    @Test
     void shouldNotAddInvalidCompany(){
-        Reservation reservation = new Reservation(0, 1, 0,
+        Reservation reservation = new Reservation(0, 1, 1,
                  LocalDate.now().plusWeeks(2), "XXXXXX", "trip");
+
+        when(userAccountRepository.findById(1)).thenReturn(userAccount());
+        when(companyRepository.findById(1)).thenReturn(null);
+
+        Result<Reservation> result = service.add(reservation);
+        assertEquals(ResultType.INVALID, result.getType());
+        assertNull(result.getPayload());
+    }
+
+    @Test
+    void shouldNotAddNonExistentCompany(){
+        Reservation reservation = new Reservation(0, 1, 0,
+                LocalDate.now().plusWeeks(2), "XXXXXX", "trip");
+
+        when(userAccountRepository.findById(1)).thenReturn(userAccount());
 
         Result<Reservation> result = service.add(reservation);
         assertEquals(ResultType.INVALID, result.getType());
@@ -81,6 +120,9 @@ class ReservationServiceTest {
         Reservation reservation = new Reservation(0, 1, 1,
                  LocalDate.now().minusDays(1), "XXXXXX", "trip");
 
+        when(userAccountRepository.findById(1)).thenReturn(userAccount());
+        when(companyRepository.findById(1)).thenReturn(company());
+
         Result<Reservation> result = service.add(reservation);
         assertEquals(ResultType.INVALID, result.getType());
         assertNull(result.getPayload());
@@ -90,6 +132,9 @@ class ReservationServiceTest {
     void shouldNotAddInvalidCode(){
         Reservation reservation = new Reservation(0, 1, 1,
                  LocalDate.now().plusWeeks(2), null, "trip");
+
+        when(userAccountRepository.findById(1)).thenReturn(userAccount());
+        when(companyRepository.findById(1)).thenReturn(company());
 
         Result<Reservation> result = service.add(reservation);
         assertEquals(ResultType.INVALID, result.getType());
@@ -102,6 +147,8 @@ class ReservationServiceTest {
                  LocalDate.now().plusWeeks(2), "XXXXXX", "trip");
 
         when(repository.update(reservation)).thenReturn(true);
+        when(userAccountRepository.findById(1)).thenReturn(userAccount());
+        when(companyRepository.findById(1)).thenReturn(company());
 
         Result<Reservation> result = service.update(reservation);
         assertEquals(ResultType.SUCCESS, result.getType());
@@ -114,6 +161,8 @@ class ReservationServiceTest {
                  LocalDate.now().plusWeeks(2), "XXXXXX", "trip");
 
         when(repository.update(reservation)).thenReturn(false);
+        when(userAccountRepository.findById(1)).thenReturn(userAccount());
+        when(companyRepository.findById(1)).thenReturn(company());
 
         Result<Reservation> result = service.update(reservation);
         assertEquals(ResultType.NOT_FOUND, result.getType());
@@ -143,4 +192,14 @@ class ReservationServiceTest {
         assertFalse(result.isSuccess());
         assertEquals(ResultType.NOT_FOUND, result.getType());
     }
+
+    Company company(){
+        return new Company(1, "Company Name", "url", "icon", TransportationMode.GROUND);
+    }
+
+    UserAccount userAccount(){
+        return new UserAccount(1, "email", "first", "last", "address", "phone", LocalDate.of(1999, 1, 1));
+    }
+
+
 }

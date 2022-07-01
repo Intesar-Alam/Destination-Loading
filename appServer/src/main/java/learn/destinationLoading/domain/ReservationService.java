@@ -1,7 +1,8 @@
 package learn.destinationLoading.domain;
 
+import learn.destinationLoading.data.CompanyRepository;
 import learn.destinationLoading.data.ReservationRepository;
-import learn.destinationLoading.models.Company;
+import learn.destinationLoading.data.UserAccountRepository;
 import learn.destinationLoading.models.Reservation;
 import learn.destinationLoading.utils.AppUtilities;
 import org.springframework.stereotype.Service;
@@ -13,25 +14,49 @@ import java.util.List;
 public class ReservationService {
 
     private final ReservationRepository repository;
+    private final UserAccountRepository userAccountRepository;
+    private final CompanyRepository companyRepository;
 
-    public ReservationService(ReservationRepository repository) {
+    public ReservationService(ReservationRepository repository, UserAccountRepository userAccountRepository, CompanyRepository companyRepository) {
         this.repository = repository;
+        this.userAccountRepository = userAccountRepository;
+        this.companyRepository = companyRepository;
     }
 
     public List<Reservation> findAll(){
-        return repository.findAll();
+        List<Reservation> reservations = repository.findAll();
+        for (Reservation reservation: reservations){
+            reservation.setUserAccount(userAccountRepository.findById(reservation.getAppUserId()));
+            reservation.setCompany(companyRepository.findById(reservation.getCompanyId()));
+        }
+        return reservations;
+
     }
 
     public Reservation findById(int reservationId){
-        return repository.findById(reservationId);
+        Reservation reservation = repository.findById(reservationId);
+        if(reservation == null) return null;
+        reservation.setUserAccount(userAccountRepository.findById(reservation.getAppUserId()));
+        reservation.setCompany(companyRepository.findById(reservation.getCompanyId()));
+        return reservation;
     }
 
     public List<Reservation> findByUserId(int userId){
-        return repository.findByUserId(userId);
+        List<Reservation> reservations = repository.findByUserId(userId);
+        for (Reservation reservation: reservations){
+            reservation.setUserAccount(userAccountRepository.findById(reservation.getAppUserId()));
+            reservation.setCompany(companyRepository.findById(reservation.getCompanyId()));
+        }
+        return reservations;
     }
 
     public List<Reservation> findByCompanyId(int companyId){
-        return repository.findByCompanyId(companyId);
+        List<Reservation> reservations = repository.findByCompanyId(companyId);
+        for (Reservation reservation: reservations){
+            reservation.setUserAccount(userAccountRepository.findById(reservation.getAppUserId()));
+            reservation.setCompany(companyRepository.findById(reservation.getCompanyId()));
+        }
+        return reservations;
     }
 
     public Result<Reservation> add(Reservation reservation){
@@ -91,12 +116,16 @@ public class ReservationService {
             return result;
         }
 
-        if(reservation.getappUserId() < 1){
+        if(reservation.getAppUserId() < 1){
             result.addMessage("User is missing");
+        }else if(userAccountRepository.findById(reservation.getAppUserId()) == null){
+            result.addMessage("User Account not found");
         }
 
         if(reservation.getCompanyId() < 1){
             result.addMessage("Company is missing");
+        }else if(companyRepository.findById(reservation.getCompanyId()) == null){
+            result.addMessage("Company Account not found");
         }
 
         if(reservation.getReservationDate().isBefore(LocalDate.now())){
