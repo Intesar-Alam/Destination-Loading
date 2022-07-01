@@ -55,7 +55,7 @@ function CompanyList() {
   return (
     <>
     <AdminMenuBar />
-      <h1 className="text-center">All Companies We Work With</h1>
+      <h1 className="text-center mb-5">All Companies We Work With</h1>
       <Container>
         <Table>
           <thead className="thead-dark">

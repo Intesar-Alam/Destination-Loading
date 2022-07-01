@@ -15,7 +15,7 @@ import TravelVlog from '../images/travelers.jpg';
 function Home() {
   return (
     <>
-      <h6 className="text-end me-3 mt-2">Welcome, Joe!</h6>
+      
       <h1 className="text-center mt-5">Welcome to Destination Loading...</h1>
       <Carousel>
         <Carousel.Item interval={5000}>

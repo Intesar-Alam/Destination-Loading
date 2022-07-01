@@ -65,7 +65,7 @@ function CompanyPage() {
             </tr>
           </tbody>
         </Table>
-        <Link className="btn btn-primary" to={`/company/${company['companyId']}`}>Edit Company Info</Link>
+        <Link className="btn btn-primary me-3" to={`/company/${company['companyId']}`}>Edit Company Info</Link>
         <Link className="btn btn-primary" to={`/companyreservationlist/${company['companyId']}`}>View Reservations</Link>
       </Container>
     </>
