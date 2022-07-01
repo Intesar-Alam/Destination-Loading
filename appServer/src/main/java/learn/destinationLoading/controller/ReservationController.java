@@ -2,10 +2,12 @@ package learn.destinationLoading.controller;
 
 import learn.destinationLoading.domain.ReservationService;
 import learn.destinationLoading.domain.Result;
+import learn.destinationLoading.models.AppUser;
 import learn.destinationLoading.models.Reservation;
 import learn.destinationLoading.models.UserAccount;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,8 +29,15 @@ public class ReservationController {
     }
 
     @GetMapping("/{reservationId}")
-    public Reservation findById(@PathVariable int reservationId){
+    public Reservation findById(@PathVariable int reservationId) {
         return service.findById(reservationId);
+    }
+
+    @GetMapping("/user")
+    public List<Reservation> findByUser(UsernamePasswordAuthenticationToken principal) {
+        AppUser appUser = (AppUser) principal.getPrincipal();
+        int appUserId = appUser.getAppUserId();
+        return service.findByUserId(appUserId);
     }
 
     @GetMapping("/useraccount/{userId}")
