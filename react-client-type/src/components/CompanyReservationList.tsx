@@ -31,7 +31,7 @@ function CompanyReservationList() {
         </tfoot>
       </Table>
 
-      <Link to="/companypage"><i className="bi bi-arrow-left-short"></i>Back</Link>
+      {/* <Link to={`/companypage/${company['companyId']}`}><i className="bi bi-arrow-left-short"></i>Back</Link> */}
 
     </>
   );

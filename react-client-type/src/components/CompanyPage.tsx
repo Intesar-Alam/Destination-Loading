@@ -1,34 +1,74 @@
+import { useState, useEffect } from 'react';
+import { useParams, Link } from 'react-router-dom';
 
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+
+
+type COMPANY_DEFAULT = {
+  companyId: string | undefined,
+  companyName: string,
+  url: string,
+  icon: string,
+  transportationMode: string
+};
 
 function CompanyPage() {
+  const [company, setCompany] = useState<COMPANY_DEFAULT>({
+    companyId: "",
+    companyName: "",
+    url: "",
+    icon: "",
+    transportationMode: "",
+  });
+
+  const { id } = useParams();
+
+  useEffect(() => {
+    if (id) {
+      fetch(`http://localhost:8080/api/company/${id}`)
+        .then(response => {
+          if (response.status === 200) {
+            return response.json();
+          } else {
+            return Promise.reject(`Unexpected status code: ${response.status}`);
+          }
+        })
+        .then(data => setCompany(data))
+        .catch(console.log);
+    }
+  }, [id]);
+
   return (
     <>
-    <h1 className="text-center">Company Name Here, Company Informaiton</h1>
-
-    <h3 style={{ textDecoration: "underline" }}>Company Specifics</h3>
-    <Table size="sm">
-      <tr>
-        <th>Company Name</th>
-        <td>Delta</td>
-      </tr>
-      <tr>
-        <th>Company Website</th>
-        <td>10/22/2023</td>
-      </tr>
-      <tr>
-        <th>Favicon</th>
-        <td><i className="bi bi-bicycle"></i></td>
-      </tr>
-      <tr>
-        <th>Transport Type</th>
-        <td>Plane</td>
-      </tr>
-    </Table>
-    <Button>Edit Company Info</Button>
-    <Button>View Reservationa</Button>
-  </>
+      <h1 className="text-center mb-5">{company['companyName']}, Company Information</h1>
+      <Container>
+        <h3 style={{ textDecoration: "underline" }}>Company Specifics</h3>
+        <Table size="sm">
+          <thead>
+            <tr>
+              <th>Company Name</th>
+              <th>Icon</th>
+              <th>Company Website</th>
+              <th>Transport Type</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr key={company['companyId']}>
+              <td>{company['companyName']}</td>
+              <td><img src={company['icon']} /></td>
+              <td><a href={company['url']} target="_blank">{company['url']}</a></td>
+              <td>{company['transportationMode']}</td>
+            </tr>
+          </tbody>
+        </Table>
+        <Link className="btn btn-primary" to={`/company/${company['companyId']}`}>Edit Company Info</Link>
+        <Link className="btn btn-primary" to={`/companyreservationlist/${company['companyId']}`}>View Reservations</Link>
+      </Container>
+    </>
   );
 }
 

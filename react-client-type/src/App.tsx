@@ -50,8 +50,8 @@ function App() {
           <Route path="/reservationupdateform" element={<ReservationUpdateForm />} />
           <Route path="/userreservationlist" element={<UserReservationList />} />
           <Route path="/singleuserreservation" element={<SingleUserReservation />} />
-          <Route path="/companypage" element={<CompanyPage />} />
-          <Route path="/companyreservationlist" element={<CompanyReservationList />} />
+          <Route path="/companypage/:id" element={<CompanyPage />} />
+          <Route path="/companyreservationlist/:id" element={<CompanyReservationList />} />
           <Route path="/company/:id" element={<CompanyUpdateForm />} />
           <Route path="/adminpage" element={<AdminPage />} />
           <Route path="/company" element={<CompanyAddForm />} />

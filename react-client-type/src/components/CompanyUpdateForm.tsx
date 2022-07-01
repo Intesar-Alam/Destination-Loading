@@ -101,7 +101,6 @@ const updateCompany = () => {
 
 return (
   <>
-    {/* Conditional rendering edit, add (delete) */}
     <h1 className="text-center mb-5">Update Company</h1>
 
 
@@ -153,6 +152,7 @@ return (
           <Form.Group className="mb-3">
             <Row>
               <Col md={{ span: 5, offset: 7 }}>
+                {/* TODO if user = rep send to companypage, if user = admin send to companylist, create two buttons (one for each role) */}
                 <Button type="submit" className="me-2">Update Company</Button>
                 <Link className="btn btn-primary" to="/companylist">Cancel</Link>
               </Col>
