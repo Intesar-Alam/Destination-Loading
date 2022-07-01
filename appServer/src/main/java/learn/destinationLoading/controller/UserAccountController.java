@@ -47,9 +47,14 @@ public class UserAccountController {
         return ErrorResponse.build(result);
     }
 
+
     @PutMapping("/{appUserId}")
-    public ResponseEntity<Object> update(@RequestBody UserAccount userAccount, UsernamePasswordAuthenticationToken principal) {
+    public ResponseEntity<Object> update(@PathVariable int appUserId, @RequestBody UserAccount userAccount, UsernamePasswordAuthenticationToken principal) {
         AppUser appUser = (AppUser) principal.getPrincipal();
+
+        if (appUserId != userAccount.getAppUserId()) {
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
         if (appUser.getAppUserId() != userAccount.getAppUserId() || !appUser.getRoles().get(0).equals("ADMIN")) {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
@@ -63,7 +68,7 @@ public class UserAccountController {
     }
 
     // admin only, at least for now
-    @DeleteMapping("/{userId}")
+    @DeleteMapping("/{appUserId}")
     public ResponseEntity<Void> deleteById(@PathVariable int appUserId) {
         Result<UserAccount> result = service.deleteById(appUserId);
         if (result.isSuccess()) {

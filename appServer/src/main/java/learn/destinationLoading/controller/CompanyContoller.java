@@ -2,9 +2,11 @@ package learn.destinationLoading.controller;
 
 import learn.destinationLoading.domain.CompanyService;
 import learn.destinationLoading.domain.Result;
+import learn.destinationLoading.models.AppUser;
 import learn.destinationLoading.models.Company;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,6 +32,7 @@ public class CompanyContoller {
         return service.findById(companyId);
     }
 
+    // admin only
     @PostMapping
     public ResponseEntity<Object> add(@RequestBody Company company){
         Result<Company> result = service.add(company);
@@ -39,10 +42,17 @@ public class CompanyContoller {
         return ErrorResponse.build(result);
     }
 
+    // company rep or admin
     @PutMapping("/{companyId}")
-    public ResponseEntity<Object> update(@PathVariable int companyId, @RequestBody Company company) {
+    public ResponseEntity<Object> update(@PathVariable int companyId, @RequestBody Company company, UsernamePasswordAuthenticationToken principal) {
+        AppUser appUser = (AppUser) principal.getPrincipal();
+
         if (companyId != company.getCompanyId()) {
             return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
+
+        if (appUser.getCompanyId() != company.getCompanyId() || !appUser.getRoles().get(0).equals("ADMIN")) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
 
         Result<Company> result = service.update(company);
@@ -53,6 +63,7 @@ public class CompanyContoller {
         return ErrorResponse.build(result);
     }
 
+    // admin only
     @DeleteMapping("/{companyId}")
     public ResponseEntity<Void> deleteById(@PathVariable int companyId) {
         Result<Company> result = service.deleteById(companyId);
