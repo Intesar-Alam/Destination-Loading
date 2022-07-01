@@ -53,8 +53,8 @@ function ReservationUpdateForm() {
   }, [id]);
 
   useEffect(() => {
-    if (id) {
-      fetch(`http://localhost:8080/api/company/${id}`)
+
+      fetch(`http://localhost:8080/api/company/`)
         .then(response => {
           if (response.status === 200) {
             return response.json();
@@ -63,8 +63,7 @@ function ReservationUpdateForm() {
           }
         })
         .then(data => setCompanies(data))
-    }
-  }, [id]);
+  }, []);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
 

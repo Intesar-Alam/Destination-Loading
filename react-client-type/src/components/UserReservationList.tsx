@@ -76,9 +76,9 @@ function UserReservationList() {
     <>
       <h6 className="text-end me-3 mt-2">Welcome, {user['firstName']}!</h6>
       <h1 className="text-center mb-5">Current Reservations</h1>
-      <Button>Add Reservation</Button>
 
       <Container>
+      <Link to="/reservationaddform" className="btn btn-primary">Add Reservation</Link>
         <Row md={3}>
           {reservations.map(reservation => (
             <Col>
@@ -86,7 +86,7 @@ function UserReservationList() {
                 <Card className="bg-dark text-dark text-center mb-5 d-flex align-items-center" style={{ width: '18rem' }} key={reservation['reservationId']}>
                   <Card.Img src={JumboImage} alt="Card image" />
                   <Card.ImgOverlay>
-                    <Card.Title as="h1" style={{ fontSize: "4rem", backgroundColor: 'rgba(255, 255, 255, 0.65)' }}>{reservation['reservationTitle']}</Card.Title>
+                    <Card.Title style={{ fontSize: "3rem", backgroundColor: 'rgba(255, 255, 255, 0.65)' }}>{reservation['reservationTitle']}</Card.Title>
                   </Card.ImgOverlay>
                 </Card>
               </Link>
