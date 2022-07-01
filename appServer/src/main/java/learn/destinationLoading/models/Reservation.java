@@ -12,6 +12,10 @@ public class Reservation {
     private String reservationCode;
     private String reservationTitle;
 
+    private UserAccount userAccount;
+
+    private Company company;
+
 
     public Reservation() {
     }
@@ -34,11 +38,11 @@ public class Reservation {
         this.reservationId = reservationId;
     }
 
-    public int getappUserId () {
+    public int getAppUserId() {
         return appUserId;
     }
 
-    public void setappUserId (int userId) {
+    public void setAppUserId(int userId) {
         this.appUserId = userId;
     }
 
@@ -73,6 +77,23 @@ public class Reservation {
     public void setReservationTitle (String reservationTitle) {
         this.reservationTitle = reservationTitle;
     }
+
+    public UserAccount getUserAccount() {
+        return userAccount;
+    }
+
+    public void setUserAccount(UserAccount userAccount) {
+        this.userAccount = userAccount;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
