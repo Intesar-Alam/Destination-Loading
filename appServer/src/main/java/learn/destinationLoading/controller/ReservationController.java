@@ -51,9 +51,15 @@ public class ReservationController {
     }
 
     @PostMapping
-    public ResponseEntity<Object> add(@RequestBody Reservation reservation){
+    public ResponseEntity<Object> add(@RequestBody Reservation reservation, UsernamePasswordAuthenticationToken principal) {
+        AppUser appUser = (AppUser) principal.getPrincipal();
+        int appUserId = appUser.getAppUserId();
+        int companyId = appUser.getCompanyId();
+
         Result<Reservation> result = service.add(reservation);
         if (result.isSuccess()) {
+            reservation.setAppUserId(appUserId);
+            reservation.setCompanyId(companyId);
             return new ResponseEntity<>(result.getPayload(), HttpStatus.CREATED);
         }
         return ErrorResponse.build(result);
