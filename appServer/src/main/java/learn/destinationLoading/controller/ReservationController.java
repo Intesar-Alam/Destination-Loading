@@ -26,6 +26,7 @@ public class ReservationController {
         this.service = service;
     }
 
+    // admin only, no token information needed
     @GetMapping
     public List<Reservation> findAll(){
         return service.findAll();
@@ -51,6 +52,7 @@ public class ReservationController {
         return service.findByUserId(appUserId);
     }
 
+    // this will only be for admins: users who want to see theirs can use the above /user, and companies are not allowed to see user's reservations unless it's with them
     @GetMapping("/useraccount/{userId}")
     public List<Reservation> findByUserId(@PathVariable int userId){
         return service.findByUserId(userId);

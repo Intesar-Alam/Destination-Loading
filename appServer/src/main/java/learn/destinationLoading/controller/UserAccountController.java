@@ -2,10 +2,12 @@ package learn.destinationLoading.controller;
 
 import learn.destinationLoading.domain.Result;
 import learn.destinationLoading.domain.UserAccountService;
+import learn.destinationLoading.models.AppUser;
 import learn.destinationLoading.models.Company;
 import learn.destinationLoading.models.UserAccount;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,9 +28,14 @@ public class UserAccountController {
         return service.findAll();
     }
 
-    @GetMapping("/{userId}")
-    public UserAccount findById(@PathVariable int userId){
-        return service.findById(userId);
+    @GetMapping("/user")
+    public UserAccount findByUser(UsernamePasswordAuthenticationToken principal) {
+        AppUser appUser = (AppUser) principal.getPrincipal();
+        return service.findById(appUser.getAppUserId());
+    }
+    @GetMapping("/{appUserId}")
+    public UserAccount findById(@PathVariable int appUserId){
+        return service.findById(appUserId);
     }
 
     @PostMapping
@@ -40,10 +47,11 @@ public class UserAccountController {
         return ErrorResponse.build(result);
     }
 
-    @PutMapping("/{userId}")
-    public ResponseEntity<Object> update(@PathVariable int userId, @RequestBody UserAccount userAccount) {
-        if (userId != userAccount.getAppUserId()) {
-            return new ResponseEntity<>(HttpStatus.CONFLICT);
+    @PutMapping("/{appUserId}")
+    public ResponseEntity<Object> update(@RequestBody UserAccount userAccount, UsernamePasswordAuthenticationToken principal) {
+        AppUser appUser = (AppUser) principal.getPrincipal();
+        if (appUser.getAppUserId() != userAccount.getAppUserId() || !appUser.getRoles().get(0).equals("ADMIN")) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
 
         Result<UserAccount> result = service.update(userAccount);
@@ -54,9 +62,10 @@ public class UserAccountController {
         return ErrorResponse.build(result);
     }
 
+    // admin only, at least for now
     @DeleteMapping("/{userId}")
-    public ResponseEntity<Void> deleteById(@PathVariable int userId) {
-        Result<UserAccount> result = service.deleteById(userId);
+    public ResponseEntity<Void> deleteById(@PathVariable int appUserId) {
+        Result<UserAccount> result = service.deleteById(appUserId);
         if (result.isSuccess()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
