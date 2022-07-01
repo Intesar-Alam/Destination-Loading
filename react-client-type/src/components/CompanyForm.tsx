@@ -67,6 +67,8 @@ function CompanyForm() {
   };
 
   const addCompany = () => {
+    console.log(company);
+
     const init = {
       method: 'POST',
       headers: {
@@ -103,6 +105,10 @@ function CompanyForm() {
       {/* Conditional rendering edit, add (delete) */}
       <h1 className="text-center mb-5">Add/Edit Company</h1>
 
+<<<<<<< HEAD
+=======
+      <Errors errors={errors} />
+>>>>>>> af01138e7274895c24f35f96312f93a4e4b5c457
 
       <Container>
         <Errors errors={errors} />
