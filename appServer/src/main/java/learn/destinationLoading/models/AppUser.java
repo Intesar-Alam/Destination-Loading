@@ -33,6 +33,10 @@ public class AppUser extends User {
 
     private List<String> roles = new ArrayList<>();
 
+    public List<String> getRoles () {
+        return roles;
+    }
+
     public int getAppUserId() {
         return appUserId;
     }

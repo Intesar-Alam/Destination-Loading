@@ -2,6 +2,7 @@ package learn.destinationLoading.controller;
 
 import learn.destinationLoading.domain.ReservationService;
 import learn.destinationLoading.domain.Result;
+import learn.destinationLoading.domain.ResultType;
 import learn.destinationLoading.models.AppUser;
 import learn.destinationLoading.models.Reservation;
 import learn.destinationLoading.models.UserAccount;
@@ -66,17 +67,29 @@ public class ReservationController {
     }
 
     @PutMapping("/{reservationId}")
-    public ResponseEntity<Object> update(@PathVariable int reservationId, @RequestBody Reservation reservation){
+    public ResponseEntity<Object> update(@PathVariable int reservationId, @RequestBody Reservation reservation, UsernamePasswordAuthenticationToken principal){
         if(reservationId != reservation.getReservationId()){
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
 
-        Result<Reservation> result = service.update(reservation);
-        if(result.isSuccess()){
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        AppUser appUser = (AppUser) principal.getPrincipal();
+
+        Reservation existingReservation = service.findById(reservationId);
+        if (existingReservation.getAppUserId() != appUser.getAppUserId() || existingReservation.getCompanyId() != appUser.getCompanyId()
+        || !appUser.getRoles().get(0).equals("ADMIN")) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
-        return ErrorResponse.build(result);
+        Result<Reservation> result = service.update(reservation);
+        if(!result.isSuccess()) {
+            if (result.getType() == ResultType.NOT_FOUND) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            } else {
+                return ErrorResponse.build(result);
+            }
+        }
+
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @DeleteMapping("/{reservationId}")
