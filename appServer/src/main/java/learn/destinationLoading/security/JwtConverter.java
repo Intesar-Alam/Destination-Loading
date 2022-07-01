@@ -2,6 +2,7 @@ package learn.destinationLoading.security;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
+import learn.destinationLoading.models.AppUser;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -22,21 +23,23 @@ public class JwtConverter {
     private final int EXPIRATION_MINUTES = 480;
     private final int EXPIRATION_MILLIS = EXPIRATION_MINUTES * 60 * 1000;
 
-    public String getTokenFromUser(User user) {
-        String authorities = user.getAuthorities().stream()
+    public String getTokenFromUser(AppUser appUser) {
+        String authorities = appUser.getAuthorities().stream()
                 .map(i -> i.getAuthority())
                 .collect(Collectors.joining(","));
 
-        return Jwts.builder() // the builder pattern
+        return Jwts.builder()
                 .setIssuer(ISSUER)
-                .setSubject(user.getUsername())
+                .setSubject(appUser.getUsername())
                 .claim("authorities", authorities)
+                .claim("appUserId", appUser.getAppUserId())
+                .claim("companyId", appUser.getCompanyId())
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_MILLIS))
                 .signWith(key)
                 .compact();
     }
 
-    public User getUserFromToken(String token) {
+    public AppUser getUserFromToken(String token) {
 
         if (token == null || !token.startsWith("Bearer ")) {
             return null;
@@ -50,12 +53,14 @@ public class JwtConverter {
                     .parseClaimsJws(token.substring(7));
 
             String username = jws.getBody().getSubject();
-            String authStr = (String) jws.getBody().get("authorities");
-            List<GrantedAuthority> authorities = Arrays.stream(authStr.split(","))
-                    .map(i -> new SimpleGrantedAuthority(i))
-                    .collect(Collectors.toList());
 
-            return new User(username, username, authorities);
+            String authStr = (String) jws.getBody().get("authorities");
+            List<String> authorities = List.of(authStr.split(","));
+
+            int appUserId = (int) jws.getBody().get("appUserId");
+            int companyId = (int) jws.getBody().get("companyId");
+
+            return new AppUser(appUserId, companyId, username, username, false, authorities);
 
         } catch (JwtException e) {
             System.out.println(e);
