@@ -12,6 +12,9 @@ public class Reservation {
     private String reservationCode;
     private String reservationTitle;
 
+    private UserAccount userAccount;
+
+    private Company company;
 
     public Reservation() {
     }
