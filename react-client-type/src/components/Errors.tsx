@@ -1,10 +1,9 @@
 
-interface ErrorMessage {
-  title: string
-  message: string
+interface ErrorsProps {
+  errors: string[]
 }
 
-function Errors(errors: string[]) {
+function Errors({ errors }: ErrorsProps) {
   if (!errors || errors.length === 0) {
     return null;
   }
