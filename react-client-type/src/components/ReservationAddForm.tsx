@@ -8,7 +8,7 @@ import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 import InputGroup from 'react-bootstrap/InputGroup';
 
-function ReservationForm() {
+function ReservationAddForm() {
   return (
     <>
       {/* Conditional rendering edit, add (delete) */}
@@ -73,4 +73,4 @@ function ReservationForm() {
   );
 }
 
-export default ReservationForm;
+export default ReservationAddForm;

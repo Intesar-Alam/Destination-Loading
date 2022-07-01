@@ -79,7 +79,7 @@ function CompanyList() {
                 <td>
                   <Row>
                     <Col className="col-md-6">
-                      <Link className="btn btn-primary btn-sm mr-2" to={`/companyform/${company['companyId']}`}>
+                      <Link className="btn btn-primary btn-sm mr-2" to={`/company/${company['companyId']}`}>
                         <i className="bi bi-pencil-square"></i>
                       </Link>
                     </Col>
@@ -94,7 +94,7 @@ function CompanyList() {
             ))}
           </tbody>
         </Table>
-        <Link className="btn btn-primary" to={'/companyform'}>Add Company</Link>
+        <Link className="btn btn-primary" to={'/company'}>Add Company</Link>
       </Container>
     </>
   );
