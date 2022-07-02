@@ -7,6 +7,8 @@ import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 
 function Login() {
+
+  // TODO implement security/authController
   return (
     <>
     {/* Add conditional logic for existing vs new user - if new send to user form on submit */}

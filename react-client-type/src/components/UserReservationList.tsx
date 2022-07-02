@@ -66,6 +66,8 @@ function UserReservationList() {
     }
   }, [id]);
 
+
+
   // const pictureArray = [image1, image2, image3, image4];
 
   // function randomPicture() {
@@ -81,9 +83,9 @@ function UserReservationList() {
       <Link to="/reservationaddform" className="btn btn-primary">Add Reservation</Link>
         <Row md={3}>
           {reservations.map(reservation => (
-            <Col>
+            <Col key={reservation['reservationId']}>
               <Link to={`/singleuserreservation/${reservation['reservationId']}`} >
-                <Card className="bg-dark text-dark text-center mb-5 d-flex align-items-center" style={{ width: '18rem' }} key={reservation['reservationId']}>
+                <Card className="bg-dark text-dark text-center mb-5 d-flex align-items-center" style={{ width: '18rem' }}>
                   <Card.Img src={JumboImage} alt="Card image" />
                   <Card.ImgOverlay>
                     <Card.Title style={{ fontSize: "3rem", backgroundColor: 'rgba(255, 255, 255, 0.65)' }}>{reservation['reservationTitle']}</Card.Title>

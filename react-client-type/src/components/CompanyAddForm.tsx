@@ -49,12 +49,10 @@ function CompanyAddForm() {
   }, [id]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-
     setCompany({ ...company, [event.target.name]: event.target.value });
   };
 
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>): void => {
-
     setCompany({ ...company, [event.target.name]: event.target.value });
   };
 

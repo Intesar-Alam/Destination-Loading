@@ -105,7 +105,8 @@ function ReservationAddForm() {
       .then(data => {
         console.log(data)
         if (data['reservationId']) {
-          navigate('/reservationlist');
+          // TODO add userID to path
+          navigate('/userreservationlist');
         } else {
           console.log(data)
           setErrors(data);
@@ -164,6 +165,7 @@ function ReservationAddForm() {
                 <Button type="submit">Create Reservation</Button>
               </Col>
             </Form.Group>
+            {/* TODO add userId to reservationlist! */}
             <Form.Group as={Row}>
               <Col sm={{ offset: 8 }}>
               <Link className="btn btn-primary" to="/userreservationlist">Cancel</Link>
