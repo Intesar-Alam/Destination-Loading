@@ -99,8 +99,7 @@ function SingleUserReservation() {
           </tr>
         </tbody>
       </Table>
-      {/* TODO add link to edit button */}
-      <Button>Edit Reservation</Button>
+      <Link to={`/reservationupdateform/${reservation['reservationId']}`} className="btn btn-primary">Edit Reservation</Link>
       <Button>Delete Reservation</Button>
       </Container>
     </>

@@ -107,8 +107,7 @@ const updateReservation = () => {
   .then(data => {
     console.log(data);
     if (!data) {
-      // TODO add userId to path
-      navigate('/userreservationlist');
+      navigate(`/userreservationlist/${reservation['appUserId']}`);
     } else {
       setErrors(data);
     }
@@ -166,10 +165,9 @@ const updateReservation = () => {
                 <Button type="submit">Update Reservation</Button>
               </Col>
             </Form.Group>
-            {/* TODO add userId to cancel button */}
             <Form.Group as={Row}>
               <Col sm={{ offset: 8 }}>
-              <Link className="btn btn-primary" to="/userreservationlist">Cancel</Link>
+              <Link className="btn btn-primary" to={`/userreservationlist/${reservation['appUserId']}`}>Cancel</Link>
               </Col>
             </Form.Group>
           </Form>
