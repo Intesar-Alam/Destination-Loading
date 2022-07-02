@@ -21,7 +21,7 @@ function MenuBar() {
               <NavDropdown.Item href="/contact">Contact</NavDropdown.Item>
             </NavDropdown>
           </Nav>
-          <Navbar.Text className="me-2"><a href="/userform">Sign-up</a></Navbar.Text>
+          <Navbar.Text className="me-2"><a href="/newuserlogin">Sign-up</a></Navbar.Text>
           <Button href="/login">Login</Button>
         </Container>
       </Navbar>

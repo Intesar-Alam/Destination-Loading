@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 
 import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
@@ -30,6 +30,8 @@ function SingleUserReservation() {
     companyName: "",
     url: "",
   });
+
+  const navigate = useNavigate();
 
   const { id } = useParams();
 
@@ -93,6 +95,7 @@ function SingleUserReservation() {
           if (response.status === 204) {
             const newReservations = reservations.filter(reservation => reservation['reservationId'] !== reservationId);
             setReservations(newReservations);
+            navigate(`/userreservationlist/${reservation['appUserId']}`);
           } else {
             return Promise.reject(`Unexpected status code: ${response.status}`);
           }

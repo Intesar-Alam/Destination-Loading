@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 
-function UserForm() {
+function UserAddForm() {
 
   // TODO this
   return (
@@ -71,4 +71,4 @@ function UserForm() {
   );
 }
 
-export default UserForm;
+export default UserAddForm;

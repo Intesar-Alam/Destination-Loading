@@ -67,6 +67,8 @@ function UserReservationList() {
   }, [id]);
 
 
+  // TODO add picture array to randomize images for card backgrounds
+
 
   // const pictureArray = [image1, image2, image3, image4];
 
@@ -76,11 +78,15 @@ function UserReservationList() {
 
   return (
     <>
-      <h6 className="text-end me-3 mt-2">Welcome, {user['firstName']}!</h6>
+      <h6 className="text-end me-3 mt-2">Welcome, {user['firstName']}!
+        <Link className="btn btn-primary btn-sm mr-2" to={`/userupdateform/${user['appUserId']}`}>
+          <i className="bi bi-pencil-square"></i>
+        </Link>
+      </h6>
       <h1 className="text-center mb-5">Current Reservations</h1>
 
       <Container>
-      <Link to="/reservationaddform" className="btn btn-primary">Add Reservation</Link>
+        <Link to="/reservationaddform" className="btn btn-primary">Add Reservation</Link>
         <Row md={3}>
           {reservations.map(reservation => (
             <Col key={reservation['reservationId']}>

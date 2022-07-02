@@ -6,13 +6,14 @@ import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 
-function Login() {
+function NewUserLogin() {
 
   // TODO implement security/authController
   return (
     <>
-    {/* Add conditional logic for existing vs new user - if new send to user form on submit */}
-      <h1 className="text-center">Login</h1>
+      {/* Add conditional logic for existing vs new user - if new send to user form on submit */}
+      <h1 className="text-center mb-3 mt-5">Welcome! We're Glad You're Here!</h1>
+      <h2 className="text-center mb-5">Create a New Account!</h2>
       <Container>
         <Card className="rounded-0 col-md-8 mx-auto">
           <Form>
@@ -30,10 +31,7 @@ function Login() {
             </Form.Group>
             <Form.Group as={Row} className="mb-3">
               <Col sm={{ offset: 8 }}>
-                <Button type="submit">Login</Button>
-                <Form.Text className="ms-3">
-                  <a href="/newuserlogin">Sign-up</a>
-                </Form.Text>
+                <Button type="submit">Create Account</Button>
               </Col>
             </Form.Group>
           </Form>
@@ -43,4 +41,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default NewUserLogin;

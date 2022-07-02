@@ -7,8 +7,10 @@ import Contact from './components/Contact';
 import ContactSubmitConfirm from './components/ContactSubmitConfirm';
 import LearnMore from './components/LearnMore';
 import Login from './components/Login';
+import NewUserLogin from './components/NewUserLogin';
 import NotFound from './components/NotFound';
-import UserForm from './components/UserForm';
+import UserAddForm from './components/UserAddForm';
+import UserUpdateForm from './components/UserUpdateForm';
 import ReservationAddForm from './components/ReservationAddForm';
 import ReservationUpdateForm from './components/ReservationUpdateForm';
 import UserReservationList from './components/UserReservationList';
@@ -44,8 +46,10 @@ function App() {
           <Route path="/contactsubmitconfirm" element={<ContactSubmitConfirm />} />
           <Route path="/learnmore" element={<LearnMore />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/newuserlogin" element={<NewUserLogin />} />
           <Route path="/notfound" element={<NotFound />} />
-          <Route path="/userform" element={<UserForm />} />
+          <Route path="/useraddform" element={<UserAddForm />} />
+          <Route path="/userupdateform/:id" element={<UserUpdateForm />} />
           <Route path="/reservationaddform" element={<ReservationAddForm />} />
           <Route path="/reservationupdateform/:id" element={<ReservationUpdateForm />} />
           <Route path="/userreservationlist/:id" element={<UserReservationList />} />
