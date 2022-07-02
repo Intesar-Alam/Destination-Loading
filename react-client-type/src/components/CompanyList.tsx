@@ -27,7 +27,7 @@ function CompanyList() {
 
   const handleDeleteCompany = (companyId: number) => {
     const company: any = companies.find(company => company['companyId'] === companyId);
-
+    
     if(window.confirm(
     `    Deletion is permanent.
     Are you sure you want to proceded?
