@@ -117,7 +117,7 @@ function ReservationAddForm() {
 
   return (
     <>
-      <h1 className="text-center">Add Reservation</h1>
+      <h1 className="text-center mb-5">Add Reservation</h1>
       <Container>
         <Errors errors={errors} />
         <Card className="rounded-0 col-md-8 mx-auto">
@@ -144,10 +144,7 @@ function ReservationAddForm() {
             <Form.Group as={Row} className="mb-2 ms-3" controlId="formReservationCode">
               <Form.Label column sm={2}>Reservation Code</Form.Label>
               <Col sm={9}>
-                <InputGroup>
                   <Form.Control type="text" placeholder="Enter Reservation Code" name="reservationCode" value={reservation['reservationCode']} onChange={handleChange} />
-                  <Button variant="outline-secondary">Copy</Button>
-                </InputGroup>
               </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-2 ms-3" controlId="formCompanySelector">

@@ -98,10 +98,8 @@ function CompanyAddForm() {
 
   return (
     <>
-      {/* Conditional rendering edit, add (delete) */}
       <h1 className="text-center mb-5">Add Company</h1>
-
-
+      
       <Container>
         <Errors errors={errors} />
         <Card className="rounded-0 col-md-8 mx-auto">

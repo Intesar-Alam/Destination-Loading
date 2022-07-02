@@ -30,6 +30,7 @@ function UserUpdateForm() {
     phone: "",
     dob: "",
   });
+  const [users, setUsers] = useState([]);
 
   const [errors, setErrors] = useState([]);
 
@@ -64,7 +65,7 @@ function UserUpdateForm() {
 
   const updateUser = () => {
     user['appUserId'] = id;
-    
+
     const init = {
       method: 'PUT',
       headers: {
@@ -73,29 +74,56 @@ function UserUpdateForm() {
       },
       body: JSON.stringify(user)
     };
-  
+
     fetch(`http://localhost:8080/api/useraccount/${id}`, init)
-    .then(response => {
-      if (response.status === 204) {
-        return null;
-      } else if (response.status === 400) {
-        return response.json();
-      } else {
-        return Promise.reject(`Unexpected status code: ${response.status}`);
-      }
-    })
-    .then(data => {
-      console.log(data);
-      if (!data) {
-        navigate(`/userreservationlist/${user['appUserId']}`);
-      } else {
-        setErrors(data);
-      }
-    })
-    .catch(console.log);
+      .then(response => {
+        if (response.status === 204) {
+          return null;
+        } else if (response.status === 400) {
+          return response.json();
+        } else {
+          return Promise.reject(`Unexpected status code: ${response.status}`);
+        }
+      })
+      .then(data => {
+        console.log(data);
+        if (!data) {
+          navigate(`/userreservationlist/${user['appUserId']}`);
+        } else {
+          setErrors(data);
+        }
+      })
+      .catch(console.log);
   };
 
   // TODO handleDelete for admin
+  const handleDeleteUser = (appUserId: string | undefined) => {
+
+    if (window.confirm(
+      `    Deletion is permanent.
+    Are you sure you want to proceded?
+    Delete user named ${user['firstName']}${user['lastName']}?`)) {
+      const init = {
+        method: 'DELETE',
+        // headers: {
+        //   'Authorization': `Bearer ${auth.user.token}`
+        // },
+      };
+
+      fetch(`http://localhost:8080/api/useraccount/${appUserId}`, init)
+        .then(response => {
+          if (response.status === 204) {
+            const newUser = users.filter(user => user['appUserId'] !== appUserId);
+            setUsers(newUser);
+            navigate('/userlist');
+          } else {
+            return Promise.reject(`Unexpected status code: ${response.status}`);
+          }
+        })
+        .catch(console.log);
+    }
+  };
+
   return (
     <>
       <h1 className="text-center">Update Your Information</h1>
@@ -140,19 +168,15 @@ function UserUpdateForm() {
               </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-3">
-              <Col sm={{ offset: 9 }}>
-                <Button type="submit">Update User</Button>
-              </Col>
-            </Form.Group>
-            <Form.Group as={Row}>
               <Col sm={{ offset: 8 }}>
-              <Link className="btn btn-primary" to={`/userreservationlist/${user['appUserId']}`}>Cancel</Link>
+                <Button type="submit" className="me-3">Update User</Button>
+                <Link className="btn btn-primary" to={`/userreservationlist/${user['appUserId']}`}>Cancel</Link>
               </Col>
             </Form.Group>
             {/* //TODO add conditional rendering for this button Admin only */}
             <Form.Group as={Row}>
               <Col sm={{ offset: 9 }}>
-                <Button type="submit" className="mb-2">Delete User</Button>
+                <Button type="submit" className="mb-2" onClick={() => handleDeleteUser(user['appUserId'])}>Delete User</Button>
               </Col>
             </Form.Group>
           </Form>

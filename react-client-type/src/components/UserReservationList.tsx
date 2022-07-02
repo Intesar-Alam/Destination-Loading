@@ -1,11 +1,10 @@
-import { useEffect, useState, useContext } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/container';
-import Button from 'react-bootstrap/Button';
 
 import JumboImage from '../images/travelers.jpg';
 
@@ -31,8 +30,6 @@ function UserReservationList() {
   });
 
   const [reservations, setReservations] = useState([]);
-
-  const navigate = useNavigate();
 
   const { id } = useParams();
 
@@ -79,14 +76,14 @@ function UserReservationList() {
   return (
     <>
       <h6 className="text-end me-3 mt-2">Welcome, {user['firstName']}!
-        <Link className="btn btn-primary btn-sm mr-2" to={`/userupdateform/${user['appUserId']}`}>
-          <i className="bi bi-pencil-square"></i>
+        <Link className="btn btn-outline-secondary btn-sm ms-2" to={`/userupdateform/${user['appUserId']}`}>
+          <i className="bi bi-pencil"></i>
         </Link>
       </h6>
       <h1 className="text-center mb-5">Current Reservations</h1>
 
       <Container>
-        <Link to="/reservationaddform" className="btn btn-primary">Add Reservation</Link>
+        <Link to="/reservationaddform" className="btn btn-primary mb-3">Add Reservation</Link>
         <Row md={3}>
           {reservations.map(reservation => (
             <Col key={reservation['reservationId']}>
