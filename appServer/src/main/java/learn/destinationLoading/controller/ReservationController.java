@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Payload;
 import java.util.List;
 
 @RestController
@@ -33,16 +34,17 @@ public class ReservationController {
     }
 
     @GetMapping("/{reservationId}")
-    public ResponseEntity<Object> findById(@PathVariable int reservationId, UsernamePasswordAuthenticationToken principal) {
+    public Object findById(@PathVariable int reservationId, UsernamePasswordAuthenticationToken principal) {
         AppUser appUser = (AppUser) principal.getPrincipal();
 
         Reservation reservation = service.findById(reservationId);
-
-        if (appUser.getAppUserId() != reservation.getAppUserId() || appUser.getCompanyId() != reservation.getCompanyId()
-        || !appUser.getRoles().get(0).equals("ADMIN")) {
+       ;
+        if (!(appUser.getAppUserId() == reservation.getAppUserId()
+            || appUser.getCompanyId() == reservation.getCompanyId()
+            || appUser.getRoles().get(0).equals("ADMIN"))) {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
-        return new ResponseEntity<>(reservation, HttpStatus.NO_CONTENT);
+        return reservation;
     }
 
     @GetMapping("/user")

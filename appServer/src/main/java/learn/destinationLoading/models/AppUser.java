@@ -18,8 +18,8 @@ public class AppUser extends User {
     private int appUserId;
     private int companyId;
 
-    // int can't be null, so companyId is set to zero by default
     public AppUser() {
+        // int can't be null, so companyId is set to zero by default
         this(0, 0, "username", "", false, List.of());
     }
     public AppUser(int appUserId, int companyId, String username, String password,
@@ -29,12 +29,11 @@ public class AppUser extends User {
                 convertRolesToAuthorities(roles));
         this.appUserId = appUserId;
         this.companyId = companyId;
+
     }
 
-    private List<String> roles = new ArrayList<>();
-
     public List<String> getRoles () {
-        return roles;
+        return convertAuthoritiesToRoles(this.getAuthorities());
     }
 
     public int getAppUserId() {
@@ -56,12 +55,10 @@ public class AppUser extends User {
     public static List<GrantedAuthority> convertRolesToAuthorities(List<String> roles) {
         List<GrantedAuthority> authorities = new ArrayList<>(roles.size());
         for (String role : roles) {
-            Assert.isTrue(!role.startsWith(AUTHORITY_PREFIX),
-                    () ->
-                            String.
-                                    format("%s cannot start with %s (it is automatically added)",
-                                            role, AUTHORITY_PREFIX));
-            authorities.add(new SimpleGrantedAuthority(AUTHORITY_PREFIX + role));
+           if (!role.startsWith(AUTHORITY_PREFIX)) {
+               role = AUTHORITY_PREFIX + role;
+            }
+            authorities.add(new SimpleGrantedAuthority(role));
         }
         return authorities;
     }
