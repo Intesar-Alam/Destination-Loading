@@ -38,7 +38,7 @@ public class ReservationController {
         AppUser appUser = (AppUser) principal.getPrincipal();
 
         Reservation reservation = service.findById(reservationId);
-       ;
+       
         if (!(appUser.getAppUserId() == reservation.getAppUserId()
             || appUser.getCompanyId() == reservation.getCompanyId()
             || appUser.getRoles().get(0).equals("ADMIN"))) {
@@ -93,8 +93,9 @@ public class ReservationController {
         AppUser appUser = (AppUser) principal.getPrincipal();
 
         Reservation existingReservation = service.findById(reservationId);
-        if (existingReservation.getAppUserId() != appUser.getAppUserId() || existingReservation.getCompanyId() != appUser.getCompanyId()
-        || !appUser.getRoles().get(0).equals("ADMIN")) {
+        if (!(existingReservation.getAppUserId() == appUser.getAppUserId()
+                || existingReservation.getCompanyId() == appUser.getCompanyId()
+                || appUser.getRoles().get(0).equals("ADMIN"))) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
