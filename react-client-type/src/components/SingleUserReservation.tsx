@@ -1,9 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 
 import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
 import Container from 'react-bootstrap/Container';
+
+import AuthContext from '../AuthContext';
 
 type RESERVATION_DEFAULT = {
   reservationId: string | undefined,
@@ -30,6 +32,8 @@ function SingleUserReservation() {
     companyName: "",
     url: "",
   });
+
+  const auth = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -85,9 +89,9 @@ function SingleUserReservation() {
     Delete reservation for ${reservation['reservationTitle']}?`)) {
       const init = {
         method: 'DELETE',
-        // headers: {
-        //   'Authorization': `Bearer ${auth.user.token}`
-        // },
+        headers: {
+          'Authorization': `Bearer ${auth.user.token}`
+        },
       };
 
       fetch(`http://localhost:8080/api/reservation/${reservationId}`, init)

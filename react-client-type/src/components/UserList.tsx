@@ -23,6 +23,8 @@ function UserList() {
       .catch(console.log);
   }, []);
 
+  // TODO handleDeleteUser
+
   return (
     <>
     <AdminMenuBar />
@@ -54,11 +56,9 @@ function UserList() {
                   <Link className="btn btn-primary btn-sm mr-2" to={`}`}>
                     <i className="bi bi-pencil-square"></i> Edit
                   </Link>
-                  {/* {auth.user && auth.user.hasRole('ROLE_ADMIN') && (
-                    <Button className="btn btn-danger btn-sm" onClick={() => handleDeletePanel(user.id)}>
+                    <Button vairant="danger" className="btn-sm" onClick={() => handleDeleteUser(user.id)}>
                       <i className="bi bi-trash"></i> Delete
                     </Button>
-                  )} */}
                 </div>
               </td>
             </tr>

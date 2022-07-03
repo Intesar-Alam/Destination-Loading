@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 
 import Form from 'react-bootstrap/Form';
@@ -7,8 +7,8 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
-import InputGroup from 'react-bootstrap/InputGroup';
 
+import AuthContext from '../AuthContext';
 import Errors from './Errors';
 
 type RESERVATION_DEFAULT = {
@@ -33,6 +33,8 @@ function ReservationAddForm() {
   const [companies, setCompanies] = useState([]);
 
   const [errors, setErrors] = useState([]);
+
+  const auth = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -88,7 +90,7 @@ function ReservationAddForm() {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        // 'Authorization': `Bearer ${auth.user.token}`
+        'Authorization': `Bearer ${auth.user.token}`
       },
       body: JSON.stringify(reservation)
     };

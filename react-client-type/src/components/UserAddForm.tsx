@@ -1,3 +1,4 @@
+import { useState, useContext } from 'react';
 
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
@@ -6,7 +7,13 @@ import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 
+import AuthContext from '../AuthContext';
+import Errors from './Errors';
+
 function UserAddForm() {
+  const [errors, setErrors] = useState([]);
+
+  const auth = useContext(AuthContext);
 
   // TODO this
   return (
@@ -14,6 +21,7 @@ function UserAddForm() {
       {/* Conditional rendering edit, add (delete) */}
       <h1 className="text-center">Sign Up/Edit</h1>
       <Container>
+        <Errors errors={errors} />
         <Card className="rounded-0 col-md-8 mx-auto">
           <Form>
             <Form.Group as={Row} className="my-2 ms-3" controlId="formFirstName">

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 
 
@@ -9,6 +9,7 @@ import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 
+import AuthContext from '../AuthContext';
 import Errors from './Errors';
 
 type COMPANY_DEFAULT = {
@@ -29,6 +30,8 @@ function CompanyAddForm() {
   });
 
   const [errors, setErrors] = useState([]);
+
+  const auth = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -70,7 +73,7 @@ function CompanyAddForm() {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        // 'Authorization': `Bearer ${auth.user.token}`
+        'Authorization': `Bearer ${auth.user.token}`
       },
       body: JSON.stringify(company)
     };
@@ -99,7 +102,7 @@ function CompanyAddForm() {
   return (
     <>
       <h1 className="text-center mb-5">Add Company</h1>
-      
+
       <Container>
         <Errors errors={errors} />
         <Card className="rounded-0 col-md-8 mx-auto">

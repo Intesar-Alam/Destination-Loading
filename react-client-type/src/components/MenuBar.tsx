@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
@@ -5,7 +6,10 @@ import Container from 'react-bootstrap/Container';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Button from 'react-bootstrap/Button';
 
+import AuthContext from '../AuthContext';
+
 function MenuBar() {
+  const auth = useContext(AuthContext);
   return (
     <>
       <Navbar bg="success">
@@ -21,8 +25,15 @@ function MenuBar() {
               <NavDropdown.Item href="/contact">Contact</NavDropdown.Item>
             </NavDropdown>
           </Nav>
-          <Navbar.Text className="me-2"><a href="/newuserlogin">Sign-up</a></Navbar.Text>
-          <Button href="/login">Login</Button>
+          {!auth.user && (
+            <>
+              <Navbar.Text className="me-2"><a href="/newuserlogin">Sign-up</a></Navbar.Text>
+              <Button href="/login">Login</Button>
+            </>
+          )}
+          {auth.user && (
+            <Button onClick={() => auth.logout()}>Logout</Button>
+          )}
         </Container>
       </Navbar>
     </>

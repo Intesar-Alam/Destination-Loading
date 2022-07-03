@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 
 import Form from 'react-bootstrap/Form';
@@ -8,6 +8,7 @@ import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 
+import AuthContext from '../AuthContext';
 import Errors from './Errors';
 
 type USER_DEFAULT = {
@@ -33,6 +34,8 @@ function UserUpdateForm() {
   const [users, setUsers] = useState([]);
 
   const [errors, setErrors] = useState([]);
+
+  const auth = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -70,7 +73,7 @@ function UserUpdateForm() {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
-        // 'Authorization': `Bearer ${auth.user.token}`
+        'Authorization': `Bearer ${auth.user.token}`
       },
       body: JSON.stringify(user)
     };

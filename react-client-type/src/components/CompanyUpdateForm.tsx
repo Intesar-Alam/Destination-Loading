@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 
 
@@ -9,6 +9,7 @@ import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 
+import AuthContext from '../AuthContext';
 import Errors from './Errors';
 
 type COMPANY_DEFAULT = {
@@ -29,6 +30,8 @@ function CompanyUpdateForm() {
   });
 
   const [errors, setErrors] = useState([]);
+
+  const auth = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -61,7 +64,7 @@ function CompanyUpdateForm() {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
+{/* TODO if user = rep send to companypage, if user = admin send to companylist, create if statement (one for each role) */}
     updateCompany();
   };
 
@@ -72,7 +75,7 @@ const updateCompany = () => {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
-      // 'Authorization': `Bearer ${auth.user.token}`
+      'Authorization': `Bearer ${auth.user.token}`
     },
     body: JSON.stringify(company)
   };
@@ -140,7 +143,6 @@ return (
           <Form.Group className="mb-3">
             <Row>
               <Col md={{ span: 5, offset: 7 }}>
-                {/* TODO if user = rep send to companypage, if user = admin send to companylist, create two buttons (one for each role) */}
                 <Button type="submit" className="me-2">Update Company</Button>
                 <Link className="btn btn-primary" to="/companylist">Cancel</Link>
               </Col>

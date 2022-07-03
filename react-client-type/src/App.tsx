@@ -1,5 +1,6 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Link, useRoutes } from 'react-router-dom';
+import jwt_decode from 'jwt-decode';
 
 import Home from './components/Home';
 import MenuBar from './components/MenuBar';
@@ -26,6 +27,8 @@ import CompanyList from './components/CompanyList';
 import SiteAnalytics from './components/SiteAnalytics';
 import Footer from './components/Footer';
 
+import AuthContext from './AuthContext';
+
 
 // const CompanyRoutes = () => {
 //   let routes = useRoutes([
@@ -35,9 +38,65 @@ import Footer from './components/Footer';
 //   return routes;
 // }
 
+type DEFAULT = {
+  username: string,
+  roles: string,
+  token: string
+}
+
+const DL_TOKEN_KEY = 'dlToken';
+
 function App() {
+  const [user, setUser] = useState(null);
+
+  const [restoreLoginAttemptCompleted, setRestoreLoginAttemptCompleted] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem(DL_TOKEN_KEY);
+    if(token) {
+      login(token);
+    }
+    setRestoreLoginAttemptCompleted(true);
+  }, []);
+
+  const login = (token: string) => {
+    localStorage.setItem(DL_TOKEN_KEY, token);
+
+    const { sub: username, authorities } = jwt_decode(token);
+
+    const roles = authorities.split(',');
+
+    const userToLogin = {
+      username,
+      roles,
+      token,
+      hasRole(role: string) {
+        return this.roles.includes(role);
+      }
+    };
+
+    setUser(userToLogin);
+  }
+
+  const logout = () => {
+    setUser(null);
+    localStorage.removeItem(DL_TOKEN_KEY);
+  };
+
+  const auth = {
+    user,
+    login,
+    logout
+  };
+
+  if(!restoreLoginAttemptCompleted) {
+    return null;
+  }
+
   return (
     <>
+    <AuthContext.Provider value={auth}>
+
       <BrowserRouter>
       <MenuBar />
         <Routes>
@@ -45,7 +104,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/contactsubmitconfirm" element={<ContactSubmitConfirm />} />
           <Route path="/learnmore" element={<LearnMore />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Login auth={auth} />} />
           <Route path="/newuserlogin" element={<NewUserLogin />} />
           <Route path="/notfound" element={<NotFound />} />
           <Route path="/useraddform" element={<UserAddForm />} />
@@ -66,6 +125,8 @@ function App() {
         </Routes>
         <Footer />
       </BrowserRouter>
+
+      </AuthContext.Provider>
     </>
   );
 }
