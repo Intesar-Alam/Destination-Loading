@@ -51,7 +51,7 @@ public class CompanyContoller {
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
 
-        if (appUser.getCompanyId() != company.getCompanyId() || !appUser.getRoles().get(0).equals("ADMIN")) {
+        if (appUser.getCompanyId() != company.getCompanyId() && !appUser.getRoles().get(0).equals("ADMIN")) {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
 

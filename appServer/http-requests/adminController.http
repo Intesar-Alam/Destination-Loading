@@ -1,0 +1,111 @@
+
+@company_url = http://localhost:8080/api/company
+@reservation_url = http://localhost:8080/api/reservation
+@account_url = http://localhost:8080/api/useraccount
+
+// admin
+@token = eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJkZXN0aW5hdGlvbi1sb2FkaW5nLWFwaSIsInN1YiI6ImpvaG5ueWJveUBnbWFpbC5jb20iLCJhdXRob3JpdGllcyI6IlJPTEVfQURNSU4iLCJhcHBVc2VySWQiOjEsImNvbXBhbnlJZCI6MCwiZXhwIjoxNjU2OTA3Mjg2fQ.5M-PGM74oQ_mAt_qGCyhUf-QjStde6mANoeXe7ULa_c
+### Authenticate Admin User
+POST http://localhost:8080/api/authenticate HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "johnnyboy@gmail.com",
+    "password": "P@ssw0rd!"
+}
+
+
+### findAll reservations
+
+GET {{reservation_url}} HTTP/1.1
+Authorization: Bearer {{token}}
+
+### findByReservationId 
+
+GET {{reservation_url}}/3 HTTP/1.1
+Authorization: Bearer {{token}}
+
+
+
+### findByUserAccount (for admins)
+
+GET {{reservation_url}}/useraccount/3 HTTP/1.1
+Authorization: Bearer {{token}}
+
+### findByCompany (Reps associated with company or admin)
+
+GET {{reservation_url}}/company/2 HTTP/1.1
+Authorization: Bearer {{token}}
+
+
+
+### Update reservations (all)
+
+PUT {{reservation_url}}/1 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "reservationId": 1,
+    "appUserId": 3,
+    "companyId": 1,
+    "reservationDate": "2023-06-18",
+    "reservationCode": "5423-6789",
+    "reservationTitle": "Trip"
+}
+
+
+// COMPANY TESTS
+
+### findAllCompanies (anyone)
+
+GET {{company_url}} HTTP/1.1
+
+
+
+### add a company (admin only)
+
+POST {{company_url}} HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "companyName": "Chip Airlines",
+    "url": "https://www.chippyboy.com",
+    "icon": "https://www.chippyboy.ico",
+    "transportationMode": "AIR"
+}
+
+
+### update a company
+
+PUT {{company_url}}/36 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "companyId": 36,
+    "companyName": "Fortnite Air",
+    "url": "fortniteair@chip.com",
+    "icon": "fortair.ico",
+    "transportationMode": "AIR"
+}
+
+### delete a company
+
+DELETE {{company_url}}/36 HTTP/1.1
+Authorization: Bearer {{token}}
+
+
+// ACCOUNT USERS
+
+### findAll accounts
+
+GET {{account_url}} HTTP/1.1
+Authorization: Bearer {{token}}
+
+
+### Find account by id
+
+GET {{account_url}}/3 HTTP/1.1
+Authorization: Bearer {{token}}

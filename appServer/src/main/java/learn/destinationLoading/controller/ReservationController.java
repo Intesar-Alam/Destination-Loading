@@ -61,10 +61,10 @@ public class ReservationController {
     }
 
     @GetMapping("/company/{companyId}")
-    public ResponseEntity<Object> findByCompanyId(@PathVariable int companyId, UsernamePasswordAuthenticationToken principal) {
+    public Object findByCompanyId(@PathVariable int companyId, UsernamePasswordAuthenticationToken principal) {
         AppUser appUser = (AppUser) principal.getPrincipal();
         if (appUser.getCompanyId() == companyId || appUser.getRoles().get(0).equals("ADMIN")) {
-            return new ResponseEntity<>(service.findByCompanyId(companyId), HttpStatus.NO_CONTENT);
+            return service.findByCompanyId(companyId);
         }
         return new ResponseEntity<>(HttpStatus.FORBIDDEN);
     }
@@ -73,12 +73,10 @@ public class ReservationController {
     public ResponseEntity<Object> add(@RequestBody Reservation reservation, UsernamePasswordAuthenticationToken principal) {
         AppUser appUser = (AppUser) principal.getPrincipal();
         int appUserId = appUser.getAppUserId();
-        int companyId = appUser.getCompanyId();
-
+        reservation.setAppUserId(appUserId);
         Result<Reservation> result = service.add(reservation);
         if (result.isSuccess()) {
             reservation.setAppUserId(appUserId);
-            reservation.setCompanyId(companyId);
             return new ResponseEntity<>(result.getPayload(), HttpStatus.CREATED);
         }
         return ErrorResponse.build(result);

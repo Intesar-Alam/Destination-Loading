@@ -23,6 +23,7 @@ public class UserAccountController {
         this.service = service;
     }
 
+    // admin only
     @GetMapping
     public List<UserAccount> findAll(){
         return service.findAll();
@@ -33,13 +34,17 @@ public class UserAccountController {
         AppUser appUser = (AppUser) principal.getPrincipal();
         return service.findById(appUser.getAppUserId());
     }
+    // admin only
     @GetMapping("/{appUserId}")
     public UserAccount findById(@PathVariable int appUserId){
         return service.findById(appUserId);
     }
 
+    //user only
     @PostMapping
-    public ResponseEntity<Object> add(@RequestBody UserAccount userAccount){
+    public ResponseEntity<Object> add(@RequestBody UserAccount userAccount, UsernamePasswordAuthenticationToken principal) {
+        AppUser appUser = (AppUser) principal.getPrincipal();
+        userAccount.setAppUserId(appUser.getAppUserId());
         Result<UserAccount> result = service.add(userAccount);
         if (result.isSuccess()) {
             return new ResponseEntity<>(result.getPayload(), HttpStatus.CREATED);
@@ -55,7 +60,7 @@ public class UserAccountController {
         if (appUserId != userAccount.getAppUserId()) {
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
-        if (appUser.getAppUserId() != userAccount.getAppUserId() || !appUser.getRoles().get(0).equals("ADMIN")) {
+        if (appUser.getAppUserId() != userAccount.getAppUserId() && !appUser.getRoles().get(0).equals("ADMIN")) {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
 
