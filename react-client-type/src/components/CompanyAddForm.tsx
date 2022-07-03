@@ -68,12 +68,17 @@ function CompanyAddForm() {
 
   const addCompany = () => {
     console.log(company);
-
+    if (auth === undefined) {
+      // FIXME
+      console.log("Cannot add company before logging in");
+      return;
+    }
+    
     const init = {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${auth.user.token}`
+        'Authorization': `Bearer ${auth.token}`
       },
       body: JSON.stringify(company)
     };

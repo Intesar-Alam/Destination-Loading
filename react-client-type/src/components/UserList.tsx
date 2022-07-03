@@ -56,7 +56,7 @@ function UserList() {
                   <Link className="btn btn-primary btn-sm mr-2" to={`}`}>
                     <i className="bi bi-pencil-square"></i> Edit
                   </Link>
-                    <Button vairant="danger" className="btn-sm" onClick={() => handleDeleteUser(user.id)}>
+                    <Button variant="danger" className="btn-sm" onClick={() => handleDeleteUser(user.id)}>
                       <i className="bi bi-trash"></i> Delete
                     </Button>
                 </div>

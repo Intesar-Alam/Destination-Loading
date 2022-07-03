@@ -11,21 +11,9 @@ import Card from 'react-bootstrap/Card';
 import AuthContext from '../AuthContext';
 import Errors from './Errors';
 
-type USERNAME_DEFAULT = {
-  username: string
-};
-
-type PASSWORD_DEFAULT = {
-  password: string
-};
-
 function Login() {
-  const [username, setUsername] = useState<USERNAME_DEFAULT>({
-    username: "",
-  });
-  const [password, setPassword] = useState<PASSWORD_DEFAULT>({
-    password: "",
-  });
+  const [username, setUsername] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   const [errors, setErrors] = useState([]);
 
   const auth = useContext(AuthContext);
@@ -60,7 +48,7 @@ function Login() {
       })
       .then(data => {
         if (data) {
-
+          
           auth.login(data.jwt_token);
           // TODO add if statements based on user to navigate to correct page on login!
           navigate('/');
@@ -91,13 +79,13 @@ function Login() {
             <Form.Group as={Row} className="my-2 ms-3" controlId="formUsername">
               <Form.Label column sm={2} htmlFor="username">Username</Form.Label>
               <Col sm={9}>
-                <Form.Control id="username" type="text" placeholder="Username" name="username" value={username['username']} onChange={handleUsernameChange} />
+                <Form.Control id="username" type="text" placeholder="Username" name="username" value={username} onChange={handleUsernameChange} />
               </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-2 ms-3" controlId="formPassword">
               <Form.Label column sm={2} htmlFor="password">Password</Form.Label>
               <Col sm={9}>
-                <Form.Control id="password" type="text" placeholder="Password" name="passowrd" value={password['password']} onChange={handlePasswordChange} />
+                <Form.Control id="password" type="password" placeholder="Password" name="password" value={password} onChange={handlePasswordChange} />
               </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-3">

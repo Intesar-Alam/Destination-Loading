@@ -27,7 +27,8 @@ import CompanyList from './components/CompanyList';
 import SiteAnalytics from './components/SiteAnalytics';
 import Footer from './components/Footer';
 
-import AuthContext from './AuthContext';
+import AuthContext, { AuthObj } from './AuthContext';
+import internal from 'stream';
 
 
 // const CompanyRoutes = () => {
@@ -38,16 +39,27 @@ import AuthContext from './AuthContext';
 //   return routes;
 // }
 
-type DEFAULT = {
-  username: string,
-  roles: string,
-  token: string
-}
+
 
 const DL_TOKEN_KEY = 'dlToken';
+interface DecodedToken {
+  iss: string;
+  sub: string;
+  authorities: string;
+  appUserId: number;
+  companyId: number;
+  exp: number;
+}
+
+export interface User {
+  username: string;
+  roles: string[];
+  token: string;
+  hasRole: (role: string) => boolean;
+}
 
 function App() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<User | null>(null);
 
   const [restoreLoginAttemptCompleted, setRestoreLoginAttemptCompleted] = useState(false);
 
@@ -62,11 +74,11 @@ function App() {
   const login = (token: string) => {
     localStorage.setItem(DL_TOKEN_KEY, token);
 
-    const { sub: username, authorities } = jwt_decode(token);
+    const { sub: username, authorities } = jwt_decode(token) as DecodedToken;
 
     const roles = authorities.split(',');
 
-    const userToLogin = {
+    const userToLogin: User = {
       username,
       roles,
       token,
@@ -83,7 +95,7 @@ function App() {
     localStorage.removeItem(DL_TOKEN_KEY);
   };
 
-  const auth = {
+  const auth: AuthObj = {
     user,
     login,
     logout
@@ -104,7 +116,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/contactsubmitconfirm" element={<ContactSubmitConfirm />} />
           <Route path="/learnmore" element={<LearnMore />} />
-          <Route path="/login" element={<Login auth={auth} />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/newuserlogin" element={<NewUserLogin />} />
           <Route path="/notfound" element={<NotFound />} />
           <Route path="/useraddform" element={<UserAddForm />} />

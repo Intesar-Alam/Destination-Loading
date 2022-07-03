@@ -1,5 +1,12 @@
 import { createContext } from 'react';
+import { User } from './App';
 
-const AuthContext = createContext<string | undefined>(undefined);
+export interface AuthObj {
+    user: User | null;
+    login: (token: string) => void;
+    logout: () => void;
+}
+
+const AuthContext = createContext<AuthObj | undefined>(undefined);
 
 export default AuthContext;
