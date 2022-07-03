@@ -19,7 +19,7 @@ function UserAddForm() {
   return (
     <>
       {/* Conditional rendering edit, add (delete) */}
-      <h1 className="text-center">Sign Up/Edit</h1>
+      <h1 className="text-center">Sign Up!</h1>
       <Container>
         <Errors errors={errors} />
         <Card className="rounded-0 col-md-8 mx-auto">
@@ -64,12 +64,6 @@ function UserAddForm() {
             <Form.Group as={Row} className="mb-3">
               <Col sm={{ offset: 9 }}>
                 <Button type="submit">Create User</Button>
-              </Col>
-            </Form.Group>
-            {/* //TODO add conditional rendering for this button Admin only */}
-            <Form.Group as={Row}>
-              <Col sm={{ offset: 9 }}>
-                <Button type="submit" className="mb-2">Delete User</Button>
               </Col>
             </Form.Group>
           </Form>
