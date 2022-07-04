@@ -49,7 +49,6 @@ function CompanyPage() {
           <thead>
             <tr>
               <th>Company Name</th>
-              <th>Icon</th>
               <th>Company Website</th>
               <th>Transport Type</th>
             </tr>
@@ -57,8 +56,7 @@ function CompanyPage() {
           <tbody>
             <tr key={company['companyId']}>
               <td>{company['companyName']}</td>
-              <td><img src={company['icon']} /></td>
-              <td><a href={company['url']} target="_blank">{company['url']}</a></td>
+              <td><img src={company['icon']} style={{ width: '32px'}} /> &nbsp;<a href={company['url']} target="_blank">{company['url']}</a></td>
               <td>{company['transportationMode']}</td>
             </tr>
           </tbody>
