@@ -9,6 +9,8 @@ import Card from 'react-bootstrap/Card';
 function NewUserLogin() {
 
   // TODO implement security/authController
+  // TODO create (POST) 
+  // TODO onsubmit go to useraddform
   return (
     <>
       {/* Add conditional logic for existing vs new user - if new send to user form on submit */}
@@ -18,15 +20,21 @@ function NewUserLogin() {
         <Card className="rounded-0 col-md-8 mx-auto">
           <Form>
             <Form.Group as={Row} className="my-2 ms-3" controlId="formUsername">
-              <Form.Label column sm={2} htmlFor="username">Username</Form.Label>
+              <Form.Label column sm={2}>Username</Form.Label>
               <Col sm={9}>
-                <Form.Control id="username" type="text" placeholder="Username" />
+                <Form.Control type="text" placeholder="Username" />
               </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-2 ms-3" controlId="formPassword">
-              <Form.Label column sm={2} htmlFor="password">Password</Form.Label>
+              <Form.Label column sm={2}>Password</Form.Label>
               <Col sm={9}>
-                <Form.Control id="password" type="text" placeholder="Password" />
+                <Form.Control type="text" placeholder="Password" />
+              </Col>
+            </Form.Group>
+            <Form.Group as={Row} className="mb-2 ms-3" controlId="formConfirmPassword">
+              <Form.Label column sm={2}>Password</Form.Label>
+              <Col sm={9}>
+                <Form.Control type="text" placeholder="Password" />
               </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-3">

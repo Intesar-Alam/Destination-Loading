@@ -7,6 +7,8 @@ import Col from 'react-bootstrap/Col';
 
 import JumboImage from '../images/travelers.jpg';
 
+
+// TODO styling, add photos, bios, and real text
 function LearnMore() {
   return (
     <>

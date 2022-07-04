@@ -8,6 +8,8 @@ import Container from 'react-bootstrap/container';
 
 import JumboImage from '../images/travelers.jpg';
 
+
+// TODO styling
 type USER_DEFAULT = {
   appUserId: string | undefined,
   email: string,
@@ -84,7 +86,7 @@ function UserReservationList() {
 
       <Container>
         <Link to="/reservationaddform" className="btn btn-primary mb-3">Add Reservation</Link>
-        <Row md={3}>
+        <Row md={4}>
           {reservations.map(reservation => (
             <Col key={reservation['reservationId']}>
               <Link to={`/singleuserreservation/${reservation['reservationId']}`} >

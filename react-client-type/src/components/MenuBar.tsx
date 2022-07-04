@@ -8,6 +8,8 @@ import Button from 'react-bootstrap/Button';
 
 import AuthContext from '../AuthContext';
 
+// TODO auth stuff
+// TODO add authorization for View Reservations page - must be logged in to view page
 function MenuBar() {
   const auth = useContext(AuthContext);
   return (

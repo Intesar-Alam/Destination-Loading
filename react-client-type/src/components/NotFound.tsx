@@ -1,9 +1,12 @@
+import { Link } from 'react-router-dom'
 
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 
 import JumboImage from '../images/travelers.jpg';
 
+// TODO add links to buttons so they go to the right pages! 
+// TODO styling, new photo
 function NotFound() {
   return (
     <>

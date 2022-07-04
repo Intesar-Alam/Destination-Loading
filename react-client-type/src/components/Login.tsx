@@ -50,7 +50,7 @@ function Login() {
         if (data) {
           
           auth.login(data.jwt_token);
-          // TODO add if statements based on user to navigate to correct page on login!
+          // TODO add if statements based on user to navigate to correct page on login, add if statement if not a user to send to new user login/register page
           navigate('/');
         } else {
           setErrors(data);
@@ -77,15 +77,15 @@ function Login() {
         <Card className="rounded-0 col-md-8 mx-auto">
           <Form onSubmit={handleSubmit}>
             <Form.Group as={Row} className="my-2 ms-3" controlId="formUsername">
-              <Form.Label column sm={2} htmlFor="username">Username</Form.Label>
+              <Form.Label column sm={2}>Username</Form.Label>
               <Col sm={9}>
-                <Form.Control id="username" type="text" placeholder="Username" name="username" value={username} onChange={handleUsernameChange} />
+                <Form.Control type="text" placeholder="Username" name="username" value={username} onChange={handleUsernameChange} />
               </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-2 ms-3" controlId="formPassword">
-              <Form.Label column sm={2} htmlFor="password">Password</Form.Label>
+              <Form.Label column sm={2}>Password</Form.Label>
               <Col sm={9}>
-                <Form.Control id="password" type="password" placeholder="Password" name="password" value={password} onChange={handlePasswordChange} />
+                <Form.Control type="password" placeholder="Password" name="password" value={password} onChange={handlePasswordChange} />
               </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-3">

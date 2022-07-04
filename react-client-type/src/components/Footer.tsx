@@ -4,6 +4,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
 
+// TODO add links for the icons (stretch goal)
 function Footer() {
   return (
     <>

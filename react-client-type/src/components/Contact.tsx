@@ -8,7 +8,7 @@ import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 
 function Contact() {
-  // Add validation for form
+  // Add validation for form (stretch goal)
   return (
     <>
       <h1 className="text-center">Contact Us</h1>

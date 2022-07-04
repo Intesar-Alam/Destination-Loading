@@ -11,6 +11,8 @@ import Card from 'react-bootstrap/Card';
 import AuthContext from '../AuthContext';
 import Errors from './Errors';
 
+
+// TODO add authorization, must be user or admin to update
 type USER_DEFAULT = {
   appUserId: string | undefined,
   email: string,

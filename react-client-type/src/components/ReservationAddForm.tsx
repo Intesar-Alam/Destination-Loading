@@ -11,6 +11,8 @@ import Card from 'react-bootstrap/Card';
 import AuthContext from '../AuthContext';
 import Errors from './Errors';
 
+// TODO add authorization for user to add reservations, pass along user id to set it for form from user reservation list
+
 type RESERVATION_DEFAULT = {
   reservationId: string | undefined,
   appUserId: string | undefined,

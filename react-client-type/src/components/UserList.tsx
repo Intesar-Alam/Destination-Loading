@@ -44,8 +44,8 @@ function UserList() {
           </thead>
           <tbody>
           {userAccounts.map(userAccount => (
-            <tr key={userAccount['userAccountId']}>
-              <td>{userAccount['userAccountId']}</td>
+            <tr key={userAccount['appUserId']}>
+              <td>{userAccount['appUserId']}</td>
               <td>{userAccount['firstName']} {userAccount['lastName']}</td>
               <td>{userAccount['email']}</td>
               <td>{userAccount['address']}</td>
@@ -53,7 +53,7 @@ function UserList() {
               <td>{userAccount['dob']}</td>
               <td>
                 <div className="float-right mr-2">
-                  <Link className="btn btn-primary btn-sm mr-2" to={`}`}>
+                  <Link className="btn btn-primary btn-sm mr-2" to={`/userupdateform/${userAccount['appUserId']}`}>
                     <i className="bi bi-pencil-square"></i> Edit
                   </Link>
                     <Button variant="danger" className="btn-sm" onClick={() => handleDeleteUser(user.id)}>

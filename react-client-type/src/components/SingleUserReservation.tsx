@@ -19,7 +19,7 @@ type RESERVATION_DEFAULT = {
 };
 
 
-
+// TODO add authorization, must be logged in to view
 function SingleUserReservation() {
   const [reservations, setReservations] = useState([]);
   const [reservation, setReservation] = useState<RESERVATION_DEFAULT>({

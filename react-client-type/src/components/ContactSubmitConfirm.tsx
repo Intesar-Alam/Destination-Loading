@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button';
 
 import JumboImage from '../images/travelers.jpg';
 
+// new image/page styling
 function NotFound() {
   return (
     <>

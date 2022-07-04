@@ -12,6 +12,8 @@ import Jumbotron2 from '../images/jumbotron2.png';
 import Jumbotron3 from '../images/jumbotron3.jpg';
 import TravelVlog from '../images/travelers.jpg';
 
+
+// TODO styling
 function Home() {
   return (
     <>

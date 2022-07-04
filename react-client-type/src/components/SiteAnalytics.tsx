@@ -5,6 +5,7 @@ import JumboImage from '../images/travelers.jpg';
 
 import AdminMenuBar from './AdminMenuBar';
 
+// TODO styling
 function SiteAnalytics() {
   return (
     <>

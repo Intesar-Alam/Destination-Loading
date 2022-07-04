@@ -8,7 +8,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 import AdminMenuBar from './AdminMenuBar';
-
+// TODO add authorization for admin only, must be logged in to view page
 function CompanyList() {
   const [companies, setCompanies] = useState([]);
 
@@ -27,7 +27,7 @@ function CompanyList() {
 
   const handleDeleteCompany = (companyId: number) => {
     const company: any = companies.find(company => company['companyId'] === companyId);
-    
+
     if(window.confirm(
     `    Deletion is permanent.
     Are you sure you want to proceded?

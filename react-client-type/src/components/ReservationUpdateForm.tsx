@@ -12,6 +12,8 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import AuthContext from '../AuthContext';
 import Errors from './Errors';
 
+
+// TODO add user authorization, need to be logged in to update a reservation
 type RESERVATION_DEFAULT = {
   reservationId: string | undefined,
   appUserId: string | undefined,

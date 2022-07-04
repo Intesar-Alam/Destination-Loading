@@ -7,7 +7,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 
-
+// This is the company landing page (where they go after logging in)
+// TODO add authorization for rep only to view this page, must be logged in
 type COMPANY_DEFAULT = {
   companyId: string | undefined,
   companyName: string,

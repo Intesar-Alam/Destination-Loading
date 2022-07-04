@@ -5,6 +5,8 @@ import Container from 'react-bootstrap/Container';
 
 import AdminMenuBar from './AdminMenuBar';
 
+// TODO add authorization for admin only! need to be logged in to see list
+
 function ReservationList() {
   const [reservations, setReservations] = useState([]);
 
