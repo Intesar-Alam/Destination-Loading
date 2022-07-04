@@ -2,9 +2,9 @@ use destination_loading;
 
 select * from user_account;
 
-select user_account_id, email, first_name, last_name, address, phone, dob
+select app_user_id, email, first_name, last_name, address, phone, dob
 from user_account
-order by user_account_id, last_name asc;
+order by app_user_id, last_name asc;
 
 select * from transport_company;
 
@@ -14,7 +14,7 @@ order by company_id, company_name asc;
 
 select * from reservation;
 
-select reservation_id, user_account_id, company_id, reservation_date, reservation_code
+select reservation_id, app_user_id, company_id, reservation_date, reservation_code
 from reservation
 order by reservation_date, reservation_id asc;
 
