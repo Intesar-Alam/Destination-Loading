@@ -1,8 +1,8 @@
 #Test URL
-@url = http://localhost:8080/test/company
+#@url = http://localhost:8080/test/company
 
 #Production URL
-#@url = http://localhost:8080/api/company
+@url = http://localhost:8080/api/company
 
 GET {{url}} HTTP/1.1
 
@@ -39,7 +39,7 @@ Content-Type: application/json
 
 {
   "companyName" : " ",
-  "url" : "https://www.emirates.com/",
+  "url" : "",
   "icon" : "https://c.ekstatic.net/assets/favicon.ico?h=6.0.506",
   "transportationMode" : "AIR"
 }
