@@ -34,12 +34,15 @@ function NewUserLogin() {
   const navigate = useNavigate();
 
   // TODO implement security/authController
-  // TODO create (POST) 
-  // TODO onsubmit go to useraddform
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     
+    if(confirmPassword !== appUser['password']){
+      setErrors(["Passwords do not match"]);
+      return;
+    }
+
     const init = {
       method: 'POST',
       headers: {
@@ -48,7 +51,6 @@ function NewUserLogin() {
       body: JSON.stringify(appUser)
     };
 
-    //needs to be tested with security
     fetch('http://localhost:8080/api/appuser', init)
     .then(response => {
       if(response.status === 201 || response.status == 400){
@@ -79,10 +81,8 @@ function NewUserLogin() {
   const handleConfirmChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setConfirmPassword(event.target.value);
     if(event.target.value === appUser['password']){
-      console.log("alls good");
       setErrors([]);
     }else{
-      console.log("alls not good");
       setErrors(["Passwords do not match"]);
     }
   };

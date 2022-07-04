@@ -1,4 +1,6 @@
-import { useState, useContext, useEffect } from 'react';
+import { useEffect, useState, useContext } from 'react';
+import { useNavigate, useParams, Link } from 'react-router-dom';
+
 
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
@@ -13,27 +15,48 @@ import Errors from './Errors';
 type USER_ACCOUNT_DEFAULT = {
   appUserId: any,
   email: string,
-  firstName : string,
-  lastName : string,
-  address : string,
-  phone : string,
-  dob : any
+  firstName: string,
+  lastName: string,
+  address: string,
+  phone: string,
+  dob: any
 }
 
 function UserAddForm() {
   const [userAccount, setUserAccount] = useState<USER_ACCOUNT_DEFAULT>({
     appUserId: 0,
     email: "",
-    firstName : "",
-    lastName : "",
-    address : "",
-    phone : "",
-    dob : ""
+    firstName: "",
+    lastName: "",
+    address: "",
+    phone: "",
+    dob: ""
   })
   const [errors, setErrors] = useState([]);
 
   const auth = useContext(AuthContext);
 
+  const { id } = useParams();
+
+  useEffect(() => {
+    if (id) {
+      fetch(`http://localhost:8080/api/useraccount/${id}`)
+        .then(response => {
+          if (response.status === 200) {
+            return response.json();
+          } else {
+            return Promise.reject(`Unexpected status code: ${response.status}`);
+          }
+        })
+        .then(data => {
+          if(data['appUserId']){
+            setUserAccount(data);
+          }
+        })
+    }
+  }, [id]);
+
+  
   return (
     <>
       <h1 className="text-center mb-5">Sign Up!</h1>
