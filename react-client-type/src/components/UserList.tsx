@@ -24,6 +24,32 @@ function UserList() {
   }, []);
 
   // TODO handleDeleteUser
+  const handleDeleteUser = (appUserId: number) => {
+    const userAccount: any = userAccounts.find(userAccount => userAccount['appUserId'] === appUserId);
+
+    if(window.confirm(
+    `    Deletion is permanent.
+    Are you sure you want to proceded?
+    Delete user ${userAccount['firstName']} ${userAccount['lastName']}?`)) {
+      const init = {
+        method: 'DELETE',
+        // headers: {
+        //   'Authorization': `Bearer ${auth.user.token}`
+        // },
+      };
+
+      fetch(`http://localhost:8080/api/useraccount/${appUserId}`, init)
+      .then(response => {
+        if (response.status === 204) {
+          const newUserAccount = userAccounts.filter(userAccount => userAccount['appUserId'] !== appUserId);
+          setUserAccounts(newUserAccount);
+        } else {
+          return Promise.reject(`Unexpected status code: ${response.status}`);
+        }
+      })
+      .catch(console.log);
+    }
+  };
 
   return (
     <>
@@ -53,11 +79,11 @@ function UserList() {
               <td>{userAccount['dob']}</td>
               <td>
                 <div className="float-right mr-2">
-                  <Link className="btn btn-primary btn-sm mr-2" to={`/userupdateform/${userAccount['appUserId']}`}>
-                    <i className="bi bi-pencil-square"></i> Edit
+                  <Link className="btn btn-primary btn-sm mr-2 me-2" to={`/userupdateform/${userAccount['appUserId']}`}>
+                    <i className="bi bi-pencil-square"></i>
                   </Link>
-                    <Button variant="danger" className="btn-sm" onClick={() => handleDeleteUser(user.id)}>
-                      <i className="bi bi-trash"></i> Delete
+                    <Button variant="danger" className="btn-sm" onClick={() => handleDeleteUser(userAccount['appUserId'])}>
+                      <i className="bi bi-trash"></i>
                     </Button>
                 </div>
               </td>

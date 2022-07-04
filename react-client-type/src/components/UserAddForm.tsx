@@ -18,8 +18,7 @@ function UserAddForm() {
   // TODO this
   return (
     <>
-      {/* Conditional rendering edit, add (delete) */}
-      <h1 className="text-center">Sign Up!</h1>
+      <h1 className="text-center mb-5">Sign Up!</h1>
       <Container>
         <Errors errors={errors} />
         <Card className="rounded-0 col-md-8 mx-auto">
