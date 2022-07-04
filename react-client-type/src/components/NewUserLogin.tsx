@@ -52,6 +52,7 @@ function NewUserLogin() {
     fetch('http://localhost:8080/api/appuser', init)
     .then(response => {
       if(response.status === 201 || response.status == 400){
+        console.log("Valid Response");
         return response.json();
       }else{
         return Promise.reject(`Unexpected status code: ${response.status}`);
@@ -59,6 +60,7 @@ function NewUserLogin() {
     })
     .then(data =>{
       if(data) {
+        console.log(`app user ID is ${data['appUserId']}`);
         if(data['appUserId']){
           //TODO set auth context here
           navigate('/useraddform');
@@ -82,8 +84,7 @@ function NewUserLogin() {
     }else{
       console.log("alls not good");
       //Flag for insttructors
-      const msg: string [] = ["Passwords do not match"];
-      setErrors(msg);
+      // setErrors(["Passwords do not match"]);
     }
   };
   
@@ -97,7 +98,7 @@ function NewUserLogin() {
       <Container>
         <Errors errors={errors} />
         <Card className="rounded-0 col-md-8 mx-auto">
-          <Form>
+          <Form onSubmit={handleSubmit}>
             <Form.Group as={Row} className="my-2 ms-3" controlId="formUsername">
               <Form.Label column sm={2}>Username</Form.Label>
               <Col sm={9}>
