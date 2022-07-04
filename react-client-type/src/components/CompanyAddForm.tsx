@@ -66,7 +66,6 @@ function CompanyAddForm() {
     addCompany();
   };
 
-  // This might need to move? They shouldn't even be able to view the form without loging in
   const addCompany = () => {
     console.log(company);
     if (auth === undefined || auth.user === null) {

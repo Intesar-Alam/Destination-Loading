@@ -27,7 +27,7 @@ function NewUserLogin() {
 
   const [confirmPassword, setConfirmPassword] = useState<string>("");
 
-  const [errors, setErrors] = useState([]);
+  const [errors, setErrors] = useState<string[]>([]);
 
   const auth = useContext(AuthContext);
 
@@ -83,8 +83,7 @@ function NewUserLogin() {
       setErrors([]);
     }else{
       console.log("alls not good");
-      //Flag for insttructors
-      // setErrors(["Passwords do not match"]);
+      setErrors(["Passwords do not match"]);
     }
   };
   
@@ -114,7 +113,7 @@ function NewUserLogin() {
             <Form.Group as={Row} className="mb-2 ms-3" controlId="formConfirmPassword">
               <Form.Label column sm={2}>Confirm Password</Form.Label>
               <Col sm={9}>
-                <Form.Control type="password" placeholder="Password" name="confirmPassword" value={confirmPassword} onChange={handleConfirmChange}/>
+                <Form.Control type="password" placeholder="Confirm Password" name="confirmPassword" value={confirmPassword} onChange={handleConfirmChange}/>
               </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-3">
