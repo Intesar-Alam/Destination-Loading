@@ -82,7 +82,10 @@ function SingleUserReservation() {
 
   // TODO handleDelete!
   const handleDeleteReservation = (reservationId: string | undefined) => {
-
+    if (auth === undefined || auth.user === null) {
+      navigate('/login');
+      return;
+    }
     if (window.confirm(
       `    Deletion is permanent.
     Are you sure you want to proceded?

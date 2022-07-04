@@ -70,9 +70,8 @@ function CompanyAddForm() {
   const addCompany = () => {
     console.log(company);
     if (auth === undefined || auth.user === null) {
-      // FIXME
-      console.log("Cannot add company before logging in");
-      return;
+       navigate('/login');
+       return;
     }
     
     const init = {

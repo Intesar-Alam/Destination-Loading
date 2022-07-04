@@ -70,7 +70,10 @@ function UserUpdateForm() {
 
   const updateUser = () => {
     user['appUserId'] = id;
-
+    if (auth === undefined || auth.user === null) {
+      navigate('/login');
+      return;
+    }
     const init = {
       method: 'PUT',
       headers: {
@@ -178,7 +181,7 @@ function UserUpdateForm() {
                 <Link className="btn btn-primary" to={`/userreservationlist/${user['appUserId']}`}>Cancel</Link>
               </Col>
             </Form.Group>
-            {auth.user && auth.user.hasRole('ROLE_ADMIN') && (
+            {auth && auth.user && auth.user.hasRole('ROLE_ADMIN') && (
               <Form.Group as={Row}>
                 <Col sm={{ offset: 9 }}>
                   <Button type="submit" className="mb-2" onClick={() => handleDeleteUser(user['appUserId'])}>Delete User</Button>

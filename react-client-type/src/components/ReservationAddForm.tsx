@@ -87,7 +87,10 @@ function ReservationAddForm() {
 
   const addReservation = () => {
     console.log(reservation);
-
+    if (auth === undefined || auth.user === null){
+      navigate('/login');
+      return;
+    }
     const init = {
       method: 'POST',
       headers: {
