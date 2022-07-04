@@ -4,13 +4,13 @@
 @account_url = http://localhost:8080/api/useraccount
 
 // admin
-@token = eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJkZXN0aW5hdGlvbi1sb2FkaW5nLWFwaSIsInN1YiI6ImpvaG5ueWJveUBnbWFpbC5jb20iLCJhdXRob3JpdGllcyI6IlJPTEVfQURNSU4iLCJhcHBVc2VySWQiOjEsImNvbXBhbnlJZCI6MCwiZXhwIjoxNjU2OTA3Mjg2fQ.5M-PGM74oQ_mAt_qGCyhUf-QjStde6mANoeXe7ULa_c
+@token = eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJkZXN0aW5hdGlvbi1sb2FkaW5nLWFwaSIsInN1YiI6InN0ZXZlQHNtaXRoLmNvbSIsImF1dGhvcml0aWVzIjoiUk9MRV9VU0VSIiwiYXBwVXNlcklkIjozLCJjb21wYW55SWQiOjAsImV4cCI6MTY1Njk4ODQ1Mn0.w5yMJrPOhpNFocdTjeQvxaILB77Ouhz4LALoM3xYbBE
 ### Authenticate Admin User
 POST http://localhost:8080/api/authenticate HTTP/1.1
 Content-Type: application/json
 
 {
-    "username": "johnnyboy@gmail.com",
+    "username": "reediejason@gmail.com",
     "password": "P@ssw0rd!"
 }
 
