@@ -27,13 +27,13 @@ function MenuBar() {
               <NavDropdown.Item href="/contact">Contact</NavDropdown.Item>
             </NavDropdown>
           </Nav>
-          {!auth.user && (
+          {!auth && (
             <>
               <Navbar.Text className="me-2"><a href="/newuserlogin">Sign-up</a></Navbar.Text>
               <Button href="/login">Login</Button>
             </>
           )}
-          {auth.user && (
+          {auth && (
             <Button onClick={() => auth.logout()}>Logout</Button>
           )}
         </Container>

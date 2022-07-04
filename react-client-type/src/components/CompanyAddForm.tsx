@@ -68,17 +68,17 @@ function CompanyAddForm() {
   // This might need to move? They shouldn't even be able to view the form without loging in
   const addCompany = () => {
     console.log(company);
-    if (auth === undefined) {
-      // FIXME
-      console.log("Cannot add company before logging in");
-      return;
+    if (auth === undefined || auth.user === null) {
+       window.alert('You must be logged in to access this feature')
+       navigate('/login');
+       return;
     }
     
     const init = {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${auth.token}`
+        'Authorization': `Bearer ${auth.user.token}`
       },
       body: JSON.stringify(company)
     };

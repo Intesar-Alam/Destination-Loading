@@ -89,7 +89,10 @@ function ReservationUpdateForm() {
 
 const updateReservation = () => {
   reservation['reservationId'] = id;
-  
+  if (auth === undefined || auth.user === null) {
+    navigate(-1);
+    return ;
+  }
   const init = {
     method: 'PUT',
     headers: {
