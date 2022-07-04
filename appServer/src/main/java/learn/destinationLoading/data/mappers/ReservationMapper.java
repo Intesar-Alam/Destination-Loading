@@ -12,7 +12,7 @@ public class ReservationMapper implements RowMapper<Reservation> {
     public Reservation mapRow(ResultSet rs, int i) throws SQLException {
         Reservation reservation = new Reservation();
         reservation.setReservationId(rs.getInt("reservation_id"));
-        reservation.setappUserId(rs.getInt("app_user_id"));
+        reservation.setAppUserId(rs.getInt("app_user_id"));
         reservation.setCompanyId(rs.getInt("company_id"));
         reservation.setReservationDate(rs.getDate("reservation_date").toLocalDate());
         reservation.setReservationCode(rs.getString("reservation_code"));

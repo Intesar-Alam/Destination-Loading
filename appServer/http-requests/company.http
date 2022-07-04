@@ -96,4 +96,4 @@ DELETE {{url}}/2 HTTP/1.1
 
 #Unhappy path
 
-DELETE {{url}}/22 HTTP/1.1
+DELETE {{url}}/999 HTTP/1.1

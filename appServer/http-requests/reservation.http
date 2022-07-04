@@ -2,7 +2,7 @@
 @url = http://localhost:8080/test/reservation
 
 #Production URL
-#@url = http://localhost:8080/api/reservation
+# @url = http://localhost:8080/api/reservation
 
 GET {{url}} HTTP/1.1
 
