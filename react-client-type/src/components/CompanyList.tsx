@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useState, useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
@@ -7,10 +7,17 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
+
+import AuthContext from '../AuthContext';
 import AdminMenuBar from './AdminMenuBar';
+
 // TODO add authorization for admin only, must be logged in to view page
 function CompanyList() {
   const [companies, setCompanies] = useState([]);
+
+  const auth = useContext(AuthContext);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch('http://localhost:8080/api/company')
@@ -26,6 +33,12 @@ function CompanyList() {
   }, []);
 
   const handleDeleteCompany = (companyId: number) => {
+    if (auth === undefined || auth.user === null) {
+      window.alert('You must be logged in to access this feature')
+      navigate('/login');
+      return;
+   }
+
     const company: any = companies.find(company => company['companyId'] === companyId);
 
     if(window.confirm(
@@ -34,9 +47,9 @@ function CompanyList() {
     Delete company ${company['companyName']}?`)) {
       const init = {
         method: 'DELETE',
-        // headers: {
-        //   'Authorization': `Bearer ${auth.user.token}`
-        // },
+        headers: {
+          'Authorization': `Bearer ${auth.user.token}`
+        },
       };
 
       fetch(`http://localhost:8080/api/company/${companyId}`, init)
