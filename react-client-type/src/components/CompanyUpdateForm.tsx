@@ -99,12 +99,12 @@ function CompanyUpdateForm() {
       .then(data => {
         console.log(data);
         if (!data) {
-          // if (auth.user.hasRole('ADMIN')) {
-          //   navigate("/companylist");
-          // } else if (auth.user.hasRole('REP')) {
-          //   navigate(`/companypage/${id}`);
-          // }
-          navigate(`/companypage/${id}`);
+          if (data.auth.user.hasRole('ADMIN')) {
+            navigate("/companylist");
+          } else if (data.auth.user.hasRole('REP')) {
+            navigate(`/companypage/${id}`);
+          }
+          // navigate(`/companypage/${id}`);
         } else {
           setErrors(data);
         }
