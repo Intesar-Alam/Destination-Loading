@@ -88,6 +88,7 @@ function ReservationAddForm() {
   const addReservation = () => {
     console.log(reservation);
     if (auth === undefined || auth.user === null){
+      window.alert('You must be logged in to access this feature')
       navigate('/login');
       return;
     }

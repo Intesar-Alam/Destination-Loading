@@ -70,6 +70,7 @@ function CompanyAddForm() {
   const addCompany = () => {
     console.log(company);
     if (auth === undefined || auth.user === null) {
+       window.alert('You must be logged in to access this feature')
        navigate('/login');
        return;
     }

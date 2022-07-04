@@ -71,6 +71,7 @@ function UserUpdateForm() {
   const updateUser = () => {
     user['appUserId'] = id;
     if (auth === undefined || auth.user === null) {
+      window.alert('You must be logged in to access this feature');
       navigate('/login');
       return;
     }
