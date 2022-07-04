@@ -28,7 +28,8 @@ public class CompanyJdbcTemplateRepository implements CompanyRepository {
     @Override
     public List<Company> findAll () {
         final String sql = "select company_id, company_name, company_url, company_icon, transportation_mode " +
-                "from transport_company;";
+                "from transport_company " +
+                "where company_id > 1";
         return jdbcTemplate.query(sql, new CompanyMapper());
     }
 
