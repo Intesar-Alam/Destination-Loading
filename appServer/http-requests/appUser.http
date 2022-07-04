@@ -1,0 +1,106 @@
+# @user_url = http://localhost:8080/api/appuser"
+@company_url = http://localhost:8080/api/company
+@reservation_url = http://localhost:8080/api/reservation
+# @account_url = http://localhost:8080/api/useraccount
+
+// admin
+@token = eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJkZXN0aW5hdGlvbi1sb2FkaW5nLWFwaSIsInN1YiI6InN0ZXZlQHNtaXRoLmNvbSIsImF1dGhvcml0aWVzIjoiUk9MRV9VU0VSIiwiYXBwVXNlcklkIjozLCJjb21wYW55SWQiOjAsImV4cCI6MTY1Njg0MTgzNH0.tlnusMz91g522txQ0fcH5HsU9GgE6VUqnKviUmUmJWk
+### Authenticate Admin User
+POST http://localhost:8080/api/authenticate HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "johnnyboy@gmail.com",
+    "password": "P@ssw0rd!"
+}
+
+### Authenticate Customer User
+
+POST http://localhost:8080/api/authenticate HTTP/1.1
+Content-Type: application/json 
+
+{
+    "username": "steve@smith.com",
+    "password": "P@ssw0rd!"
+}
+
+### findAll reservations
+
+GET {{reservation_url}} HTTP/1.1
+Authorization: Bearer {{token}}
+
+### findByReservationId 
+
+GET {{reservation_url}}/3 HTTP/1.1
+Authorization: Bearer {{token}}
+
+
+### findByUser - for user roles
+
+GET {{reservation_url}}/user HTTP/1.1
+Authorization: Bearer {{token}}
+
+### findByUserAccount (for admins)
+
+GET {{reservation_url}}/useraccount/3 HTTP/1.1
+Authorization: Bearer {{token}}
+
+### findByCompany (Reps associated with company or admin)
+
+GET {{reservation_url}}/company/1 HTTP/1.1
+Authorization: Bearer {{token}}
+### addReservation (user only)
+
+POST {{reservation_url}} HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "appUserId": 3,
+    "companyId": 2,
+    "reservationDate": "2023-05-14",
+    "reservationCode": "7438-5889",
+    "reservationTitle": "Beach Trip"
+}
+
+### Update reservations (all)
+
+PUT {{reservation_url}}/1 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "reservationId": 1,
+    "appUserId": 3,
+    "companyId": 1,
+    "reservationDate": "2023-06-18",
+    "reservationCode": "5423-6789",
+    "reservationTitle": "Trip"
+}
+
+### Delete Reservation (user only)
+
+DELETE {{reservation_url}}/4 HTTP/1.1
+Authorization: Bearer {{token}}
+
+// COMPANY TESTS
+
+### findAllCompanies (anyone)
+
+GET {{company_url}} HTTP/1.1
+
+### findByCompanyId (anyone)
+
+GET {{company_url}}/1 HTTP/1.1
+
+### update a company (admin only)
+
+POST {{company_url}}/1
+
+{
+    "companyName": "Chip Airlines",
+    "url": "https://www.chippyboy.com",
+    "icon": "https://www.chippyboy.ico",
+    "transportationMode": "AIR"
+}
+
