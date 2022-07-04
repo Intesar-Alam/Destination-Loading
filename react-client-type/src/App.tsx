@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { BrowserRouter, Routes, Route, Link, useRoutes } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 
@@ -41,8 +41,8 @@ import internal from 'stream';
 
 
 
-const DL_TOKEN_KEY = 'dlToken';
-interface DecodedToken {
+ const DL_TOKEN_KEY = 'dlToken';
+export interface DecodedToken {
   iss: string;
   sub: string;
   authorities: string;
@@ -63,6 +63,7 @@ function App() {
 
   const [restoreLoginAttemptCompleted, setRestoreLoginAttemptCompleted] = useState(false);
 
+  const auth = useContext(AuthContext);
   useEffect(() => {
     const token = localStorage.getItem(DL_TOKEN_KEY);
     if(token) {
@@ -95,11 +96,7 @@ function App() {
     localStorage.removeItem(DL_TOKEN_KEY);
   };
 
-  const auth: AuthObj = {
-    user,
-    login,
-    logout
-  };
+
 
   if(!restoreLoginAttemptCompleted) {
     return null;
