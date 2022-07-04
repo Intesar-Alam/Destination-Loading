@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
@@ -10,12 +10,30 @@ import Card from 'react-bootstrap/Card';
 import AuthContext from '../AuthContext';
 import Errors from './Errors';
 
+type USER_ACCOUNT_DEFAULT = {
+  appUserId: any,
+  email: string,
+  firstName : string,
+  lastName : string,
+  address : string,
+  phone : string,
+  dob : any
+}
+
 function UserAddForm() {
+  const [userAccount, setUserAccount] = useState<USER_ACCOUNT_DEFAULT>({
+    appUserId: 0,
+    email: "",
+    firstName : "",
+    lastName : "",
+    address : "",
+    phone : "",
+    dob : ""
+  })
   const [errors, setErrors] = useState([]);
 
   const auth = useContext(AuthContext);
 
-  // TODO this
   return (
     <>
       <h1 className="text-center mb-5">Sign Up!</h1>
