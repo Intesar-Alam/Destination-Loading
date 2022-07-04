@@ -70,12 +70,15 @@ function CompanyUpdateForm() {
 
 const updateCompany = () => {
   company['companyId'] = id;
-  
+  if (auth === undefined || auth.user === null) {
+     navigate(-1);
+     return;
+  }
   const init = {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${auth.token}`
+      'Authorization': `Bearer ${auth.user.token}`
     },
     body: JSON.stringify(company)
   };

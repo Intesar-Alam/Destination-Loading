@@ -48,9 +48,13 @@ function Login() {
       })
       .then(data => {
         if (data) {
-          
+          if (auth === undefined) {
+            navigate('/login');
+            return;
+          }
           auth.login(data.jwt_token);
-          // TODO add if statements based on user to navigate to correct page on login, add if statement if not a user to send to new user login/register page
+          // TODO add if statements based on user to navigate to correct page on login, add if statement if not a user to send to new user login/register page'
+          // NOTE - look up useHistory
           navigate('/');
         } else {
           setErrors(data);
