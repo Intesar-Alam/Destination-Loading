@@ -17,7 +17,17 @@ function UserList() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('http://localhost:8080/api/useraccount')
+    if (auth === undefined || auth.user === null) {
+      navigate('/login');
+      return ;
+    }
+    const init = {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${auth.user.token}`
+      },
+    };
+    fetch('http://localhost:8080/api/useraccount', init)
       .then(response => {
         if (response.status === 200) {
           return response.json();
