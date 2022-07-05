@@ -83,6 +83,7 @@ function UserAddForm() {
 
     if(auth === undefined || auth.user === null){
       // navigate("/"); // 403 Error
+      console.log("fails here")
       return;
     }
 

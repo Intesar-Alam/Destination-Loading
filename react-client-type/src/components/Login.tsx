@@ -53,25 +53,32 @@ function Login() {
         console.log(data);
         if (data) {
           // decode token
-          auth.login(data);
-          if (auth === undefined || auth.user === null) {
-            navigate('/');
+          // if (auth === undefined || auth.user === null) {
+          //   navigate('/');
+          //   return;
+          // }
+          // console.log(data);
+          // if (data.auth.user.hasRole('USER')) {
+          //   navigate(`/userreservationlist/user`)
+          // } else if (data.auth.user.hasRole('ADMIN')) {
+          //   navigate("/adminpage");
+          // } else if (data.auth.user.hasRole('REP')) {
+          //   navigate(`/companypage/${data['companyId']}`);
+          // } else {
+          //   navigate("/newuserlogin")
+          // }
+          // auth.login(data.jwt_token);
+          // TODO add if statements based on user to navigate to correct page on login, add if statement if not a user to send to new user login/register page'
+          // NOTE - look up useHistory
+          // navigate('/');
+          if (auth === undefined) {
+            navigate('/login');
             return;
-          }
-          console.log(data);
-          if (data.auth.user.hasRole('USER')) {
-            navigate(`/userreservationlist/user`)
-          } else if (data.auth.user.hasRole('ADMIN')) {
-            navigate("/adminpage");
-          } else if (data.auth.user.hasRole('REP')) {
-            navigate(`/companypage/${data['companyId']}`);
-          } else {
-            navigate("/newuserlogin")
           }
           auth.login(data.jwt_token);
           // TODO add if statements based on user to navigate to correct page on login, add if statement if not a user to send to new user login/register page'
           // NOTE - look up useHistory
-          // navigate('/');
+          navigate('/');
         } else {
           setErrors(data);
         }
