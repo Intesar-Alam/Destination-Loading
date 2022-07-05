@@ -129,7 +129,7 @@ function UserAddForm() {
 
       fetch('http://localhost:8080/api/useraccount', init)
         .then(response => {
-          if (response.status === 204 || response.status === 400) {
+          if (response.status === 201 || response.status === 400) {
             console.log(response);
             return response.json();
           } else {

@@ -24,6 +24,7 @@ function MenuBar() {
               <NavDropdown.Item href="/">Home</NavDropdown.Item>
               <NavDropdown.Item href="/learnmore">Learn More</NavDropdown.Item>
               <NavDropdown.Item href="/userreservationlist">View Reservations</NavDropdown.Item>
+              {/* TODO remove about us from nav bar */}
               <NavDropdown.Item href="/aboutus">About Us</NavDropdown.Item>
               <NavDropdown.Item href="/contact">Contact</NavDropdown.Item>
             </NavDropdown>
