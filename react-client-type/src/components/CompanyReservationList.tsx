@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useState, useEffect, useContext } from 'react';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 
 import Table from 'react-bootstrap/Table';
 import Container from 'react-bootstrap/Container';
+import AuthContext from '../AuthContext';
 // TODO styling
 type COMPANY_DEFAULT = {
   companyId: string | undefined,
@@ -23,6 +24,9 @@ function CompanyReservationList() {
 
   const [reservations, setReservations] = useState([]);
 
+  const auth = useContext(AuthContext);
+
+  const navigate = useNavigate();
 
   const { id } = useParams();
 
@@ -42,8 +46,17 @@ function CompanyReservationList() {
   }, [id]);
 
   useEffect(() => {
+    if (auth === undefined || auth.user === null) {
+      navigate('/login');
+      return;
+    }
+    const init = {
+      headers: {
+        'Authorization': `Bearer ${auth.user.token}`
+      },
+    };
     if (id) {
-      fetch(`http://localhost:8080/api/reservation/company/${id}`)
+      fetch(`http://localhost:8080/api/reservation/company/${id}`, init)
         .then(response => {
           if (response.status === 200) {
             return response.json();

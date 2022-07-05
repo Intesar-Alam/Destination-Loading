@@ -45,6 +45,7 @@ public class UserAccountController {
     public ResponseEntity<Object> add(@RequestBody UserAccount userAccount, UsernamePasswordAuthenticationToken principal) {
         AppUser appUser = (AppUser) principal.getPrincipal();
         userAccount.setAppUserId(appUser.getAppUserId());
+        userAccount.setEmail(appUser.getUsername());
         Result<UserAccount> result = service.add(userAccount);
         if (result.isSuccess()) {
             return new ResponseEntity<>(result.getPayload(), HttpStatus.CREATED);

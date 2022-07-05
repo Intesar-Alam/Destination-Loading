@@ -11,15 +11,18 @@ import Jumbotron1 from '../images/jumbotron1.jpg';
 import Jumbotron2 from '../images/jumbotron2.png';
 import Jumbotron3 from '../images/jumbotron3.jpg';
 import TravelVlog from '../images/travelers.jpg';
+import { useContext } from 'react';
+import AuthContext from '../AuthContext';
 
 
 // TODO styling
 function Home() {
+  const auth = useContext(AuthContext);
   return (
     <>
       
       <h1 className="text-center mt-5">Welcome to Destination Loading...</h1>
-      <Carousel>
+      <Carousel className="mb-5">
         <Carousel.Item interval={5000}>
           <img
             className="d-block w-100"
@@ -79,7 +82,7 @@ function Home() {
             </Link>
           </Col>
           <Col>
-            <Link style={{ textDecoration: 'none' }} to="/contact">
+            <Link style={{ textDecoration: 'none' }} to={`/companypage/${auth?.user?.companyId}`}>
               <Card bg="warning" style={{ width: '18rem', height: '6rem' }} className="me-5">
                 <Card.Body>
                   <Card.Title as="h2" className="text-white text-center my-2">Company Login</Card.Title>

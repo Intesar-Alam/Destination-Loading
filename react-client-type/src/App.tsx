@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { BrowserRouter, Routes, Route, Link, useRoutes, useNavigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link, useRoutes, useNavigate, Navigate } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 
 import Home from './components/Home';
@@ -53,6 +53,7 @@ export interface DecodedToken {
 
 export interface User {
   appUserId: number;
+  companyId: number;
   username: string;
   roles: string[];
   token: string;
@@ -77,12 +78,13 @@ function App() {
   const login = (token: string) => {
     localStorage.setItem(DL_TOKEN_KEY, token);
 
-    const { sub: username, authorities, appUserId } = jwt_decode(token) as DecodedToken;
+    const { sub: username, authorities, appUserId, companyId } = jwt_decode(token) as DecodedToken;
 
     const roles = authorities.split(',');
 
     const userToLogin: User = {
       appUserId,
+      companyId,
       username,
       roles,
       token,
@@ -97,7 +99,6 @@ function App() {
   const logout = () => {
     setUser(null);
     localStorage.removeItem(DL_TOKEN_KEY);
-    // navigate("/");
   };
 
 const auth = {
@@ -122,7 +123,7 @@ const auth = {
           <Route path="/contact" element={<Contact />} />
           <Route path="/contactsubmitconfirm" element={<ContactSubmitConfirm />} />
           <Route path="/learnmore" element={<LearnMore />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Login />} />          
           <Route path="/newuserlogin" element={<NewUserLogin />} />
           <Route path="/notfound" element={<NotFound />} />
           <Route path="/useraddform" element={<UserAddForm />} />

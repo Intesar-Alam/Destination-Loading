@@ -29,7 +29,9 @@ function MenuBar() {
               <NavDropdown.Item href="/contact">Contact</NavDropdown.Item>
             </NavDropdown>
           </Nav>
-          
+          {auth && auth.user && auth.user.hasRole('ADMIN') &&(
+            <Button href="/adminpage">Admin</Button>
+          )}
           {(auth === undefined || auth.user === null) && (
             <>
               <Navbar.Text className="me-2"><a href="/newuserlogin">Sign-up</a></Navbar.Text>
@@ -40,9 +42,7 @@ function MenuBar() {
             // <Button onClick={() => auth.logout()}>Logout</Button>
             <Link className="btn btn-primary" to="/" onClick={() => auth.logout()}>Logout</Link>
           )}
-          {auth && auth.user && auth.user.hasRole('ADMIN') &&(
-            <Button>Admin</Button>
-          )}
+
         </Container>
       </Navbar>
     </>
