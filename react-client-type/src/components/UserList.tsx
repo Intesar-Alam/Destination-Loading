@@ -100,9 +100,6 @@ function UserList() {
                 <td>{userAccount['dob']}</td>
                 <td>
                   <div className="float-right mr-2">
-                    <Link className="btn btn-primary btn-sm mr-2 me-2" to={`/userupdateform/${userAccount['appUserId']}`}>
-                      <i className="bi bi-pencil-square"></i>
-                    </Link>
                     <Button variant="danger" className="btn-sm" onClick={() => handleDeleteUser(userAccount['appUserId'])}>
                       <i className="bi bi-trash"></i>
                     </Button>
@@ -112,7 +109,6 @@ function UserList() {
             ))}
           </tbody>
         </Table>
-        <Button>Edit Customer</Button>
       </Container>
     </>
   );
