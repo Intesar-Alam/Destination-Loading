@@ -1,17 +1,31 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 import Table from 'react-bootstrap/Table';
 import Container from 'react-bootstrap/Container';
-
+import AuthContext from '../AuthContext';
 import AdminMenuBar from './AdminMenuBar';
+import { useNavigate } from 'react-router-dom';
 
 // TODO add authorization for admin only! need to be logged in to see list
 
 function ReservationList() {
   const [reservations, setReservations] = useState([]);
+  const auth = useContext(AuthContext);
+  const navigate = useNavigate();
+
 
   useEffect(() => {
-    fetch('http://localhost:8080/test/reservation')
+    if (auth === undefined || auth.user === null) {
+      window.alert('You must be logged in to access this feature');
+      navigate('/');
+      return;
+    }
+    const init = {
+      headers: {
+        'Authorization': `Bearer ${auth.user.token}`
+      },
+    };
+    fetch('http://localhost:8080/reservation')
       .then(response => {
         if (response.status === 200) {
           return response.json();

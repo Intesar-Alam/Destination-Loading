@@ -52,6 +52,7 @@ export interface DecodedToken {
 }
 
 export interface User {
+  appUserId: number;
   username: string;
   roles: string[];
   token: string;
@@ -75,11 +76,12 @@ function App() {
   const login = (token: string) => {
     localStorage.setItem(DL_TOKEN_KEY, token);
 
-    const { sub: username, authorities } = jwt_decode(token) as DecodedToken;
+    const { sub: username, authorities, appUserId } = jwt_decode(token) as DecodedToken;
 
     const roles = authorities.split(',');
 
     const userToLogin: User = {
+      appUserId,
       username,
       roles,
       token,
