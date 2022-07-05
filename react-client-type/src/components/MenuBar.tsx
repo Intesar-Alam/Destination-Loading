@@ -9,9 +9,11 @@ import Button from 'react-bootstrap/Button';
 import AuthContext from '../AuthContext';
 
 // TODO auth stuff
-// TODO add authorization for View Reservations page - must be logged in to view page
+// TODO styling
 function MenuBar() {
   const auth = useContext(AuthContext);
+  console.log(auth);
+
   return (
     <>
       <Navbar bg="success">
@@ -27,13 +29,13 @@ function MenuBar() {
               <NavDropdown.Item href="/contact">Contact</NavDropdown.Item>
             </NavDropdown>
           </Nav>
-          {!auth && (
+          {(auth.user === null) && (
             <>
               <Navbar.Text className="me-2"><a href="/newuserlogin">Sign-up</a></Navbar.Text>
               <Button href="/login">Login</Button>
             </>
           )}
-          {auth && (
+          {auth.user && (
             <Button onClick={() => auth.logout()}>Logout</Button>
           )}
         </Container>

@@ -6,7 +6,7 @@ import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 
 function AdminPage() {
-  // TODO add authorization for admin only/logged in to view this page
+  // TODO styling
   return (
     <>
       <h1 className="text-center my-5">Administrative Actions</h1>

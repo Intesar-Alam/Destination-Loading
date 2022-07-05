@@ -12,6 +12,8 @@ import Card from 'react-bootstrap/Card';
 import AuthContext from '../AuthContext';
 import Errors from './Errors';
 
+// Test components
+// TODO styling
 type COMPANY_DEFAULT = {
   companyId: string | undefined,
   companyName: string,
@@ -66,8 +68,6 @@ function CompanyUpdateForm() {
     event.preventDefault();
 
     updateCompany();
-
-    {/* TODO if user = rep send to companypage, if user = admin send to companylist, create if statement (one for each role) */ }
 
   };
 

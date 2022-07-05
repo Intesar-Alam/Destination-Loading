@@ -7,6 +7,7 @@ import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 
+// TODO styling
 function Contact() {
   // Add validation for form (stretch goal)
   return (

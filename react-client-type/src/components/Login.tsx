@@ -38,6 +38,7 @@ function Login() {
 
     fetch('http://localhost:8080/api/authenticate', init)
       .then(response => {
+        console.log(response);
         if (response.status === 200) {
           return response.json();
         } else if (response.status === 403) {
