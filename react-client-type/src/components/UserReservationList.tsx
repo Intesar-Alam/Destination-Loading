@@ -82,7 +82,9 @@ function UserReservationList() {
                 return Promise.reject(`Unexpected status code: ${response.status}`);
               }
             })
-            .then(data => setReservations(data))
+            .then(data => {
+              console.log(data);
+              setReservations(data)})
             .catch(console.log);
   }, [auth]);
 
