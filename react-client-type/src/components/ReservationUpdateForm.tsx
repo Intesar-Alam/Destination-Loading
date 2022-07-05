@@ -14,23 +14,27 @@ import Errors from './Errors';
 
 
 // TODO add user authorization, need to be logged in to update a reservation
-type RESERVATION_DEFAULT = {
+type Reservation = {
   reservationId: string | undefined,
-  appUserId: string | undefined,
+  appUserId: string,
   companyId: string,
   reservationDate: string,
   reservationCode: string,
-  reservationTitle: string
+  reservationTitle: string,
+  companyName?: string,
+  url?: string
 };
 
 function ReservationUpdateForm() {
-  const [reservation, setReservation] = useState<RESERVATION_DEFAULT>({
+  const [reservation, setReservation] = useState<Reservation>({
     reservationId: "",
     appUserId: "",
     companyId: "",
     reservationDate: "",
     reservationCode: "",
     reservationTitle: "",
+    companyName: "",
+    url: "",
   });
 
   const [companies, setCompanies] = useState([]);
@@ -44,8 +48,18 @@ function ReservationUpdateForm() {
   const { id } = useParams();
 
   useEffect(() => {
+    if (auth === undefined || auth.user === null) {
+        navigate('/login');
+        window.alert('You must be logged in to access this page')
+        return;
+    }
+    const init = {
+      headers: {
+        'Authorization': `Bearer ${auth.user.token}`
+      },
+    };
     if (id) {
-      fetch(`http://localhost:8080/api/reservation/${id}`)
+      fetch(`http://localhost:8080/api/reservation/${id}`, init)
         .then(response => {
           if (response.status === 200) {
             return response.json();
@@ -90,7 +104,7 @@ function ReservationUpdateForm() {
 const updateReservation = () => {
   reservation['reservationId'] = id;
   if (auth === undefined || auth.user === null) {
-    navigate(-1);
+    navigate('/login');
     return ;
   }
   const init = {
@@ -115,7 +129,7 @@ const updateReservation = () => {
   .then(data => {
     console.log(data);
     if (!data) {
-      navigate(`/userreservationlist/${reservation['appUserId']}`);
+      navigate(`/userreservationlist`);
     } else {
       setErrors(data);
     }
@@ -175,7 +189,7 @@ const updateReservation = () => {
             </Form.Group>
             <Form.Group as={Row}>
               <Col sm={{ offset: 8 }}>
-              <Link className="btn btn-primary" to={`/userreservationlist/${reservation['appUserId']}`}>Cancel</Link>
+              <Link className="btn btn-primary" to={`/userreservationlist`}>Cancel</Link>
               </Col>
             </Form.Group>
           </Form>

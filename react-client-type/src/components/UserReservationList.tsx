@@ -42,7 +42,7 @@ function UserReservationList() {
 
   useEffect(() => {
     if (auth === undefined || auth.user === null) {
-      window.alert('You must be logged in to access this feature');
+      // window.alert('You must be logged in to access this feature');
       navigate('/');
       return;
     }
@@ -65,7 +65,7 @@ function UserReservationList() {
 
   useEffect(() => {
     if (auth === undefined || auth.user === null) {
-      window.alert('You must be logged in to access this feature');
+      // window.alert('You must be logged in to access this feature');
       navigate('/');
       return;
     }

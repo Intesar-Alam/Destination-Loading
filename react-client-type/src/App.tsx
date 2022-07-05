@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { BrowserRouter, Routes, Route, Link, useRoutes, useNavigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link, useRoutes, useNavigate, Navigate } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 
 import Home from './components/Home';
@@ -97,7 +97,6 @@ function App() {
   const logout = () => {
     setUser(null);
     localStorage.removeItem(DL_TOKEN_KEY);
-    // navigate("/");
   };
 
 const auth = {
@@ -122,7 +121,7 @@ const auth = {
           <Route path="/contact" element={<Contact />} />
           <Route path="/contactsubmitconfirm" element={<ContactSubmitConfirm />} />
           <Route path="/learnmore" element={<LearnMore />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Login />} />          
           <Route path="/newuserlogin" element={<NewUserLogin />} />
           <Route path="/notfound" element={<NotFound />} />
           <Route path="/useraddform" element={<UserAddForm />} />

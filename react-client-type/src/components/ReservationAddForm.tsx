@@ -42,19 +42,19 @@ function ReservationAddForm() {
 
   const { id } = useParams();
 
-  useEffect(() => {
-    if (id) {
-      fetch(`http://localhost:8080/api/reservation/${id}`)
-        .then(response => {
-          if (response.status === 200) {
-            return response.json();
-          } else {
-            return Promise.reject(`Unexpected status code: ${response.status}`);
-          }
-        })
-        .then(data => setReservation(data))
-    }
-  }, [id]);
+  // useEffect(() => {
+  //   if (id) {
+  //     fetch(`http://localhost:8080/api/reservation/${id}`)
+  //       .then(response => {
+  //         if (response.status === 200) {
+  //           return response.json();
+  //         } else {
+  //           return Promise.reject(`Unexpected status code: ${response.status}`);
+  //         }
+  //       })
+  //       .then(data => setReservation(data))
+  //   }
+  // }, [id]);
 
   useEffect(() => {
       fetch(`http://localhost:8080/api/company/`)
