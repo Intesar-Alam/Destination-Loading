@@ -38,18 +38,16 @@ function UserAddForm() {
 
   const navigate = useNavigate();
 
-  const { id } = useParams();
-
   let account = false;
   //TODO fix authenticate bug
 
   useEffect(() => {
     console.log(`${auth}`);
-    if(auth === undefined || auth.user === null){
+    if (auth === undefined || auth.user === null) {
       // navigate("/"); // 403 Error
       return;
     }
-    
+
     const init = {
       method: 'GET',
       headers: {
@@ -57,37 +55,37 @@ function UserAddForm() {
       },
     };
 
-    if (id) {
-      fetch(`http://localhost:8080/api/useraccount/user`, init)
-        .then(response => {
-          if (response.status === 200) {
-            return response.json();
-          } else {
-            return Promise.reject(`Unexpected status code: ${response.status}`);
-          }
-        })
-        .then(data => {
-          console.log(`${data['appUserId']}`);
-          if (data['appUserId']) {
-            account = true;
-            setUserAccount(data);
-          }else{
+    fetch(`http://localhost:8080/api/useraccount/user`, init)
+      .then(response => {
+        if (response.status === 200) {
+          console.log(response);
+          return response.json();
+        } else {
+          return Promise.reject(`Unexpected status code: ${response.status}`);
+        }
+      })
+      .then(data => {
+        console.log(`${data['appUserId']}`);
+        if (data['appUserId']) {
+          account = true;
+          setUserAccount(data);
+        } else {
 
-          }
-        })
-    }
-  }, [id]);
+        }
+      })
+
+  }, []);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    if(auth === undefined || auth.user === null){
+    if (auth === undefined || auth.user === null) {
       // navigate("/"); // 403 Error
       console.log("fails here")
       return;
     }
 
-    if(account){
+    if (account) {
       //PUT
       const init = {
         method: 'PUT',
@@ -99,26 +97,26 @@ function UserAddForm() {
       };
 
       fetch(`http://localhost:8080/api/useraccount/${auth.user.appUserId}`, init)
-      .then(response => {
-        if (response.status === 204 || response.status === 400) {
-          console.log(response);
-          return response.json();
-        } else {
-          return Promise.reject(`Unexpected status code: ${response.status}`);
-        }
-      })
-      .then(data => {
-        console.log(data)
-        if (data) {
-          console.log(data);
-          setErrors(data);
-        } else {
-          navigate('/');
-        }
-      })
-      .catch(console.log);
+        .then(response => {
+          if (response.status === 204 || response.status === 400) {
+            console.log(response.json());
+            return response.json();
+          } else {
+            return Promise.reject(`Unexpected status code: ${response.status}`);
+          }
+        })
+        .then(data => {
+          console.log(data)
+          if (data) {
+            console.log(data);
+            setErrors(data);
+          } else {
+            navigate('/');
+          }
+        })
+        .catch(console.log);
 
-    }else{
+    } else {
       //POST
       const init = {
         method: 'POST',
@@ -130,25 +128,25 @@ function UserAddForm() {
       };
 
       fetch('http://localhost:8080/api/useraccount', init)
-      .then(response => {
-        if (response.status === 204 || response.status === 400) {
-          console.log(response);
-          return response.json();
-        } else {
-          return Promise.reject(`Unexpected status code: ${response.status}`);
-        }
-      })
-      .then(data => {
-        console.log(data)
-        if (data) {
-          console.log(data);
-          setErrors(data);
-        } else {
-          navigate('/');
-        }
-      })
-      .catch(console.log);
-      
+        .then(response => {
+          if (response.status === 204 || response.status === 400) {
+            console.log(response);
+            return response.json();
+          } else {
+            return Promise.reject(`Unexpected status code: ${response.status}`);
+          }
+        })
+        .then(data => {
+          console.log(data)
+          if (data) {
+            console.log(data);
+            setErrors(data);
+          } else {
+            navigate('/');
+          }
+        })
+        .catch(console.log);
+
     }
   };
 

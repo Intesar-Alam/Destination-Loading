@@ -25,3 +25,5 @@ select * from user_account;
 select * from transport_company;
 
 select * from reservation;
+
+select * from app_user;

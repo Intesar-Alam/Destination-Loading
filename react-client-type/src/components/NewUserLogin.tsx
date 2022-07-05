@@ -99,7 +99,7 @@ function NewUserLogin() {
                     return;
                   }
                   auth.login(data.jwt_token);
-                  navigate(`/useraddform/${data['appUserId']}`);
+                  navigate(`/useraddform`);
                 } else {
                   setErrors(data);
                 }
