@@ -1,5 +1,6 @@
 import { useContext } from 'react';
-
+import { Link } from 'react-router-dom';
+ 
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
@@ -36,7 +37,8 @@ function MenuBar() {
             </>
           )}
           {auth && auth.user && (
-            <Button onClick={() => auth.logout()}>Logout</Button>
+            // <Button onClick={() => auth.logout()}>Logout</Button>
+            <Link className="btn btn-primary" to="/" onClick={() => auth.logout()}>Logout</Link>
           )}
           {auth && auth.user && auth.user.hasRole('ADMIN') &&(
             <Button>Admin</Button>
