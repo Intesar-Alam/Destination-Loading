@@ -14,7 +14,7 @@ import Errors from './Errors';
 function Login() {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [errors, setErrors] = useState([]);
+  const [errors, setErrors] = useState<string[]>([]);
 
   const auth = useContext(AuthContext);
 

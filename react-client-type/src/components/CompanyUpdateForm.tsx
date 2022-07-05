@@ -29,7 +29,7 @@ function CompanyUpdateForm() {
     transportationMode: "AIR",
   });
 
-  const [errors, setErrors] = useState([]);
+  const [errors, setErrors] = useState<string[]>([]);
 
   const auth = useContext(AuthContext);
 

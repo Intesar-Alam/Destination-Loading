@@ -9,7 +9,6 @@ function AdminPage() {
   // TODO add authorization for admin only/logged in to view this page
   return (
     <>
-      <h6 className="text-end me-3 mt-2">Welcome, Joe!</h6>
       <h1 className="text-center my-5">Administrative Actions</h1>
       <Container>
         <Row md={3} className="mx-auto mb-5">
