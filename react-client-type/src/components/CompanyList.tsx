@@ -11,7 +11,7 @@ import Col from 'react-bootstrap/Col';
 import AuthContext from '../AuthContext';
 import AdminMenuBar from './AdminMenuBar';
 
-// TODO add authorization for admin only, must be logged in to view page
+// TODO styling
 function CompanyList() {
   const [companies, setCompanies] = useState([]);
 

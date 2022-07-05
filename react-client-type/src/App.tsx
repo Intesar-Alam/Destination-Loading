@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { BrowserRouter, Routes, Route, Link, useRoutes } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link, useRoutes, useNavigate } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 
 import Home from './components/Home';
@@ -64,7 +64,8 @@ function App() {
 
   const [restoreLoginAttemptCompleted, setRestoreLoginAttemptCompleted] = useState(false);
 
-  // const auth = useContext(AuthContext);
+  
+  
   useEffect(() => {
     const token = localStorage.getItem(DL_TOKEN_KEY);
     if(token) {
@@ -96,6 +97,7 @@ function App() {
   const logout = () => {
     setUser(null);
     localStorage.removeItem(DL_TOKEN_KEY);
+    // navigate("/");
   };
 
 const auth = {
@@ -103,6 +105,7 @@ const auth = {
   login,
   logout
 };
+
 
   if(!restoreLoginAttemptCompleted) {
     return null;

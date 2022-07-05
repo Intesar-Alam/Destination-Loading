@@ -11,6 +11,8 @@ import Card from 'react-bootstrap/Card';
 import AuthContext from '../AuthContext';
 import Errors from './Errors';
 
+
+// TODO fix navigation paths for users
 function Login() {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -38,6 +40,7 @@ function Login() {
 
     fetch('http://localhost:8080/api/authenticate', init)
       .then(response => {
+        console.log(response);
         if (response.status === 200) {
           return response.json();
         } else if (response.status === 403) {
@@ -47,15 +50,27 @@ function Login() {
         }
       })
       .then(data => {
+        console.log(data);
         if (data) {
-          if (auth === undefined) {
-            navigate('/login');
+          // decode token
+          if (auth === undefined || auth.user === null) {
+            navigate('/');
             return;
+          }
+          console.log(data);
+          if (data.auth.user.hasRole('USER')) {
+            navigate(`/userreservationlist/user`)
+          } else if (data.auth.user.hasRole('ADMIN')) {
+            navigate("/adminpage");
+          } else if (data.auth.user.hasRole('REP')) {
+            navigate(`/companypage/${data['companyId']}`);
+          } else {
+            navigate("/newuserlogin")
           }
           auth.login(data.jwt_token);
           // TODO add if statements based on user to navigate to correct page on login, add if statement if not a user to send to new user login/register page'
           // NOTE - look up useHistory
-          navigate('/');
+          // navigate('/');
         } else {
           setErrors(data);
         }
@@ -67,7 +82,7 @@ function Login() {
     setUsername(event.target.value);
   })
 
-  const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) : void => {
+  const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setPassword(event.target.value);
   }
 

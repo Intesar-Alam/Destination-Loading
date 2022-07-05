@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 
 import Table from 'react-bootstrap/Table';
 import Container from 'react-bootstrap/Container';
-// TODO add authorization for rep only to view this page, must be logged in
+// TODO styling
 type COMPANY_DEFAULT = {
   companyId: string | undefined,
   companyName: string,
