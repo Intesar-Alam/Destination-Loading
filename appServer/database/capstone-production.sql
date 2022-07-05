@@ -71,6 +71,7 @@ create table reservation (
 );
 
 insert into transport_company (company_name, company_url, company_icon, transportation_mode) values
+("user", "customer", "none", "GROUND"),
 ("Alaska Airlines","https://www.alaskaair.com/","https://resource.alaskaair.net/favicon.ico","AIR"),
 ("Allegiant Air","https://www.allegiantair.com/","https://www.allegiantair.com/favicon.ico","AIR"),
 ("American Airlines","https://www.aa.com/","https://www.aa.com/favicon.ico","AIR"),
@@ -113,8 +114,8 @@ insert into app_role (`name`) values
 
 insert into app_user (username, password_hash, disabled, company_id)
 	values
-    ('reediejason@gmail.com', '$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa', 0, null),
-    ('chip@fortnite.com', '$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa', 0, 1),
+    ('johnnyboy@gmail.com', '$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa', 0, null),
+    ('chip@fortnite.com', '$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa', 0, 2),
     ('steve@smith.com', '$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa', 0, null),
     ('john@john.com', '$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa', 0, null),
     ('mikey@yahoo.com', '$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa', 0, 3);
@@ -127,6 +128,7 @@ insert into app_user (username, password_hash, disabled, company_id)
     (4, 1),
     (5, 2);
 
+
     --
     insert into user_account (app_user_id, email, first_name, last_name, address, phone, dob)
     values
@@ -138,9 +140,7 @@ insert into app_user (username, password_hash, disabled, company_id)
 
     insert into reservation(app_user_id, company_id, reservation_date, reservation_code, reservation_title)
     values
-    (3, 1, '2023-10-23', '57955-2705', 'Birthday Weekend'),
+    (3, 2, '2023-10-23', '57955-2705', 'Birthday Weekend'),
     (3, 3, '2023-05-26', '54868-5000', 'Holiday'),
-    (4, 1, '2023-06-12', '65044-3565', 'Barbados trip');
-
-
+    (4, 2, '2023-06-12', '65044-3565', 'Barbados trip');
 
