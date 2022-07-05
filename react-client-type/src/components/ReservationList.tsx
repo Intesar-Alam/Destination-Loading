@@ -21,11 +21,12 @@ function ReservationList() {
       return;
     }
     const init = {
+      method: 'GET',
       headers: {
         'Authorization': `Bearer ${auth.user.token}`
       },
     };
-    fetch('http://localhost:8080/reservation')
+    fetch('http://localhost:8080/api/reservation', init)
       .then(response => {
         if (response.status === 200) {
           return response.json();
@@ -35,7 +36,7 @@ function ReservationList() {
       })
       .then(data => setReservations(data))
       .catch(console.log);
-  }, []);
+  }, [auth]);
 
 
   return (

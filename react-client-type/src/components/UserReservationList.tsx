@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useContext, useEffect, useState } from 'react';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
@@ -7,6 +7,7 @@ import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/container';
 
 import JumboImage from '../images/travelers.jpg';
+import AuthContext from '../AuthContext';
 
 
 // TODO styling
@@ -33,37 +34,61 @@ function UserReservationList() {
 
   const [reservations, setReservations] = useState([]);
 
-  const { id } = useParams();
+  const auth = useContext(AuthContext);
+
+  const navigate = useNavigate();
+
+  
 
   useEffect(() => {
-    if (id) {
-      fetch(`http://localhost:8080/api/useraccount/${id}`)
-        .then(response => {
-          if (response.status === 200) {
-            return response.json();
-          } else {
-            return Promise.reject(`Unexpected status code: ${response.status}`);
-          }
-        })
-        .then(data => setUser(data))
-        .catch(console.log);
+    if (auth === undefined || auth.user === null) {
+      window.alert('You must be logged in to access this feature');
+      navigate('/');
+      return;
     }
-  }, [id]);
+    const authorization = {
+      headers: {
+        'Authorization': `Bearer ${auth.user.token}`
+      }
+    }
+    fetch('http://localhost:8080/api/useraccount/user', authorization)
+      .then(response => {
+        if (response.status === 200) {
+          return response.json();
+        } else {
+          return Promise.reject(`Unexpected status code: ${response.status}`);
+        }
+      })
+      .then(data => setUser(data))
+      .catch(console.log);
+}, [auth]);
 
   useEffect(() => {
-    if (id) {
-      fetch(`http://localhost:8080/api/reservation/useraccount/${id}`)
-        .then(response => {
-          if (response.status === 200) {
-            return response.json();
-          } else {
-            return Promise.reject(`Unexpected status code: ${response.status}`);
-          }
-        })
-        .then(data => setReservations(data))
-        .catch(console.log);
+    if (auth === undefined || auth.user === null) {
+      window.alert('You must be logged in to access this feature');
+      navigate('/');
+      return;
     }
-  }, [id]);
+    const init = {
+      headers: {
+        'Authorization': `Bearer ${auth.user.token}`
+      },
+    };
+    fetch('http://localhost:8080/api/reservation/user', init)
+    .then(response => {
+    if (response.status === 200) {
+                return response.json();
+              } else {
+                return Promise.reject(`Unexpected status code: ${response.status}`);
+              }
+            })
+            .then(data => setReservations(data))
+            .catch(console.log);
+  });
+
+  
+
+
 
 
   // TODO add picture array to randomize images for card backgrounds

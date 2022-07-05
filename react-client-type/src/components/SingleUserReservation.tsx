@@ -7,22 +7,22 @@ import Container from 'react-bootstrap/Container';
 
 import AuthContext from '../AuthContext';
 
-type RESERVATION_DEFAULT = {
+type Reservation = {
   reservationId: string | undefined,
   appUserId: string,
   companyId: string,
   reservationDate: string,
   reservationCode: string,
   reservationTitle: string,
-  companyName: string,
-  url: string
+  companyName?: string,
+  url?: string
 };
 
 
 // TODO add authorization, must be logged in to view
 function SingleUserReservation() {
   const [reservations, setReservations] = useState([]);
-  const [reservation, setReservation] = useState<RESERVATION_DEFAULT>({
+  const [reservation, setReservation] = useState<Reservation>({
     reservationId: "",
     appUserId: "",
     companyId: "",
@@ -40,8 +40,17 @@ function SingleUserReservation() {
   const { id } = useParams();
 
   useEffect(() => {
-    if (id) {
-      fetch(`http://localhost:8080/api/reservation/${id}`)
+    if (auth === undefined || auth.user === null) {
+      window.alert('You must be logged in to access this feature');
+      navigate('/');
+      return;
+    }
+    const init = {
+      headers: {
+        'Authorization': `Bearer ${auth.user.token}`
+    }, 
+    };
+      fetch('http://localhost:8080/api/reservation/user', init)
         .then(response => {
           if (response.status === 200) {
             return response.json();
@@ -53,31 +62,33 @@ function SingleUserReservation() {
           getCompanyData(data)
         })
         .catch(console.log);
-    }
-  }, [id]);
 
-  function getCompanyData(data: any) {
-    fetch(`http://localhost:8080/api/company/${data.companyId}`)
-      .then(response => {
-        if (response.status === 200) {
-          return response.json();
-        } else {
-          return Promise.reject(`Unexpected status code: ${response.status}`);
-        }
-      })
-      .then(data2 => {
-        setReservation({
-          reservationId: data.reservationId,
-          appUserId: data.appUserId,
-          companyId: data.companyId,
-          reservationDate: data.reservationDate,
-          reservationCode: data.reservationCode,
-          reservationTitle: data.reservationTitle,
-          companyName: data2.companyName,
-          url: data2.url
+  }, [auth]);
+
+  function getCompanyData(data: Reservation[]) {
+    for (const reservation of data) { 
+      fetch(`http://localhost:8080/api/company/${reservation.companyId}`)
+        .then(response => {
+          if (response.status === 200) {
+            return response.json();
+          } else {
+            return Promise.reject(`Unexpected status code: ${response.status}`);
+          }
         })
-      })
-      .catch(console.log)
+        .then(company => {
+          setReservation({
+            reservationId: reservation.reservationId,
+            appUserId: reservation.appUserId,
+            companyId: reservation.companyId,
+            reservationDate: reservation.reservationDate,
+            reservationCode: reservation.reservationCode,
+            reservationTitle: reservation.reservationTitle,
+            companyName: company.companyName,
+            url: company.url
+          })
+        })
+        .catch(console.log)
+      }
   };
 
   // TODO handleDelete!

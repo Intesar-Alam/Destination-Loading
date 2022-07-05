@@ -129,7 +129,7 @@ const auth = {
           <Route path="/userupdateform/:id" element={<UserUpdateForm />} />
           <Route path="/reservationaddform" element={<ReservationAddForm />} />
           <Route path="/reservationupdateform/:id" element={<ReservationUpdateForm />} />
-          <Route path="/userreservationlist/:id" element={<UserReservationList />} />
+          <Route path="/userreservationlist" element={<UserReservationList />} />
           <Route path="/singleuserreservation/:id" element={<SingleUserReservation />} />
           <Route path="/companypage/:id" element={<CompanyPage />} />
           <Route path="/companyreservationlist/:id" element={<CompanyReservationList />} />
