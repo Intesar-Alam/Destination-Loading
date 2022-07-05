@@ -23,6 +23,7 @@ function Home() {
     <>
       
       <h1 className="text-center mt-5">Welcome to Destination Loading...</h1>
+      <Container>
       <Carousel className="mb-5">
         <Carousel.Item interval={5000}>
           <img
@@ -61,6 +62,7 @@ function Home() {
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
+      </Container>
 
       <Container className="d-flex">
         <Row md={3} className="mx-auto mb-5">
