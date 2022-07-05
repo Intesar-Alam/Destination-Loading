@@ -84,7 +84,7 @@ function UserReservationList() {
             })
             .then(data => setReservations(data))
             .catch(console.log);
-  });
+  }, [auth]);
 
   
 
