@@ -125,6 +125,7 @@ const auth = {
           <Route path="/newuserlogin" element={<NewUserLogin />} />
           <Route path="/notfound" element={<NotFound />} />
           <Route path="/useraddform" element={<UserAddForm />} />
+          <Route path="/userupdateform/" element={<UserAddForm />} />
           <Route path="/userupdateform/:id" element={<UserUpdateForm />} />
           <Route path="/reservationaddform" element={<ReservationAddForm />} />
           <Route path="/reservationupdateform/:id" element={<ReservationUpdateForm />} />

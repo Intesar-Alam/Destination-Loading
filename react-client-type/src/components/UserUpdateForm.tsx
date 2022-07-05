@@ -13,7 +13,7 @@ import Errors from './Errors';
 
 
 // TODO add authorization, must be user or admin to update
-type USER_DEFAULT = {
+type USER_ACCOUNT_DEFAULT = {
   appUserId: string | undefined,
   email: string,
   firstName: string,
@@ -24,7 +24,7 @@ type USER_DEFAULT = {
 };
 
 function UserUpdateForm() {
-  const [user, setUser] = useState<USER_DEFAULT>({
+  const [userAccount, setUserAccount] = useState<USER_ACCOUNT_DEFAULT>({
     appUserId: "",
     email: "",
     firstName: "",
@@ -44,22 +44,43 @@ function UserUpdateForm() {
   const { id } = useParams();
 
   useEffect(() => {
-    if (id) {
-      fetch(`http://localhost:8080/api/useraccount/${id}`)
-        .then(response => {
-          if (response.status === 200) {
-            return response.json();
-          } else {
-            return Promise.reject(`Unexpected status code: ${response.status}`);
-          }
-        })
-        .then(data => setUser(data))
+    console.log(`${auth}`);
+    if (auth === undefined || auth.user === null) {
+      window.alert('You must be logged in to access this feature');
+      navigate('/');
+      return;
     }
-  }, [id]);
+
+    const init = {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${auth.user.token}`
+      },
+    };
+
+    fetch(`http://localhost:8080/api/useraccount/user`, init)
+      .then(response => {
+        if (response.status === 200) {
+          console.log(response);
+          return response.json();
+        } else {
+          return Promise.reject(`Unexpected status code: ${response.status}`);
+        }
+      })
+      .then(data => {
+        console.log(`${data['appUserId']}`);
+        if (data['appUserId']) {
+          setUserAccount(data);
+        } else {
+          console.log("error");
+        }
+      })
+
+  }, [auth]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
 
-    setUser({ ...user, [event.target.name]: event.target.value });
+    setUserAccount({ ...userAccount, [event.target.name]: event.target.value });
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -69,7 +90,7 @@ function UserUpdateForm() {
   };
 
   const updateUser = () => {
-    user['appUserId'] = id;
+    userAccount['appUserId'] = id;
     if (auth === undefined || auth.user === null) {
       window.alert('You must be logged in to access this feature');
       navigate('/login');
@@ -81,11 +102,12 @@ function UserUpdateForm() {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${auth.user.token}`
       },
-      body: JSON.stringify(user)
+      body: JSON.stringify(userAccount)
     };
 
     fetch(`http://localhost:8080/api/useraccount/${id}`, init)
       .then(response => {
+        console.log(response);
         if (response.status === 204) {
           return null;
         } else if (response.status === 400) {
@@ -97,7 +119,7 @@ function UserUpdateForm() {
       .then(data => {
         console.log(data);
         if (!data) {
-          navigate(`/userreservationlist/${user['appUserId']}`);
+          navigate(`/userreservationlist`);
         } else {
           setErrors(data);
         }
@@ -107,16 +129,20 @@ function UserUpdateForm() {
 
   // TODO handleDelete for admin
   const handleDeleteUser = (appUserId: string | undefined) => {
-
+    if (auth === undefined || auth.user === null || !auth.user.hasRole("ADMIN")) {
+      window.alert('You must be an admin to access this feature');
+      navigate('/login');
+      return;
+    }
     if (window.confirm(
       `    Deletion is permanent.
     Are you sure you want to proceded?
-    Delete user named ${user['firstName']}${user['lastName']}?`)) {
+    Delete user named ${userAccount['firstName']}${userAccount['lastName']}?`)) {
       const init = {
         method: 'DELETE',
-        // headers: {
-        //   'Authorization': `Bearer ${auth.user.token}`
-        // },
+        headers: {
+          'Authorization': `Bearer ${auth.user.token}`
+        },
       };
 
       fetch(`http://localhost:8080/api/useraccount/${appUserId}`, init)
@@ -143,49 +169,49 @@ function UserUpdateForm() {
             <Form.Group as={Row} className="my-2 ms-3" controlId="formFirstName">
               <Form.Label column sm={2}>First Name</Form.Label>
               <Col sm={9}>
-                <Form.Control type="text" placeholder="Enter First Name" name="firstName" value={user['firstName']} onChange={handleChange} />
+                <Form.Control type="text" placeholder="Enter First Name" name="firstName" value={userAccount['firstName']} onChange={handleChange} />
               </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-2 ms-3" controlId="formLastName">
               <Form.Label column sm={2}>Last Name</Form.Label>
               <Col sm={9}>
-                <Form.Control type="text" placeholder="Enter Last Name" name="lastName" value={user['lastName']} onChange={handleChange} />
+                <Form.Control type="text" placeholder="Enter Last Name" name="lastName" value={userAccount['lastName']} onChange={handleChange} />
               </Col>
             </Form.Group>
             <Form.Group as={Row} className="my-2 ms-3" controlId="formEmail">
               <Form.Label column sm={2}>Email</Form.Label>
               <Col sm={9}>
-                <Form.Control type="text" placeholder="Enter Email" name="email" value={user['email']} onChange={handleChange} />
+                <Form.Control type="text" placeholder="Enter Email" name="email" value={userAccount['email']} onChange={handleChange} />
               </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-2 ms-3" controlId="formAddress">
               <Form.Label column sm={2}>Address</Form.Label>
               <Col sm={9}>
-                <Form.Control type="text" placeholder="1234 Main St., Any Town, MN 12345" name="address" value={user['address']} onChange={handleChange} />
+                <Form.Control type="text" placeholder="1234 Main St., Any Town, MN 12345" name="address" value={userAccount['address']} onChange={handleChange} />
               </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-2 ms-3" controlId="formPhone">
               <Form.Label column sm={2}>Phone #</Form.Label>
               <Col sm={9}>
-                <Form.Control type="text" placeholder="(555)555-5555" name="phone" value={user['phone']} onChange={handleChange} />
+                <Form.Control type="text" placeholder="(555)555-5555" name="phone" value={userAccount['phone']} onChange={handleChange} />
               </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-3 ms-3" controlId="formDob">
               <Form.Label column sm={2}>Date of Birth</Form.Label>
               <Col sm={5}>
-                <Form.Control type="date" name="dob" value={user['dob']} onChange={handleChange} />
+                <Form.Control type="date" name="dob" value={userAccount['dob']} onChange={handleChange} />
               </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-3">
               <Col sm={{ offset: 8 }}>
                 <Button type="submit" className="me-3">Update User</Button>
-                <Link className="btn btn-primary" to={`/userreservationlist/${user['appUserId']}`}>Cancel</Link>
+                <Link className="btn btn-primary" to={`/userreservationlist/${userAccount['appUserId']}`}>Cancel</Link>
               </Col>
             </Form.Group>
             {auth && auth.user && auth.user.hasRole('ROLE_ADMIN') && (
               <Form.Group as={Row}>
                 <Col sm={{ offset: 9 }}>
-                  <Button type="submit" className="mb-2" onClick={() => handleDeleteUser(user['appUserId'])}>Delete User</Button>
+                  <Button type="submit" className="mb-2" onClick={() => handleDeleteUser(userAccount['appUserId'])}>Delete User</Button>
                 </Col>
               </Form.Group>
             )}
