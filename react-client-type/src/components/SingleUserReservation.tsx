@@ -160,8 +160,8 @@ function SingleUserReservation() {
               <td>{reservation['reservationDate']}</td>
               <td>{reservation['companyName']}</td>
               <td><img src={reservation['reservationIcon']} style={{ width: '32px'}} />&nbsp;<a href={reservation['url']} target="blank">{reservation['url']}</a></td>
-              <td>{reservation['reservationCode']}&nbsp;<Button className="text-white" onClick={() => copyReservation(reservation['reservationCode'])}>Copy</Button></td>
-              <td><Button className="text-white" onClick={() => copyJump(reservation['reservationCode'])}>Copy & Jump to page</Button></td>
+              <td><a href={''} onClick={() => copyReservation(reservation['reservationCode'])}>{reservation['reservationCode']}</a></td>
+              <td><Button className="text-white" onClick={() => copyJump(reservation['reservationCode'])}>Copy and Jump to page</Button></td>
             </tr>
           </tbody>
         </Table>
