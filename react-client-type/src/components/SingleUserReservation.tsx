@@ -14,26 +14,18 @@ type Reservation = {
   reservationDate: string,
   reservationCode: string,
   reservationTitle: string,
-  reservationIcon?: string,
-  companyName?: string,
-  url?: string
+  company: {
+    companyName?: string,
+    icon?: string,
+    url?: string
+  }
 };
 
 
 // TODO add authorization, must be logged in to view
 function SingleUserReservation() {
-  const [reservations, setReservations] = useState([]);
-  const [reservation, setReservation] = useState<Reservation>({
-    reservationId: "",
-    appUserId: "",
-    companyId: "",
-    reservationDate: "",
-    reservationCode: "",
-    reservationTitle: "",
-    reservationIcon: "",
-    companyName: "",
-    url: "",
-  });
+  // const [reservations, setReservations] = useState([]);
+  const [reservation, setReservation] = useState<Reservation | null>(null);
 
   const auth = useContext(AuthContext);
 
@@ -52,7 +44,7 @@ function SingleUserReservation() {
         'Authorization': `Bearer ${auth.user.token}`
     }, 
     };
-      fetch('http://localhost:8080/api/reservation/user', init)
+      fetch(`http://localhost:8080/api/reservation/${id}`, init)
         .then(response => {
           if (response.status === 200) {
             return response.json();
@@ -61,38 +53,43 @@ function SingleUserReservation() {
           }
         })
         .then(data => {
-          getCompanyData(data)
+          setReservation(data);
+          // getCompanyData(data)
         })
         .catch(console.log);
 
-  }, [auth]);
+  }, [auth, id]);
 
-  function getCompanyData(data: Reservation[]) {
-    for (const reservation of data) { 
-      fetch(`http://localhost:8080/api/company/${reservation.companyId}`)
-        .then(response => {
-          if (response.status === 200) {
-            return response.json();
-          } else {
-            return Promise.reject(`Unexpected status code: ${response.status}`);
-          }
-        })
-        .then(company => {
-          setReservation({
-            reservationId: reservation.reservationId,
-            appUserId: reservation.appUserId,
-            companyId: reservation.companyId,
-            reservationDate: reservation.reservationDate,
-            reservationCode: reservation.reservationCode,
-            reservationTitle: reservation.reservationTitle,
-            reservationIcon: company.icon,
-            companyName: company.companyName,
-            url: company.url
-          })
-        })
-        .catch(console.log)
-      }
-  };
+  if(reservation === null){
+    return null;
+  }
+
+  // function getCompanyData(data: Reservation[]) {
+  //   for (const reservation of data) { 
+  //     fetch(`http://localhost:8080/api/company/${reservation.companyId}`)
+  //       .then(response => {
+  //         if (response.status === 200) {
+  //           return response.json();
+  //         } else {
+  //           return Promise.reject(`Unexpected status code: ${response.status}`);
+  //         }
+  //       })
+  //       .then(company => {
+  //         setReservation({
+  //           reservationId: reservation.reservationId,
+  //           appUserId: reservation.appUserId,
+  //           companyId: reservation.companyId,
+  //           reservationDate: reservation.reservationDate,
+  //           reservationCode: reservation.reservationCode,
+  //           reservationTitle: reservation.reservationTitle,
+  //           reservationIcon: company.icon,
+  //           companyName: company.companyName,
+  //           url: company.url
+  //         })
+  //       })
+  //       .catch(console.log)
+  //     }
+  // };
 
   // TODO handleDelete!
   const handleDeleteReservation = (reservationId: string | undefined) => {
@@ -103,7 +100,7 @@ function SingleUserReservation() {
     if (window.confirm(
       `    Deletion is permanent.
     Are you sure you want to proceded?
-    Delete reservation for ${reservation['reservationTitle']}?`)) {
+    Delete reservation for ${reservation.reservationTitle}`)) {
       const init = {
         method: 'DELETE',
         headers: {
@@ -114,8 +111,6 @@ function SingleUserReservation() {
       fetch(`http://localhost:8080/api/reservation/${reservationId}`, init)
         .then(response => {
           if (response.status === 204) {
-            const newReservations = reservations.filter(reservation => reservation['reservationId'] !== reservationId);
-            setReservations(newReservations);
             navigate(`/userreservationlist`);
           } else {
             return Promise.reject(`Unexpected status code: ${response.status}`);
@@ -125,17 +120,19 @@ function SingleUserReservation() {
     }
   };
 
-  const copyReservation = (reservationCode: string) => {
-    navigator.clipboard.writeText(reservationCode);
+  const copyReservation = (reservationCode: string, event : any) => {
+    event.preventDefault();
+    window.navigator.clipboard.writeText(reservationCode);
   };
 
   const copyJump = (reservationCode: string) => {
-    if(reservation['url'] === undefined){
+    if(reservation.company.url === undefined){
       return;
     }
-    navigator.clipboard.writeText(reservationCode);
-    window.open(reservation['url']);
-    // window.location.href = reservation['url'];
+    window.navigator.clipboard.writeText(reservationCode).then(() => {
+      window.open(reservation.company.url);
+    });
+    // window.location.href = reservation['url']; 
   };
 
   return (
@@ -155,18 +152,18 @@ function SingleUserReservation() {
             </tr>
           </thead>
           <tbody>
-            <tr key={reservation['reservationId']}>
-              <td>{reservation['reservationTitle']}</td>
-              <td>{reservation['reservationDate']}</td>
-              <td>{reservation['companyName']}</td>
-              <td><img src={reservation['reservationIcon']} style={{ width: '32px'}} />&nbsp;<a href={reservation['url']} target="blank">{reservation['url']}</a></td>
-              <td><a href={''} onClick={() => copyReservation(reservation['reservationCode'])}>{reservation['reservationCode']}</a></td>
-              <td><Button className="text-white" onClick={() => copyJump(reservation['reservationCode'])}>Copy and Jump to page</Button></td>
+            <tr key={reservation.reservationId}>
+              <td>{reservation.reservationTitle}</td>
+              <td>{reservation.reservationDate}</td>
+              <td>{reservation.company.companyName}</td>
+              <td><img src={reservation.company.icon} style={{ width: '32px'}} />&nbsp;<a href={reservation.company.url} target="blank">{reservation.company.url}</a></td>
+              <td><a href={''} onClick={(event) => copyReservation(reservation.reservationCode, event)}>{reservation.reservationCode}</a></td>
+              <td><Button className="text-white" onClick={() => copyJump(reservation.reservationCode)}>Copy and Jump to page</Button></td>
             </tr>
           </tbody>
         </Table>
-        <Link to={`/reservationupdateform/${reservation['reservationId']}`} className="btn btn-primary me-3">Edit Reservation</Link>
-        <Button className="btn btn-danger me-3" onClick={() => handleDeleteReservation(reservation['reservationId'])}>Delete Reservation</Button>
+        <Link to={`/reservationupdateform/${reservation.reservationId}`} className="btn btn-primary me-3">Edit Reservation</Link>
+        <Button className="btn btn-danger me-3" onClick={() => handleDeleteReservation(reservation.reservationId)}>Delete Reservation</Button>
         <Link to={`/userreservationlist/`} className="btn btn-success me-3"><i className="bi bi-arrow-left-short"></i>Back</Link>
       </Container>
     </>
