@@ -156,12 +156,12 @@ function CompanyUpdateForm() {
               <Row>
                 <Col md={{ span: 5, offset: 7 }}>
                   <Button type="submit" className="me-2">Update Company</Button>
-                  {/* {auth.user && auth.user.hasRole('ADMIN') && (
+                  {auth && auth.user && auth.user.hasRole('ADMIN') && (
                     <Link className="btn btn-primary" to="/companylist">Cancel</Link>
                   )}
-                  {auth.user && auth.user.hasRole('REP') && (
+                  {auth && auth.user && auth.user.hasRole('REP') && (
                     <Link className="btn btn-primary" to={`/companypage/${id}`}>Cancel</Link>
-                  )} */}
+                  )}
                 </Col>
               </Row>
             </Form.Group>

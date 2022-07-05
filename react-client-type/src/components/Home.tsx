@@ -19,7 +19,7 @@ function Home() {
     <>
       
       <h1 className="text-center mt-5">Welcome to Destination Loading...</h1>
-      <Carousel>
+      <Carousel className="mb-5">
         <Carousel.Item interval={5000}>
           <img
             className="d-block w-100"
@@ -79,7 +79,7 @@ function Home() {
             </Link>
           </Col>
           <Col>
-            <Link style={{ textDecoration: 'none' }} to="/contact">
+            <Link style={{ textDecoration: 'none' }} to="/companypage">
               <Card bg="warning" style={{ width: '18rem', height: '6rem' }} className="me-5">
                 <Card.Body>
                   <Card.Title as="h2" className="text-white text-center my-2">Company Login</Card.Title>

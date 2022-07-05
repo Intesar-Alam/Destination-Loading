@@ -44,7 +44,7 @@ function AdminPage() {
         <Container>
         <Row md={3} className="mx-auto mb-5">
           <Col>
-            <Link style={{ textDecoration: 'none' }} to="/companyform">
+            <Link style={{ textDecoration: 'none' }} to="/company">
               <Card bg="primary" style={{ width: '18rem', height: '6rem' }} className="me-5">
                 <Card.Body>
                   <Card.Title as="h2" className="text-white text-center my-2">Add Company</Card.Title>
@@ -53,7 +53,7 @@ function AdminPage() {
             </Link>
           </Col>
           <Col>
-            <Link style={{ textDecoration: 'none' }} to="/userupdateform/2">
+            <Link style={{ textDecoration: 'none' }} to="/siteanalytics">
               <Card bg="warning" style={{ width: '18rem', height: '6rem' }} className="me-5">
                 <Card.Body>
                   <Card.Title as="h2" className="text-white text-center my-2">Update User</Card.Title>
