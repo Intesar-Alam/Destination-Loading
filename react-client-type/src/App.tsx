@@ -63,7 +63,7 @@ function App() {
 
   const [restoreLoginAttemptCompleted, setRestoreLoginAttemptCompleted] = useState(false);
 
-  const auth = useContext(AuthContext);
+  // const auth = useContext(AuthContext);
   useEffect(() => {
     const token = localStorage.getItem(DL_TOKEN_KEY);
     if(token) {
@@ -96,7 +96,11 @@ function App() {
     localStorage.removeItem(DL_TOKEN_KEY);
   };
 
-
+const auth = {
+  user,
+  login,
+  logout
+};
 
   if(!restoreLoginAttemptCompleted) {
     return null;
@@ -116,7 +120,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/newuserlogin" element={<NewUserLogin />} />
           <Route path="/notfound" element={<NotFound />} />
-          <Route path="/useraddform" element={<UserAddForm />} />
+          <Route path="/useraddform/:id" element={<UserAddForm />} />
           <Route path="/userupdateform/:id" element={<UserUpdateForm />} />
           <Route path="/reservationaddform" element={<ReservationAddForm />} />
           <Route path="/reservationupdateform/:id" element={<ReservationUpdateForm />} />
