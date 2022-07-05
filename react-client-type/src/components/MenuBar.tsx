@@ -39,7 +39,6 @@ function MenuBar() {
             </>
           )}
           {auth && auth.user && (
-            // <Button onClick={() => auth.logout()}>Logout</Button>
             <Link className="btn btn-primary" to="/" onClick={() => auth.logout()}>Logout</Link>
           )}
 

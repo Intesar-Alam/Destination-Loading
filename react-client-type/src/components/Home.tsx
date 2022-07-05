@@ -16,6 +16,7 @@ import AuthContext from '../AuthContext';
 
 
 // TODO styling
+// TODO add pages to bottom cards
 function Home() {
   const auth = useContext(AuthContext);
   return (

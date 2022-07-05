@@ -1,5 +1,5 @@
-import { useEffect, useState, useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
@@ -101,7 +101,6 @@ function NewUserLogin() {
                   setErrors(data);
                 }
               })
-            // navigate(`/useraddform/${data['appUserId']}`);
           } else {
             setErrors(data);
           }
@@ -123,8 +122,6 @@ function NewUserLogin() {
     }
   };
   
-
-  // fetch('http://localhost:8080/api/authenticate', init)
 
   return (
     <>

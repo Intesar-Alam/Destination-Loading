@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
@@ -103,7 +103,6 @@ function Login() {
   // TODO implement security/authController
   return (
     <>
-      {/* Add conditional logic for existing vs new user - if new send to user form on submit */}
       <h1 className="text-center">Login</h1>
       <Container>
         <Errors errors={errors} />

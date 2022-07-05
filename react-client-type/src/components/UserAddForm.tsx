@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from 'react';
-import { useNavigate, useParams, Link, Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 import Form from 'react-bootstrap/Form';
@@ -88,7 +88,6 @@ function UserAddForm() {
     }
 
     if (userAccount['appUserId']) {
-      //PUT
       const init = {
         method: 'PUT',
         headers: {
@@ -118,7 +117,6 @@ function UserAddForm() {
         .catch(console.log);
 
     } else {
-      //POST
       const init = {
         method: 'POST',
         headers: {
@@ -159,7 +157,6 @@ function UserAddForm() {
   return (
     <>
       {((userAccount['appUserId'] === 0) && (<h1 className="text-center mb-5">Sign Up!</h1>))}
-      {((userAccount['appUserId'] > 0) && (<h1 className="text-center mb-5">Edit Info!</h1>))}
       <Container>
         <Errors errors={errors} />
         <Card className="rounded-0 col-md-8 mx-auto">
@@ -200,11 +197,9 @@ function UserAddForm() {
                 <Form.Control type="date" name="dob" value={userAccount['dob']} onChange={handleChange} />
               </Col>
             </Form.Group>
-            {/* TODO add conditional rendering for create/update user */}
             <Form.Group as={Row} className="mb-3">
               <Col sm={{ offset: 9 }}>
                 {((userAccount['appUserId'] === 0) && (<Button type="submit">Create User</Button>))}
-                {((userAccount['appUserId'] > 0) && (<Button type="submit">Edit User</Button>))}
               </Col>
             </Form.Group>
           </Form>

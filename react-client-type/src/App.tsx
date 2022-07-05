@@ -1,5 +1,5 @@
-import { useState, useEffect, useContext } from 'react';
-import { BrowserRouter, Routes, Route, Link, useRoutes, useNavigate, Navigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 
 import Home from './components/Home';
@@ -28,18 +28,6 @@ import SiteAnalytics from './components/SiteAnalytics';
 import Footer from './components/Footer';
 
 import AuthContext, { AuthObj } from './AuthContext';
-import internal from 'stream';
-
-
-// const CompanyRoutes = () => {
-//   let routes = useRoutes([
-//     { path: "/company", element: <CompanyForm />},
-//     { path: "/company/:id", element: <CompanyForm />}
-//   ]);
-//   return routes;
-// }
-
-
 
  const DL_TOKEN_KEY = 'dlToken';
 export interface DecodedToken {

@@ -146,7 +146,6 @@ const updateReservation = () => {
           <Form onSubmit={handleSubmit}>
             <Form.Group as={Row} className="my-2 ms-3" controlId="formReservationTitle">
               <Form.Label column sm={2}>Trip Title</Form.Label>
-              {/* max 40 characters */}
               <Col sm={9}>
                 <Form.Control type="text" placeholder="Enter trip title or short description" name="reservationTitle" value={reservation['reservationTitle']} onChange={handleChange} />
                 <Form.Text muted>

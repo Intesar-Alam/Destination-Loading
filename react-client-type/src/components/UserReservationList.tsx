@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';

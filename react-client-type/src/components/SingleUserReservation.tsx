@@ -91,7 +91,6 @@ function SingleUserReservation() {
   //     }
   // };
 
-  // TODO handleDelete!
   const handleDeleteReservation = (reservationId: string | undefined) => {
     if (auth === undefined || auth.user === null) {
       navigate('/login');
@@ -120,11 +119,6 @@ function SingleUserReservation() {
     }
   };
 
-  const copyReservation = (reservationCode: string, event: any) => {
-    event.preventDefault();
-    window.navigator.clipboard.writeText(reservationCode);
-  };
-
   const copyJump = (reservationCode: string) => {
     if (reservation.company.url === undefined) {
       return;
@@ -132,7 +126,6 @@ function SingleUserReservation() {
     window.navigator.clipboard.writeText(reservationCode).then(() => {
       window.open(reservation.company.url);
     });
-    // window.location.href = reservation['url']; 
   };
 
   return (
