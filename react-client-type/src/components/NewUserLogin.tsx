@@ -60,18 +60,54 @@ function NewUserLogin() {
         return Promise.reject(`Unexpected status code: ${response.status}`);
       }
     })
-    .then(data =>{
-      if(data) {
-        console.log(`app user ID is ${data['appUserId']}`);
-        if(data['appUserId']){
-          
-          navigate('/useraddform');
-        }else{
-          setErrors(data);
+      .then(data => {
+        if (data) {
+          if (data['appUserId']) {
+            const authAttempt = {
+              username: appUser['username'],
+              password: appUser['password']
+            };
+
+            const init = {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(authAttempt)
+            };
+
+            fetch('http://localhost:8080/api/authenticate', init)
+              .then(response => {
+                console.log(response);
+                if (response.status === 200) {
+                  return response.json();
+                } else if (response.status === 403) {
+                  return null;
+                } else {
+                  return Promise.reject(`Unexpected status code: ${response.status}`);
+                }
+              })
+              .then(data => {
+                console.log(data);
+                if (data) {
+                  if (auth === undefined) {
+                    console.log("Something went wrong");
+                    navigate('/login');
+                    return;
+                  }
+                  auth.login(data.jwt_token);
+                  navigate(`/useraddform`);
+                } else {
+                  setErrors(data);
+                }
+              })
+            // navigate(`/useraddform/${data['appUserId']}`);
+          } else {
+            setErrors(data);
+          }
         }
-      }
-    })
-    .catch(console.log);
+      })
+      .catch(console.log);
   }
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {

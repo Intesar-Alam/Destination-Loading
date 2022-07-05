@@ -58,7 +58,11 @@ function Login() {
             return;
           }
           auth.login(data.jwt_token);
-          // TODO add if statements based on user to navigate to correct page on login, add if statement if not a user to send to new user login/register page'
+          if(auth.user === null){
+            console.log("user is null");
+          }
+          console.log(auth.user);
+          // TODO add if statements based on user to navigate to correct page on login, add if statement if not a user to send to new user login/register page'git
           navigate('/');
         } else {
           setErrors(data);
@@ -66,6 +70,22 @@ function Login() {
       })
       .catch(console.log);
   };
+
+  const handleRedirect = () => {
+    if (auth === undefined || auth.user === null) {
+      navigate('/');
+      return;
+    }
+    if (auth.user.hasRole('USER')) {
+      navigate(`/userreservationlist/user`)
+    } else if (auth.user.hasRole('ADMIN')) {
+      navigate("/adminpage");
+    } else if (auth.user.hasRole('REP')) {
+      // navigate(`/companypage/${auth.user.}`);
+    } else {
+      navigate("/newuserlogin")
+    }
+  }
 
   const handleUsernameChange = ((event: React.ChangeEvent<HTMLInputElement>): void => {
     setUsername(event.target.value);
