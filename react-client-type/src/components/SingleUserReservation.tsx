@@ -14,6 +14,7 @@ type Reservation = {
   reservationDate: string,
   reservationCode: string,
   reservationTitle: string,
+  reservationIcon?: string,
   companyName?: string,
   url?: string
 };
@@ -29,6 +30,7 @@ function SingleUserReservation() {
     reservationDate: "",
     reservationCode: "",
     reservationTitle: "",
+    reservationIcon: "",
     companyName: "",
     url: "",
   });
@@ -83,6 +85,7 @@ function SingleUserReservation() {
             reservationDate: reservation.reservationDate,
             reservationCode: reservation.reservationCode,
             reservationTitle: reservation.reservationTitle,
+            reservationIcon: company.icon,
             companyName: company.companyName,
             url: company.url
           })
@@ -156,7 +159,7 @@ function SingleUserReservation() {
               <td>{reservation['reservationTitle']}</td>
               <td>{reservation['reservationDate']}</td>
               <td>{reservation['companyName']}</td>
-              <td><a href={reservation['url']} target="blank">{reservation['url']}</a></td>
+              <td><img src={reservation['reservationIcon']} style={{ width: '32px'}} />&nbsp;<a href={reservation['url']} target="blank">{reservation['url']}</a></td>
               <td>{reservation['reservationCode']}&nbsp;<Button className="text-white" onClick={() => copyReservation(reservation['reservationCode'])}>Copy</Button></td>
               <td><Button className="text-white" onClick={() => copyJump(reservation['reservationCode'])}>Copy & Jump to page</Button></td>
             </tr>
