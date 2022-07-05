@@ -34,7 +34,7 @@ function ReservationAddForm() {
 
   const [companies, setCompanies] = useState([]);
 
-  const [errors, setErrors] = useState([]);
+  const [errors, setErrors] = useState<string[]>([]);
 
   const auth = useContext(AuthContext);
 
