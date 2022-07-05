@@ -25,6 +25,11 @@ function Login() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    if (auth === undefined || auth.user === null) {
+      navigate('/');
+      return;
+    }
+
     const authAttempt = {
       username,
       password
@@ -54,10 +59,7 @@ function Login() {
         if (data) {
           // decode token
           auth.login(data);
-          if (auth === undefined || auth.user === null) {
-            navigate('/');
-            return;
-          }
+          
           console.log(data);
           if (data.auth.user.hasRole('USER')) {
             navigate(`/userreservationlist/user`)
