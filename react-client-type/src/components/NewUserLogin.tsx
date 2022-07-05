@@ -63,8 +63,8 @@ function NewUserLogin() {
       })
       .then(data => {
         if (data) {
-          console.log(data);
-          console.log(`app user ID is ${data['appUserId']}`);
+          // console.log(data);
+          // console.log(`app user ID is ${data['appUserId']}`);
           if (data['appUserId']) {
             const authAttempt = {
               username: appUser['username'],
