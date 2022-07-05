@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from 'react';
-import { useNavigate, useParams, Link } from 'react-router-dom';
+import { useNavigate, useParams, Link, Navigate } from 'react-router-dom';
 
 
 import Form from 'react-bootstrap/Form';
@@ -36,6 +36,8 @@ function UserAddForm() {
 
   const auth = useContext(AuthContext);
 
+  const navigate = useNavigate();
+
   const { id } = useParams();
 
   useEffect(() => {
@@ -49,8 +51,11 @@ function UserAddForm() {
           }
         })
         .then(data => {
+          console.log(`${data['appUserId']}`);
           if (data['appUserId']) {
             setUserAccount(data);
+          }else{
+
           }
         })
     }
@@ -64,6 +69,7 @@ function UserAddForm() {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setUserAccount({ ...userAccount, [event.target.name]: event.target.value });
   };
+
 
   return (
     <>
