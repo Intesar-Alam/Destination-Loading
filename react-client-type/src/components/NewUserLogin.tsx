@@ -23,7 +23,7 @@ function NewUserLogin() {
     username: "",
     password: "",
     companyId: 1
-  });
+  })
 
   const [confirmPassword, setConfirmPassword] = useState<string>("");
 
@@ -33,13 +33,12 @@ function NewUserLogin() {
 
   const navigate = useNavigate();
 
-  // TODO implement security/authController
-  //TODO fix auth to pass token
+  
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
-    if (confirmPassword !== appUser['password']) {
+    
+    if(confirmPassword !== appUser['password']){
       setErrors(["Passwords do not match"]);
       return;
     }
@@ -53,64 +52,26 @@ function NewUserLogin() {
     };
 
     fetch('http://localhost:8080/api/appuser', init)
-      .then(response => {
-        if (response.status === 201 || response.status == 400) {
-          console.log("Valid Response");
-          return response.json();
-        } else {
-          return Promise.reject(`Unexpected status code: ${response.status}`);
+    .then(response => {
+      if(response.status === 201 || response.status == 400){
+        console.log("Valid Response");
+        return response.json();
+      }else{
+        return Promise.reject(`Unexpected status code: ${response.status}`);
+      }
+    })
+    .then(data =>{
+      if(data) {
+        console.log(`app user ID is ${data['appUserId']}`);
+        if(data['appUserId']){
+          
+          navigate('/useraddform');
+        }else{
+          setErrors(data);
         }
-      })
-      .then(data => {
-        if (data) {
-          console.log(data);
-          console.log(`app user ID is ${data['appUserId']}`);
-          if (data['appUserId']) {
-            const authAttempt = {
-              username: appUser['username'],
-              password: appUser['password']
-            };
-
-            const init = {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify(authAttempt)
-            };
-
-            fetch('http://localhost:8080/api/authenticate', init)
-              .then(response => {
-                console.log(response);
-                if (response.status === 200) {
-                  return response.json();
-                } else if (response.status === 403) {
-                  return null;
-                } else {
-                  return Promise.reject(`Unexpected status code: ${response.status}`);
-                }
-              })
-              .then(data => {
-                console.log(data);
-                if (data) {
-                  if (auth === undefined) {
-                    console.log("Something went wrong");
-                    navigate('/login');
-                    return;
-                  }
-                  auth.login(data.jwt_token);
-                  navigate(`/useraddform`);
-                } else {
-                  setErrors(data);
-                }
-              })
-            // navigate(`/useraddform/${data['appUserId']}`);
-          } else {
-            setErrors(data);
-          }
-        }
-      })
-      .catch(console.log);
+      }
+    })
+    .catch(console.log);
   }
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
@@ -119,13 +80,13 @@ function NewUserLogin() {
 
   const handleConfirmChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setConfirmPassword(event.target.value);
-    if (event.target.value === appUser['password']) {
+    if(event.target.value === appUser['password']){
       setErrors([]);
-    } else {
+    }else{
       setErrors(["Passwords do not match"]);
     }
   };
-
+  
 
   // fetch('http://localhost:8080/api/authenticate', init)
 
@@ -140,19 +101,19 @@ function NewUserLogin() {
             <Form.Group as={Row} className="my-2 ms-3" controlId="formUsername">
               <Form.Label column sm={2}>Username</Form.Label>
               <Col sm={9}>
-                <Form.Control type="text" placeholder="Username" name="username" value={appUser['username']} onChange={handleChange} />
+                <Form.Control type="text" placeholder="Username" name="username" value={appUser['username']} onChange={handleChange}/>
               </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-2 ms-3" controlId="formPassword">
               <Form.Label column sm={2}>Password</Form.Label>
               <Col sm={9}>
-                <Form.Control type="password" placeholder="Password" name="password" value={appUser['password']} onChange={handleChange} />
+                <Form.Control type="password" placeholder="Password" name="password" value={appUser['password']} onChange={handleChange}/>
               </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-2 ms-3" controlId="formConfirmPassword">
               <Form.Label column sm={2}>Confirm Password</Form.Label>
               <Col sm={9}>
-                <Form.Control type="password" placeholder="Confirm Password" name="confirmPassword" value={confirmPassword} onChange={handleConfirmChange} />
+                <Form.Control type="password" placeholder="Confirm Password" name="confirmPassword" value={confirmPassword} onChange={handleConfirmChange}/>
               </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-3">
