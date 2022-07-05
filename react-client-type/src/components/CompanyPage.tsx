@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useState, useEffect, useContext } from 'react';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 
 import Table from 'react-bootstrap/Table';
 import Container from 'react-bootstrap/Container';
+import AuthContext from '../AuthContext';
 
 // TODO styling
 type COMPANY_DEFAULT = {
@@ -22,11 +23,24 @@ function CompanyPage() {
     transportationMode: "",
   });
 
+  const auth = useContext(AuthContext);
+
   const { id } = useParams();
 
+  const navigate = useNavigate();
+
   useEffect(() => {
+    if (auth === undefined || auth.user === null) {
+      navigate('/login');
+      return;
+    }
+    const init = {
+      headers: {
+        'Authorization': `Bearer ${auth.user.token}`
+      },
+    };
     if (id) {
-      fetch(`http://localhost:8080/api/company/${id}`)
+      fetch(`http://localhost:8080/api/company/${id}`, init)
         .then(response => {
           if (response.status === 200) {
             return response.json();

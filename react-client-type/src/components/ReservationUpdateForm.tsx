@@ -177,7 +177,7 @@ const updateReservation = () => {
               <Col sm={9}>
                 <Form.Select aria-label="Select Company" name="companyId" value={reservation['companyId']} onChange={handleSelectChange}>
                   {companies.map(company => (
-                    <option key={company['comanyId']}>{company['companyName']}</option>
+                    <option key={company['comanyId']} value={company['companyId']}>{company['companyName']}</option>
                   ))}
                 </Form.Select>
               </Col>
