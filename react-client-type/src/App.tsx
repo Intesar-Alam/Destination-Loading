@@ -64,7 +64,8 @@ function App() {
 
   const [restoreLoginAttemptCompleted, setRestoreLoginAttemptCompleted] = useState(false);
 
-  // const auth = useContext(AuthContext);
+  
+  
   useEffect(() => {
     const token = localStorage.getItem(DL_TOKEN_KEY);
     if(token) {
@@ -104,6 +105,7 @@ const auth = {
   login,
   logout
 };
+
 
   if(!restoreLoginAttemptCompleted) {
     return null;
