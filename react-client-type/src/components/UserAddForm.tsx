@@ -44,7 +44,8 @@ function UserAddForm() {
   useEffect(() => {
     console.log(`${auth}`);
     if (auth === undefined || auth.user === null) {
-      // navigate("/"); // 403 Error
+      window.alert('You must be logged in to access this feature');
+      navigate('/');
       return;
     }
 
@@ -67,6 +68,7 @@ function UserAddForm() {
       .then(data => {
         console.log(`${data['appUserId']}`);
         if (data['appUserId']) {
+          console.log("account already exists");
           account = true;
           setUserAccount(data);
         } else {
@@ -107,11 +109,10 @@ function UserAddForm() {
         })
         .then(data => {
           console.log(data)
-          if (data) {
-            console.log(data);
-            setErrors(data);
+          if (!data) {
+            navigate(`/userreservationlist`);
           } else {
-            navigate('/');
+            setErrors(data);
           }
         })
         .catch(console.log);
@@ -140,7 +141,7 @@ function UserAddForm() {
           console.log(data)
           if (data['appUserId']) {
             console.log(data);
-            navigate('/');
+            navigate('/userreservationlist');
           } else {
             setErrors(data);
           }
