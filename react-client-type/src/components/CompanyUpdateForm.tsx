@@ -88,6 +88,7 @@ function CompanyUpdateForm() {
 
     fetch(`http://localhost:8080/api/company/${id}`, init)
       .then(response => {
+        console.log(response);
         if (response.status === 204) {
           return null;
         } else if (response.status === 400) {
