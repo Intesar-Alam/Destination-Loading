@@ -24,10 +24,11 @@ function MenuBar() {
               <NavDropdown.Item href="/">Home</NavDropdown.Item>
               <NavDropdown.Item href="/learnmore">Learn More</NavDropdown.Item>
               <NavDropdown.Item href="/userreservationlist">View Reservations</NavDropdown.Item>
-              <NavDropdown.Item href="/aboutus">About Us</NavDropdown.Item>
+              <NavDropdown.Item href="/learnmore">About Us</NavDropdown.Item>
               <NavDropdown.Item href="/contact">Contact</NavDropdown.Item>
             </NavDropdown>
           </Nav>
+          
           {(auth === undefined || auth.user === null) && (
             <>
               <Navbar.Text className="me-2"><a href="/newuserlogin">Sign-up</a></Navbar.Text>
@@ -36,6 +37,9 @@ function MenuBar() {
           )}
           {auth && auth.user && (
             <Button onClick={() => auth.logout()}>Logout</Button>
+          )}
+          {auth && auth.user && auth.user.hasRole('ADMIN') &&(
+            <Button>Admin</Button>
           )}
         </Container>
       </Navbar>

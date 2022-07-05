@@ -85,7 +85,7 @@ function UserAddForm() {
       return;
     }
 
-    if (account) {
+    if (userAccount['appUserId']) {
       //PUT
       const init = {
         method: 'PUT',
@@ -129,7 +129,7 @@ function UserAddForm() {
 
       fetch('http://localhost:8080/api/useraccount', init)
         .then(response => {
-          if (response.status === 204 || response.status === 400) {
+          if (response.status === 201 || response.status === 400) {
             console.log(response);
             return response.json();
           } else {
@@ -138,11 +138,11 @@ function UserAddForm() {
         })
         .then(data => {
           console.log(data)
-          if (data) {
+          if (data['appUserId']) {
             console.log(data);
-            setErrors(data);
-          } else {
             navigate('/');
+          } else {
+            setErrors(data);
           }
         })
         .catch(console.log);

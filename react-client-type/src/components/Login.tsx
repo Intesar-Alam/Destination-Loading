@@ -63,7 +63,8 @@ function Login() {
           }
           console.log(auth.user);
           // TODO add if statements based on user to navigate to correct page on login, add if statement if not a user to send to new user login/register page'git
-          navigate('/');
+          // navigate('/');
+          handleRedirect();
         } else {
           setErrors(data);
         }
@@ -73,12 +74,16 @@ function Login() {
 
   const handleRedirect = () => {
     if (auth === undefined || auth.user === null) {
+      console.log("failed");
       navigate('/');
       return;
     }
+    console.log("passed");
     if (auth.user.hasRole('USER')) {
+      console.log("user");
       navigate(`/userreservationlist/user`)
     } else if (auth.user.hasRole('ADMIN')) {
+      console.log("admin");
       navigate("/adminpage");
     } else if (auth.user.hasRole('REP')) {
       // navigate(`/companypage/${auth.user.}`);
