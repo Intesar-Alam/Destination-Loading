@@ -100,12 +100,7 @@ function CompanyUpdateForm() {
       .then(data => {
         console.log(data);
         if (!data) {
-          if (data.auth.user.hasRole('ADMIN')) {
-            navigate("/companylist");
-          } else if (data.auth.user.hasRole('REP')) {
-            navigate(`/companypage/${id}`);
-          }
-          // navigate(`/companypage/${id}`);
+         navigate(`/companypage/${id}`);
         } else {
           setErrors(data);
         }
@@ -156,12 +151,7 @@ function CompanyUpdateForm() {
               <Row>
                 <Col md={{ span: 5, offset: 7 }}>
                   <Button type="submit" className="me-2">Update Company</Button>
-                  {auth && auth.user && auth.user.hasRole('ADMIN') && (
-                    <Link className="btn btn-primary" to="/companylist">Cancel</Link>
-                  )}
-                  {auth && auth.user && auth.user.hasRole('REP') && (
                     <Link className="btn btn-primary" to={`/companypage/${id}`}>Cancel</Link>
-                  )}
                 </Col>
               </Row>
             </Form.Group>
