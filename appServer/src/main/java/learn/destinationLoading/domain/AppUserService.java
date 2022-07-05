@@ -56,6 +56,13 @@ public class AppUserService implements UserDetailsService {
         if (username.length() > 255) {
             throw new ValidationException("username must be less than 255 characters");
         }
+
+        try{
+            loadUserByUsername(username);
+            throw new ValidationException("username is already in use");
+        }catch(UsernameNotFoundException ex){
+            //continue no issues
+        }
     }
 
     private void validatePassword(String password) {

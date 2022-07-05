@@ -85,7 +85,7 @@ function UserAddForm() {
       return;
     }
 
-    if (account) {
+    if (userAccount['appUserId']) {
       //PUT
       const init = {
         method: 'PUT',
@@ -138,11 +138,11 @@ function UserAddForm() {
         })
         .then(data => {
           console.log(data)
-          if (data) {
+          if (data['appUserId']) {
             console.log(data);
-            setErrors(data);
-          } else {
             navigate('/');
+          } else {
+            setErrors(data);
           }
         })
         .catch(console.log);
