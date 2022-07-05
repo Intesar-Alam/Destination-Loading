@@ -65,7 +65,7 @@ function NewUserLogin() {
         console.log(`app user ID is ${data['appUserId']}`);
         if(data['appUserId']){
           //TODO set auth context here
-          navigate('/useraddform');
+          navigate(`/useraddform/${data['appUserId']}`);
         }else{
           setErrors(data);
         }

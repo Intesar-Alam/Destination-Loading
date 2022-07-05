@@ -40,9 +40,22 @@ function UserAddForm() {
 
   const { id } = useParams();
 
+  let account = false;
+
   useEffect(() => {
+    if(auth === undefined || auth.user === null){
+      navigate("/"); // 403 Error
+      return;
+    }
+    const init = {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${auth.user.token}`
+      },
+    };
+
     if (id) {
-      fetch(`http://localhost:8080/api/useraccount/${id}`)
+      fetch(`http://localhost:8080/api/useraccount/user`, init)
         .then(response => {
           if (response.status === 200) {
             return response.json();
@@ -53,6 +66,7 @@ function UserAddForm() {
         .then(data => {
           console.log(`${data['appUserId']}`);
           if (data['appUserId']) {
+            account = true;
             setUserAccount(data);
           }else{
 
@@ -63,7 +77,75 @@ function UserAddForm() {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log("Do something");
+
+    if(auth === undefined || auth.user === null){
+      navigate("/"); // 403 Error
+      return;
+    }
+
+    if(account){
+      //PUT
+      const init = {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${auth.user.token}`
+        },
+        body: JSON.stringify(userAccount)
+      };
+
+      fetch(`http://localhost:8080/api/useraccount/${auth.user.appUserId}`, init)
+      .then(response => {
+        if (response.status === 204 || response.status === 400) {
+          console.log(response);
+          return response.json();
+        } else {
+          return Promise.reject(`Unexpected status code: ${response.status}`);
+        }
+      })
+      .then(data => {
+        console.log(data)
+        if (data) {
+          console.log(data);
+          setErrors(data);
+        } else {
+          navigate('/');
+        }
+      })
+      .catch(console.log);
+
+    }else{
+      //POST
+      const init = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${auth.user.token}`
+        },
+        body: JSON.stringify(userAccount)
+      };
+
+      fetch('http://localhost:8080/api/useraccount', init)
+      .then(response => {
+        if (response.status === 204 || response.status === 400) {
+          console.log(response);
+          return response.json();
+        } else {
+          return Promise.reject(`Unexpected status code: ${response.status}`);
+        }
+      })
+      .then(data => {
+        console.log(data)
+        if (data) {
+          console.log(data);
+          setErrors(data);
+        } else {
+          navigate('/');
+        }
+      })
+      .catch(console.log);
+      
+    }
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
