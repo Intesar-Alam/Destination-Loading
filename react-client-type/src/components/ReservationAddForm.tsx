@@ -166,14 +166,9 @@ function ReservationAddForm() {
               </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-3">
-              <Col sm={{ offset: 8 }}>
-                <Button type="submit">Create Reservation</Button>
-              </Col>
-            </Form.Group>
-            {/* TODO add userId to reservationlist! */}
-            <Form.Group as={Row}>
-              <Col sm={{ offset: 8 }}>
-              <Link className="btn btn-primary" to={`/userreservationlist/${reservation['appUserId']}`}>Cancel</Link>
+              <Col sm={{ offset: 7 }}>
+                <Button type="submit"className="me-3">Create Reservation</Button>
+                <Link className="btn btn-primary" to={`/userreservationlist/${reservation['appUserId']}`}>Cancel</Link>
               </Col>
             </Form.Group>
           </Form>

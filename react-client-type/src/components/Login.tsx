@@ -63,8 +63,8 @@ function Login() {
           }
           console.log(auth.user);
           // TODO add if statements based on user to navigate to correct page on login, add if statement if not a user to send to new user login/register page'git
-          // navigate('/');
-          handleRedirect();
+          navigate('/');
+          // handleRedirect();
         } else {
           setErrors(data);
         }
@@ -79,16 +79,16 @@ function Login() {
       return;
     }
     console.log("passed");
-    if (auth.user.hasRole('USER')) {
+    if (auth.user.hasRole('ROLE_USER')) {
       console.log("user");
-      navigate(`/userreservationlist/user`)
-    } else if (auth.user.hasRole('ADMIN')) {
+      navigate(`/userreservationlist/user`);
+    } else if (auth.user.hasRole('ROLE_ADMIN')) {
       console.log("admin");
       navigate("/adminpage");
-    } else if (auth.user.hasRole('REP')) {
+    } else if (auth.user.hasRole('ROLE_REP')) {
       // navigate(`/companypage/${auth.user.}`);
     } else {
-      navigate("/newuserlogin")
+      navigate("/newuserlogin");
     }
   }
 
@@ -112,7 +112,7 @@ function Login() {
             <Form.Group as={Row} className="my-2 ms-3" controlId="formUsername">
               <Form.Label column sm={2}>Username</Form.Label>
               <Col sm={9}>
-                <Form.Control type="text" placeholder="Username" name="username" value={username} onChange={handleUsernameChange} />
+                <Form.Control type="text" placeholder="example@gmail.com" name="username" value={username} onChange={handleUsernameChange} />
               </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-2 ms-3" controlId="formPassword">

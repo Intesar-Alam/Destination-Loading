@@ -89,11 +89,11 @@ function CompanyList() {
                 <td>{company['transportationMode']}</td>
                 <td>
                   <Row>
-                    <Col className="col-md-6">
+                    {/* <Col className="col-md-6">
                       <Link className="btn btn-primary btn-sm mr-2" to={`/company/${company['companyId']}`}>
                         <i className="bi bi-pencil-square"></i>
                       </Link>
-                    </Col>
+                    </Col> */}
                     <Col className="col-md-6">
                       <Button className="btn btn-danger btn-sm" onClick={() => handleDeleteCompany(company['companyId'])}>
                         <i className="bi bi-trash"></i>

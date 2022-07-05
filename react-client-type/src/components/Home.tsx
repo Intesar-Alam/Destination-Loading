@@ -67,7 +67,7 @@ function Home() {
             <Link style={{ textDecoration: 'none' }} to="/userreservationlist">
               <Card bg="primary" style={{ width: '18rem', height: '6rem' }} className="me-5">
                 <Card.Body>
-                  <Card.Title as="h2" className="text-white text-center my-2">User Login</Card.Title>
+                  <Card.Title as="h2" className="text-white text-center my-2">Reservations!</Card.Title>
                 </Card.Body>
               </Card>
             </Link>
@@ -85,7 +85,7 @@ function Home() {
             <Link style={{ textDecoration: 'none' }} to={`/companypage/${auth?.user?.companyId}`}>
               <Card bg="warning" style={{ width: '18rem', height: '6rem' }} className="me-5">
                 <Card.Body>
-                  <Card.Title as="h2" className="text-white text-center my-2">Company Login</Card.Title>
+                  <Card.Title as="h2" className="text-white text-center my-2">Company Page</Card.Title>
                 </Card.Body>
               </Card>
             </Link>

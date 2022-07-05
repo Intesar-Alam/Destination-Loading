@@ -137,7 +137,7 @@ function NewUserLogin() {
             <Form.Group as={Row} className="my-2 ms-3" controlId="formUsername">
               <Form.Label column sm={2}>Username</Form.Label>
               <Col sm={9}>
-                <Form.Control type="text" placeholder="Username" name="username" value={appUser['username']} onChange={handleChange}/>
+                <Form.Control type="text" placeholder="example@gmail.com" name="username" value={appUser['username']} onChange={handleChange}/>
               </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-2 ms-3" controlId="formPassword">

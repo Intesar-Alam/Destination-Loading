@@ -42,25 +42,25 @@ function SingleUserReservation() {
     const init = {
       headers: {
         'Authorization': `Bearer ${auth.user.token}`
-    }, 
+      },
     };
-      fetch(`http://localhost:8080/api/reservation/${id}`, init)
-        .then(response => {
-          if (response.status === 200) {
-            return response.json();
-          } else {
-            return Promise.reject(`Unexpected status code: ${response.status}`);
-          }
-        })
-        .then(data => {
-          setReservation(data);
-          // getCompanyData(data)
-        })
-        .catch(console.log);
+    fetch(`http://localhost:8080/api/reservation/${id}`, init)
+      .then(response => {
+        if (response.status === 200) {
+          return response.json();
+        } else {
+          return Promise.reject(`Unexpected status code: ${response.status}`);
+        }
+      })
+      .then(data => {
+        setReservation(data);
+        // getCompanyData(data)
+      })
+      .catch(console.log);
 
   }, [auth, id]);
 
-  if(reservation === null){
+  if (reservation === null) {
     return null;
   }
 
@@ -120,13 +120,13 @@ function SingleUserReservation() {
     }
   };
 
-  const copyReservation = (reservationCode: string, event : any) => {
+  const copyReservation = (reservationCode: string, event: any) => {
     event.preventDefault();
     window.navigator.clipboard.writeText(reservationCode);
   };
 
   const copyJump = (reservationCode: string) => {
-    if(reservation.company.url === undefined){
+    if (reservation.company.url === undefined) {
       return;
     }
     window.navigator.clipboard.writeText(reservationCode).then(() => {
@@ -156,8 +156,8 @@ function SingleUserReservation() {
               <td>{reservation.reservationTitle}</td>
               <td>{reservation.reservationDate}</td>
               <td>{reservation.company.companyName}</td>
-              <td><img src={reservation.company.icon} style={{ width: '32px'}} />&nbsp;<a href={reservation.company.url} target="blank">{reservation.company.url}</a></td>
-              <td><a href={''} onClick={(event) => copyReservation(reservation.reservationCode, event)}>{reservation.reservationCode}</a></td>
+              <td><img src={reservation.company.icon} style={{ width: '32px' }} />&nbsp;<a href={reservation.company.url} target="blank">{reservation.company.url}</a></td>
+              <td>{reservation.reservationCode}</td>
               <td><Button className="text-white" onClick={() => copyJump(reservation.reservationCode)}>Copy and Jump to page</Button></td>
             </tr>
           </tbody>

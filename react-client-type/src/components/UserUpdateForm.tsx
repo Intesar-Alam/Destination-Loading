@@ -150,7 +150,7 @@ function UserUpdateForm() {
           if (response.status === 204) {
             const newUser = users.filter(user => user['appUserId'] !== appUserId);
             setUsers(newUser);
-            navigate('/userlist');
+            navigate('/userreservationlist/');
           } else {
             return Promise.reject(`Unexpected status code: ${response.status}`);
           }

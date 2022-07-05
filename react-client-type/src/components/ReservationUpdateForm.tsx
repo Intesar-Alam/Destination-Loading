@@ -183,13 +183,9 @@ const updateReservation = () => {
               </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-3">
-              <Col sm={{ offset: 8 }}>
-                <Button type="submit">Update Reservation</Button>
-              </Col>
-            </Form.Group>
-            <Form.Group as={Row}>
-              <Col sm={{ offset: 8 }}>
-              <Link className="btn btn-primary" to={`/userreservationlist`}>Cancel</Link>
+              <Col sm={{ offset: 7 }}>
+                <Button type="submit" className="me-3">Update Reservation</Button>
+                <Link className="btn btn-primary" to={`/userreservationlist`}>Cancel</Link>
               </Col>
             </Form.Group>
           </Form>
