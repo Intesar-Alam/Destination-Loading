@@ -12,7 +12,6 @@ import AuthContext from '../AuthContext';
 // TODO styling
 function MenuBar() {
   const auth = useContext(AuthContext);
-  console.log(auth);
 
   return (
     <>
