@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { BrowserRouter, Routes, Route, Link, useRoutes } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link, useRoutes, useNavigate } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 
 import Home from './components/Home';
@@ -96,6 +96,7 @@ function App() {
   const logout = () => {
     setUser(null);
     localStorage.removeItem(DL_TOKEN_KEY);
+    // navigate("/");
   };
 
 const auth = {
