@@ -12,7 +12,6 @@ import AuthContext from '../AuthContext';
 // TODO styling
 function MenuBar() {
   const auth = useContext(AuthContext);
-  console.log(auth);
 
   return (
     <>
@@ -29,13 +28,13 @@ function MenuBar() {
               <NavDropdown.Item href="/contact">Contact</NavDropdown.Item>
             </NavDropdown>
           </Nav>
-          {(auth.user === null) && (
+          {(auth === undefined || auth.user === null) && (
             <>
               <Navbar.Text className="me-2"><a href="/newuserlogin">Sign-up</a></Navbar.Text>
               <Button href="/login">Login</Button>
             </>
           )}
-          {auth.user && (
+          {auth && auth.user && (
             <Button onClick={() => auth.logout()}>Logout</Button>
           )}
         </Container>
