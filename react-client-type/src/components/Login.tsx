@@ -53,6 +53,7 @@ function Login() {
         console.log(data);
         if (data) {
           // decode token
+          auth.login(data);
           if (auth === undefined || auth.user === null) {
             navigate('/');
             return;

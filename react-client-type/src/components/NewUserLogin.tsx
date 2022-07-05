@@ -34,6 +34,7 @@ function NewUserLogin() {
   const navigate = useNavigate();
 
   // TODO implement security/authController
+  //TODO fix auth to pass token
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -62,9 +63,18 @@ function NewUserLogin() {
     })
     .then(data =>{
       if(data) {
+        console.log(data);
         console.log(`app user ID is ${data['appUserId']}`);
         if(data['appUserId']){
-          //TODO set auth context here
+          // console.log(auth);
+          // //TODO set auth context here
+          // //fails here
+          // if(auth === undefined || auth.user === null){
+          //   return;
+          // }
+          // console.log("passed");
+          // auth.user = data;
+          // console.log(auth.user);
           navigate(`/useraddform/${data['appUserId']}`);
         }else{
           setErrors(data);

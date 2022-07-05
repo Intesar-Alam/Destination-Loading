@@ -41,12 +41,15 @@ function UserAddForm() {
   const { id } = useParams();
 
   let account = false;
+  //TODO fix authenticate bug
 
   useEffect(() => {
+    console.log(`${auth}`);
     if(auth === undefined || auth.user === null){
-      navigate("/"); // 403 Error
+      // navigate("/"); // 403 Error
       return;
     }
+    
     const init = {
       method: 'GET',
       headers: {
@@ -79,7 +82,7 @@ function UserAddForm() {
     event.preventDefault();
 
     if(auth === undefined || auth.user === null){
-      navigate("/"); // 403 Error
+      // navigate("/"); // 403 Error
       return;
     }
 
