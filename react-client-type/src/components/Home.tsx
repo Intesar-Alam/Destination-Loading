@@ -79,23 +79,12 @@ function Home() {
               </Card>
             </Link>
           </Col>
-          {((auth === undefined || auth.user === null || (auth?.user?.hasRole("ROLE_USER"))) && (
+          {((auth === undefined || auth.user === null || (auth?.user?.hasRole("ROLE_USER")) || (auth?.user?.hasRole("ROLE_REP"))) && (
             <Col>
               <Link className="cardLink" to="/companylist">
                 <Card className="secondaryColor me-5">
                   <Card.Body>
                     <Card.Title className="buttonTitle2 text-center">Companies We Support</Card.Title>
-                  </Card.Body>
-                </Card>
-              </Link>
-            </Col>
-          ))}
-          {((auth?.user?.hasRole("ROLE_REP")) && (
-            <Col>
-              <Link className="cardLink" to={`/companypage/${auth?.user?.companyId}`}>
-                <Card className="secondaryColor me-5">
-                  <Card.Body>
-                    <Card.Title className="buttonTitle text-center my-2">Company Page</Card.Title>
                   </Card.Body>
                 </Card>
               </Link>
@@ -139,7 +128,7 @@ function Home() {
                 <Card.Text>
                   Learn more about the best way to rack up travel points as well as more tips and tricks to make your travel easier.
                 </Card.Text>
-                <Button className="pageButton" href="https://thepointsguy.com/">Check out NYC</Button>
+                <Button className="pageButton" href="https://thepointsguy.com/">Visit The Points Guy</Button>
               </Card.Body>
             </Card>
           </Col>
@@ -151,7 +140,7 @@ function Home() {
                 <Card.Text>
                   Get customized itineries for any destination in the country, reduce the stress of figuring things out on your own
                 </Card.Text>
-                <Button className="pageButton" href="https://trip-planner.visittheusa.com/">Check out NYC</Button>
+                <Button className="pageButton" href="https://trip-planner.visittheusa.com/">Travel the USA</Button>
               </Card.Body>
             </Card>
           </Col>

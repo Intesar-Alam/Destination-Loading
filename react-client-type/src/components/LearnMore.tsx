@@ -5,7 +5,9 @@ import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-import JumboImage from '../images/travelers.jpg';
+import JasonImg from '../images/people/Jason.jpg';
+import IntesarImg from '../images/people/Intesar.jpg';
+import AmandaImg from '../images/people/Amanda.jpg';
 
 
 // TODO styling, add photos, bios, and real text
@@ -30,7 +32,7 @@ function LearnMore() {
           <Card className="mb-3">
             <Row>
               <Col className="col-md-4">
-                <Card.Img src={JumboImage} />
+                <Card.Img src={JasonImg} />
               </Col>
               <Col className="col-md-8">
                 <Card.Body>
@@ -49,18 +51,18 @@ function LearnMore() {
               <Col className="col-md-8">
                 <Card.Body>
                   <Card.Title>Amanda</Card.Title>
-                  <Card.Text>Customer service and design have been a large part of my career. </Card.Text>
+                  <Card.Text>I am a customer service professional with a background in visual merchandising, design, and fine wine and spirits. It has been my business to create meaningful customer and client experiences, and I hope to take those skills to the next level by changing careers to develop interesting user experiences. By asking the right questions and always seeking new information, I will be an asset to any team, and I know how to pick out your new favorite bottle of wine. </Card.Text>
                 </Card.Body>
               </Col>
               <Col className="col-md-4">
-                <Card.Img src={JumboImage} />
+                <Card.Img src={AmandaImg} />
               </Col>
             </Row>
           </Card>
           <Card>
             <Row>
               <Col className="col-md-4">
-                <Card.Img src={JumboImage} />
+                <Card.Img src={IntesarImg} />
               </Col>
               <Col className="col-md-8">
                 <Card.Body>
