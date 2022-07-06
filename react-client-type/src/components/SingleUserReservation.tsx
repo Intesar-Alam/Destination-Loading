@@ -11,16 +11,8 @@ import Col from 'react-bootstrap/Col';
 import AuthContext from '../AuthContext';
 
 //Image imports find a better way please
-import AIR from '../images/companies/AIR.png';
-import RAIL from '../images/companies/RAIL.png';
-import GROUND from '../images/companies/GROUND.png';
-import WATER from '../images/companies/WATER.png';
-import AlaskaAirlines from '../images/companies/AlaskaAirlines.png';
-import AmericanAirlines from '../images/companies/AmericanAirlines.png';
-import Delta from '../images/companies/Delta.png';
-import JetBlue from '../images/companies/JetBlue.png';
-import Amtrak from '../images/companies/Amtrak.png';
-import Brightline from '../images/companies/Brightline.png';
+import CompanyImage from './CompanyImage';
+import Company from './CompanyImage';
 
 type Reservation = {
   reservationId: string | undefined,
@@ -42,59 +34,12 @@ type Reservation = {
 function SingleUserReservation() {
   // const [reservations, setReservations] = useState([]);
   const [reservation, setReservation] = useState<Reservation | null>(null);
-  const [JumboImage, setJumboImage] = useState<any>(null);
 
   const auth = useContext(AuthContext);
 
   const navigate = useNavigate();
 
   const { id } = useParams();
-
-  const setImage = (data: Reservation) => {
-    switch (data.company.transportationMode) {
-      case "AIR":
-        switch (data.company.companyName) {
-          case "Alaska Airlines":
-            setJumboImage(AlaskaAirlines);
-            break;
-          case "American Airlines":
-            setJumboImage(AmericanAirlines);
-            break;
-          case "Delta Air Lines":
-            setJumboImage(Delta);
-            break;
-          case "JetBlue":
-            setJumboImage(JetBlue);
-            break;
-          default:
-            setJumboImage(AIR);
-        }
-        break;
-      case "RAIL":
-        switch (data.company.companyName) {
-          case "Amtrak":
-            setJumboImage(Amtrak);
-            break;
-          case "Brightline":
-            setJumboImage(Brightline);
-            break;
-          default:
-            setJumboImage(RAIL);
-        }
-        break;
-      case "GROUND":
-        setJumboImage(GROUND);
-        break;
-      case "WATER":
-        setJumboImage(WATER);
-        break;
-      default:
-        setJumboImage(AIR);
-        break;
-    }
-
-    return;
-  };
 
   useEffect(() => {
     if (auth === undefined || auth.user === null) {
@@ -117,7 +62,6 @@ function SingleUserReservation() {
       })
       .then(data => {
         setReservation(data);
-        setImage(data);
       })
       .catch(console.log);
 
@@ -181,10 +125,10 @@ function SingleUserReservation() {
         <h3 style={{ textDecoration: "underline" }}>Reservation Details</h3>
         <Card className="mb-3">
           <Row>
-            <Col className="col-md-4">
-              <Card.Img src={JumboImage} />
+            <Col className="col-md-5">
+              <CompanyImage {...reservation.company} />
             </Col>
-            <Col className="col-md-8">
+            <Col className="col-md-7">
               <Card.Body>
                 <Card.Title>{dateConverter(reservation.reservationDate)}&nbsp;{reservation.reservationTitle}</Card.Title>
                 <Card.Text>

@@ -1,7 +1,5 @@
-import { useState, useEffect, useContext } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useState, useEffect} from 'react';
 
-import Container from 'react-bootstrap/Container';
 import { Card } from 'react-bootstrap';
 
 import AIR from '../images/companies/AIR.png';
@@ -15,65 +13,75 @@ import JetBlue from '../images/companies/JetBlue.png';
 import Amtrak from '../images/companies/Amtrak.png';
 import Brightline from '../images/companies/Brightline.png';
 
-export interface company {
-  companyName: string,
-  icon: string,
-  url: string,
-  transportationMode: string
+export interface Company {
+  companyName?: string,
+  icon?: string,
+  url?: string,
+  transportationMode?: string
 }
 
-function CompanyImage({companyName, icon, url, transportationMode}: company) {
+function CompanyImage({ companyName, icon, url, transportationMode }: Company) {
   const [JumboImage, setJumboImage] = useState<any>(null);
-  
+  const [altText, setAltText] = useState<string>("Generic Travel photo");
+
   useEffect(() => {
     switch (transportationMode) {
       case "AIR":
         switch (companyName) {
           case "Alaska Airlines":
             setJumboImage(AlaskaAirlines);
+            setAltText("Alaska Airlines plane in the sky");
             break;
           case "American Airlines":
             setJumboImage(AmericanAirlines);
+            setAltText("American Airlines plane in the sky");
             break;
           case "Delta Air Lines":
             setJumboImage(Delta);
+            setAltText("Delta Airlines plane in the sky");
             break;
           case "JetBlue":
             setJumboImage(JetBlue);
+            setAltText("JetBlue plane in the sky");
             break;
           default:
             setJumboImage(AIR);
+            setAltText("Plane in the sky");
         }
         break;
       case "RAIL":
         switch (companyName) {
           case "Amtrak":
             setJumboImage(Amtrak);
+            setAltText("Amtrak Train");
             break;
           case "Brightline":
             setJumboImage(Brightline);
+            setAltText("BrightLine Train");
             break;
           default:
             setJumboImage(RAIL);
+            setAltText("Train");
         }
         break;
       case "GROUND":
         setJumboImage(GROUND);
+        setAltText("Bus");
         break;
       case "WATER":
         setJumboImage(WATER);
+        setAltText("Cruise Ship");
         break;
       default:
         setJumboImage(AIR);
+        setAltText("Plane in the sky");
         break;
     }
   }, []);
 
-  return(
+  return (
     <>
-    <Container>
-      <Card.Img src={JumboImage} />
-    </Container>
+      <Card.Img src={JumboImage} alt={altText} />
     </>
   )
 }
