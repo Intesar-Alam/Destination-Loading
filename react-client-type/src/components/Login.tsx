@@ -83,7 +83,7 @@ function Login() {
     console.log("passed");
     if (auth.user.hasRole('ROLE_USER')) {
       console.log("user");
-      navigate(`/userreservationlist/user`);
+      navigate(`/userreservationlist`);
     } else if (auth.user.hasRole('ROLE_ADMIN')) {
       console.log("admin");
       navigate("/adminpage");
