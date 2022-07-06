@@ -28,7 +28,7 @@ function Home() {
       <Container>
         <Carousel className="mb-5">
           <Carousel.Item interval={5000}>
-            <img className="d-block w-100" src={Jumbotron1} alt="Beach alogn the water" />
+            <img className="d-block w-100" src={Jumbotron1} alt="Beach along the water" />
             <Carousel.Caption className="carouselCaption">
               <h3><img src="https://www.expedia.com/favicon.ico" className="carouselIconImg" /> Expedia</h3>
               <p>Check out our partner: Expedia Deal of the Day can save you money.</p>
@@ -82,15 +82,40 @@ function Home() {
               </Card>
             </Link>
           </Col>
-          <Col>
-            <Link className="cardLink" to="/companylist">
-              <Card className="secondaryColor me-5">
-                <Card.Body>
-                  <Card.Title className="buttonTitle text-center">Companies We Support</Card.Title>
-                </Card.Body>
-              </Card>
-            </Link>
-          </Col>
+          {((auth === undefined || auth.user === null || (auth?.user?.hasRole("ROLE_USER"))) && (
+            <Col>
+              <Link className="cardLink" to="/companylist">
+                <Card className="secondaryColor me-5">
+                  <Card.Body>
+                    <Card.Title className="buttonTitle text-center">Companies We Support</Card.Title>
+                  </Card.Body>
+                </Card>
+              </Link>
+            </Col>
+          ))}
+          {((auth?.user?.hasRole("ROLE_REP")) && (
+            <Col>
+              <Link className="cardLink" to={`/companypage/${auth?.user?.companyId}`}>
+                <Card className="secondaryColor me-5">
+                  <Card.Body>
+                    <Card.Title as="h2" className="text-white text-center my-2">Company Page</Card.Title>
+                  </Card.Body>
+                </Card>
+              </Link>
+            </Col>
+          ))}
+          {((auth?.user?.hasRole("ROLE_ADMIN")) && (
+            <Col>
+              <Link className="cardLink" to={`/companylist`}>
+                <Card className="secondaryColor me-5">
+                  <Card.Body>
+                    <Card.Title as="h2" className="text-white text-center my-2">Company List</Card.Title>
+                  </Card.Body>
+                </Card>
+              </Link>
+            </Col>
+          ))}
+
         </Row>
       </Container>
 
