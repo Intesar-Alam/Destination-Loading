@@ -68,7 +68,7 @@ function UserReservationList() {
         if (response.status === 200) {
           return response.json();
         } else if (response.status === 403) {
-          navigate('/forbidden');
+          navigate('/login');
           return;
         }
          else {
