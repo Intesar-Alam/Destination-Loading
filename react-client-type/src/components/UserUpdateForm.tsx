@@ -205,7 +205,7 @@ function UserUpdateForm() {
             <Form.Group as={Row} className="mb-3">
               <Col sm={{ offset: 8 }}>
                 <Button type="submit" className="me-3">Update User</Button>
-                <Link className="btn btn-primary" to={`/userreservationlist/${userAccount['appUserId']}`}>Cancel</Link>
+                <Link className="btn btn-primary" to={`/userreservationlist`}>Cancel</Link>
               </Col>
             </Form.Group>
             {/* {auth && auth.user && auth.user.hasRole('ROLE_ADMIN') && (
