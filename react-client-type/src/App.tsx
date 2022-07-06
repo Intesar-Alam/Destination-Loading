@@ -28,6 +28,7 @@ import UnderConstruction from './components/UnderConstruction';
 import Footer from './components/Footer';
 
 import AuthContext, { AuthObj } from './AuthContext';
+import Forbidden from './components/Forbidden';
 
  const DL_TOKEN_KEY = 'dlToken';
 export interface DecodedToken {
@@ -130,6 +131,7 @@ const auth = {
           <Route path="/reservationlist" element={<ReservationList />} />
           <Route path="/companylist" element={<CompanyList />} />
           <Route path="/underconstruction" element={<UnderConstruction />} />
+          <Route path ="/forbidden" element={<Forbidden />}></Route>
         </Routes>
         <Footer />
       </BrowserRouter>
