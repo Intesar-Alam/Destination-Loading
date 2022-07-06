@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 import Row from 'react-bootstrap/Row';
@@ -7,6 +8,9 @@ import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Carousel from 'react-bootstrap/Carousel';
 
+import AuthContext from '../AuthContext';
+import AdminMenuBar from './AdminMenuBar';
+
 import Jumbotron1 from '../images/jumbotron1.jpg';
 import Jumbotron2 from '../images/jumbotron2.png';
 import Jumbotron3 from '../images/jumbotron3.jpg';
@@ -14,10 +18,6 @@ import Plan1 from '../images/plan1.jpg';
 import Plan2 from '../images/plan2.jpg';
 import Plan3 from '../images/plan3.jpg';
 import TravelVlog from '../images/travelers.jpg';
-import { useContext } from 'react';
-import AuthContext from '../AuthContext';
-
-
 // TODO styling
 // TODO add pages to bottom cards
 function Home() {
@@ -25,19 +25,21 @@ function Home() {
   return (
     <>
 
+      {auth && auth.user && auth.user.hasRole('ROLE_ADMIN') && (
+        <AdminMenuBar />
+      )}
+
+
+
       <h1 className="text-center mt-5">Welcome to Destination Loading...</h1>
       <Container>
         <Carousel className="mb-5">
           <Carousel.Item interval={5000}>
-            <img
-              className="d-block w-100"
-              src={Jumbotron1}
-              alt="Beach along the water"
-            />
-            <Carousel.Caption style={{ backgroundColor: 'rgba(0, 0, 0, 0.4)' }}>
-              <h3><img src="https://www.expedia.com/favicon.ico" style={{ width: '32px' }} />&nbsp;Expedia</h3>
+            <img className="d-block w-100" src={Jumbotron1} alt="Beach alogn the water" />
+            <Carousel.Caption className="carouselCaption">
+              <h3><img src="https://www.expedia.com/favicon.ico" className="iconImg" /> Expedia</h3>
               <p>Check out our partner: Expedia Deal of the Day can save you money.</p>
-              <a href='https://www.expedia.com/deals' target='blank'><Button className="float-right">View Deals!</Button></a>
+              <a href='https://www.expedia.com/deals' target='_blank'><Button className="pageButton float-right">View Deals!</Button></a>
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item interval={5000}>
@@ -46,10 +48,10 @@ function Home() {
               src={Jumbotron2}
               alt="Man at an airport"
             />
-            <Carousel.Caption style={{ backgroundColor: 'rgba(0, 0, 0, 0.4)' }}>
-              <h3><img src="https://ssl.gstatic.com/travel-trips-fe/travel_logo_32.png" style={{ width: '32px' }} />&nbsp;Google</h3>
+            <Carousel.Caption className="carouselCaption">
+              <h3><img src="https://ssl.gstatic.com/travel-trips-fe/travel_logo_32.png" className="iconImg" /> Google</h3>
               <p>They gave us money to sell your data!</p>
-              <a href='https://www.google.com/travel/flights' target='blank'><Button className="float-right">View Deals!</Button></a>
+              <a href='https://www.google.com/travel/flights' target='_blank'><Button className="pageButton float-right">View Deals!</Button></a>
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item interval={5000}>
@@ -58,10 +60,10 @@ function Home() {
               src={Jumbotron3}
               alt="Amtrak observation car"
             />
-            <Carousel.Caption style={{ backgroundColor: 'rgba(0, 0, 0, 0.4)' }}>
-              <h3><img src="https://www.amtrak.com/etc/designs/dotcom-assets/images/favicon.ico" style={{ width: '32px' }} />&nbsp;Amtrak</h3>
+            <Carousel.Caption className="carouselCaption">
+              <h3><img src="https://www.amtrak.com/etc/designs/dotcom-assets/images/favicon.ico" className="iconImg" /> Amtrak</h3>
               <p>Travel across the country and while seeing everything in between.</p>
-              <a href='https://www.amtrak.com/promotions/deals.html' target='blank'><Button className="float-right">View Deals!</Button></a>
+              <a href='https://www.amtrak.com/promotions/deals.html' target='_blank'><Button className="pageButton float-right">View Deals!</Button></a>
             </Carousel.Caption>
           </Carousel.Item>
         </Carousel>
@@ -70,62 +72,39 @@ function Home() {
       <Container className="d-flex">
         <Row md={3} className="mx-auto mb-5">
           <Col>
-            <Link style={{ textDecoration: 'none' }} to="/userreservationlist">
-              <Card bg="primary" style={{ width: '18rem', height: '6rem' }} className="me-5">
+            <Link className="cardLink" to="/userreservationlist">
+              <Card className="primaryColor me-5">
                 <Card.Body>
-                  <Card.Title as="h2" className="text-white text-center my-2">Reservations!</Card.Title>
+                  <Card.Title className="buttonTitle text-center my-2">Reservations!</Card.Title>
                 </Card.Body>
               </Card>
             </Link>
           </Col>
           <Col>
-            <Link style={{ textDecoration: 'none' }} to="/learnmore">
-              <Card bg="secondary" style={{ width: '18rem', height: '6rem' }} className="me-5">
+            <Link className="cardLink" to="/learnmore">
+              <Card className="tertiaryColor me-5">
                 <Card.Body>
-                  <Card.Title as="h2" className="text-white text-center my-2">Learn More</Card.Title>
+                  <Card.Title className="buttonTitle text-center my-2">Learn More</Card.Title>
                 </Card.Body>
               </Card>
             </Link>
           </Col>
-          {((auth === undefined || auth.user === null) && (
-            <Col>
-              <Link style={{ textDecoration: 'none' }} to={`/contact`}>
-                <Card bg="warning" style={{ width: '18rem', height: '6rem' }} className="me-5">
-                  <Card.Body>
-                    <Card.Title as="h2" className="text-white text-center my-2">Contact Us</Card.Title>
-                  </Card.Body>
-                </Card>
-              </Link>
-            </Col>
-          ))}
+          <Col>
+            <Link className="cardLink" to={`/companypage/${auth?.user?.companyId}`}>
+              <Card className="secondaryColor me-5">
+                <Card.Body>
+                  <Card.Title className="buttonTitle text-center my-2">Company Page</Card.Title>
+                </Card.Body>
+              </Card>
+            </Link>
+          </Col>
+
           {((auth?.user?.hasRole("ROLE_REP")) && (
             <Col>
               <Link style={{ textDecoration: 'none' }} to={`/companypage/${auth?.user?.companyId}`}>
                 <Card bg="warning" style={{ width: '18rem', height: '6rem' }} className="me-5">
                   <Card.Body>
                     <Card.Title as="h2" className="text-white text-center my-2">Company Page</Card.Title>
-                  </Card.Body>
-                </Card>
-              </Link>
-            </Col>
-          ))}
-          {((auth?.user?.hasRole("ROLE_ADMIN")) && (
-            <Col>
-              <Link style={{ textDecoration: 'none' }} to={`/companylist`}>
-                <Card bg="warning" style={{ width: '18rem', height: '6rem' }} className="me-5">
-                  <Card.Body>
-                    <Card.Title as="h2" className="text-white text-center my-2">Company List</Card.Title>
-                  </Card.Body>
-                </Card>
-              </Link>
-            </Col>
-          ))}
-          {((auth?.user?.hasRole("ROLE_USER")) && (
-            <Col>
-              <Link style={{ textDecoration: 'none' }} to={`/reservationaddform`}>
-                <Card bg="warning" style={{ width: '18rem', height: '6rem' }} className="me-5">
-                  <Card.Body>
-                    <Card.Title as="h2" className="text-white text-center my-2">Add Reservation</Card.Title>
                   </Card.Body>
                 </Card>
               </Link>

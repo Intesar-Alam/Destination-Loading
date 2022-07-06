@@ -39,14 +39,15 @@ function ReservationList() {
       .catch(console.log);
   }, [auth]);
 
+  const length = reservations.length;
 
   return (
     <>
     <AdminMenuBar />
       <h1 className="text-center mb-5">All Reservations</h1>
       <Container>
-        <Table>
-          <thead className="thead-dark">
+        <Table className="table">
+          <thead className="thead">
             <tr>
               <th>Reservation ID</th>
               <th>Customer ID</th>
@@ -56,7 +57,7 @@ function ReservationList() {
               <th>Reservation Name</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="tbody">
             {reservations.map(reservation => (
               <tr key={reservation['reservationId']}>
                 <td>{reservation['reservationId']}</td>
@@ -68,6 +69,11 @@ function ReservationList() {
               </tr>
             ))}
           </tbody>
+          <tfoot className="tfoot">
+            <tr>
+              <td colSpan={6}>Total Number of Reservations: {length}</td>
+            </tr>
+          </tfoot>
         </Table>
       </Container>
       

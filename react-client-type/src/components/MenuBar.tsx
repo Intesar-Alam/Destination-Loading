@@ -16,12 +16,12 @@ function MenuBar() {
 
   return (
     <>
-      <Navbar bg="success">
+      <Navbar className="menuBar">
         <Container>
-          <Navbar.Brand>DL...<i className="bi bi-compass"></i></Navbar.Brand>
+          <Navbar.Brand className="brand">DL...<i className="bi bi-compass"></i></Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Nav className="me-auto">
-            <NavDropdown title="Menu" id="basic-nav-dropdown">
+            <NavDropdown className="menuTitle" title="Menu" id="basic-nav-dropdown">
               <NavDropdown.Item href="/">Home</NavDropdown.Item>
               <NavDropdown.Item href="/learnmore">Learn More</NavDropdown.Item>
               <NavDropdown.Item href="/userreservationlist">View Reservations</NavDropdown.Item>
@@ -30,16 +30,16 @@ function MenuBar() {
             </NavDropdown>
           </Nav>
           {auth && auth.user && auth.user.hasRole('ROLE_ADMIN') &&(
-            <Button className="me-4" href="/adminpage">Admin</Button>
+            <Button className="menuButton me-4" href="/adminpage">Admin</Button>
           )}
           {(auth === undefined || auth.user === null) && (
             <>
-              <Navbar.Text className="me-2"><a href="/newuserlogin">Sign-up</a></Navbar.Text>
-              <Button href="/login">Login</Button>
+              <Link className="signUpLink me-3" to="/newuserlogin">Sign-up</Link>
+              <Button className="menuButton btn" href="/login">Login</Button>
             </>
           )}
           {auth && auth.user && (
-            <Link className="btn btn-primary" to="/" onClick={() => auth.logout()}>Logout</Link>
+            <Link className="menuButton btn" to="/" onClick={() => auth.logout()}>Logout</Link>
           )}
 
         </Container>

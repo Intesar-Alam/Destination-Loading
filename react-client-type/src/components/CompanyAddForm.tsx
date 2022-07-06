@@ -106,32 +106,32 @@ function CompanyAddForm() {
 
   return (
     <>
-      <h1 className="text-center mb-5">Add Company</h1>
+      <h1 className="text-center my-5">Add a New Company</h1>
 
       <Container>
         <Errors errors={errors} />
         <Card className="rounded-0 col-md-8 mx-auto">
-          <Form onSubmit={handleSubmit}>
+          <Form className="form" onSubmit={handleSubmit}>
             <Form.Group as={Row} className="my-2 ms-3" controlId="formCompanyName">
-              <Form.Label column sm={2}>Company Name</Form.Label>
+              <Form.Label className="formLabel" column sm={2}>Company Name</Form.Label>
               <Col sm={9}>
                 <Form.Control type="text" placeholder="Enter Company Name" name="companyName" value={company['companyName']} onChange={handleChange} />
               </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-2 ms-3" controlId="formCompanyUrl">
-              <Form.Label column sm={2}>Company URL/Website</Form.Label>
+              <Form.Label className="formLabel" column sm={2}>Company URL/Website</Form.Label>
               <Col sm={9}>
                 <Form.Control type="text" placeholder="Enter Company URL" name="url" value={company['url']} onChange={handleChange} />
               </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-2 ms-3" controlId="formIcon">
-              <Form.Label column sm={2}>Company Icon</Form.Label>
+              <Form.Label className="formLabel" column sm={2}>Company Icon</Form.Label>
               <Col sm={9}>
                 <Form.Control type="text" placeholder="icon" name="icon" value={company['icon']} onChange={handleChange} />
               </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-2 ms-3" controlId="formTransportationMode">
-              <Form.Label column sm={2}>Transport Mode</Form.Label>
+              <Form.Label className="formLabel" column sm={2}>Transport Mode</Form.Label>
               <Col sm={9}>
                 <Form.Select aria-label="Select Transportation Mode" name="transportationMode" value={company['transportationMode']} onChange={handleSelectChange}>
                   <option>AIR</option>
@@ -144,8 +144,8 @@ function CompanyAddForm() {
             <Form.Group className="mb-3">
               <Row>
                 <Col md={{ span: 5, offset: 7 }}>
-                  <Button type="submit" className="me-4">Create Company</Button>
-                  <Link className="btn btn-primary" to="/companylist">Cancel</Link>
+                  <Button type="submit" className="pageButton me-3">Create Company</Button>
+                  <Link className="cancelButton btn" to="/companylist">Cancel</Link>
                 </Col>
               </Row>
             </Form.Group>

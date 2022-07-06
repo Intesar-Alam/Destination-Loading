@@ -8,7 +8,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 function AdminMenuBar() {
   return (
     <>
-      <Navbar bg="warning">
+      <Navbar className="adminMenu">
         <Container>
           <Nav className="me-auto">
             <NavDropdown title="AdminMenu" id="basic-nav-dropdown">

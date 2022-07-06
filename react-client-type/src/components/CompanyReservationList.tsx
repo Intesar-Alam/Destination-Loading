@@ -74,18 +74,17 @@ function CompanyReservationList() {
 
   return (
     <>
-      <h1 className="text-center mb-5">All Reservations for {company['companyName']}</h1>
+      <h1 className="text-center my-5">All Reservations for {company['companyName']}</h1>
       <Container>
-        <Table>
+        <Table className="table">
           <thead>
-            <tr>
+            <tr className="thead">
               <th>Reservation Title</th>
               <th>Date</th>
               <th>Reservation Code</th>
             </tr>
           </thead>
-
-          <tbody>
+          <tbody className="tbody">
             {reservations.map(reservation => (
               <tr key={reservation['reservationId']}>
                 <td>{reservation['reservationTitle']}</td>
@@ -94,9 +93,9 @@ function CompanyReservationList() {
               </tr>
             ))}
           </tbody>
-          <tfoot>
+          <tfoot className="tfoot">
             <tr>
-              <td>Total Number of Reservations: {length}</td>
+              <td colSpan={3}>Total Number of Reservations: {length}</td>
             </tr>
           </tfoot>
         </Table>

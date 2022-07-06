@@ -130,28 +130,28 @@ function NewUserLogin() {
       <Container>
         <Errors errors={errors} />
         <Card className="rounded-0 col-md-8 mx-auto">
-          <Form onSubmit={handleSubmit}>
+          <Form className="form" onSubmit={handleSubmit}>
             <Form.Group as={Row} className="my-2 ms-3" controlId="formUsername">
-              <Form.Label column sm={2}>Username</Form.Label>
+              <Form.Label className="formLabel" column sm={2}>Username</Form.Label>
               <Col sm={9}>
                 <Form.Control type="text" placeholder="example@gmail.com" name="username" value={appUser['username']} onChange={handleChange}/>
               </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-2 ms-3" controlId="formPassword">
-              <Form.Label column sm={2}>Password</Form.Label>
+              <Form.Label className="formLabel" column sm={2}>Password</Form.Label>
               <Col sm={9}>
                 <Form.Control type="password" placeholder="Password" name="password" value={appUser['password']} onChange={handleChange}/>
               </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-2 ms-3" controlId="formConfirmPassword">
-              <Form.Label column sm={2}>Confirm Password</Form.Label>
+              <Form.Label className="formLabel" column sm={2}>Confirm Password</Form.Label>
               <Col sm={9}>
                 <Form.Control type="password" placeholder="Confirm Password" name="confirmPassword" value={confirmPassword} onChange={handleConfirmChange}/>
               </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-3">
               <Col sm={{ offset: 8 }}>
-                <Button type="submit">Create Account</Button>
+                <Button className="pageButton" type="submit">Create Account</Button>
               </Col>
             </Form.Group>
           </Form>
