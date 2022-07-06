@@ -74,7 +74,7 @@ function CompanyUpdateForm() {
   const updateCompany = () => {
     company['companyId'] = id;
     if (auth === undefined || auth.user === null) {
-      navigate(-1);
+      navigate('/forbidden');
       return;
     }
     const init = {
@@ -93,7 +93,11 @@ function CompanyUpdateForm() {
           return null;
         } else if (response.status === 400) {
           return response.json();
-        } else {
+        } else if (response.status === 403) {
+          navigate('/forbidden');
+          return;
+      } 
+        else {
           return Promise.reject(`Unexpected status code: ${response.status}`);
         }
       })

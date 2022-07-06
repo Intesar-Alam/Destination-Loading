@@ -77,7 +77,7 @@ function Login() {
   const handleRedirect = () => {
     if (auth === undefined || auth.user === null) {
       console.log("failed");
-      navigate('/');
+      navigate('/login');
       return;
     }
     console.log("passed");

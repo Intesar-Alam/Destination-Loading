@@ -60,7 +60,12 @@ function CompanyReservationList() {
         .then(response => {
           if (response.status === 200) {
             return response.json();
-          } else {
+          }
+           else if (response.status === 403) {
+            navigate('/forbidden');
+            return;
+          }
+           else {
             return Promise.reject(`Unexpected status code: ${response.status}`);
           }
         })

@@ -46,8 +46,7 @@ function UserUpdateForm() {
   useEffect(() => {
     console.log(`${auth}`);
     if (auth === undefined || auth.user === null) {
-      window.alert('You must be logged in to access this feature');
-      navigate('/');
+      navigate('/login');
       return;
     }
 
@@ -63,7 +62,10 @@ function UserUpdateForm() {
         if (response.status === 200) {
           console.log(response);
           return response.json();
-        } else {
+        } else if (response.status === 403) {
+          return navigate('/forbidden');
+      }
+         else {
           return Promise.reject(`Unexpected status code: ${response.status}`);
         }
       })
@@ -92,7 +94,6 @@ function UserUpdateForm() {
   const updateUser = () => {
     userAccount['appUserId'] = id;
     if (auth === undefined || auth.user === null) {
-      window.alert('You must be logged in to access this feature');
       navigate('/login');
       return;
     }
@@ -112,7 +113,11 @@ function UserUpdateForm() {
           return null;
         } else if (response.status === 400) {
           return response.json();
-        } else {
+        } else if (response.status === 403 || response.status === 409) {
+          navigate('/forbidden');
+          return;
+        }
+         else {
           return Promise.reject(`Unexpected status code: ${response.status}`);
         }
       })

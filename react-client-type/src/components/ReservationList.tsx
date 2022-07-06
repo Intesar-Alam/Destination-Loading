@@ -17,8 +17,7 @@ function ReservationList() {
 
   useEffect(() => {
     if (auth === undefined || auth.user === null) {
-      window.alert('You must be logged in to access this feature');
-      navigate('/');
+      navigate('/login');
       return;
     }
     const init = {
@@ -31,7 +30,12 @@ function ReservationList() {
       .then(response => {
         if (response.status === 200) {
           return response.json();
-        } else {
+        }
+        else if (response.status === 403) {
+          navigate('/forbidden');
+          return;
+        }
+        else {
           return Promise.reject(`Unexpected status code: ${response.status}`);
         }
       })
