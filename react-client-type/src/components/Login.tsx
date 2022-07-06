@@ -66,7 +66,8 @@ function Login() {
           navigate('/');
           // handleRedirect();
         } else {
-          setErrors(data);
+          const err: Array<string> = ['Username & Password combination are not correct please try again'];
+          setErrors(err);
         }
       })
       .catch(console.log);

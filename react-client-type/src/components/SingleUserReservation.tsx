@@ -54,7 +54,6 @@ function SingleUserReservation() {
       })
       .then(data => {
         setReservation(data);
-        // getCompanyData(data)
       })
       .catch(console.log);
 
@@ -63,33 +62,6 @@ function SingleUserReservation() {
   if (reservation === null) {
     return null;
   }
-
-  // function getCompanyData(data: Reservation[]) {
-  //   for (const reservation of data) { 
-  //     fetch(`http://localhost:8080/api/company/${reservation.companyId}`)
-  //       .then(response => {
-  //         if (response.status === 200) {
-  //           return response.json();
-  //         } else {
-  //           return Promise.reject(`Unexpected status code: ${response.status}`);
-  //         }
-  //       })
-  //       .then(company => {
-  //         setReservation({
-  //           reservationId: reservation.reservationId,
-  //           appUserId: reservation.appUserId,
-  //           companyId: reservation.companyId,
-  //           reservationDate: reservation.reservationDate,
-  //           reservationCode: reservation.reservationCode,
-  //           reservationTitle: reservation.reservationTitle,
-  //           reservationIcon: company.icon,
-  //           companyName: company.companyName,
-  //           url: company.url
-  //         })
-  //       })
-  //       .catch(console.log)
-  //     }
-  // };
 
   const handleDeleteReservation = (reservationId: string | undefined) => {
     if (auth === undefined || auth.user === null) {
