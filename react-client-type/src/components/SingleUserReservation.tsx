@@ -125,10 +125,10 @@ function SingleUserReservation() {
         <h3 style={{ textDecoration: "underline" }}>Reservation Details</h3>
         <Card className="mb-3">
           <Row>
-            <Col className="col-md-5">
+            <Col className="col-lg-6">
               <CompanyImage {...reservation.company} />
             </Col>
-            <Col className="col-md-7">
+            <Col className="col-lg-6">
               <Card.Body>
                 <Card.Title>{dateConverter(reservation.reservationDate)}&nbsp;{reservation.reservationTitle}</Card.Title>
                 <Card.Text>

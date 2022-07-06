@@ -44,7 +44,10 @@ function CompanyPage() {
         .then(response => {
           if (response.status === 200) {
             return response.json();
-          } else {
+          } else if (response.status === 404) {
+            navigate('/');  
+          }  
+           else {
             return Promise.reject(`Unexpected status code: ${response.status}`);
           }
         })

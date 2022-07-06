@@ -14,6 +14,9 @@ import AdminMenuBar from './AdminMenuBar';
 import Jumbotron1 from '../images/jumbotron1.jpg';
 import Jumbotron2 from '../images/jumbotron2.png';
 import Jumbotron3 from '../images/jumbotron3.jpg';
+import Plan1 from '../images/plan1.jpg';
+import Plan2 from '../images/plan2.jpg';
+import Plan3 from '../images/plan3.jpg';
 import TravelVlog from '../images/travelers.jpg';
 // TODO styling
 // TODO add pages to bottom cards
@@ -21,9 +24,13 @@ function Home() {
   const auth = useContext(AuthContext);
   return (
     <>
+
       {auth && auth.user && auth.user.hasRole('ROLE_ADMIN') && (
         <AdminMenuBar />
       )}
+
+
+
       <h1 className="text-center mt-5">Welcome to Destination Loading...</h1>
       <Container>
         <Carousel className="mb-5">
@@ -91,6 +98,18 @@ function Home() {
               </Card>
             </Link>
           </Col>
+
+          {((auth?.user?.hasRole("ROLE_REP")) && (
+            <Col>
+              <Link style={{ textDecoration: 'none' }} to={`/companypage/${auth?.user?.companyId}`}>
+                <Card bg="warning" style={{ width: '18rem', height: '6rem' }} className="me-5">
+                  <Card.Body>
+                    <Card.Title as="h2" className="text-white text-center my-2">Company Page</Card.Title>
+                  </Card.Body>
+                </Card>
+              </Link>
+            </Col>
+          ))}
         </Row>
       </Container>
 
@@ -99,40 +118,37 @@ function Home() {
         <Row md={3} className="mx-auto">
           <Col>
             <Card style={{ width: '22rem' }} className="mx-2">
-              <Card.Img variant="top" src={TravelVlog} />
+              <Card.Img variant="top" src={Plan1} alt="NYC skyline" />
               <Card.Body>
-                <Card.Title>Card Title</Card.Title>
+                <Card.Title><img src="https://www.nycgo.com/favicon.ico?v=2" style={{ width: '18px' }} /> NYC Official Guide </Card.Title>
                 <Card.Text>
-                  Some quick example text to build on the card title and make up the bulk of
-                  the card's content.
+                  This is the complete guide to all of NYC. Find the best hotels, resturants, experiences, discounts, and more here!
                 </Card.Text>
-                <Button variant="primary">Go somewhere</Button>
+                <Button variant="primary" href="https://www.nycgo.com/">Check out NYC</Button>
               </Card.Body>
             </Card>
           </Col>
           <Col>
             <Card style={{ width: '22rem' }} className="mx-2">
-              <Card.Img variant="top" src={TravelVlog} />
+              <Card.Img variant="top" src={Plan2} alt="First class airplane seat" />
               <Card.Body>
-                <Card.Title>Card Title</Card.Title>
+                <Card.Title><img src="https://thepointsguy.com/wp-content/themes/tpg-2016/favicon-new.ico?v=3" style={{ width: '18px' }} /> The Points Guy </Card.Title>
                 <Card.Text>
-                  Some quick example text to build on the card title and make up the bulk of
-                  the card's content.
+                  Learn more about the best way to rack up travel points as well as more tips and tricks to make your travel easier.
                 </Card.Text>
-                <Button variant="primary">Go somewhere</Button>
+                <Button variant="primary" href="https://thepointsguy.com/">Check out NYC</Button>
               </Card.Body>
             </Card>
           </Col>
           <Col>
             <Card style={{ width: '22rem' }} className="mx-2">
-              <Card.Img variant="top" src={TravelVlog} />
+              <Card.Img variant="top" src={Plan3} alt="Satellite view from space" />
               <Card.Body>
-                <Card.Title>Card Title</Card.Title>
+                <Card.Title><img src="https://s.inspirockcdn.com/images/meta/favicon.ico" style={{ width: '18px' }} /> Visit The USA </Card.Title>
                 <Card.Text>
-                  Some quick example text to build on the card title and make up the bulk of
-                  the card's content.
+                  Get customized itineries for any destination in the country, reduce the stress of figuring things out on your own
                 </Card.Text>
-                <Button variant="primary">Go somewhere</Button>
+                <Button variant="primary" href="https://trip-planner.visittheusa.com/">Check out NYC</Button>
               </Card.Body>
             </Card>
           </Col>

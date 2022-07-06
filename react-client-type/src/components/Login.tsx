@@ -10,7 +10,8 @@ import Card from 'react-bootstrap/Card';
 
 import AuthContext from '../AuthContext';
 import Errors from './Errors';
-
+import { DecodedToken, User } from '../App';
+import jwt_decode from 'jwt-decode';
 
 // TODO fix navigation paths for users
 function Login() {
@@ -63,8 +64,8 @@ function Login() {
           }
           console.log(auth.user);
           // TODO add if statements based on user to navigate to correct page on login, add if statement if not a user to send to new user login/register page'git
-          navigate('/');
-          // handleRedirect();
+          // navigate('/');
+          handleRedirect();
         } else {
           const err: Array<string> = ['Username & Password combination are not correct please try again, or sign-up!'];
           setErrors(err);
