@@ -6,8 +6,6 @@ function NotFound() {
   return (
     <>
       <Card className="text-black rounded-0 col-md-10 mx-auto my-5">
-        <Card.Img src={JumboImage} alt="Card image" className="rounded-0" />
-        <Card.ImgOverlay className="imgOverlay mx-auto my-auto rounded-0">
           <Card.Body className="text-center">
             <Card.Title className="cardTitle">Thank you for contacting us!</Card.Title>
             <Card.Text className="cardText">
@@ -17,7 +15,7 @@ function NotFound() {
               Please head back to the <a href="/">homepage</a>.
             </Card.Text>
           </Card.Body>
-        </Card.ImgOverlay>
+          <Card.Img src={JumboImage} alt="Card image" className="rounded-0" />
       </Card>
     </>
   );

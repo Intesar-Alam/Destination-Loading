@@ -15,7 +15,6 @@ import Errors from './Errors';
 // TODO add authorization, must be user or admin to update
 type USER_ACCOUNT_DEFAULT = {
   appUserId: string | undefined,
-  email: string,
   firstName: string,
   lastName: string,
   address: string,
@@ -26,7 +25,6 @@ type USER_ACCOUNT_DEFAULT = {
 function UserUpdateForm() {
   const [userAccount, setUserAccount] = useState<USER_ACCOUNT_DEFAULT>({
     appUserId: "",
-    email: "",
     firstName: "",
     lastName: "",
     address: "",
@@ -149,12 +147,6 @@ function UserUpdateForm() {
               <Form.Label className="formLabel" column sm={2}>Last Name</Form.Label>
               <Col sm={9}>
                 <Form.Control type="text" placeholder="Enter Last Name" name="lastName" value={userAccount['lastName']} onChange={handleChange} />
-              </Col>
-            </Form.Group>
-            <Form.Group as={Row} className="my-2 ms-3" controlId="formEmail">
-              <Form.Label className="formLabel" column sm={2}>Email</Form.Label>
-              <Col sm={9}>
-                <Form.Control type="text" placeholder="Enter Email" name="email" value={userAccount['email']} onChange={handleChange} />
               </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-2 ms-3" controlId="formAddress">

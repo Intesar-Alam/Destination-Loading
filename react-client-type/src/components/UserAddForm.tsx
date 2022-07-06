@@ -14,7 +14,6 @@ import Errors from './Errors';
 
 type USER_ACCOUNT_DEFAULT = {
   appUserId: any,
-  email: string,
   firstName: string,
   lastName: string,
   address: string,
@@ -25,7 +24,6 @@ type USER_ACCOUNT_DEFAULT = {
 function UserAddForm() {
   const [userAccount, setUserAccount] = useState<USER_ACCOUNT_DEFAULT>({
     appUserId: 0,
-    email: "",
     firstName: "",
     lastName: "",
     address: "",
@@ -177,12 +175,6 @@ function UserAddForm() {
               <Form.Label column sm={2}>Last Name</Form.Label>
               <Col sm={9}>
                 <Form.Control type="text" placeholder="Enter Last Name" name="lastName" value={userAccount['lastName']} onChange={handleChange} />
-              </Col>
-            </Form.Group>
-            <Form.Group as={Row} className="my-2 ms-3" controlId="formEmail">
-              <Form.Label column sm={2}>Email</Form.Label>
-              <Col sm={9}>
-                <Form.Control type="text" placeholder="Enter Email" name="email" value={userAccount['email']} onChange={handleChange} />
               </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-2 ms-3" controlId="formAddress">

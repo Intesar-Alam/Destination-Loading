@@ -16,8 +16,8 @@ function LearnMore() {
         <h1 className="text-center mb-5">Learn More</h1>
         <Container>
           <h2 className="mb-3">What is Destination Loading...<i className="bi bi-compass"></i></h2>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae aliquam ullam, nulla voluptatum incidunt blanditiis numquam similique harum vero autem quaerat magnam velit a possimus culpa optio voluptate accusantium iure. Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat enim consequuntur maiores, eligendi dicta modi quos facilis eos aspernatur aperiam veritatis doloremque corporis ullam, accusantium cumque numquam sunt quod dolorem!</p>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum consequatur accusantium odio eligendi tempore maiores, dolores iure excepturi ullam voluptatibus, rem facere dolorum non ex totam pariatur nobis magni. Architecto!</p>
+          <p>One of the hardest things to do while being a person on the go is keeping track of all the reservations you make and those pesky confirmation codes. This is where Destination Loading...<i className="bi bi-compass"></i> comes in. Make your reservation and then store the details on our app for easy access! We also share weekly, sponsored deals and partner with online planning tools to make the most of every trip you plan.</p>
+          <p> Whether you prefer to travel by land, sea, or sky we have got you covered. Start storing your reservations with us today and never forget reservation confirmation code again. Sign-up using the button below!</p>
         </Container>
         <Row>
           <Col sm={{ offset: 5 }}>
@@ -34,8 +34,12 @@ function LearnMore() {
               </Col>
               <Col className="col-md-8">
                 <Card.Body>
-                  <Card.Title>Name</Card.Title>
-                  <Card.Text>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum consequatur accusantium odio eligendi tempore maiores, dolores iure excepturi ullam voluptatibus, rem facere dolorum non ex totam pariatur nobis magni. Architecto!</Card.Text>
+                  <Card.Title>Jason</Card.Title>
+                  <Card.Text>(Soon to be) junior dev from Atlantic City. I've always had a passion for tinkering and grew up jailbreaking any device I could get my hands on, building computers, and most of the time, breaking things. My dad was a contractor for most of my life, and working with him I learned a few lessons:
+                    1. My body hurts and I don't want to do labor.
+                    2. If something breaks, I can fix it with lots of trial and error.
+                    3. My dad really hates OSHA
+                    I also have 2 software engineer older brothers, but my main inspiration is Ruby, who did most of my work on this application.</Card.Text>
                 </Card.Body>
               </Col>
             </Row>
@@ -44,8 +48,8 @@ function LearnMore() {
             <Row>
               <Col className="col-md-8">
                 <Card.Body>
-                  <Card.Title>Name</Card.Title>
-                  <Card.Text>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum consequatur accusantium odio eligendi tempore maiores, dolores iure excepturi ullam voluptatibus, rem facere dolorum non ex totam pariatur nobis magni. Architecto!</Card.Text>
+                  <Card.Title>Amanda</Card.Title>
+                  <Card.Text>Customer service and design have been a large part of my career. </Card.Text>
                 </Card.Body>
               </Col>
               <Col className="col-md-4">
@@ -60,8 +64,8 @@ function LearnMore() {
               </Col>
               <Col className="col-md-8">
                 <Card.Body>
-                  <Card.Title>Name</Card.Title>
-                  <Card.Text>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum consequatur accusantium odio eligendi tempore maiores, dolores iure excepturi ullam voluptatibus, rem facere dolorum non ex totam pariatur nobis magni. Architecto!</Card.Text>
+                  <Card.Title>Intesar</Card.Title>
+                  <Card.Text>I am based out in New York City. I am a joint developer, photographer, and traveler. I love going around the country, visiting new places and trying new things. I hope to work on more fun projects and travel to more places in the future!</Card.Text>
                 </Card.Body>
               </Col>
             </Row>

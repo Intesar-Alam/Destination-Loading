@@ -84,7 +84,7 @@ function Home() {
               <Link className="cardLink" to="/companylist">
                 <Card className="secondaryColor me-5">
                   <Card.Body>
-                    <Card.Title className="buttonTitle text-center">Companies We Support</Card.Title>
+                    <Card.Title className="buttonTitle2 text-center">Companies We Support</Card.Title>
                   </Card.Body>
                 </Card>
               </Link>
@@ -95,7 +95,7 @@ function Home() {
               <Link className="cardLink" to={`/companypage/${auth?.user?.companyId}`}>
                 <Card className="secondaryColor me-5">
                   <Card.Body>
-                    <Card.Title as="h2" className="text-white text-center my-2">Company Page</Card.Title>
+                    <Card.Title className="buttonTitle text-center my-2">Company Page</Card.Title>
                   </Card.Body>
                 </Card>
               </Link>
@@ -106,7 +106,7 @@ function Home() {
               <Link className="cardLink" to={`/companylist`}>
                 <Card className="secondaryColor me-5">
                   <Card.Body>
-                    <Card.Title as="h2" className="text-white text-center my-2">Company List</Card.Title>
+                    <Card.Title className="buttonTitle text-center my-2">Company List</Card.Title>
                   </Card.Body>
                 </Card>
               </Link>
