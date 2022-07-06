@@ -21,7 +21,7 @@ function LearnMore() {
         </Container>
         <Row>
           <Col sm={{ offset: 5 }}>
-            <Button className="btn btn-lg my-3">Sign-Up Now!</Button>
+            <Button className="btn btn-lg my-3" style={{ backgroundColor: 'orange', color: 'navy' }}>Sign-Up Now!</Button>
           </Col>
         </Row>
 

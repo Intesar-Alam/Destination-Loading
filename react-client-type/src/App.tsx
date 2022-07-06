@@ -24,7 +24,7 @@ import CompanyAddForm from './components/CompanyAddForm';
 import UserList from './components/UserList';
 import ReservationList from './components/ReservationList';
 import CompanyList from './components/CompanyList';
-import SiteAnalytics from './components/SiteAnalytics';
+import UnderConstruction from './components/UnderConstruction';
 import Footer from './components/Footer';
 
 import AuthContext, { AuthObj } from './AuthContext';
@@ -129,7 +129,7 @@ const auth = {
           <Route path="/userlist" element={<UserList />} />
           <Route path="/reservationlist" element={<ReservationList />} />
           <Route path="/companylist" element={<CompanyList />} />
-          <Route path="/siteanalytics" element={<SiteAnalytics />} />
+          <Route path="/underconstruction" element={<UnderConstruction />} />
         </Routes>
         <Footer />
       </BrowserRouter>

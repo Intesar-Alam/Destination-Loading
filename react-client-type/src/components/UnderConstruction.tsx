@@ -6,7 +6,7 @@ import JumboImage from '../images/trainconstruction.jpg';
 import AdminMenuBar from './AdminMenuBar';
 
 // TODO styling
-function SiteAnalytics() {
+function UnderConstruction() {
   return (
     <>
     <AdminMenuBar />
@@ -25,4 +25,4 @@ function SiteAnalytics() {
   );
 }
 
-export default SiteAnalytics;
+export default UnderConstruction;

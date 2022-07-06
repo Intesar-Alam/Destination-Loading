@@ -31,9 +31,9 @@ function Home() {
             src={Jumbotron1}
             alt="Beach alogn the water"
           />
-          <Carousel.Caption style={{backgroundColor: 'rgba(0, 0, 0, 0.35)'}}>
+          <Carousel.Caption style={{backgroundColor: 'rgba(0, 0, 0, 0.4)'}}>
             <h3><img src="https://www.expedia.com/favicon.ico" style={{ width: '32px' }}/>&nbsp;Expedia</h3>
-            <p>Check out our partner: Expedia Deal of the day can save you money.</p>
+            <p>Check out our partner: Expedia Deal of the Day can save you money.</p>
             <a href='https://www.expedia.com/deals' target='blank'><Button className="float-right">View Deals!</Button></a>
           </Carousel.Caption>
         </Carousel.Item>
@@ -43,7 +43,7 @@ function Home() {
             src={Jumbotron2}
             alt="Man at an airport"
           />
-          <Carousel.Caption style={{backgroundColor: 'rgba(0, 0, 0, 0.35)'}}>
+          <Carousel.Caption style={{backgroundColor: 'rgba(0, 0, 0, 0.4)'}}>
             <h3><img src="https://ssl.gstatic.com/travel-trips-fe/travel_logo_32.png" style={{ width: '32px' }}/>&nbsp;Google</h3>
             <p>They gave us money to sell your data!</p>
             <a href='https://www.google.com/travel/flights' target='blank'><Button className="float-right">View Deals!</Button></a>
@@ -55,9 +55,9 @@ function Home() {
             src={Jumbotron3}
             alt="Amtrak observation car"
           />
-          <Carousel.Caption style={{backgroundColor: 'rgba(0, 0, 0, 0.35)'}}>
+          <Carousel.Caption style={{backgroundColor: 'rgba(0, 0, 0, 0.4)'}}>
             <h3><img src="https://www.amtrak.com/etc/designs/dotcom-assets/images/favicon.ico" style={{ width: '32px' }}/>&nbsp;Amtrak</h3>
-            <p>Travel across the country and see the entire country an everything in between.</p>
+            <p>Travel across the country and while seeing everything in between.</p>
             <a href='https://www.amtrak.com/promotions/deals.html' target='blank'><Button className="float-right">View Deals!</Button></a>
           </Carousel.Caption>
         </Carousel.Item>
