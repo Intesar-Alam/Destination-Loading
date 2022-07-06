@@ -66,7 +66,7 @@ function Login() {
           navigate('/');
           // handleRedirect();
         } else {
-          const err: Array<string> = ['Username & Password combination are not correct please try again'];
+          const err: Array<string> = ['Username & Password combination are not correct please try again, or sign-up!'];
           setErrors(err);
         }
       })
