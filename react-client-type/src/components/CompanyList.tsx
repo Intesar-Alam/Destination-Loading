@@ -68,11 +68,11 @@ function CompanyList() {
   return (
     <>
     <AdminMenuBar />
-      <h1 className="text-center mb-5">All Companies We Work With</h1>
+      <h1 className="text-center my-5">All Companies We Work With</h1>
       <Container>
-        <Table>
-          <thead className="thead-dark">
-            <tr>
+        <Table className="table">
+          <thead>
+            <tr className="thead">
               <th>Company Id</th>
               <th>Company Name</th>
               <th>Company Website</th>
@@ -80,7 +80,7 @@ function CompanyList() {
               <th>&nbsp;</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="tbody">
             {companies.map(company => (
               <tr key={company['companyId']}>
                 <td>{company['companyId']}</td>
@@ -95,7 +95,7 @@ function CompanyList() {
                       </Link>
                     </Col> */}
                     <Col className="col-md-6">
-                      <Button className="btn btn-danger btn-sm" onClick={() => handleDeleteCompany(company['companyId'])}>
+                      <Button className="deleteButton btn-sm" onClick={() => handleDeleteCompany(company['companyId'])}>
                         <i className="bi bi-trash"></i>
                       </Button>
                     </Col>
@@ -105,7 +105,7 @@ function CompanyList() {
             ))}
           </tbody>
         </Table>
-        <Link className="btn btn-primary" to={'/company'}>Add Company</Link>
+        <Link className="pageButton" to={'/company'}>Add Company</Link>
       </Container>
     </>
   );

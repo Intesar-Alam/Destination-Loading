@@ -14,7 +14,7 @@ function Errors({ errors }: ErrorsProps) {
   return (
     <>
       <Container className="col-md-8 mx-auto">
-      <div className="alert alert-danger">
+      <div className="alert errors">
         <p>The following errors were found:</p>
         <ul>
           {errors.map(error => (

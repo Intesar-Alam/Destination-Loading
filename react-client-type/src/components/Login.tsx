@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
@@ -104,29 +104,27 @@ function Login() {
   // TODO implement security/authController
   return (
     <>
-      <h1 className="text-center">Login</h1>
+      <h1 className="text-center my-5">Login</h1>
       <Container>
         <Errors errors={errors} />
         <Card className="rounded-0 col-md-8 mx-auto">
-          <Form onSubmit={handleSubmit}>
+          <Form className="form" onSubmit={handleSubmit}>
             <Form.Group as={Row} className="my-2 ms-3" controlId="formUsername">
-              <Form.Label column sm={2}>Username</Form.Label>
+              <Form.Label className="formLabel" column sm={2}>Username</Form.Label>
               <Col sm={9}>
                 <Form.Control type="text" placeholder="example@gmail.com" name="username" value={username} onChange={handleUsernameChange} />
               </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-2 ms-3" controlId="formPassword">
-              <Form.Label column sm={2}>Password</Form.Label>
+              <Form.Label className="formLabel" column sm={2}>Password</Form.Label>
               <Col sm={9}>
                 <Form.Control type="password" placeholder="Password" name="password" value={password} onChange={handlePasswordChange} />
               </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-3">
               <Col sm={{ offset: 8 }}>
-                <Button type="submit">Login</Button>
-                <Form.Text className="ms-3">
-                  <a href="/newuserlogin">Sign-up</a>
-                </Form.Text>
+                <Button className="pageButton me-3" type="submit">Login</Button>
+                <Link className="signUpLink" to="/newuserlogin">Sign-up</Link>
               </Col>
             </Form.Group>
           </Form>

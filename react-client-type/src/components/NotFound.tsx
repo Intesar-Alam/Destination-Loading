@@ -10,16 +10,16 @@ function NotFound() {
     <>
       <Card className="text-black rounded-0 col-md-10 mx-auto my-5">
         <Card.Img src={JumboImage} alt="Card image" className="rounded-0" />
-        <Card.ImgOverlay className="mx-auto my-auto rounded-0" style={{ backgroundColor: 'rgba(255, 255, 255, 0.5)', width: '96%', height: '95%' }}>
+        <Card.ImgOverlay className="imgOverlay mx-auto my-auto rounded-0">
           <Card.Body className="text-center">
-            <Card.Title style={{ fontSize: '7rem' }}>Error 404</Card.Title>
-            <Card.Text style={{ fontWeight: 'bold' }}>
+            <Card.Title className="cardTitle404">Error 404</Card.Title>
+            <Card.Text className="cardText404">
               There seems to be an error and we couldn't find the page you were looking for.
             </Card.Text>
-            <Card.Text style={{ fontWeight: 'bold' }}>
+            <Card.Text className="cardText404">
               We don't want you to miss your trip, so please head back to the <a href="/">homepage</a>!
             </Card.Text>
-            <Card.Text style={{ fontWeight: 'bold' }}>
+            <Card.Text className="cardText404">
               If you need help or reached this page in error, please <a href="/contact">contact us</a>.
             </Card.Text>
           </Card.Body>

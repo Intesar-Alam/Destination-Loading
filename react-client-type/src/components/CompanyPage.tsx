@@ -55,18 +55,18 @@ function CompanyPage() {
 
   return (
     <>
-      <h1 className="text-center mb-5">{company['companyName']}, Company Information</h1>
+      <h1 className="text-center my-5">{company['companyName']}, Company Information</h1>
       <Container>
-        <h3 style={{ textDecoration: "underline" }}>Company Specifics</h3>
-        <Table size="sm">
+        <h3>Company Specifics</h3>
+        <Table className="table" size="sm">
           <thead>
-            <tr>
+            <tr className="thead">
               <th>Company Name</th>
               <th>Company Website</th>
               <th>Transport Type</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="tbody">
             <tr key={company['companyId']}>
               <td>{company['companyName']}</td>
               <td><img src={company['icon']} style={{ width: '32px' }} /> &nbsp;<a href={company['url']} target="_blank">{company['url']}</a></td>
@@ -74,8 +74,8 @@ function CompanyPage() {
             </tr>
           </tbody>
         </Table>
-        <Link className="btn btn-primary me-3" to={`/company/${company['companyId']}`}>Edit Company Info</Link>
-        <Link className="btn btn-primary" to={`/companyreservationlist/${company['companyId']}`}>View Reservations</Link>
+        <Link className="pageButton btn me-3" to={`/company/${company['companyId']}`}>Edit Company Info</Link>
+        <Link className="pageButton btn" to={`/companyreservationlist/${company['companyId']}`}>View Reservations</Link>
       </Container>
     </>
   );

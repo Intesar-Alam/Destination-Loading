@@ -77,8 +77,8 @@ function UserList() {
       <AdminMenuBar />
       <h1 className="text-center">All Customers We Work With</h1>
       <Container>
-        <Table>
-          <thead className="thead-dark">
+        <Table className="table">
+          <thead className="thead">
             <tr>
               <th>Customer ID</th>
               <th>Customer Name</th>
@@ -89,7 +89,7 @@ function UserList() {
               <th>&nbsp;</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="tbody">
             {userAccounts.map(userAccount => (
               <tr key={userAccount['appUserId']}>
                 <td>{userAccount['appUserId']}</td>
@@ -100,7 +100,7 @@ function UserList() {
                 <td>{userAccount['dob']}</td>
                 <td>
                   <div className="float-right mr-2">
-                    <Button variant="danger" className="btn-sm" onClick={() => handleDeleteUser(userAccount['appUserId'])}>
+                    <Button variant="danger" className="deleteButton btn-sm" onClick={() => handleDeleteUser(userAccount['appUserId'])}>
                       <i className="bi bi-trash"></i>
                     </Button>
                   </div>
