@@ -3,9 +3,9 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 
 import Table from 'react-bootstrap/Table';
 import Container from 'react-bootstrap/Container';
+
 import AuthContext from '../AuthContext';
 
-// TODO styling
 type COMPANY_DEFAULT = {
   companyId: string | undefined,
   companyName: string,

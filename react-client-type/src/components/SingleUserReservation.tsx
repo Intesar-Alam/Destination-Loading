@@ -120,63 +120,72 @@ function SingleUserReservation() {
 
   return (
     <>
-      <h1 className="text-center mt-3">Your Reservation</h1>
+      {/* <h1 className="text-center my-5">Reservation Details</h1>
       <Container>
-        <h3 style={{ textDecoration: "underline" }}>Reservation Details</h3>
+        <h3>Reservation Details</h3>
         <Card className="mb-3">
           <Row>
-            <Col className="col-lg-6">
+          <Col className="col-lg-3">
               <CompanyImage {...reservation.company} />
             </Col>
             <Col className="col-lg-6">
               <Card.Body>
-                <Card.Title>{dateConverter(reservation.reservationDate)}&nbsp;{reservation.reservationTitle}</Card.Title>
+                <Card.Title>{reservation.reservationTitle}</Card.Title>
                 <Card.Text>
-                  <img src={reservation.company.icon} style={{ width: '32px' }} />&nbsp;<a href={reservation.company.url} target="blank">{reservation.company.companyName}</a>
+                {dateConverter(reservation.reservationDate)}
+                </Card.Text>
+                <Card.Text>
+                  <img src={reservation.company.icon} style={{ width: '32px' }} /> <a href={reservation.company.url} target="_blank">{reservation.company.companyName}</a>
                 </Card.Text>
                 <Card.Text>
                   <b>Reservation Code</b><br />
                   <a href={''} onClick={(event) => copyReservation(reservation.reservationCode, event)}>{reservation.reservationCode}</a>
                 </Card.Text>
                 <Card.Text>
-                  <Button className="text-white" onClick={() => copyJump(reservation.reservationCode)}>Copy and Jump to page</Button>
+                  <Button className="pageButton" onClick={() => copyJump(reservation.reservationCode)}>Copy and Jump to page</Button>
                 </Card.Text>
               </Card.Body>
             </Col>
           </Row>
         </Card>
-        <Link to={`/reservationupdateform/${reservation.reservationId}`} className="btn btn-primary me-3">Edit Reservation</Link>
-        <Button className="btn btn-danger me-3" onClick={() => handleDeleteReservation(reservation.reservationId)}>Delete Reservation</Button>
-        <Link to={`/userreservationlist/`} className="btn btn-success me-3"><i className="bi bi-arrow-left-short"></i>Back</Link>
-      </Container>
-      <h1 className="text-center">Your Reservation</h1>
+        <Row>
+          <Col className="mb-3">
+            <Link to={`/reservationupdateform/${reservation.reservationId}`} className="pageButton btn me-3">Edit Reservation</Link>
+            <Button className="deleteButton me-3" onClick={() => handleDeleteReservation(reservation.reservationId)}>Delete Reservation</Button>
+          </Col>
+        </Row>
+        <Link to={`/userreservationlist/`}><i className="bi bi-arrow-left-short"></i>Back</Link>
+      </Container> */}
+      <h1 className="text-center my-5">Reservation Details</h1>
       <Container>
-        <h3 style={{ textDecoration: "underline" }}>Reservation Specifics</h3>
-        <Table size="sm">
-          <thead>
+        <h3>Reservation Specifics</h3>
+        <Table className="table" size="sm">
+          <thead className="thead">
             <tr>
-              <th>Trip Title</th>
+              <th>Trip</th>
               <th>Date</th>
               <th>Transport Company</th>
-              <th>Company Website</th>
               <th>Reservation Number</th>
               <th>&nbsp;</th>
             </tr>
           </thead>
-          <tbody>
-            <tr key={reservation.reservationId}>
+          <tbody className="tbody">
+            <tr>
               <td>{reservation.reservationTitle}</td>
               <td>{reservation.reservationDate}</td>
-              <td>{reservation.company.companyName}</td>
-              <td><img src={reservation.company.icon} style={{ width: '32px' }} />&nbsp;<a href={reservation.company.url} target="blank">{reservation.company.url}</a></td>
+              <td><img src={reservation.company.icon} style={{ width: '32px' }} /> <a href={reservation.company.url} target="blank">{reservation.company.companyName}</a></td>
               <td>{reservation.reservationCode}</td>
-              <td><Button className="text-white" onClick={() => copyJump(reservation.reservationCode)}>Copy and Jump to page</Button></td>
+              <td><Button className="pageButton" onClick={() => copyJump(reservation.reservationCode)}>Copy and Jump to page</Button></td>
             </tr>
           </tbody>
         </Table>
-        <Link to={`/reservationupdateform/${reservation.reservationId}`} className="btn btn-primary me-3">Edit Reservation</Link>
-        <Button className="btn btn-danger me-3" onClick={() => handleDeleteReservation(reservation.reservationId)}>Delete Reservation</Button>
-        <Link to={`/userreservationlist/`} className="btn btn-success me-3"><i className="bi bi-arrow-left-short"></i>Back</Link>
+        <Row>
+          <Col className="mb-3">
+            <Link to={`/reservationupdateform/${reservation.reservationId}`} className="pageButton btn me-3">Edit Reservation</Link>
+            <Button className="deleteButton me-3" onClick={() => handleDeleteReservation(reservation.reservationId)}>Delete Reservation</Button>
+          </Col>
+        </Row>
+        <Link to={`/userreservationlist/`}><i className="bi bi-arrow-left-short"></i>Back</Link>
       </Container>
     </>
   );

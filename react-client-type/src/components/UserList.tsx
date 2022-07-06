@@ -4,10 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
-import AdminMenuBar from './AdminMenuBar';
 
 import AuthContext from '../AuthContext';
-
 
 function UserList() {
   const [userAccounts, setUserAccounts] = useState([]);
@@ -80,8 +78,7 @@ function UserList() {
 
   return (
     <>
-      <AdminMenuBar />
-      <h1 className="text-center">All Customers We Work With</h1>
+      <h1 className="text-center my-5">All Customers We Work With</h1>
       <Container>
         <Table className="table">
           <thead className="thead">

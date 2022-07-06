@@ -8,18 +8,15 @@ import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Carousel from 'react-bootstrap/Carousel';
 
-import AuthContext from '../AuthContext';
-import AdminMenuBar from './AdminMenuBar';
-
 import Jumbotron1 from '../images/jumbotron1.jpg';
 import Jumbotron2 from '../images/jumbotron2.png';
 import Jumbotron3 from '../images/jumbotron3.jpg';
 import Plan1 from '../images/plan1.jpg';
 import Plan2 from '../images/plan2.jpg';
 import Plan3 from '../images/plan3.jpg';
-import TravelVlog from '../images/travelers.jpg';
-// TODO styling
-// TODO add pages to bottom cards
+
+import AuthContext from '../AuthContext';
+
 function Home() {
   const auth = useContext(AuthContext);
   return (
@@ -28,7 +25,7 @@ function Home() {
       <Container>
         <Carousel className="mb-5">
           <Carousel.Item interval={5000}>
-            <img className="d-block w-100" src={Jumbotron1} alt="Beach alogn the water" />
+            <img className="d-block w-100" src={Jumbotron1} alt="Beach along the water" />
             <Carousel.Caption className="carouselCaption">
               <h3><img src="https://www.expedia.com/favicon.ico" className="carouselIconImg" /> Expedia</h3>
               <p>Check out our partner: Expedia Deal of the Day can save you money.</p>
@@ -82,15 +79,40 @@ function Home() {
               </Card>
             </Link>
           </Col>
-          <Col>
-            <Link className="cardLink" to="/companylist">
-              <Card className="secondaryColor me-5">
-                <Card.Body>
-                  <Card.Title className="buttonTitle text-center">Companies We Support</Card.Title>
-                </Card.Body>
-              </Card>
-            </Link>
-          </Col>
+          {((auth === undefined || auth.user === null || (auth?.user?.hasRole("ROLE_USER"))) && (
+            <Col>
+              <Link className="cardLink" to="/companylist">
+                <Card className="secondaryColor me-5">
+                  <Card.Body>
+                    <Card.Title className="buttonTitle text-center">Companies We Support</Card.Title>
+                  </Card.Body>
+                </Card>
+              </Link>
+            </Col>
+          ))}
+          {((auth?.user?.hasRole("ROLE_REP")) && (
+            <Col>
+              <Link className="cardLink" to={`/companypage/${auth?.user?.companyId}`}>
+                <Card className="secondaryColor me-5">
+                  <Card.Body>
+                    <Card.Title as="h2" className="text-white text-center my-2">Company Page</Card.Title>
+                  </Card.Body>
+                </Card>
+              </Link>
+            </Col>
+          ))}
+          {((auth?.user?.hasRole("ROLE_ADMIN")) && (
+            <Col>
+              <Link className="cardLink" to={`/companylist`}>
+                <Card className="secondaryColor me-5">
+                  <Card.Body>
+                    <Card.Title as="h2" className="text-white text-center my-2">Company List</Card.Title>
+                  </Card.Body>
+                </Card>
+              </Link>
+            </Col>
+          ))}
+
         </Row>
       </Container>
 

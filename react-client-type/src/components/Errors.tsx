@@ -4,7 +4,7 @@ import Container from 'react-bootstrap/Container'
 interface ErrorsProps {
   errors: string[]
 }
-// TODO check styling
+
 function Errors({ errors }: ErrorsProps) {
   if (!errors || errors.length === 0) {
     return null;

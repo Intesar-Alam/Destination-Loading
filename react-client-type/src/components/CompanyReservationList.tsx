@@ -3,8 +3,9 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 
 import Table from 'react-bootstrap/Table';
 import Container from 'react-bootstrap/Container';
+
 import AuthContext from '../AuthContext';
-// TODO styling
+
 type COMPANY_DEFAULT = {
   companyId: string | undefined,
   companyName: string,
@@ -76,7 +77,6 @@ function CompanyReservationList() {
 
   const length = reservations.length;
 
-
   return (
     <>
       <h1 className="text-center my-5">All Reservations for {company['companyName']}</h1>
@@ -106,7 +106,6 @@ function CompanyReservationList() {
         </Table>
         <Link to={`/companypage/${id}`}><i className="bi bi-arrow-left-short"></i>Back</Link>
       </Container>
-
     </>
   );
 }
