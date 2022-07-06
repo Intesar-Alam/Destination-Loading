@@ -48,6 +48,10 @@ function CompanyImage({ companyName, icon, url, transportationMode }: Company) {
             setJumboImage(JetBlue);
             setAltText("JetBlue plane in the sky");
             break;
+          case "United Airlines":
+            setJumboImage(United);
+            setAltText("JetBlue plane in the sky");
+            break;
           default:
             setJumboImage(AIR);
             setAltText("Plane in the sky");
@@ -82,7 +86,7 @@ function CompanyImage({ companyName, icon, url, transportationMode }: Company) {
             setJumboImage(Greyhound);
             setAltText("Greyhound bus");
             break;
-          default:          
+          default:
             setJumboImage(GROUND);
             setAltText("Bus");
         }

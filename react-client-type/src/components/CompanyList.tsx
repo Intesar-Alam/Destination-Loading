@@ -66,7 +66,7 @@ function CompanyList() {
 
   return (
     <>
-      <h1 className="text-center my-5">All Companies We Work With</h1>
+      <h1 className="text-center my-5">All Companies We Support</h1>
       <Container>
         <Table className="table">
           <thead>
