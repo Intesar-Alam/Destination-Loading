@@ -9,7 +9,6 @@ import Col from 'react-bootstrap/Col';
 
 
 import AuthContext from '../AuthContext';
-import AdminMenuBar from './AdminMenuBar';
 
 // TODO styling
 function CompanyList() {
@@ -37,12 +36,12 @@ function CompanyList() {
       window.alert('You must be logged in to access this feature')
       navigate('/login');
       return;
-   }
+    }
 
     const company: any = companies.find(company => company['companyId'] === companyId);
 
-    if(window.confirm(
-    `    Deletion is permanent.
+    if (window.confirm(
+      `    Deletion is permanent.
     Are you sure you want to proceded?
     Delete company ${company['companyName']}?`)) {
       const init = {
@@ -53,21 +52,20 @@ function CompanyList() {
       };
 
       fetch(`http://localhost:8080/api/company/${companyId}`, init)
-      .then(response => {
-        if (response.status === 204) {
-          const newCompanies = companies.filter(company => company['companyId'] !== companyId);
-          setCompanies(newCompanies);
-        } else {
-          return Promise.reject(`Unexpected status code: ${response.status}`);
-        }
-      })
-      .catch(console.log);
+        .then(response => {
+          if (response.status === 204) {
+            const newCompanies = companies.filter(company => company['companyId'] !== companyId);
+            setCompanies(newCompanies);
+          } else {
+            return Promise.reject(`Unexpected status code: ${response.status}`);
+          }
+        })
+        .catch(console.log);
     }
   };
 
   return (
     <>
-    <AdminMenuBar />
       <h1 className="text-center my-5">All Companies We Work With</h1>
       <Container>
         <Table className="table">
@@ -85,7 +83,7 @@ function CompanyList() {
               <tr key={company['companyId']}>
                 <td>{company['companyId']}</td>
                 <td>{company['companyName']}</td>
-                <td><img src={company['icon']} style={{ width: '32px'}} /> &nbsp;<a href={company['url']} target="_blank">{company['url']}</a></td>
+                <td><img src={company['icon']} style={{ width: '32px' }} /> &nbsp;<a href={company['url']} target="_blank">{company['url']}</a></td>
                 <td>{company['transportationMode']}</td>
                 <td>
                   <Row>
@@ -94,10 +92,13 @@ function CompanyList() {
                         <i className="bi bi-pencil-square"></i>
                       </Link>
                     </Col> */}
+
                     <Col className="col-md-6">
-                      <Button className="deleteButton btn-sm" onClick={() => handleDeleteCompany(company['companyId'])}>
-                        <i className="bi bi-trash"></i>
-                      </Button>
+                      {auth && auth.user && auth.user.hasRole('ROLE_ADMIN') && (
+                        <Button className="deleteButton btn-sm" onClick={() => handleDeleteCompany(company['companyId'])}>
+                          <i className="bi bi-trash"></i>
+                        </Button>
+                      )}
                     </Col>
                   </Row>
                 </td>
@@ -105,7 +106,9 @@ function CompanyList() {
             ))}
           </tbody>
         </Table>
-        <Link className="pageButton" to={'/company'}>Add Company</Link>
+        {auth && auth.user && auth.user.hasRole('ROLE_ADMIN') && (
+          <Link className="pageButton" to={'/company'}>Add Company</Link>
+        )}
       </Container>
     </>
   );
