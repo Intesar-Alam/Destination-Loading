@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useState, useEffect, useContext } from 'react';
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 
 import Home from './components/Home';
@@ -53,7 +53,7 @@ function App() {
 
   const [restoreLoginAttemptCompleted, setRestoreLoginAttemptCompleted] = useState(false);
 
-  
+  const authorization = useContext(AuthContext);
   
   useEffect(() => {
     const token = localStorage.getItem(DL_TOKEN_KEY);
@@ -99,7 +99,7 @@ const auth = {
   if(!restoreLoginAttemptCompleted) {
     return null;
   }
-
+   
   return (
     <>
     <AuthContext.Provider value={auth}>
