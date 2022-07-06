@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
- 
+
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
@@ -29,8 +29,11 @@ function MenuBar() {
               <NavDropdown.Item href="/contact">Contact</NavDropdown.Item>
             </NavDropdown>
           </Nav>
-          {auth && auth.user && auth.user.hasRole('ROLE_ADMIN') &&(
+          {auth && auth.user && auth.user.hasRole('ROLE_ADMIN') && (
             <Button className="menuButton me-4" href="/adminpage">Admin</Button>
+          )}
+          {auth && auth.user && auth.user.hasRole('ROLE_REP') && (
+            <Button className="menuButton me-4" href={`/companypage/${auth?.user?.companyId}`}>Company Page</Button>
           )}
           {(auth === undefined || auth.user === null) && (
             <>
