@@ -1,5 +1,5 @@
-import { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useContext, useEffect } from 'react';
+import { useNavigate, BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
@@ -10,7 +10,8 @@ import Card from 'react-bootstrap/Card';
 
 import AuthContext from '../AuthContext';
 import Errors from './Errors';
-
+import { DecodedToken, User } from '../App';
+import jwt_decode from 'jwt-decode';
 
 // TODO fix navigation paths for users
 function Login() {
@@ -104,6 +105,7 @@ function Login() {
   // TODO implement security/authController
   return (
     <>
+      <h1 className="text-center">Login</h1>
       <h1 className="text-center">Login</h1>
       <Container>
         <Errors errors={errors} />

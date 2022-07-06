@@ -36,6 +36,9 @@ public class CompanyJdbcTemplateRepository implements CompanyRepository {
     @Override
     @Transactional
     public Company findById (int companyId) {
+        if (companyId == 1) {
+            return null;
+        }
         final String sql = "select company_id, company_name, company_url, company_icon, transportation_mode " +
                 "from transport_company " +
                 "where company_id = ?;";

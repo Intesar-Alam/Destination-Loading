@@ -28,7 +28,10 @@ public class CompanyContoller {
     }
 
     @GetMapping("/{companyId}")
-    public Company findById(@PathVariable int companyId){
+    public Object findById(@PathVariable int companyId){
+        if (service.findById(companyId) == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
         return service.findById(companyId);
     }
 
