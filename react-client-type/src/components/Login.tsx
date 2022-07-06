@@ -63,8 +63,8 @@ function Login() {
           }
           console.log(auth.user);
           // TODO add if statements based on user to navigate to correct page on login, add if statement if not a user to send to new user login/register page'git
-          navigate('/');
-          // handleRedirect();
+          // navigate('/');
+          handleRedirect();
         } else {
           const err: Array<string> = ['Username & Password combination are not correct please try again, or sign-up!'];
           setErrors(err);
