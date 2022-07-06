@@ -9,6 +9,9 @@ import Container from 'react-bootstrap/container';
 import JumboImage from '../images/travelers.jpg';
 import AuthContext from '../AuthContext';
 
+import CompanyImage from './CompanyImage';
+import Company from './CompanyImage';
+
 
 // TODO styling
 type USER_DEFAULT = {
@@ -19,6 +22,16 @@ type USER_DEFAULT = {
   address: string,
   phone: string,
   dob: string,
+};
+
+type Reservation = {
+  reservationId: string | undefined,
+  appUserId: string,
+  companyId: string,
+  reservationDate: string,
+  reservationCode: string,
+  reservationTitle: string,
+  company: typeof Company
 };
 
 function UserReservationList() {
@@ -32,7 +45,7 @@ function UserReservationList() {
     dob: "",
   });
 
-  const [reservations, setReservations] = useState([]);
+  const [reservations, setReservations] = useState<Reservation [] | null>(null);
 
   const auth = useContext(AuthContext);
 
@@ -87,19 +100,23 @@ function UserReservationList() {
       .catch(console.log);
   }, [auth]);
 
+  //TEMP
+  if(reservations === null){
+    return (
+      <>
+      <h6 className="text-end me-3 mt-2">Welcome, {user['firstName']}!
+        <Link className="btn btn-outline-secondary btn-sm ms-2" to={`/userupdateform/${user['appUserId']}`}>
+          <i className="bi bi-pencil"></i>
+        </Link>
+      </h6>
+      <h1 className="text-center mb-5">Looks like you don't have any reservations yet, add reservations to get started!</h1>
 
-
-
-
-
-  // TODO add picture array to randomize images for card backgrounds
-
-
-  // const pictureArray = [image1, image2, image3, image4];
-
-  // function randomPicture() {
-  //   return pictureArray[Math.floor(Math.random() * pictureArray.length)];
-  // }
+      <Container>
+        <Link to="/reservationaddform" className="btn btn-primary mb-3">Add Reservation</Link>
+      </Container>
+      </>
+    );
+  }
 
   return (
     <>
@@ -131,7 +148,8 @@ function UserReservationList() {
             <Card className="mb-3">
               <Row>
                 <Col className="col-md-4">
-                  <Card.Img src={JumboImage} alt="Generic travel image" />
+                  <CompanyImage {... reservation.company}/>
+                  {/* <Card.Img src={JumboImage} alt="Generic travel image" /> */}
                 </Col>
                 <Col className="col-md-8">
                   <Card.Body>
