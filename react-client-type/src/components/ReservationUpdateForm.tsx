@@ -63,6 +63,9 @@ function ReservationUpdateForm() {
         .then(response => {
           if (response.status === 200) {
             return response.json();
+          } else if (response.status === 403) {
+            navigate('/forbidden');
+            return;
           } else {
             return Promise.reject(`Unexpected status code: ${response.status}`);
           }
@@ -120,6 +123,9 @@ const updateReservation = () => {
   .then(response => {
     if (response.status === 204) {
       return null;
+    } else if (response.status === 403) {
+      navigate('/forbidden');
+      return; 
     } else if (response.status === 400) {
       return response.json();
     } else {
