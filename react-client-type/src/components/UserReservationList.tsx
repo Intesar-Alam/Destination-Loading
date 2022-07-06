@@ -118,6 +118,11 @@ function UserReservationList() {
     );
   }
 
+  const dateConverter = (date: string) => {
+    const dateArr = date.split('-');
+    return dateArr[1] + "/" + dateArr[2] + "/" + dateArr[0];
+  };
+
   return (
     <>
       <h6 className="text-end me-3 mt-2">Welcome, {user['firstName']}!
@@ -154,7 +159,7 @@ function UserReservationList() {
                 <Col className="col-md-8">
                   <Card.Body>
                     <Card.Text>
-                      {reservation['reservationDate']}
+                      {dateConverter(reservation.reservationDate)}
                     </Card.Text>
                     <Card.Title>{reservation['reservationTitle']}</Card.Title>
                   </Card.Body>
