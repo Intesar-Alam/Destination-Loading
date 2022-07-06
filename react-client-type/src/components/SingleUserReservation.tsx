@@ -113,26 +113,13 @@ function SingleUserReservation() {
           if (response.status === 204) {
             const newReservations = reservations.filter(reservation => reservation['reservationId'] !== reservationId);
             setReservations(newReservations);
-            navigate(`/userreservationlist`);
+            navigate(`/userreservationlist/${reservation['appUserId']}`);
           } else {
             return Promise.reject(`Unexpected status code: ${response.status}`);
           }
         })
         .catch(console.log);
     }
-  };
-
-  const copyReservation = (reservationCode: string) => {
-    navigator.clipboard.writeText(reservationCode);
-  };
-
-  const copyJump = (reservationCode: string) => {
-    if(reservation['url'] === undefined){
-      return;
-    }
-    navigator.clipboard.writeText(reservationCode);
-    window.open(reservation['url']);
-    // window.location.href = reservation['url'];
   };
 
   return (
@@ -148,7 +135,6 @@ function SingleUserReservation() {
               <th>Transport Company</th>
               <th>Company Website</th>
               <th>Reservation Number</th>
-              <th>&nbsp;</th>
             </tr>
           </thead>
           <tbody>
@@ -156,15 +142,13 @@ function SingleUserReservation() {
               <td>{reservation['reservationTitle']}</td>
               <td>{reservation['reservationDate']}</td>
               <td>{reservation['companyName']}</td>
-              <td><a href={reservation['url']} target="blank">{reservation['url']}</a></td>
-              <td>{reservation['reservationCode']}&nbsp;<Button className="text-white" onClick={() => copyReservation(reservation['reservationCode'])}>Copy</Button></td>
-              <td><Button className="text-white" onClick={() => copyJump(reservation['reservationCode'])}>Copy & Jump to page</Button></td>
+              <td><a href={reservation['url']}>{reservation['url']}</a></td>
+              <td>{reservation['reservationCode']}<Button className="text-white">Copy</Button></td>
             </tr>
           </tbody>
         </Table>
         <Link to={`/reservationupdateform/${reservation['reservationId']}`} className="btn btn-primary me-3">Edit Reservation</Link>
-        <Button className="btn btn-danger me-3" onClick={() => handleDeleteReservation(reservation['reservationId'])}>Delete Reservation</Button>
-        <Link to={`/userreservationlist/`} className="btn btn-success me-3"><i className="bi bi-arrow-left-short"></i>Back</Link>
+        <Button variant="danger" onClick={() => handleDeleteReservation(reservation['reservationId'])}>Delete Reservation</Button>
       </Container>
     </>
   );
