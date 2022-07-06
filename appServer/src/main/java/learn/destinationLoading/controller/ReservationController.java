@@ -94,7 +94,7 @@ public class ReservationController {
         if (!(existingReservation.getAppUserId() == appUser.getAppUserId()
                 || existingReservation.getCompanyId() == appUser.getCompanyId()
                 || appUser.getRoles().get(0).equals("ADMIN"))) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
 
         Result<Reservation> result = service.update(reservation);

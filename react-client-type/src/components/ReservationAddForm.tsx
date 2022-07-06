@@ -74,9 +74,7 @@ function ReservationAddForm() {
   const addReservation = () => {
     console.log(reservation);
     if (auth === undefined || auth.user === null){
-      window.alert('You must be logged in to access this feature')
-      navigate('/login');
-      return;
+      return navigate('/login');
     }
     const init = {
       method: 'POST',
@@ -92,7 +90,10 @@ function ReservationAddForm() {
         if (response.status === 201 || response.status === 400) {
           console.log(response);
           return response.json();
-        } else {
+        } else if (response.status === 403) {
+          return navigate('/forbidden');
+        }
+         else {
           return Promise.reject(`Unexpected status code: ${response.status}`);
         }
       })

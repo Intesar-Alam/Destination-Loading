@@ -55,7 +55,7 @@ function UserReservationList() {
 
   useEffect(() => {
     if (auth === undefined || auth.user === null) {
-      navigate('/');
+      navigate('/login');
       return;
     }
     const authorization = {
@@ -67,7 +67,11 @@ function UserReservationList() {
       .then(response => {
         if (response.status === 200) {
           return response.json();
-        } else {
+        } else if (response.status === 403) {
+          navigate('/forbidden');
+          return;
+        }
+         else {
           return Promise.reject(`Unexpected status code: ${response.status}`);
         }
       })
@@ -89,7 +93,11 @@ function UserReservationList() {
       .then(response => {
         if (response.status === 200) {
           return response.json();
-        } else {
+        } else if (response.status === 403) {
+          navigate('/forbidden');
+          return;
+        }
+         else {
           return Promise.reject(`Unexpected status code: ${response.status}`);
         }
       })

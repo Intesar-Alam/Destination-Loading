@@ -53,42 +53,36 @@ function Login() {
       .then(data => {
         console.log(data);
         if (data) {
-
           if (auth === undefined) {
             navigate('/');
             return;
           }
           auth.login(data.jwt_token);
-          if(auth.user === null){
-            console.log("user is null");
-          }
-          console.log(auth.user);
-          // TODO add if statements based on user to navigate to correct page on login, add if statement if not a user to send to new user login/register page'git
-          // navigate('/');
-          handleRedirect();
+          const token = jwt_decode(data.jwt_token) as DecodedToken;
+          const roles = token.authorities.split(',');
+          handleRedirect(roles, token.companyId);
         } else {
           const err: Array<string> = ['Username & Password combination are not correct please try again, or sign-up!'];
           setErrors(err);
         }
-      })
-      .catch(console.log);
+      }).catch(console.log);
   };
 
-  const handleRedirect = () => {
-    if (auth === undefined || auth.user === null) {
+  const handleRedirect = (role: string[], companyId: number) => {
+    if (role === undefined || role === null) {
       console.log("failed");
-      navigate('/');
+      navigate('/login');
       return;
     }
     console.log("passed");
-    if (auth.user.hasRole('ROLE_USER')) {
+    if (role.includes('ROLE_USER')) {
       console.log("user");
-      navigate(`/userreservationlist/user`);
-    } else if (auth.user.hasRole('ROLE_ADMIN')) {
+      navigate(`/userreservationlist`);
+    } else if (role.includes('ROLE_ADMIN')) {
       console.log("admin");
       navigate("/adminpage");
-    } else if (auth.user.hasRole('ROLE_REP')) {
-      // navigate(`/companypage/${auth.user.}`);
+    } else if (role.includes('ROLE_REP')) {
+      navigate(`/companypage/${companyId}`);
     } else {
       navigate("/newuserlogin");
     }

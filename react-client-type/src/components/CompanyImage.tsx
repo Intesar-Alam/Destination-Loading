@@ -1,4 +1,4 @@
-import { useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 
 import Card from 'react-bootstrap/Card';
 
@@ -12,6 +12,10 @@ import Delta from '../images/companies/Delta.png';
 import JetBlue from '../images/companies/JetBlue.png';
 import Amtrak from '../images/companies/Amtrak.png';
 import Brightline from '../images/companies/Brightline.png';
+import Flixbus from '../images/companies/Flixbus.jpg';
+import Greyhound from '../images/companies/Greyhound.jpg';
+import United from '../images/companies/United.jpg';
+import Via from '../images/companies/Via.png';
 
 export interface Company {
   companyName?: string,
@@ -44,6 +48,10 @@ function CompanyImage({ companyName, icon, url, transportationMode }: Company) {
             setJumboImage(JetBlue);
             setAltText("JetBlue plane in the sky");
             break;
+          case "United Airlines":
+            setJumboImage(United);
+            setAltText("JetBlue plane in the sky");
+            break;
           default:
             setJumboImage(AIR);
             setAltText("Plane in the sky");
@@ -59,14 +67,29 @@ function CompanyImage({ companyName, icon, url, transportationMode }: Company) {
             setJumboImage(Brightline);
             setAltText("BrightLine Train");
             break;
+          case "Via Rail":
+            setJumboImage(Via);
+            setAltText("Via Rail Train");
+            break;
           default:
             setJumboImage(RAIL);
             setAltText("Train");
         }
         break;
       case "GROUND":
-        setJumboImage(GROUND);
-        setAltText("Bus");
+        switch (companyName) {
+          case "FlixBus":
+            setJumboImage(Flixbus);
+            setAltText("Flix bus");
+            break;
+          case "Greyhound":
+            setJumboImage(Greyhound);
+            setAltText("Greyhound bus");
+            break;
+          default:
+            setJumboImage(GROUND);
+            setAltText("Bus");
+        }
         break;
       case "WATER":
         setJumboImage(WATER);

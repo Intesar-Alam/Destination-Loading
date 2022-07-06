@@ -82,7 +82,7 @@ function NewUserLogin() {
                 if (response.status === 200) {
                   return response.json();
                 } else if (response.status === 403) {
-                  return null;
+                  return navigate('/forbidden');
                 } else {
                   return Promise.reject(`Unexpected status code: ${response.status}`);
                 }

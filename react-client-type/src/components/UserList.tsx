@@ -29,7 +29,10 @@ function UserList() {
       .then(response => {
         if (response.status === 200) {
           return response.json();
-        } else {
+        } else if (response.status === 403) {
+          return navigate('/forbidden');
+        } 
+        else {
           return Promise.reject(`Unexpected status code: ${response.status}`);
         }
       })
@@ -39,7 +42,6 @@ function UserList() {
 
   const handleDeleteUser = (appUserId: number) => {
     if (auth === undefined || auth.user === null) {
-      window.alert('You must be logged in to access this feature')
       navigate('/login');
       return;
     }
@@ -62,7 +64,11 @@ function UserList() {
           if (response.status === 204) {
             const newUserAccount = userAccounts.filter(userAccount => userAccount['appUserId'] !== appUserId);
             setUserAccounts(newUserAccount);
-          } else {
+          } else if (response.status === 403) {
+            navigate('/forbidden');
+            return;
+          }
+           else {
             return Promise.reject(`Unexpected status code: ${response.status}`);
           }
         })
