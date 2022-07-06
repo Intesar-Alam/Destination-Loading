@@ -132,6 +132,7 @@ const auth = {
           <Route path="/companylist" element={<CompanyList />} />
           <Route path="/underconstruction" element={<UnderConstruction />} />
           <Route path ="/forbidden" element={<Forbidden />}></Route>
+          <Route path ="/*" element={<NotFound />} />
         </Routes>
         <Footer />
       </BrowserRouter>
