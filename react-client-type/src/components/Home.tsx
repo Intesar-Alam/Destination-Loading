@@ -87,15 +87,50 @@ function Home() {
               </Card>
             </Link>
           </Col>
-          <Col>
-            <Link style={{ textDecoration: 'none' }} to={`/companypage/${auth?.user?.companyId}`}>
-              <Card bg="warning" style={{ width: '18rem', height: '6rem' }} className="me-5">
-                <Card.Body>
-                  <Card.Title as="h2" className="text-white text-center my-2">Company Page</Card.Title>
-                </Card.Body>
-              </Card>
-            </Link>
-          </Col>
+          {((auth === undefined || auth.user === null) && (
+            <Col>
+              <Link style={{ textDecoration: 'none' }} to={`/contact`}>
+                <Card bg="warning" style={{ width: '18rem', height: '6rem' }} className="me-5">
+                  <Card.Body>
+                    <Card.Title as="h2" className="text-white text-center my-2">Contact Us</Card.Title>
+                  </Card.Body>
+                </Card>
+              </Link>
+            </Col>
+          ))}
+          {((auth?.user?.hasRole("ROLE_REP")) && (
+            <Col>
+              <Link style={{ textDecoration: 'none' }} to={`/companypage/${auth?.user?.companyId}`}>
+                <Card bg="warning" style={{ width: '18rem', height: '6rem' }} className="me-5">
+                  <Card.Body>
+                    <Card.Title as="h2" className="text-white text-center my-2">Company Page</Card.Title>
+                  </Card.Body>
+                </Card>
+              </Link>
+            </Col>
+          ))}
+          {((auth?.user?.hasRole("ROLE_ADMIN")) && (
+            <Col>
+              <Link style={{ textDecoration: 'none' }} to={`/companylist`}>
+                <Card bg="warning" style={{ width: '18rem', height: '6rem' }} className="me-5">
+                  <Card.Body>
+                    <Card.Title as="h2" className="text-white text-center my-2">Company List</Card.Title>
+                  </Card.Body>
+                </Card>
+              </Link>
+            </Col>
+          ))}
+          {((auth?.user?.hasRole("ROLE_USER")) && (
+            <Col>
+              <Link style={{ textDecoration: 'none' }} to={`/reservationaddform`}>
+                <Card bg="warning" style={{ width: '18rem', height: '6rem' }} className="me-5">
+                  <Card.Body>
+                    <Card.Title as="h2" className="text-white text-center my-2">Add Reservation</Card.Title>
+                  </Card.Body>
+                </Card>
+              </Link>
+            </Col>
+          ))}
         </Row>
       </Container>
 
@@ -128,7 +163,7 @@ function Home() {
           </Col>
           <Col>
             <Card style={{ width: '22rem' }} className="mx-2">
-              <Card.Img variant="top" src={Plan3} alt="Satellite view from space"/>
+              <Card.Img variant="top" src={Plan3} alt="Satellite view from space" />
               <Card.Body>
                 <Card.Title><img src="https://s.inspirockcdn.com/images/meta/favicon.ico" style={{ width: '18px' }} /> Visit The USA </Card.Title>
                 <Card.Text>
