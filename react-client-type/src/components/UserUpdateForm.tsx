@@ -128,36 +128,36 @@ function UserUpdateForm() {
   };
 
   // TODO handleDelete for admin
-  const handleDeleteUser = (appUserId: string | undefined) => {
-    if (auth === undefined || auth.user === null || !auth.user.hasRole("ADMIN")) {
-      window.alert('You must be an admin to access this feature');
-      navigate('/login');
-      return;
-    }
-    if (window.confirm(
-      `    Deletion is permanent.
-    Are you sure you want to proceded?
-    Delete user named ${userAccount['firstName']}${userAccount['lastName']}?`)) {
-      const init = {
-        method: 'DELETE',
-        headers: {
-          'Authorization': `Bearer ${auth.user.token}`
-        },
-      };
+  // const handleDeleteUser = (appUserId: string | undefined) => {
+  //   if (auth === undefined || auth.user === null || !auth.user.hasRole("ADMIN")) {
+  //     window.alert('You must be an admin to access this feature');
+  //     navigate('/login');
+  //     return;
+  //   }
+  //   if (window.confirm(
+  //     `    Deletion is permanent.
+  //   Are you sure you want to proceded?
+  //   Delete user named ${userAccount['firstName']}${userAccount['lastName']}?`)) {
+  //     const init = {
+  //       method: 'DELETE',
+  //       headers: {
+  //         'Authorization': `Bearer ${auth.user.token}`
+  //       },
+  //     };
 
-      fetch(`http://localhost:8080/api/useraccount/${appUserId}`, init)
-        .then(response => {
-          if (response.status === 204) {
-            const newUser = users.filter(user => user['appUserId'] !== appUserId);
-            setUsers(newUser);
-            navigate('/userlist');
-          } else {
-            return Promise.reject(`Unexpected status code: ${response.status}`);
-          }
-        })
-        .catch(console.log);
-    }
-  };
+  //     fetch(`http://localhost:8080/api/useraccount/${appUserId}`, init)
+  //       .then(response => {
+  //         if (response.status === 204) {
+  //           const newUser = users.filter(user => user['appUserId'] !== appUserId);
+  //           setUsers(newUser);
+  //           navigate('/userreservationlist/');
+  //         } else {
+  //           return Promise.reject(`Unexpected status code: ${response.status}`);
+  //         }
+  //       })
+  //       .catch(console.log);
+  //   }
+  // };
 
   return (
     <>
@@ -205,16 +205,16 @@ function UserUpdateForm() {
             <Form.Group as={Row} className="mb-3">
               <Col sm={{ offset: 8 }}>
                 <Button type="submit" className="me-3">Update User</Button>
-                <Link className="btn btn-primary" to={`/userreservationlist/${userAccount['appUserId']}`}>Cancel</Link>
+                <Link className="btn btn-primary" to={`/userreservationlist`}>Cancel</Link>
               </Col>
             </Form.Group>
-            {auth && auth.user && auth.user.hasRole('ROLE_ADMIN') && (
+            {/* {auth && auth.user && auth.user.hasRole('ROLE_ADMIN') && (
               <Form.Group as={Row}>
                 <Col sm={{ offset: 9 }}>
                   <Button type="submit" className="mb-2" onClick={() => handleDeleteUser(userAccount['appUserId'])}>Delete User</Button>
                 </Col>
               </Form.Group>
-            )}
+            )} */}
           </Form>
         </Card>
       </Container>

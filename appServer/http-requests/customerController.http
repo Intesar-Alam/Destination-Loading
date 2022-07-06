@@ -2,7 +2,7 @@
 @reservation_url = http://localhost:8080/api/reservation
 @account_url = http://localhost:8080/api/useraccount
 
-@token = eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJkZXN0aW5hdGlvbi1sb2FkaW5nLWFwaSIsInN1YiI6ImJlYW5ib3lAZ3VhYy5jb20iLCJhdXRob3JpdGllcyI6IlJPTEVfVVNFUiIsImFwcFVzZXJJZCI6NiwiY29tcGFueUlkIjoxLCJleHAiOjE2NTcwMTIyMjB9.mt2ueucBm1A7PaqgU5-eIXj1c0CtE3Z1OvCncfgizrg
+@token = eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJkZXN0aW5hdGlvbi1sb2FkaW5nLWFwaSIsInN1YiI6IkplcmVteUBqZXJlbXkuY29tICIsImF1dGhvcml0aWVzIjoiUk9MRV9VU0VSIiwiYXBwVXNlcklkIjo2LCJjb21wYW55SWQiOjEsImV4cCI6MTY1NzEwNTc3M30.i_KnNNg_S7a1PtdNM0PLBgN06jDJ6r9tpMtddlfpY1A
 ### Authenticate Customer User
 
 POST http://localhost:8080/api/authenticate HTTP/1.1
@@ -108,7 +108,7 @@ Authorization: Bearer {{token}}
 
 ### findByReservationId 
 
-GET {{reservation_url}}/3 HTTP/1.1
+GET {{reservation_url}}/13 HTTP/1.1
 Authorization: Bearer {{token}}
 
 

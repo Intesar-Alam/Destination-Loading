@@ -42,20 +42,6 @@ function ReservationAddForm() {
 
   const { id } = useParams();
 
-  // useEffect(() => {
-  //   if (id) {
-  //     fetch(`http://localhost:8080/api/reservation/${id}`)
-  //       .then(response => {
-  //         if (response.status === 200) {
-  //           return response.json();
-  //         } else {
-  //           return Promise.reject(`Unexpected status code: ${response.status}`);
-  //         }
-  //       })
-  //       .then(data => setReservation(data))
-  //   }
-  // }, [id]);
-
   useEffect(() => {
       fetch(`http://localhost:8080/api/company/`)
         .then(response => {
@@ -113,7 +99,6 @@ function ReservationAddForm() {
       .then(data => {
         console.log(data)
         if (data['reservationId']) {
-          // TODO add userID to path
           navigate(`/userreservationlist/${reservation['appUserId']}`);
         } else {
           console.log(data)
@@ -132,7 +117,6 @@ function ReservationAddForm() {
           <Form onSubmit={handleSubmit}>
             <Form.Group as={Row} className="my-2 ms-3" controlId="formReservationTitle">
               <Form.Label column sm={2}>Trip Title</Form.Label>
-              {/* max 40 characters */}
               <Col sm={9}>
                 <Form.Control type="text" placeholder="Enter trip title or short description" name="reservationTitle" value={reservation['reservationTitle']} onChange={handleChange} />
                 <Form.Text muted>
@@ -166,14 +150,9 @@ function ReservationAddForm() {
               </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-3">
-              <Col sm={{ offset: 8 }}>
-                <Button type="submit">Create Reservation</Button>
-              </Col>
-            </Form.Group>
-            {/* TODO add userId to reservationlist! */}
-            <Form.Group as={Row}>
-              <Col sm={{ offset: 8 }}>
-              <Link className="btn btn-primary" to={`/userreservationlist/${reservation['appUserId']}`}>Cancel</Link>
+              <Col sm={{ offset: 7 }}>
+                <Button type="submit"className="me-3">Create Reservation</Button>
+                <Link className="btn btn-primary" to={`/userreservationlist/${reservation['appUserId']}`}>Cancel</Link>
               </Col>
             </Form.Group>
           </Form>

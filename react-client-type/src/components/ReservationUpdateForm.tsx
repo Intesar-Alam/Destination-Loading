@@ -146,7 +146,6 @@ const updateReservation = () => {
           <Form onSubmit={handleSubmit}>
             <Form.Group as={Row} className="my-2 ms-3" controlId="formReservationTitle">
               <Form.Label column sm={2}>Trip Title</Form.Label>
-              {/* max 40 characters */}
               <Col sm={9}>
                 <Form.Control type="text" placeholder="Enter trip title or short description" name="reservationTitle" value={reservation['reservationTitle']} onChange={handleChange} />
                 <Form.Text muted>
@@ -183,13 +182,9 @@ const updateReservation = () => {
               </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-3">
-              <Col sm={{ offset: 8 }}>
-                <Button type="submit">Update Reservation</Button>
-              </Col>
-            </Form.Group>
-            <Form.Group as={Row}>
-              <Col sm={{ offset: 8 }}>
-              <Link className="btn btn-primary" to={`/userreservationlist`}>Cancel</Link>
+              <Col sm={{ offset: 7 }}>
+                <Button type="submit" className="me-3">Update Reservation</Button>
+                <Link className="btn btn-primary" to={`/userreservationlist`}>Cancel</Link>
               </Col>
             </Form.Group>
           </Form>

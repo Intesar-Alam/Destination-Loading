@@ -4,8 +4,23 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
 import Container from 'react-bootstrap/Container';
+import Card from 'react-bootstrap/Card';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 import AuthContext from '../AuthContext';
+
+//Image imports find a better way please
+import AIR from '../images/companies/AIR.png';
+import RAIL from '../images/companies/RAIL.png';
+import GROUND from '../images/companies/GROUND.png';
+import WATER from '../images/companies/WATER.png';
+import AlaskaAirlines from '../images/companies/AlaskaAirlines.png';
+import AmericanAirlines from '../images/companies/AmericanAirlines.png';
+import Delta from '../images/companies/Delta.png';
+import JetBlue from '../images/companies/JetBlue.png';
+import Amtrak from '../images/companies/Amtrak.png';
+import Brightline from '../images/companies/Brightline.png';
 
 type Reservation = {
   reservationId: string | undefined,
@@ -14,30 +29,72 @@ type Reservation = {
   reservationDate: string,
   reservationCode: string,
   reservationTitle: string,
-  companyName?: string,
-  url?: string
+  company: {
+    companyName?: string,
+    icon?: string,
+    url?: string,
+    transportationMode?: string
+  }
 };
 
 
 // TODO add authorization, must be logged in to view
 function SingleUserReservation() {
-  const [reservations, setReservations] = useState([]);
-  const [reservation, setReservation] = useState<Reservation>({
-    reservationId: "",
-    appUserId: "",
-    companyId: "",
-    reservationDate: "",
-    reservationCode: "",
-    reservationTitle: "",
-    companyName: "",
-    url: "",
-  });
+  // const [reservations, setReservations] = useState([]);
+  const [reservation, setReservation] = useState<Reservation | null>(null);
+  const [JumboImage, setJumboImage] = useState<any>(null);
 
   const auth = useContext(AuthContext);
 
   const navigate = useNavigate();
 
   const { id } = useParams();
+
+  const setImage = (data: Reservation) => {
+    switch (data.company.transportationMode) {
+      case "AIR":
+        switch (data.company.companyName) {
+          case "Alaska Airlines":
+            setJumboImage(AlaskaAirlines);
+            break;
+          case "American Airlines":
+            setJumboImage(AmericanAirlines);
+            break;
+          case "Delta Air Lines":
+            setJumboImage(Delta);
+            break;
+          case "JetBlue":
+            setJumboImage(JetBlue);
+            break;
+          default:
+            setJumboImage(AIR);
+        }
+        break;
+      case "RAIL":
+        switch (data.company.companyName) {
+          case "Amtrak":
+            setJumboImage(Amtrak);
+            break;
+          case "Brightline":
+            setJumboImage(Brightline);
+            break;
+          default:
+            setJumboImage(RAIL);
+        }
+        break;
+      case "GROUND":
+        setJumboImage(GROUND);
+        break;
+      case "WATER":
+        setJumboImage(WATER);
+        break;
+      default:
+        setJumboImage(AIR);
+        break;
+    }
+
+    return;
+  };
 
   useEffect(() => {
     if (auth === undefined || auth.user === null) {
@@ -48,50 +105,28 @@ function SingleUserReservation() {
     const init = {
       headers: {
         'Authorization': `Bearer ${auth.user.token}`
-    }, 
+      },
     };
-      fetch('http://localhost:8080/api/reservation/user', init)
-        .then(response => {
-          if (response.status === 200) {
-            return response.json();
-          } else {
-            return Promise.reject(`Unexpected status code: ${response.status}`);
-          }
-        })
-        .then(data => {
-          getCompanyData(data)
-        })
-        .catch(console.log);
+    fetch(`http://localhost:8080/api/reservation/${id}`, init)
+      .then(response => {
+        if (response.status === 200) {
+          return response.json();
+        } else {
+          return Promise.reject(`Unexpected status code: ${response.status}`);
+        }
+      })
+      .then(data => {
+        setReservation(data);
+        setImage(data);
+      })
+      .catch(console.log);
 
-  }, [auth]);
+  }, [auth, id]);
 
-  function getCompanyData(data: Reservation[]) {
-    for (const reservation of data) { 
-      fetch(`http://localhost:8080/api/company/${reservation.companyId}`)
-        .then(response => {
-          if (response.status === 200) {
-            return response.json();
-          } else {
-            return Promise.reject(`Unexpected status code: ${response.status}`);
-          }
-        })
-        .then(company => {
-          setReservation({
-            reservationId: reservation.reservationId,
-            appUserId: reservation.appUserId,
-            companyId: reservation.companyId,
-            reservationDate: reservation.reservationDate,
-            reservationCode: reservation.reservationCode,
-            reservationTitle: reservation.reservationTitle,
-            companyName: company.companyName,
-            url: company.url
-          })
-        })
-        .catch(console.log)
-      }
-  };
+  if (reservation === null) {
+    return null;
+  }
 
-  // TODO handleDelete!
   const handleDeleteReservation = (reservationId: string | undefined) => {
     if (auth === undefined || auth.user === null) {
       navigate('/login');
@@ -100,7 +135,7 @@ function SingleUserReservation() {
     if (window.confirm(
       `    Deletion is permanent.
     Are you sure you want to proceded?
-    Delete reservation for ${reservation['reservationTitle']}?`)) {
+    Delete reservation for ${reservation.reservationTitle}`)) {
       const init = {
         method: 'DELETE',
         headers: {
@@ -111,9 +146,7 @@ function SingleUserReservation() {
       fetch(`http://localhost:8080/api/reservation/${reservationId}`, init)
         .then(response => {
           if (response.status === 204) {
-            const newReservations = reservations.filter(reservation => reservation['reservationId'] !== reservationId);
-            setReservations(newReservations);
-            navigate(`/userreservationlist/${reservation['appUserId']}`);
+            navigate(`/userreservationlist`);
           } else {
             return Promise.reject(`Unexpected status code: ${response.status}`);
           }
@@ -122,33 +155,55 @@ function SingleUserReservation() {
     }
   };
 
+  const copyReservation = (reservationCode: string, event: any) => {
+    event.preventDefault();
+    window.navigator.clipboard.writeText(reservationCode);
+  };
+
+  const copyJump = (reservationCode: string) => {
+    if (reservation.company.url === undefined) {
+      return;
+    }
+    window.navigator.clipboard.writeText(reservationCode).then(() => {
+      window.open(reservation.company.url);
+    });
+  };
+
+  const dateConverter = (date: string) => {
+    const dateArr = date.split('-');
+    return dateArr[1] + "/" + dateArr[2] + "/" + dateArr[0];
+  };
+
   return (
     <>
-      <h1 className="text-center">Your Reservation</h1>
+      <h1 className="text-center mt-3">Your Reservation</h1>
       <Container>
-        <h3 style={{ textDecoration: "underline" }}>Reservation Specifics</h3>
-        <Table size="sm">
-          <thead>
-            <tr>
-              <th>Trip Title</th>
-              <th>Date</th>
-              <th>Transport Company</th>
-              <th>Company Website</th>
-              <th>Reservation Number</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr key={reservation['reservationId']}>
-              <td>{reservation['reservationTitle']}</td>
-              <td>{reservation['reservationDate']}</td>
-              <td>{reservation['companyName']}</td>
-              <td><a href={reservation['url']}>{reservation['url']}</a></td>
-              <td>{reservation['reservationCode']}<Button className="text-white">Copy</Button></td>
-            </tr>
-          </tbody>
-        </Table>
-        <Link to={`/reservationupdateform/${reservation['reservationId']}`} className="btn btn-primary me-3">Edit Reservation</Link>
-        <Button variant="danger" onClick={() => handleDeleteReservation(reservation['reservationId'])}>Delete Reservation</Button>
+        <h3 style={{ textDecoration: "underline" }}>Reservation Details</h3>
+        <Card className="mb-3">
+          <Row>
+            <Col className="col-md-4">
+              <Card.Img src={JumboImage} />
+            </Col>
+            <Col className="col-md-8">
+              <Card.Body>
+                <Card.Title>{dateConverter(reservation.reservationDate)}&nbsp;{reservation.reservationTitle}</Card.Title>
+                <Card.Text>
+                  <img src={reservation.company.icon} style={{ width: '32px' }} />&nbsp;<a href={reservation.company.url} target="blank">{reservation.company.companyName}</a>
+                </Card.Text>
+                <Card.Text>
+                  <b>Reservation Code</b><br />
+                  <a href={''} onClick={(event) => copyReservation(reservation.reservationCode, event)}>{reservation.reservationCode}</a>
+                </Card.Text>
+                <Card.Text>
+                  <Button className="text-white" onClick={() => copyJump(reservation.reservationCode)}>Copy and Jump to page</Button>
+                </Card.Text>
+              </Card.Body>
+            </Col>
+          </Row>
+        </Card>
+        <Link to={`/reservationupdateform/${reservation.reservationId}`} className="btn btn-primary me-3">Edit Reservation</Link>
+        <Button className="btn btn-danger me-3" onClick={() => handleDeleteReservation(reservation.reservationId)}>Delete Reservation</Button>
+        <Link to={`/userreservationlist/`} className="btn btn-success me-3"><i className="bi bi-arrow-left-short"></i>Back</Link>
       </Container>
     </>
   );

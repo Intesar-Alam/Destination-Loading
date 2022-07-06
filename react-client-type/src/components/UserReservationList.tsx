@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
@@ -38,11 +38,10 @@ function UserReservationList() {
 
   const navigate = useNavigate();
 
-  
+
 
   useEffect(() => {
     if (auth === undefined || auth.user === null) {
-      // window.alert('You must be logged in to access this feature');
       navigate('/');
       return;
     }
@@ -61,12 +60,11 @@ function UserReservationList() {
       })
       .then(data => setUser(data))
       .catch(console.log);
-}, [auth]);
+  }, [auth]);
 
   useEffect(() => {
     if (auth === undefined || auth.user === null) {
-      // window.alert('You must be logged in to access this feature');
-      navigate('/');
+      navigate('/login');
       return;
     }
     const init = {
@@ -75,18 +73,21 @@ function UserReservationList() {
       },
     };
     fetch('http://localhost:8080/api/reservation/user', init)
-    .then(response => {
-    if (response.status === 200) {
-                return response.json();
-              } else {
-                return Promise.reject(`Unexpected status code: ${response.status}`);
-              }
-            })
-            .then(data => setReservations(data))
-            .catch(console.log);
+      .then(response => {
+        if (response.status === 200) {
+          return response.json();
+        } else {
+          return Promise.reject(`Unexpected status code: ${response.status}`);
+        }
+      })
+      .then(data => {
+        console.log(data);
+        setReservations(data)
+      })
+      .catch(console.log);
   }, [auth]);
 
-  
+
 
 
 
@@ -111,8 +112,9 @@ function UserReservationList() {
 
       <Container>
         <Link to="/reservationaddform" className="btn btn-primary mb-3">Add Reservation</Link>
-        <Row md={4}>
-          {reservations.map(reservation => (
+        <Row md={12}>
+        {/* <Row md={4}> */}
+        {/* {reservations.map(reservation => (
             <Col key={reservation['reservationId']}>
               <Link to={`/singleuserreservation/${reservation['reservationId']}`} >
                 <Card className="bg-dark text-dark text-center mb-5 d-flex align-items-center" style={{ width: '18rem' }}>
@@ -123,9 +125,28 @@ function UserReservationList() {
                 </Card>
               </Link>
             </Col>
-          ))}
-        </Row>
-      </Container>
+          ))} */}
+        {reservations.map(reservation => (
+          <Link to={`/singleuserreservation/${reservation['reservationId']}`} >
+            <Card className="mb-3">
+              <Row>
+                <Col className="col-md-4">
+                  <Card.Img src={JumboImage} alt="Generic travel image" />
+                </Col>
+                <Col className="col-md-8">
+                  <Card.Body>
+                    <Card.Text>
+                      {reservation['reservationDate']}
+                    </Card.Text>
+                    <Card.Title>{reservation['reservationTitle']}</Card.Title>
+                  </Card.Body>
+                </Col>
+              </Row>
+            </Card>
+          </Link>
+        ))}
+      </Row>
+    </Container>
     </>
   );
 }

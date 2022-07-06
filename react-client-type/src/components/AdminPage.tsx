@@ -53,7 +53,7 @@ function AdminPage() {
             </Link>
           </Col>
           <Col>
-            <Link style={{ textDecoration: 'none' }} to="/siteanalytics">
+            <Link style={{ textDecoration: 'none' }} to="/underconstruction">
               <Card bg="warning" style={{ width: '18rem', height: '6rem' }} className="me-5">
                 <Card.Body>
                   <Card.Title as="h2" className="text-white text-center my-2">Update User</Card.Title>
@@ -62,7 +62,7 @@ function AdminPage() {
             </Link>
           </Col>
           <Col>
-            <Link style={{ textDecoration: 'none' }} to="/siteanalytics">
+            <Link style={{ textDecoration: 'none' }} to="/underconstruction">
               <Card bg="secondary" style={{ width: '18rem', height: '6rem' }} className="me-5">
                 <Card.Body>
                   <Card.Title as="h2" className="text-white text-center my-2">Site Analytics</Card.Title>

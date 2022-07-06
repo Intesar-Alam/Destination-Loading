@@ -1,5 +1,5 @@
-import { useState, useEffect, useContext } from 'react';
-import { BrowserRouter, Routes, Route, Link, useRoutes, useNavigate, Navigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 
 import Home from './components/Home';
@@ -24,22 +24,10 @@ import CompanyAddForm from './components/CompanyAddForm';
 import UserList from './components/UserList';
 import ReservationList from './components/ReservationList';
 import CompanyList from './components/CompanyList';
-import SiteAnalytics from './components/SiteAnalytics';
+import UnderConstruction from './components/UnderConstruction';
 import Footer from './components/Footer';
 
 import AuthContext, { AuthObj } from './AuthContext';
-import internal from 'stream';
-
-
-// const CompanyRoutes = () => {
-//   let routes = useRoutes([
-//     { path: "/company", element: <CompanyForm />},
-//     { path: "/company/:id", element: <CompanyForm />}
-//   ]);
-//   return routes;
-// }
-
-
 
  const DL_TOKEN_KEY = 'dlToken';
 export interface DecodedToken {
@@ -141,7 +129,7 @@ const auth = {
           <Route path="/userlist" element={<UserList />} />
           <Route path="/reservationlist" element={<ReservationList />} />
           <Route path="/companylist" element={<CompanyList />} />
-          <Route path="/siteanalytics" element={<SiteAnalytics />} />
+          <Route path="/underconstruction" element={<UnderConstruction />} />
         </Routes>
         <Footer />
       </BrowserRouter>

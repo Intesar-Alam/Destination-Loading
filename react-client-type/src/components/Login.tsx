@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
@@ -63,10 +63,11 @@ function Login() {
           }
           console.log(auth.user);
           // TODO add if statements based on user to navigate to correct page on login, add if statement if not a user to send to new user login/register page'git
-          // navigate('/');
-          handleRedirect();
+          navigate('/');
+          // handleRedirect();
         } else {
-          setErrors(data);
+          const err: Array<string> = ['Username & Password combination are not correct please try again, or sign-up!'];
+          setErrors(err);
         }
       })
       .catch(console.log);
@@ -79,16 +80,16 @@ function Login() {
       return;
     }
     console.log("passed");
-    if (auth.user.hasRole('USER')) {
+    if (auth.user.hasRole('ROLE_USER')) {
       console.log("user");
-      navigate(`/userreservationlist/user`)
-    } else if (auth.user.hasRole('ADMIN')) {
+      navigate(`/userreservationlist/user`);
+    } else if (auth.user.hasRole('ROLE_ADMIN')) {
       console.log("admin");
       navigate("/adminpage");
-    } else if (auth.user.hasRole('REP')) {
+    } else if (auth.user.hasRole('ROLE_REP')) {
       // navigate(`/companypage/${auth.user.}`);
     } else {
-      navigate("/newuserlogin")
+      navigate("/newuserlogin");
     }
   }
 
@@ -103,7 +104,6 @@ function Login() {
   // TODO implement security/authController
   return (
     <>
-      {/* Add conditional logic for existing vs new user - if new send to user form on submit */}
       <h1 className="text-center">Login</h1>
       <Container>
         <Errors errors={errors} />
@@ -112,7 +112,7 @@ function Login() {
             <Form.Group as={Row} className="my-2 ms-3" controlId="formUsername">
               <Form.Label column sm={2}>Username</Form.Label>
               <Col sm={9}>
-                <Form.Control type="text" placeholder="Username" name="username" value={username} onChange={handleUsernameChange} />
+                <Form.Control type="text" placeholder="example@gmail.com" name="username" value={username} onChange={handleUsernameChange} />
               </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-2 ms-3" controlId="formPassword">

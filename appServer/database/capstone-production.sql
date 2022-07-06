@@ -141,6 +141,6 @@ insert into app_user (username, password_hash, disabled, company_id)
     insert into reservation(app_user_id, company_id, reservation_date, reservation_code, reservation_title)
     values
     (3, 2, '2023-10-23', '57955-2705', 'Birthday Weekend'),
-    (3, 3, '2023-05-26', '54868-5000', 'Holiday'),
+    (3, 26, '2023-05-26', '54868-5000', 'Holiday'),
     (4, 2, '2023-06-12', '65044-3565', 'Barbados trip');
 

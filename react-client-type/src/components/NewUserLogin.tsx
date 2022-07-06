@@ -1,5 +1,5 @@
-import { useEffect, useState, useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
@@ -101,7 +101,6 @@ function NewUserLogin() {
                   setErrors(data);
                 }
               })
-            // navigate(`/useraddform/${data['appUserId']}`);
           } else {
             setErrors(data);
           }
@@ -124,8 +123,6 @@ function NewUserLogin() {
   };
   
 
-  // fetch('http://localhost:8080/api/authenticate', init)
-
   return (
     <>
       <h1 className="text-center mb-3 mt-5">Welcome! We're Glad You're Here!</h1>
@@ -137,7 +134,7 @@ function NewUserLogin() {
             <Form.Group as={Row} className="my-2 ms-3" controlId="formUsername">
               <Form.Label column sm={2}>Username</Form.Label>
               <Col sm={9}>
-                <Form.Control type="text" placeholder="Username" name="username" value={appUser['username']} onChange={handleChange}/>
+                <Form.Control type="text" placeholder="example@gmail.com" name="username" value={appUser['username']} onChange={handleChange}/>
               </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-2 ms-3" controlId="formPassword">

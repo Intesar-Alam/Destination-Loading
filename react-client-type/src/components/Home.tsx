@@ -16,12 +16,14 @@ import AuthContext from '../AuthContext';
 
 
 // TODO styling
+// TODO add pages to bottom cards
 function Home() {
   const auth = useContext(AuthContext);
   return (
     <>
       
       <h1 className="text-center mt-5">Welcome to Destination Loading...</h1>
+      <Container>
       <Carousel className="mb-5">
         <Carousel.Item interval={5000}>
           <img
@@ -29,9 +31,9 @@ function Home() {
             src={Jumbotron1}
             alt="Beach alogn the water"
           />
-          <Carousel.Caption style={{backgroundColor: 'rgba(0, 0, 0, 0.35)'}}>
+          <Carousel.Caption style={{backgroundColor: 'rgba(0, 0, 0, 0.4)'}}>
             <h3><img src="https://www.expedia.com/favicon.ico" style={{ width: '32px' }}/>&nbsp;Expedia</h3>
-            <p>Check out our partner: Expedia Deal of the day can save you money.</p>
+            <p>Check out our partner: Expedia Deal of the Day can save you money.</p>
             <a href='https://www.expedia.com/deals' target='blank'><Button className="float-right">View Deals!</Button></a>
           </Carousel.Caption>
         </Carousel.Item>
@@ -41,7 +43,7 @@ function Home() {
             src={Jumbotron2}
             alt="Man at an airport"
           />
-          <Carousel.Caption style={{backgroundColor: 'rgba(0, 0, 0, 0.35)'}}>
+          <Carousel.Caption style={{backgroundColor: 'rgba(0, 0, 0, 0.4)'}}>
             <h3><img src="https://ssl.gstatic.com/travel-trips-fe/travel_logo_32.png" style={{ width: '32px' }}/>&nbsp;Google</h3>
             <p>They gave us money to sell your data!</p>
             <a href='https://www.google.com/travel/flights' target='blank'><Button className="float-right">View Deals!</Button></a>
@@ -53,13 +55,14 @@ function Home() {
             src={Jumbotron3}
             alt="Amtrak observation car"
           />
-          <Carousel.Caption style={{backgroundColor: 'rgba(0, 0, 0, 0.35)'}}>
+          <Carousel.Caption style={{backgroundColor: 'rgba(0, 0, 0, 0.4)'}}>
             <h3><img src="https://www.amtrak.com/etc/designs/dotcom-assets/images/favicon.ico" style={{ width: '32px' }}/>&nbsp;Amtrak</h3>
-            <p>Travel across the country and see the entire country an everything in between.</p>
+            <p>Travel across the country and while seeing everything in between.</p>
             <a href='https://www.amtrak.com/promotions/deals.html' target='blank'><Button className="float-right">View Deals!</Button></a>
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
+      </Container>
 
       <Container className="d-flex">
         <Row md={3} className="mx-auto mb-5">
@@ -67,7 +70,7 @@ function Home() {
             <Link style={{ textDecoration: 'none' }} to="/userreservationlist">
               <Card bg="primary" style={{ width: '18rem', height: '6rem' }} className="me-5">
                 <Card.Body>
-                  <Card.Title as="h2" className="text-white text-center my-2">User Login</Card.Title>
+                  <Card.Title as="h2" className="text-white text-center my-2">Reservations!</Card.Title>
                 </Card.Body>
               </Card>
             </Link>
@@ -85,7 +88,7 @@ function Home() {
             <Link style={{ textDecoration: 'none' }} to={`/companypage/${auth?.user?.companyId}`}>
               <Card bg="warning" style={{ width: '18rem', height: '6rem' }} className="me-5">
                 <Card.Body>
-                  <Card.Title as="h2" className="text-white text-center my-2">Company Login</Card.Title>
+                  <Card.Title as="h2" className="text-white text-center my-2">Company Page</Card.Title>
                 </Card.Body>
               </Card>
             </Link>
