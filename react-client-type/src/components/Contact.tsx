@@ -6,9 +6,7 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 
-// TODO styling
 function Contact() {
-  // Add validation for form (stretch goal)
   return (
     <>
       <h1 className="text-center mt-5">Contact Us</h1>

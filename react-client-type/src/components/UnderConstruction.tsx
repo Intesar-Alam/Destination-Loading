@@ -3,13 +3,10 @@ import Card from 'react-bootstrap/Card';
 
 import JumboImage from '../images/trainconstruction.jpg';
 
-import AdminMenuBar from './AdminMenuBar';
-
 // TODO styling
 function UnderConstruction() {
   return (
     <>
-    <AdminMenuBar />
       <Card className="text-black rounded-0 col-md-10 mx-auto my-5">
         <Card.Img src={JumboImage} alt="Card image" className="rounded-0" />
         <Card.ImgOverlay className="imgOverlay mx-auto my-auto rounded-0">

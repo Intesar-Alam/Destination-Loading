@@ -1,11 +1,7 @@
-import { Link } from 'react-router-dom';
-
 import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
 
 import JumboImage from '../images/travelers.jpg';
 
-// TODO new image/page styling
 function NotFound() {
   return (
     <>

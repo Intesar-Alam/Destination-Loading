@@ -6,7 +6,6 @@ import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 
 function AdminPage() {
-  // TODO styling
   return (
     <>
       <Container>
@@ -34,7 +33,7 @@ function AdminPage() {
             <Link className="cardLink" to="/reservationlist">
               <Card className="secondaryColor me-5">
                 <Card.Body>
-                  <Card.Title className="buttonTitle text-center">View Reservations</Card.Title>
+                  <Card.Title className="buttonTitle2 text-center my-2">View Reservations</Card.Title>
                 </Card.Body>
               </Card>
             </Link>
@@ -72,7 +71,6 @@ function AdminPage() {
           </Col>
         </Row>
       </Container>
-
 
     </>
   );

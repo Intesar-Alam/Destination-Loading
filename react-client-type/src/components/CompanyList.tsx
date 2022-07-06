@@ -7,10 +7,8 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-
 import AuthContext from '../AuthContext';
 
-// TODO styling
 function CompanyList() {
   const [companies, setCompanies] = useState([]);
 
@@ -71,7 +69,9 @@ function CompanyList() {
         <Table className="table">
           <thead>
             <tr className="thead">
-              <th>Company Id</th>
+              {auth && auth.user && auth.user.hasRole('ROLE_ADMIN') && (
+                <th>Company Id</th>
+              )}
               <th>Company Name</th>
               <th>Company Website</th>
               <th>Transportation Mode</th>
@@ -81,18 +81,14 @@ function CompanyList() {
           <tbody className="tbody">
             {companies.map(company => (
               <tr key={company['companyId']}>
-                <td>{company['companyId']}</td>
+                {auth && auth.user && auth.user.hasRole('ROLE_ADMIN') && (
+                  <td>{company['companyId']}</td>
+                )}
                 <td>{company['companyName']}</td>
                 <td><img src={company['icon']} style={{ width: '32px' }} /> &nbsp;<a href={company['url']} target="_blank">{company['url']}</a></td>
                 <td>{company['transportationMode']}</td>
                 <td>
                   <Row>
-                    {/* <Col className="col-md-6">
-                      <Link className="btn btn-primary btn-sm mr-2" to={`/company/${company['companyId']}`}>
-                        <i className="bi bi-pencil-square"></i>
-                      </Link>
-                    </Col> */}
-
                     <Col className="col-md-6">
                       {auth && auth.user && auth.user.hasRole('ROLE_ADMIN') && (
                         <Button className="deleteButton btn-sm" onClick={() => handleDeleteCompany(company['companyId'])}>

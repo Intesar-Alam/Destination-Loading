@@ -1,6 +1,6 @@
 import { useState, useEffect} from 'react';
 
-import { Card } from 'react-bootstrap';
+import Card from 'react-bootstrap/Card';
 
 import AIR from '../images/companies/AIR.png';
 import RAIL from '../images/companies/RAIL.png';
@@ -81,7 +81,7 @@ function CompanyImage({ companyName, icon, url, transportationMode }: Company) {
 
   return (
     <>
-      <Card.Img src={JumboImage} alt={altText} />
+      <Card.Img variant="bottom" className="smCardImgSize" src={JumboImage} alt={altText} />
     </>
   )
 }

@@ -3,17 +3,13 @@ import { useNavigate } from 'react-router-dom';
 
 import Table from 'react-bootstrap/Table';
 import Container from 'react-bootstrap/Container';
+
 import AuthContext from '../AuthContext';
-import AdminMenuBar from './AdminMenuBar';
-
-
-// TODO add authorization for admin only! need to be logged in to see list
 
 function ReservationList() {
   const [reservations, setReservations] = useState([]);
   const auth = useContext(AuthContext);
   const navigate = useNavigate();
-
 
   useEffect(() => {
     if (auth === undefined || auth.user === null) {
@@ -43,7 +39,6 @@ function ReservationList() {
 
   return (
     <>
-    <AdminMenuBar />
       <h1 className="text-center mb-5">All Reservations</h1>
       <Container>
         <Table className="table">

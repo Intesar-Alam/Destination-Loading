@@ -1,7 +1,6 @@
 import { useEffect, useState, useContext } from 'react';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 
-
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -12,8 +11,6 @@ import Card from 'react-bootstrap/Card';
 import AuthContext from '../AuthContext';
 import Errors from './Errors';
 
-// Test components
-// TODO styling
 type COMPANY_DEFAULT = {
   companyId: string | undefined,
   companyName: string,
@@ -107,7 +104,6 @@ function CompanyUpdateForm() {
       })
       .catch(console.log);
   };
-
 
   return (
     <>

@@ -8,18 +8,15 @@ import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Carousel from 'react-bootstrap/Carousel';
 
-import AuthContext from '../AuthContext';
-import AdminMenuBar from './AdminMenuBar';
-
 import Jumbotron1 from '../images/jumbotron1.jpg';
 import Jumbotron2 from '../images/jumbotron2.png';
 import Jumbotron3 from '../images/jumbotron3.jpg';
 import Plan1 from '../images/plan1.jpg';
 import Plan2 from '../images/plan2.jpg';
 import Plan3 from '../images/plan3.jpg';
-import TravelVlog from '../images/travelers.jpg';
-// TODO styling
-// TODO add pages to bottom cards
+
+import AuthContext from '../AuthContext';
+
 function Home() {
   const auth = useContext(AuthContext);
   return (
@@ -86,7 +83,7 @@ function Home() {
             <Link className="cardLink" to="/companylist">
               <Card className="secondaryColor me-5">
                 <Card.Body>
-                  <Card.Title className="buttonTitle text-center">Companies We Support</Card.Title>
+                  <Card.Title className="buttonTitle2 text-center">Companies We Support</Card.Title>
                 </Card.Body>
               </Card>
             </Link>
