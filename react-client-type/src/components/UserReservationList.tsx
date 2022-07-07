@@ -109,7 +109,7 @@ function UserReservationList() {
   }, [auth]);
 
   //TEMP
-  if (reservations === null) {
+  if (reservations === null || reservations === undefined || reservations.length === 0) {
     return (
       <>
         <h6 className="text-end me-3 mt-2">Welcome, {user['firstName']}!
@@ -117,10 +117,11 @@ function UserReservationList() {
             <i className="bi bi-pencil"></i>
           </Link>
         </h6>
-        <h1 className="text-center mb-5">Looks like you don't have any reservations yet, add reservations to get started!</h1>
+        <h1 className="text-center mb-5">Looks like you don't have any reservations yet.
+        <br /> Add reservations to get started!</h1>
 
         <Container>
-          <Link to="/reservationaddform" className="btn btn-primary mb-3">Add Reservation</Link>
+          <Link to="/reservationaddform" className="pageButton btn mb-3">Add Reservation</Link>
         </Container>
       </>
     );
