@@ -117,7 +117,7 @@ insert into app_user (username, password_hash, disabled, company_id)
     ('johnnyboy@gmail.com', '$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa', 0, null), -- admin
     ('chipg@alaskan.com', '$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa', 0, 2),
     ('stevesmith@aol.com', '$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa', 0, null),
-    ('seanmrph@gmail.com', '$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa', 0, null), -- admin
+    ('seanmrph@dl.com', '$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa', 0, null), -- admin
     ('mikeee@yahoo.com', '$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa', 0, 3),
     ('alextang@gmail.com', '$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa', 0, null);
 insert into app_user (username, password_hash, disabled, company_id) values ('clowne0@exblog.jp', '$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa', 0, 1);
@@ -208,9 +208,9 @@ insert into app_user (username, password_hash, disabled, company_id) values ('da
     insert into user_account (app_user_id, email, first_name, last_name, address, phone, dob)
     values
     (2, 'chipg@alaskan.com', 'Chip', 'Wim', '72876 Hooker Lane', '452-329-5337', '1994-11-07'),
-    (3, 'steve@smith.com', 'Steve', 'Smith', null, '986-652-8605', '2000-09-21'),
-    (4, 'john@john.com', 'John', 'Connor', '2 Evergreen Avenue', '619-846-9881', '2004-02-25'),
-    (5, 'mikey@yahoo.com', 'Mikey', 'Booker', '82 Alpine Way', '762-817-3029', '1993-08-23'),
+    (3, 'stevesmith@aol.com', 'Steve', 'Smith', null, '986-652-8605', '2000-09-21'),
+    (4, 'seanmrph@gmail.com', 'John', 'Connor', '2 Evergreen Avenue', '619-846-9881', '2004-02-25'),
+    (5, 'mikeee@yahoo.com', 'Mikey', 'Booker', '82 Alpine Way', '762-817-3029', '1993-08-23'),
     (6, 'alextang@gmail.com', 'Alex', 'Tang', null, '845-322-1849', null),
 
 	(7, 'clowne0@exblog.jp', 'Carl', 'Lowny', null, null, null),
