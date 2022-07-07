@@ -1,3 +1,252 @@
-.defaultHeight {
-  min-height: 80vh;
+h1,
+h2,
+h3,
+h6,
+p {
+  color: rgb(0, 49, 59);
+}
+
+/* Home */
+.carouselCaption {
+  background-color: rgba(255, 255, 255, 0.65)
+}
+
+.carouselIconImg {
+  width: 32px;
+}
+
+.cardStyle {
+  width: 22rem;
+  min-height: 27rem;
+}
+
+.cardImgStyle {
+  height: 14rem;
+}
+
+.cardImgIcon {
+  width: 1rem;
+}
+
+/* Errors */
+.errors {
+  color: rgb(187, 62, 3);
+  background-color: rgba(187, 62, 3, 0.2);
+}
+
+/* Table Styling */
+.table {
+  color: rgb(0, 49, 59);
+}
+
+.thead {
+  background-color: rgb(209, 236, 227);
+}
+
+.tfoot {
+  background-color: rgb(209, 236, 227);
+  font-weight: bold;
+}
+
+.tbody tr:nth-child(even) {
+  background-color: rgb(232, 245, 241);
+}
+
+.tbody tr:nth-child(odd) {
+  background-color: rgb(240, 249, 246);
+}
+
+/* Form */
+.form {
+  background-color: rgba(95, 104, 114, 0.15);
+}
+
+.formLabel {
+  color:rgb(0, 49, 59);
+}
+
+/* User Reservation List */
+.smCardLink {
+  text-decoration: none;
+}
+
+.smCardTitle {
+  font-size: 2.5rem;
+  color: rgb(0, 49, 59);
+  text-decoration: none;
+}
+
+.smCardText {
+  font-size: 1rem;
+  font-weight: bold;
+  color: rgb(0, 49, 59);
+}
+
+.cardSize {
+  width: 20rem;
+  min-height: 22rem;
+  background-color:rgb(232, 245, 241);
+}
+
+.smCardImgSize {
+  width: 100%;
+  height: 13rem;
+  border-radius: 6px
+}
+
+/* MenuBar and Footer */
+.adminMenu {
+  background-color: rgb(148, 210, 189);
+}
+
+.menuBar {
+  background-color: rgb(0, 95, 115);
+}
+
+.brand,
+.menuBar,
+.footer {
+  color: rgb(0, 28, 34);
+}
+
+.signUpLink {
+  color: rgb(0, 28, 34);
+}
+
+.signUpLink:hover {
+  color: rgb(148, 210, 189);
+}
+
+/* Large Custom Cards (NotFound, UnderConstruction, ContactSubmit */
+a {
+  color:rgb(5, 121, 133);
+}
+
+a:hover {
+  color:rgb(0, 95, 115);
+}
+
+.cardTitle {
+  font-size: 4.5rem;
+  font-weight: bold;
+  color: rgb(0, 49, 59);
+}
+
+.cardText {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: rgb(0, 49, 59);
+}
+
+.cardTitle404 {
+  font-size: 6rem;
+  font-weight: bold;
+  color: rgb(0, 49, 59);
+}
+
+.cardText404 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: rgb(0, 49, 59);
+}
+
+.imgOverlay {
+  height: 95%;
+  width: 96%;
+  background-color: rgba(255, 255, 255, 0.5)
+}
+
+/* Large Custom "Buttons" */
+.primaryColor {
+  width: 18rem;
+  height: 6rem;
+  background-color: rgb(10, 147, 150);
+}
+
+.secondaryColor {
+  width: 18rem;
+  height: 6rem;
+  background-color: rgb(210, 176, 74);
+}
+
+.tertiaryColor {
+  width: 18rem;
+  height: 6rem;
+  background-color: rgb(95, 104, 114);
+}
+
+.buttonTitle {
+  font-size: 2rem;
+  color: white;
+}
+
+.buttonTitle2 {
+  font-size: 1.75rem;
+  color: white;
+}
+
+.cardLink {
+  text-decoration: none;
+}
+
+
+/* Buttons */
+.menuButton {
+  text-decoration: none;
+  color: rgb(0, 28, 34);
+  background-color: rgb(233, 216, 166);
+  border: rgb(233, 216, 166);
+  padding: 8px 20px;
+  border-radius: 6px
+}
+
+.menuButton:active,
+.menuButton:hover {
+  background-color: rgb(210, 176, 74);
+  color: rgb(0, 28, 34);
+}
+
+.pageButton {
+  text-decoration: none;
+  color: white;
+  background-color: rgb(5, 121, 133);
+  border: rgb(5, 121, 133);
+  padding: 8px 20px;
+  border-radius: 6px
+}
+
+.pageButton:active,
+.pageButton:hover {
+  background-color: rgb(0, 95, 115);
+  color: white;
+}
+
+.cancelButton {
+  text-decoration: none;
+  color: rgb(0, 28, 34);
+  background-color: rgb(238, 155, 0);
+  border: rgb(238, 155, 0);
+  padding: 8px 20px;
+  border-radius: 6px
+}
+
+.cancelButton:active,
+.cancelButton:hover {
+  background-color: rgb(146, 48, 2);
+  color: white;
+}
+
+.deleteButton {
+  text-decoration: none;
+  color: white;
+  background-color: rgb(187, 62, 3);
+  border: rgb(187, 62, 3);
+  padding: 8px 20px;
+  border-radius: 6px
+}
+
+.deleteButton:active,
+.deleteButton:hover {
+  background-color: rgb(146, 48, 2);
+  color: white;
 }

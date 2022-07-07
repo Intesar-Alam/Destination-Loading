@@ -1,25 +1,28 @@
 
 import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
 
-import JumboImage from '../images/travelers.jpg';
+import JumboImage from '../images/404.jpeg';
 
+// TODO add links to buttons so they go to the right pages! 
+// TODO styling, new photo
 function NotFound() {
   return (
     <>
-      <Card className="text-white rounded-0 col-md-10 mx-auto my-5">
-        <Card.Img src={JumboImage} alt="Card image" className="rounded-0" />
-        <Card.ImgOverlay>
-          <Card.Title style={{ fontSize: "36px" }}>Error</Card.Title>
-          <Card.Text style={{ fontSize: "100px" }}>
-            404
-          </Card.Text>
-          <Card.Text className="text-dark">
-            There seems to be an error, we don't want you to miss your trip please go to our <Button>Home</Button> or <Button className="float-right">Contact Us</Button> for more information.
-          </Card.Text>
-          
-          
-        </Card.ImgOverlay>
+      <Card className="text-black rounded-0 col-md-10 mx-auto my-5">
+        
+          <Card.Body className="text-center">
+            <Card.Title className="cardTitle404">Error 404</Card.Title>
+            <Card.Text className="cardText404">
+              There seems to be an error and we couldn't find the page you were looking for.
+            </Card.Text>
+            <Card.Text className="cardText404">
+              We don't want you to miss your trip, so please head back to the <a href="/">homepage</a>!
+            </Card.Text>
+            <Card.Text className="cardText404">
+              If you need help or reached this page in error, please <a href="/contact">contact us</a>.
+            </Card.Text>
+          </Card.Body>
+          <Card.Img src={JumboImage} alt="Card image" className="rounded-0" />
       </Card>
     </>
   );

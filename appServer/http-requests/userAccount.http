@@ -78,7 +78,6 @@ Content-Type: application/json
   "address" : "777 Lucky Lane",
   "phone" : "(212) ILO VEU2",
   "dob" : "1988-01-01",
-  "reservations": null
 }
 
 ###
@@ -95,7 +94,6 @@ Content-Type: application/json
   "address" : "777 Lucky Lane",
   "phone" : "(212) ILO VEU2",
   "dob" : "1988-01-01",
-  "reservations": null
 }
 
 ###

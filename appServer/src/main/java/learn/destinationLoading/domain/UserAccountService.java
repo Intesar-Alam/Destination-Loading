@@ -29,10 +29,10 @@ public class UserAccountService {
 
         if(!result.isSuccess()) return result;
 
-        if(userAccount.getAppUserId() != 0){
-            result.addMessage("Id cannot be preset");
-            return result;
-        }
+//        if(userAccount.getAppUserId() != 0){
+//            result.addMessage("Id cannot be preset");
+//            return result;
+//        }
 
         UserAccount account = repository.add(userAccount);
         if(account == null) {
