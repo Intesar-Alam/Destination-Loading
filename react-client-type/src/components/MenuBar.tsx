@@ -18,13 +18,14 @@ function MenuBar() {
     <>
       <Navbar className="menuBar">
         <Container>
-          <Navbar.Brand className="brand">DL...<i className="bi bi-compass"></i></Navbar.Brand>
+          <Navbar.Brand href="/" className="brand">DL...<i className="bi bi-compass"></i></Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Nav className="me-auto">
             <NavDropdown className="menuTitle" title="Menu" id="basic-nav-dropdown">
               <NavDropdown.Item href="/">Home</NavDropdown.Item>
-              <NavDropdown.Item href="/learnmore">Learn More</NavDropdown.Item>
-              <NavDropdown.Item href="/userreservationlist">View Reservations</NavDropdown.Item>
+              {auth && auth.user && auth.user.hasRole('ROLE_USER') && (
+                <NavDropdown.Item href="/userreservationlist">View Reservations</NavDropdown.Item>
+              )}
               <NavDropdown.Item href="/learnmore">About Us</NavDropdown.Item>
               <NavDropdown.Item href="/contact">Contact</NavDropdown.Item>
             </NavDropdown>
