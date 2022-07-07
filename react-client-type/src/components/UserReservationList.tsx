@@ -46,6 +46,7 @@ function UserReservationList() {
   });
 
   const [reservations, setReservations] = useState<Reservation[] | null>(null);
+  const [currentReservations, setCurrentReservations] = useState<Reservation[] | null>(null);
 
   const auth = useContext(AuthContext);
 
@@ -103,13 +104,18 @@ function UserReservationList() {
       })
       .then(data => {
         console.log(data);
-        setReservations(data)
+        setReservations(data.sort((a : Reservation, b : Reservation) => a.reservationDate < b.reservationDate ? -1 : 1))
+        setCurrentReservations(data.sort((a : Reservation, b : Reservation) => a.reservationDate < b.reservationDate ? -1 : 1))
       })
       .catch(console.log);
   }, [auth]);
+  
+  const dateConverter = (date: string) => {
+    const dateArr = date.split('-');
+    return dateArr[1] + "/" + dateArr[2] + "/" + dateArr[0];
+  };
 
-  //TEMP
-  if (reservations === null) {
+  if (reservations === null || reservations === undefined || reservations.length === 0) {
     return (
       <>
         <h6 className="text-end me-3 mt-2">Welcome, {user['firstName']}!
@@ -117,19 +123,15 @@ function UserReservationList() {
             <i className="bi bi-pencil"></i>
           </Link>
         </h6>
-        <h1 className="text-center mb-5">Looks like you don't have any reservations yet, add reservations to get started!</h1>
+        <h1 className="text-center mb-5">Looks like you don't have any reservations yet.
+        <br /> Add reservations to get started!</h1>
 
         <Container>
-          <Link to="/reservationaddform" className="btn btn-primary mb-3">Add Reservation</Link>
+          <Link to="/reservationaddform" className="pageButton btn mb-3">Add Reservation</Link>
         </Container>
       </>
     );
   }
-
-  const dateConverter = (date: string) => {
-    const dateArr = date.split('-');
-    return dateArr[1] + "/" + dateArr[2] + "/" + dateArr[0];
-  };
 
   return (
     <>
