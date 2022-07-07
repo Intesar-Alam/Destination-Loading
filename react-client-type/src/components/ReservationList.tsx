@@ -6,8 +6,24 @@ import Container from 'react-bootstrap/Container';
 
 import AuthContext from '../AuthContext';
 
+type Reservation = {
+  reservationId: string | undefined,
+  appUserId: string,
+  companyId: string,
+  reservationDate: string,
+  reservationCode: string,
+  reservationTitle: string,
+  company: {
+    companyName?: string,
+  }
+  userAccount: {
+    firstName?: string,
+    lastName?: string
+  }
+};
+
 function ReservationList() {
-  const [reservations, setReservations] = useState([]);
+  const [reservations, setReservations] = useState<Reservation[] | null>(null);
   const auth = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -39,6 +55,10 @@ function ReservationList() {
       .catch(console.log);
   }, [auth]);
 
+  if (reservations === null || reservations === undefined || reservations.length === 0) {
+    return;
+  }
+
   const length = reservations.length;
 
   return (
@@ -49,8 +69,8 @@ function ReservationList() {
           <thead className="thead">
             <tr>
               <th>Reservation ID</th>
-              <th>Customer ID</th>
-              <th>Company ID</th>
+              <th>Customer Name</th>
+              <th>Company Name</th>
               <th>Reservation Date</th>
               <th>Reservation Code</th>
               <th>Reservation Name</th>
@@ -60,8 +80,8 @@ function ReservationList() {
             {reservations.map(reservation => (
               <tr key={reservation['reservationId']}>
                 <td>{reservation['reservationId']}</td>
-                <td>{reservation['appUserId']}</td>
-                <td>{reservation['companyId']}</td>
+                <td>{reservation?.userAccount['firstName']} {reservation?.userAccount['lastName']}</td>
+                <td>{reservation?.company['companyName']}</td>
                 <td>{reservation['reservationDate']}</td>
                 <td>{reservation['reservationCode']}</td>
                 <td>{reservation['reservationTitle']}</td>
