@@ -56,7 +56,7 @@ function ReservationList() {
   }, [auth]);
 
   if (reservations === null || reservations === undefined || reservations.length === 0) {
-    return;
+    return null;
   }
 
   const length = reservations.length;
