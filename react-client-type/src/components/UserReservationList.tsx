@@ -13,7 +13,6 @@ import CompanyImage from './CompanyImage';
 import Company from './CompanyImage';
 
 
-// TODO styling
 type USER_DEFAULT = {
   appUserId: string | undefined,
   email: string,
