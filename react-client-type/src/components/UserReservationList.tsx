@@ -46,6 +46,7 @@ function UserReservationList() {
   });
 
   const [reservations, setReservations] = useState<Reservation[] | null>(null);
+  const [currentReservations, setCurrentReservations] = useState<Reservation[] | null>(null);
 
   const auth = useContext(AuthContext);
 
@@ -103,12 +104,17 @@ function UserReservationList() {
       })
       .then(data => {
         console.log(data);
-        setReservations(data)
+        setReservations(data.sort((a : Reservation, b : Reservation) => a.reservationDate < b.reservationDate ? -1 : 1))
+        setCurrentReservations(data.sort((a : Reservation, b : Reservation) => a.reservationDate < b.reservationDate ? -1 : 1))
       })
       .catch(console.log);
   }, [auth]);
+  
+  const dateConverter = (date: string) => {
+    const dateArr = date.split('-');
+    return dateArr[1] + "/" + dateArr[2] + "/" + dateArr[0];
+  };
 
-  //TEMP
   if (reservations === null || reservations === undefined || reservations.length === 0) {
     return (
       <>
@@ -126,11 +132,6 @@ function UserReservationList() {
       </>
     );
   }
-
-  const dateConverter = (date: string) => {
-    const dateArr = date.split('-');
-    return dateArr[1] + "/" + dateArr[2] + "/" + dateArr[0];
-  };
 
   return (
     <>
