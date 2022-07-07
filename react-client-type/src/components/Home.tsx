@@ -61,15 +61,39 @@ function Home() {
 
       <Container className="d-flex">
         <Row md={3} className="mx-auto mb-5">
-          <Col>
-            <Link className="cardLink" to="/userreservationlist">
-              <Card className="primaryColor me-5">
-                <Card.Body>
-                  <Card.Title className="buttonTitle text-center my-2">Reservations!</Card.Title>
-                </Card.Body>
-              </Card>
-            </Link>
-          </Col>
+          {((auth === undefined || auth.user === null || (auth?.user?.hasRole("ROLE_USER"))) && (
+            <Col>
+              <Link className="cardLink" to="/userreservationlist">
+                <Card className="primaryColor me-5">
+                  <Card.Body>
+                    <Card.Title className="buttonTitle text-center my-2">Reservations!</Card.Title>
+                  </Card.Body>
+                </Card>
+              </Link>
+            </Col>
+          ))}
+          {((auth?.user?.hasRole("ROLE_REP")) && (
+            <Col>
+              <Link className="cardLink" to={`/companyreservationlist/${auth?.user?.companyId}`}>
+                <Card className="primaryColor me-5">
+                  <Card.Body>
+                    <Card.Title className="buttonTitle text-center my-2">Reservations!</Card.Title>
+                  </Card.Body>
+                </Card>
+              </Link>
+            </Col>
+          ))}
+          {((auth?.user?.hasRole("ROLE_ADMIN")) && (
+            <Col>
+              <Link className="cardLink" to="/reservationlist">
+                <Card className="primaryColor me-5">
+                  <Card.Body>
+                    <Card.Title className="buttonTitle text-center my-2">Reservations!</Card.Title>
+                  </Card.Body>
+                </Card>
+              </Link>
+            </Col>
+          ))}
           <Col>
             <Link className="cardLink" to="/learnmore">
               <Card className="tertiaryColor me-5">
