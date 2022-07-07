@@ -1,0 +1,109 @@
+#Test URL
+@url = http://localhost:8080/test/useraccount
+
+#Production URL
+#@url = http://localhost:8080/api/useraccount
+
+GET {{url}} HTTP/1.1
+
+###
+
+#Happy path
+GET {{url}}/1 HTTP/1.1
+
+###
+
+#Unhappy path
+GET {{url}}/4 HTTP/1.1
+
+#return no body
+
+###
+
+#Happy path
+POST {{url}} HTTP/1.1
+Content-Type: application/json
+
+{
+  "email" : "real@email.com",
+  "firstName" : "Sally",
+  "lastName" : "Smith",
+  "address" : "777 Lucky Lane",
+  "phone" : "(212) ILO VEU2",
+  "dob" : "1988-01-01"
+}
+
+###
+
+#Unhappy path
+POST {{url}} HTTP/1.1
+Content-Type: application/json
+
+{
+  "email" : "",
+  "firstName" : "Sally",
+  "lastName" : "Smith",
+  "address" : "777 Lucky Lane",
+  "phone" : "(212) ILO VEU2",
+  "dob" : "1988-01-01"
+}
+
+###
+
+#Happy path
+PUT {{url}}/3 HTTP/1.1
+Content-Type: application/json
+
+{
+  "appUserId": 3,
+  "email" : "real@email.com",
+  "firstName" : "Sally",
+  "lastName" : "Smith",
+  "address" : "777 Lucky Lane",
+  "phone" : "(212) ILO VEU2",
+  "dob" : "1988-01-01"
+}
+
+###
+
+#Unhappy path
+PUT {{url}}/1 HTTP/1.1
+Content-Type: application/json
+
+{
+  "appUserId": 3,
+  "email" : "real@email.com",
+  "firstName" : "Sally",
+  "lastName" : "Smith",
+  "address" : "777 Lucky Lane",
+  "phone" : "(212) ILO VEU2",
+  "dob" : "1988-01-01",
+}
+
+###
+
+#Unhappy path
+PUT {{url}}/0 HTTP/1.1
+Content-Type: application/json
+
+{
+  "appUserId": 0,
+  "email" : "real@email.com",
+  "firstName" : "Sally",
+  "lastName" : "Smith",
+  "address" : "777 Lucky Lane",
+  "phone" : "(212) ILO VEU2",
+  "dob" : "1988-01-01",
+}
+
+###
+
+#Happy path
+
+DELETE {{url}}/2 HTTP/1.1
+
+###
+
+#Unhappy path
+
+DELETE {{url}}/22 HTTP/1.1

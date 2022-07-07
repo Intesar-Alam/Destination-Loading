@@ -1,0 +1,99 @@
+#Test URL
+#@url = http://localhost:8080/test/company
+
+#Production URL
+@url = http://localhost:8080/api/company
+
+GET {{url}} HTTP/1.1
+
+###
+
+#Happy path
+GET {{url}}/3 HTTP/1.1
+
+###
+
+#Unhappy path
+GET {{url}}/30 HTTP/1.1
+
+#return no body
+
+###
+
+#Happy path
+POST {{url}} HTTP/1.1
+Content-Type: application/json
+
+{
+  "companyName" : "Emirates",
+  "url" : "https://www.emirates.com/",
+  "icon" : "https://c.ekstatic.net/assets/favicon.ico?h=6.0.506",
+  "transportationMode" : "AIR"
+}
+
+###
+
+#Unhappy path
+POST {{url}} HTTP/1.1
+Content-Type: application/json
+
+{
+  "companyName" : " ",
+  "url" : "",
+  "icon" : "https://c.ekstatic.net/assets/favicon.ico?h=6.0.506",
+  "transportationMode" : "AIR"
+}
+
+###
+
+#Happy path
+PUT {{url}}/3 HTTP/1.1
+Content-Type: application/json
+
+{
+  "companyId": 3,
+  "companyName" : "Emirates",
+  "url" : "https://www.emirates.com/",
+  "icon" : "https://c.ekstatic.net/assets/favicon.ico?h=6.0.506",
+  "transportationMode" : "AIR"
+}
+
+###
+
+#Unhappy path
+PUT {{url}}/1 HTTP/1.1
+Content-Type: application/json
+
+{
+  "companyId": 3,
+  "companyName" : "Emirates",
+  "url" : "https://www.emirates.com/",
+  "icon" : "https://c.ekstatic.net/assets/favicon.ico?h=6.0.506",
+  "transportationMode" : "AIR"
+}
+
+###
+
+#Unhappy path
+PUT {{url}}/0 HTTP/1.1
+Content-Type: application/json
+
+{
+  "companyId": 0,
+  "companyName" : "Emirates",
+  "url" : "https://www.emirates.com/",
+  "icon" : "https://c.ekstatic.net/assets/favicon.ico?h=6.0.506",
+  "transportationMode" : "AIR"
+}
+
+###
+
+#Happy path
+
+DELETE {{url}}/2 HTTP/1.1
+
+###
+
+#Unhappy path
+
+DELETE {{url}}/999 HTTP/1.1
