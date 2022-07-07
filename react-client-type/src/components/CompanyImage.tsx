@@ -16,6 +16,7 @@ import Flixbus from '../images/companies/Flixbus.jpg';
 import Greyhound from '../images/companies/Greyhound.jpg';
 import United from '../images/companies/United.jpg';
 import Via from '../images/companies/Via.png';
+import Spirit from '../images/companies/Spirit.jpg'
 
 export interface Company {
   companyName?: string,
@@ -51,6 +52,10 @@ function CompanyImage({ companyName, icon, url, transportationMode }: Company) {
           case "United Airlines":
             setJumboImage(United);
             setAltText("JetBlue plane in the sky");
+            break;
+          case "Spirit Airlines" :
+            setJumboImage(Spirit);
+            setAltText("Spirit plane in the sky");
             break;
           default:
             setJumboImage(AIR);

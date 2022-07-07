@@ -29,7 +29,8 @@ public class CompanyJdbcTemplateRepository implements CompanyRepository {
     public List<Company> findAll () {
         final String sql = "select company_id, company_name, company_url, company_icon, transportation_mode " +
                 "from transport_company " +
-                "where company_id > 1";
+                "where company_id > 1 " +
+                "order by company_name asc";
         return jdbcTemplate.query(sql, new CompanyMapper());
     }
 
@@ -47,11 +48,11 @@ public class CompanyJdbcTemplateRepository implements CompanyRepository {
         if (company != null) {
             addReservations(company);
         }
-        //TODO determine if we need methods similar to addAgencies and addAlias since company_id is a fk, or if that's only for primary keys
+
         return company;
     }
 
-    //TODO ask jordan to look at database - do i need to specify the primary keys, and is there a better datatype to use than varchar for site and image links
+
     @Override
     public Company add (Company company) {
         final String sql = "insert into transport_company (company_name, company_url, company_icon, transportation_mode) "
