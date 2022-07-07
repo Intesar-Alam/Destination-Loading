@@ -174,7 +174,7 @@ function SingleUserReservation() {
               <td>{reservation.reservationTitle}</td>
               <td>{reservation.reservationDate}</td>
               <td><img src={reservation.company.icon} style={{ width: '32px' }} /> <a href={reservation.company.url} target="blank">{reservation.company.companyName}</a></td>
-              <td>{reservation.reservationCode}</td>
+              <td><a href={''} onClick={(event) => copyReservation(reservation.reservationCode, event)}>{reservation.reservationCode}</a></td>
               <td><Button className="pageButton" onClick={() => copyJump(reservation.reservationCode)}>Copy and Jump to page</Button></td>
             </tr>
           </tbody>
