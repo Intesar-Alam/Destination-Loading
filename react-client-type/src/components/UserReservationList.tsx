@@ -5,8 +5,8 @@ import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/container';
+import Button from 'react-bootstrap/Button';
 
-import JumboImage from '../images/travelers.jpg';
 import AuthContext from '../AuthContext';
 
 import CompanyImage from './CompanyImage';
@@ -47,6 +47,8 @@ function UserReservationList() {
 
   const [reservations, setReservations] = useState<Reservation[] | null>(null);
   const [currentReservations, setCurrentReservations] = useState<Reservation[] | null>(null);
+  const [allReservations, setAllReservations] = useState<Reservation[] | null>(null);
+  const [viewAll, setViewAll] = useState<boolean>(false);
 
   const auth = useContext(AuthContext);
 
@@ -72,7 +74,7 @@ function UserReservationList() {
           navigate('/login');
           return;
         }
-         else {
+        else {
           return Promise.reject(`Unexpected status code: ${response.status}`);
         }
       })
@@ -98,22 +100,38 @@ function UserReservationList() {
           navigate('/forbidden');
           return;
         }
-         else {
+        else {
           return Promise.reject(`Unexpected status code: ${response.status}`);
         }
       })
       .then(data => {
-        console.log(data);
-        setReservations(data.sort((a : Reservation, b : Reservation) => a.reservationDate < b.reservationDate ? -1 : 1))
-        setCurrentReservations(data.sort((a : Reservation, b : Reservation) => a.reservationDate < b.reservationDate ? -1 : 1))
+        const all = data.sort((a: Reservation, b: Reservation) => a.reservationDate < b.reservationDate ? -1 : 1)
+        const upcoming = data.sort((a: Reservation, b: Reservation) => a.reservationDate < b.reservationDate ? -1 : 1).
+        filter((r: Reservation) => {
+          console.log(r.reservationDate + " : " + new Date().toISOString().split('T')[0]);
+          return r.reservationDate >= new Date().toISOString().split('T')[0];
+        })
+        setReservations(upcoming);
+        setAllReservations(all);
+        setCurrentReservations(upcoming);
+
       })
       .catch(console.log);
   }, [auth]);
-  
+
   const dateConverter = (date: string) => {
     const dateArr = date.split('-');
     return dateArr[1] + "/" + dateArr[2] + "/" + dateArr[0];
   };
+
+  const viewAllToggle = () => {
+    if (viewAll) {
+      setReservations(currentReservations);
+    } else {
+      setReservations(allReservations);
+    }
+    setViewAll(!viewAll);
+  }
 
   if (reservations === null || reservations === undefined || reservations.length === 0) {
     return (
@@ -124,10 +142,13 @@ function UserReservationList() {
           </Link>
         </h6>
         <h1 className="text-center mb-5">Looks like you don't have any reservations yet.
-        <br /> Add reservations to get started!</h1>
+          <br /> Add reservations to get started!</h1>
 
         <Container>
           <Link to="/reservationaddform" className="pageButton btn mb-3">Add Reservation</Link>
+          &nbsp;
+          {(viewAll) && (<Button onClick={() => viewAllToggle()} className="pageButton btn mb-3">Show Future Trips Only</Button>)}
+          {(!viewAll) && (<Button onClick={() => viewAllToggle()} className="pageButton btn mb-3">Show All Reservations!</Button>)}
         </Container>
       </>
     );
@@ -144,16 +165,19 @@ function UserReservationList() {
 
       <Container>
         <Link to="/reservationaddform" className="pageButton btn mb-3">Add Reservation</Link>
+        &nbsp;
+        {(viewAll) && (<Button onClick={() => viewAllToggle()} className="pageButton btn mb-3">Show Future Trips Only</Button>)}
+        {(!viewAll) && (<Button onClick={() => viewAllToggle()} className="pageButton btn mb-3">Show All Reservations!</Button>)}
         <Row>
           {reservations.map(reservation => (
             <Col key={reservation['reservationId']} className="col-md-4">
               <Link className="smCardLink" to={`/singleuserreservation/${reservation['reservationId']}`} >
                 <Card className="cardSize text-center mb-5 d-flex">
-                <CompanyImage {... reservation.company}/>
-                    <Card.Title className="smCardTitle">{reservation['reservationTitle']}</Card.Title>
-                    <Card.Text className="smCardText">
-                      {dateConverter(reservation.reservationDate)}
-                    </Card.Text>
+                  <CompanyImage {...reservation.company} />
+                  <Card.Title className="smCardTitle">{reservation['reservationTitle']}</Card.Title>
+                  <Card.Text className="smCardText">
+                    {dateConverter(reservation.reservationDate)}
+                  </Card.Text>
                 </Card>
               </Link>
             </Col>

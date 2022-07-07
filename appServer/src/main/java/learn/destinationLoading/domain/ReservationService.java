@@ -128,11 +128,11 @@ public class ReservationService {
             result.addMessage("Company Account not found");
         }
 
-//        if(reservation.getReservationDate() == null ){
-//            result.addMessage("Reservation date is missing");
-//        }else if(reservation.getReservationDate().isBefore(LocalDate.now())){
-//            result.addMessage("Reservation cannot be in the past");
-//        }
+        if(reservation.getReservationDate() == null ){
+            result.addMessage("Reservation date is missing");
+        }else if(reservation.getReservationDate().isBefore(LocalDate.now())){
+            result.addMessage("Reservation cannot be in the past");
+        }
 
         if(AppUtilities.blank(reservation.getReservationCode())){
             result.addMessage("Reservation code is missing");
